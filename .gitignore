@@ -1,1 +1,20 @@
+# Project files for PyCharm
 **/.idea
+
+# Visual-Studio User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.ncb
+*.opensdf
+*.sdf
+*.cachefile
+
+# Visual Studio solution and project files
+*.sln
+*.vcxproj*
