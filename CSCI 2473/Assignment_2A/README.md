@@ -1,7 +1,7 @@
-**C Programming
-CSC 2473
-Programming Assignment
-Chapter 2**
+**C Programming**
+**CSC 2473**
+**Programming Assignment**
+**Chapter 2**
 ---
 Due: **08/31/2015**
 
@@ -37,6 +37,6 @@ Be sure to include appropriate comments in your code, choose meaningful indentif
 
 ###Assignment_2B
 
-Problem 4 excerpted from page 88
+Problem 4 excerpted from page 88:
 
 Write a program that prints out business cards for yourself. A card should include your name, street address, phone number(s), and email address. You also can make up a company name and put that on the card if you wish. To save paper, the program should print eight cards per page, arranged in two colums of four cards. To reduce typing, you should declare a named string constant for each line of the card, and then write output statements to print the eight cards using those constants. Be sure to include appropriate comments in your code, choose meaningful identifiers, and use indentation as we do with the programs in this chapter.
