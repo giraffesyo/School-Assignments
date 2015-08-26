@@ -1,7 +1,11 @@
 **C Programming**
+
 **CSC 2473**
+
 **Programming Assignment**
+
 **Chapter 2**
+
 ---
 Due: **08/31/2015**
 
