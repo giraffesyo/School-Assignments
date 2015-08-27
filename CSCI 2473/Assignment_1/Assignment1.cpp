@@ -10,7 +10,7 @@ using namespace std;
 const double FREEZE_PT = 32.0;
 const double BOIL_PT = 212.0;
 
-void main()
+int main()
 {
 	double avgTemp;
 
@@ -23,5 +23,5 @@ void main()
 
 	cout << "Halfway between is ";
 	cout << avgTemp << " degrees." << endl;
-
+	return 0;
 }

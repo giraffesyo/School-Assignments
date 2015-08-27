@@ -29,7 +29,7 @@ const string MonWedMath = Time1 + Algebra[0] + Algebra[1];
 const string TueThuJapan = Time2 + Nihongo[0] + Nihongo[1];
 const string TueThuGeo = Time3 + Geo[0] + Geo[1];
 
-void main()
+int main()
 {
 	cout << Mon + MonWedMath;
 	cout << Mon + "6:00 PM  " + "C Language  " + "4204\n"; 
@@ -39,4 +39,5 @@ void main()
 	cout << Thu + TueThuJapan;
 	cout << Thu + TueThuGeo;
 	cout << Thu + "7:00 PM  " + "Geology Lab  " + Geo[1]; 
+	return 0;
 }
