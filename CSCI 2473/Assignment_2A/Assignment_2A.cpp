@@ -4,8 +4,8 @@
 //Assignment_2A.cpp
 //Simple program which outputs my weekly class schedule.
 
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 
 using namespace std;
 

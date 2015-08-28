@@ -4,8 +4,8 @@
 //Assignment_2B.cpp
 //A simple program which prints out eight business cards in a single window.
 
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
