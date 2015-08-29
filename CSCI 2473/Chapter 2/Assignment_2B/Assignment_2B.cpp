@@ -6,43 +6,28 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
 //All business card fields
 const string myName = "Michael McQuade";
-const string myAddress = "700 N Greenword Ave, Tulsa, OK 74106";
+const string myAddress = "700 N Greenwood Ave, Tulsa, OK 74106";
 const string myPhone = "918-594-8000";
 const string myEmail = "michael.mcquade@okstate.edu";
 
-//This will create the two columns.
-const string nameLine = myName + "\t\t\t\t" + myName;
-const string addressLine = myAddress + "\t" + myAddress;
-const string phoneLine = myPhone + "\t\t\t\t" + myPhone;
-const string emailLine = myEmail + "\t\t" + myEmail;
-
-
 int main()
-{
-	cout << nameLine << endl;
-	cout << addressLine << endl;
-	cout << phoneLine << endl;
-	cout << emailLine << endl << endl; //Double end line manipulator for space after each card
+{								  
+	int cardLength = myAddress.length(); // get length of longest string
 
-	cout << nameLine << endl;
-	cout << addressLine << endl;
-	cout << phoneLine << endl;
-	cout << emailLine << endl << endl;
-
-	cout << nameLine << endl;
-	cout << addressLine << endl;
-	cout << phoneLine << endl;
-	cout << emailLine << endl << endl;
-
-	cout << nameLine << endl;
-	cout << addressLine << endl;
-	cout << phoneLine << endl;
-	cout << emailLine << endl << endl;
-
+	int n = 0;
+	while (n<4) // need 4 rows of cards
+	{
+		cout << left << setw(cardLength) << myName << '\t' << myName << endl; //make two columns and use cardLength for width of card
+		cout << left << setw(cardLength) << myAddress << '\t' << myAddress << endl;
+		cout << left << setw(cardLength) << myPhone << '\t' << myPhone << endl;
+		cout << left << setw(cardLength) << myEmail << '\t' << myEmail << endl << endl; //Double end line manipulator for space after each card
+		n++;
+	}
 	return 0;
 }
