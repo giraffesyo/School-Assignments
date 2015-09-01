@@ -35,27 +35,22 @@ Output will appear as:
 
 ```
 Michael McQuade                         Michael McQuade
-700 N Greenword Ave, Tulsa, OK 74106    700 N Greenword Ave, Tulsa, OK 74106
+700 N Greenwood Ave, Tulsa, OK 74106    700 N Greenwood Ave, Tulsa, OK 74106
 918-594-8000                            918-594-8000
 michael.mcquade@okstate.edu             michael.mcquade@okstate.edu
 
 Michael McQuade                         Michael McQuade
-700 N Greenword Ave, Tulsa, OK 74106    700 N Greenword Ave, Tulsa, OK 74106
+700 N Greenwood Ave, Tulsa, OK 74106    700 N Greenwood Ave, Tulsa, OK 74106
 918-594-8000                            918-594-8000
 michael.mcquade@okstate.edu             michael.mcquade@okstate.edu
 
 Michael McQuade                         Michael McQuade
-700 N Greenword Ave, Tulsa, OK 74106    700 N Greenword Ave, Tulsa, OK 74106
+700 N Greenwood Ave, Tulsa, OK 74106    700 N Greenwood Ave, Tulsa, OK 74106
 918-594-8000                            918-594-8000
 michael.mcquade@okstate.edu             michael.mcquade@okstate.edu
 
 Michael McQuade                         Michael McQuade
-700 N Greenword Ave, Tulsa, OK 74106    700 N Greenword Ave, Tulsa, OK 74106
-918-594-8000                            918-594-8000
-michael.mcquade@okstate.edu             michael.mcquade@okstate.edu
-
-Michael McQuade                         Michael McQuade
-700 N Greenword Ave, Tulsa, OK 74106    700 N Greenword Ave, Tulsa, OK 74106
+700 N Greenwood Ave, Tulsa, OK 74106    700 N Greenwood Ave, Tulsa, OK 74106
 918-594-8000                            918-594-8000
 michael.mcquade@okstate.edu             michael.mcquade@okstate.edu
 ```
