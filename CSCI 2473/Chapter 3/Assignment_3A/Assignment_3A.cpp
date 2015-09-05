@@ -32,7 +32,13 @@ int main()
 	
 	while (i < 4)
 	{
-		cout << "Cone " << i << setw(10) << cones_radius[i - 1] << setw(11) << cones_height[i - 1] << setw(12) << getVolume(cones_radius[i - 1], cones_height[i - 1]) << endl;
+		cout
+			<< "Cone " << i 
+			<< setw(10) << cones_radius[i - 1]
+			<< setw(11) << cones_height[i - 1]
+			<< setw(12) << getVolume(cones_radius[i - 1], cones_height[i - 1])
+			<< endl;
+
 		i++;
 	}
 
