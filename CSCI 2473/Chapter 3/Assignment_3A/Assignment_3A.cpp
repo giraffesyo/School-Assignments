@@ -2,7 +2,7 @@
 //C Programming
 //Chapter 3 Problem 1
 //Assignment_3A.cpp
-//A simple programming which calculates the volume for 3 cones.
+//A simple program which calculates the volume for 3 cones.
 
 #include <iostream>
 #include <iomanip>
@@ -26,7 +26,7 @@ int main()
 {
 	//prepare stream and label columns
 	cout << fixed << setprecision(2); 
-	cout << setw(16) << "Radius" << setw(11) << "Height" << setw(12) << "Volume" << endl; 
+	cout << setw(16) << "Radius" << setw(10) << "Height" << setw(15) << "Volume" << endl; 
 	
 	int i = 0; // loop counter and cone index
 	
@@ -35,8 +35,8 @@ int main()
 		cout
 			<< "Cone " << i + 1 
 			<< setw(10) << cones_radius[i]
-			<< setw(11) << cones_height[i]
-			<< setw(12) << getVolume(cones_radius[i], cones_height[i])
+			<< setw(10) << cones_height[i]
+			<< setw(15) << getVolume(cones_radius[i], cones_height[i])
 			<< endl;
 
 		i++;
