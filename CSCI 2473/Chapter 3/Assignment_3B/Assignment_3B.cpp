@@ -1,7 +1,7 @@
 //Michael McQuade
 //C Programming
 //Chapter 3 Program 2
-//Assignment_3A.cpp
+//Assignment_3B.cpp
 //Program to calculate monthly remaining balance of a car loan given monthly payments, interest rate, and duration of loan.
 
 #include <iostream>
