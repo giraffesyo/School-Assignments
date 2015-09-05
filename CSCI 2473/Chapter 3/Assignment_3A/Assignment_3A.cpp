@@ -28,14 +28,12 @@ int main()
 	cout << fixed << setprecision(2); 
 	cout << setw(16) << "Radius" << setw(11) << "Height" << setw(12) << "Volume" << endl; 
 	
-	int i = 1; // loop counter and label for cones
-	int n = 0; // determine which cone we're on for array index
+	int i = 1; // loop counter and cone index
 	
 	while (i < 4)
 	{
-		cout << "Cone " << i << setw(10) << cones_radius[n] << setw(11) << cones_height[n] << setw(12) << getVolume(cones_radius[n], cones_height[n]) << endl;
+		cout << "Cone " << i << setw(10) << cones_radius[i - 1] << setw(11) << cones_height[i - 1] << setw(12) << getVolume(cones_radius[i - 1], cones_height[i - 1]) << endl;
 		i++;
-		n++;
 	}
 
 	return 0;
