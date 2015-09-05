@@ -13,10 +13,10 @@ Due: **9/14/2015**
 2.  The first programming assignment is to write a program as indicated in Programming Problem 1 on page 133 in the textbook.  Compute the volume for 3 cones using the values indicated below.  The output will be formatted as shown below:
 
   ```
-          Radius  Height  Volume
-Cone 1    10.10   20.10
-Cone 2    40.20   60.20
-Cone 3    80.30   90.30
+          Radius     Height      Volume
+Cone 1     10.10      20.10     
+Cone 2     40.20      60.20   
+Cone 3     80.30      90.30   
   ```
 
   Declare Pi with the value 3.1416 as a constant (type double) above the main function in your program.  Set the precision of all floating point output to 2 decimal positions.
