@@ -19,7 +19,23 @@ Due: **08/31/2015**
 
 ---
 
-The following excerpt is used for educational purposes for sake of completeness of project from Programming and Problem Solving With C++ Sixth Edition by Nell Dale and Chip Weems, permission was not granted by the author(s) of this book. I am using the content under Fair Use along with this statement explaining why.
+The following excerpts are used for educational purposes for sake of completeness of project from Programming and Problem Solving With C++ Sixth Edition by Nell Dale and Chip Weems, permission was not granted by the author(s) of this book. I am using the content under Fair Use along with this statement explaining why.
+
+---
+
+###Assignment_2A
+
+Problem 1 excerpted from page 88:
+
+Write a program that prints out your course schedule for a single week. Here's an example of the output for one day:
+
+```
+Monday  9:00  Computer Science  101
+Monday  11:00 Physics 201
+Monday  2:00  Dance 153
+```
+Use named string constants wherever possible to avoid retyping any words or numbers.
+Be sure to include appropriate comments in your code, choose meaningful indentifiers, and use indentation as we do with the programs in this chapter.
 
 ---
 
