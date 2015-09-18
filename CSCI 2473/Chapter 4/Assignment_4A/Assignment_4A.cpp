@@ -12,6 +12,7 @@ using namespace std;
 double A, B, C;
 double X1, X2;
 
+//Quadratic Formula, calculates roots given floats A, B, C
 void quadratic(double A, double B, double C)
 {
 	X1 = (-B + sqrt(B * B - 4 * A * C)) / (2 * A);
@@ -30,7 +31,7 @@ int main()
 		<< "A: " << A << endl
 		<< "B: " << B << endl 
 		<< "C: " << C << endl;
-
+ 
 	quadratic(A, B, C);
 	
 	cout 
