@@ -13,7 +13,7 @@ double A, B, C;
 double X1, X2;
 
 //Quadratic Formula, calculates roots given floats A, B, C
-void quadratic(double A, double B, double C)
+void quadratic()
 {
 	X1 = (-B + sqrt(B * B - 4 * A * C)) / (2 * A);
 	X2 = (-B - sqrt(B * B - 4 * A * C)) / (2 * A);
