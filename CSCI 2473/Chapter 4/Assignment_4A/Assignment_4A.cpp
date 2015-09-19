@@ -21,8 +21,9 @@ void quadratic()
 
 int main()
 {
-	cout << "This program calculates the two roots of a quadratic equation given A, B, and C." << endl;
-	cout << "Please enter A, B, and C: ";
+	cout
+		<< "This program calculates the two roots of a quadratic equation given A, B, and C." << endl
+		<< "Please enter A, B, and C: ";
 	
 	cin >> A >> B >> C;
 	
