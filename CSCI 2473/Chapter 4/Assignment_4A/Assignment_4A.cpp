@@ -32,7 +32,7 @@ int main()
 		<< "B: " << B << endl 
 		<< "C: " << C << endl;
  
-	quadratic(A, B, C);
+	quadratic();
 	
 	cout 
 		<< "X1: " << X1 << endl
