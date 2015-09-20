@@ -5,13 +5,14 @@
 //Computes averages from employee data and outputs data to a file
 
 #include <fstream>
+#include <iostream> // Used in case data.txt isn't present
 
 using namespace std;
 
 int main()
 {
-	ifstream empData;
-	ofstream empAvg;
+	ifstream empDataIn;
+	ofstream empAvgOut;
 
 	char empCat; 
 	double empPay = 0.0;
@@ -19,21 +20,27 @@ int main()
 
 	double readMarkerA, readMarkerB; //Used for temporary storage of values
 
-	empData.open("data.txt");
-	empAvg.open("avg.txt");
+	empDataIn.open("data.txt");
+	if (!empDataIn)
+	{
+		cout << "Data.txt not found, please make sure it's available." << endl;
+		return 1;
+	}
+
+	empAvgOut.open("avg.txt");
 
 	int i = 0; //index for empNum average
-	while (!empData.eof()) 
+	while (!empDataIn.eof()) 
 	{
-		empData >> empCat >> readMarkerA;
+		empDataIn >> empCat >> readMarkerA;
 		empPay = empPay + readMarkerA;
-		empData >> readMarkerB;
+		empDataIn >> readMarkerB;
 		empNum = empNum + readMarkerB;
-		empAvg << "Average pay for category " << empCat << " is " << readMarkerA / readMarkerB << endl;
+		empAvgOut << "Average pay for category " << empCat << " is " << readMarkerA / readMarkerB << endl;
 		i++;
 	}
 	
-	empAvg
+	empAvgOut
 		<< "Average number of employees (floored): " << empNum / i << endl
 		<< "Average pay of all employees: " << empPay / double(empNum) << endl;
 
