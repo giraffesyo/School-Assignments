@@ -13,8 +13,6 @@ int main()
 	char userChar;
 	char keypadnum;
 	
-	
-
 	cout << "Enter a single letter, and I will tell you what the corresponding digit is on the telephone keypad." << endl << '>';
 	cin >> userChar;
 
