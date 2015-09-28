@@ -2,9 +2,11 @@
 //C Programming
 //Chapter 5 Program B
 //Assignment_5B.cpp
-//This program finds the median of a set of 3 numbers.
+//This program finds the median of a set of numbers.
 
 #include <iostream>
+#include <algorithm> //sort function
+#include <vector>
 
 using namespace std;
 
@@ -12,33 +14,32 @@ void printHeader()
 {
 	cout
 		<< "This program finds the median of a set of numbers."
+		<< endl << endl
+		<< "Please enter space separated numbers."
 		<< endl
-		<< "Please enter 3 numbers separated by a space: ";
+		<< "Enter non-numeric data to stop: ";
 }
 
-double getMedian(double Num1, double Num2, double Num3)
-{
-	double median;
-
-	if ((Num1 > Num2 && Num1 < Num3) || (Num1 > Num3 && Num1 < Num2))
-		median = Num1;
-	else if ((Num2 > Num1 && Num2 < Num3) || (Num2 > Num3 && Num2 < Num1))
-		median = Num2;
-	else if ((Num3 > Num1 && Num3 < Num2) || (Num3 > Num2 && Num3 < Num1))
-		median = Num3;
-	else //all values are equal
-		median = Num1;
-	
-	return median;
-}
 
 int main()
-{
-	double Num1, Num2, Num3;
-	
+{	
+	vector <double> numbers; 
+	double input;
+	double median;
+
 	printHeader();
-	cin >> Num1 >> Num2 >> Num3;
-	cout << "The median is: " << getMedian(Num1, Num2, Num3) << endl;
+
+	while (cin >> input)
+		numbers.push_back(input);	
+
+	sort(begin(numbers), end(numbers));
+
+	if (numbers.size() % 2 == 0) //If even
+		median = (numbers[numbers.size() / 2 - 1] + numbers[numbers.size() / 2]) / 2.0;
+	else //otherwise odd
+		median = numbers[numbers.size() / 2];
+
+	cout << endl << "The median of those numbers is: " << median << endl;
 
 	return 0;
 }
