@@ -33,13 +33,10 @@ Due: **10/19/2015**
   Write a program to read a file called QUOTES.txt (to be furnished).  Your program will count all 3, 4, 5, and 6 letter words.  Display the results int he following format:
 
 
-  > 3 letter words:   xxx
-  
-  > 4 letter words:   xxx
-  
-  > 5 letter words:   xxx
-  
-  > 6 letter words:   xxx
+  > 3 letter words:   xxx  
+  > 4 letter words:   xxx  
+  > 5 letter words:   xxx  
+  > 6 letter words:   xxx  
 
   The input for this program comes from a file; the output will go to an output file called NUMWORDS.txt
 3. **Please turn in the following:**
