@@ -34,8 +34,11 @@ Due: **10/19/2015**
 
 
   > 3 letter words:   xxx
+  
   > 4 letter words:   xxx
+  
   > 5 letter words:   xxx
+  
   > 6 letter words:   xxx
 
   The input for this program comes from a file; the output will go to an output file called NUMWORDS.txt
