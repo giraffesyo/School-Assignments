@@ -6,21 +6,24 @@
 
 #include <iostream>
 
+const int linemax = 7;
+
 int main()
 {
-	for (int line = 1; line <= 7; line++)
+
+	for (int line = 1; line <= linemax; line++)
 	{
-		for (int lessthan = 1; lessthan <= 7 - line; lessthan++)
+		for (int lessthan = 1; lessthan <= linemax - line; lessthan++)
 			std::cout << '<';
 		for (int space = 1; space <= line; space++)
 			std::cout << ' ';
-		for (int pound = 1; pound <= 14 - 2 * line; pound++)
+		for (int pound = 1; pound <= 2 * linemax - 2 * line; pound++)
 			std::cout << '#';
 		for (int asterisk = 1; asterisk <= line * 2 - 2; asterisk++)
 			std::cout << '*';
 		for (int space = 1; space <= line; space++)
 			std::cout << ' ';
-		for (int greaterthan = 1; greaterthan <= 7 - line; greaterthan++)
+		for (int greaterthan = 1; greaterthan <= linemax - line; greaterthan++)
 			std::cout << '>';
 		std::cout << std::endl;
 	}
