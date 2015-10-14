@@ -1,11 +1,7 @@
-**C Programming**
-
-**CSC 2473**
-
-**Programming Assignments**
-
-**Chapter 6**
-
+**C Programming**  
+**CSC 2473**  
+**Programming Assignments**  
+**Chapter 6**  
 
 Due: **10/19/2015**
 
