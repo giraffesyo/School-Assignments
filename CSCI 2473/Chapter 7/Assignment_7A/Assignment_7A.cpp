@@ -4,10 +4,7 @@
 //Assignment_7A.cpp
 //This program gets input and outputs the number which corresponds to it on a phone's keypad.
 
-
-
 #include <iostream>
-
 
 void keyOutput(char keypad)
 {

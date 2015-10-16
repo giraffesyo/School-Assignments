@@ -9,161 +9,164 @@
 
 using namespace std;
 
-int main()
+const char inputFile[] = "DataFile2.txt";
+const char outputFile[] = "answers.txt";
+
+//Closes file stream, clears buffer, reopens stream.
+void reopenData(ifstream& input)
 {
-	ifstream dataFile;
-	ofstream answers;
+	input.close();
+	input.clear();
+	input.open(inputFile);
+}
 
+//Task A: Read file and write all integers to one line
+void allIntegers(ifstream& inputFile, ofstream& outputFile) 
+{
 	int num;
-	int counter = 0;
-	double dataSum = 0.0;
-
-	dataFile.open("DataFile2.txt");
-	answers.open("answers.txt");
-		
-	//Read file and write all integers to one line
-	answers << "The input file contains the following data:" << endl;
-	dataFile >> num;
-	while(dataFile)
-	{	
-		answers << num << ' ';
-		dataFile >> num;
+	inputFile >> num;
+	while (inputFile)
+	{
+		outputFile << num << ' ';
+		inputFile >> num;
 	}
 
-	dataFile.close();
-	dataFile.clear();
-	dataFile.open("DataFile2.txt");
+	reopenData(inputFile);
+}
 
-	//Reread file and compute average of all integers in the file. 
-	answers << endl << endl << "The average of all numbers in the input file (with 3 decimal positions) is: ";
-	answers << fixed << setprecision(3);
-	
-	dataFile >> num;
-	while(dataFile)
+//Task B: Reread file and compute average of all integers in the file. 
+double avgOfAll(ifstream& inputFile)
+{
+	int num;
+	int dataSum = 0;
+	int counter = 0;
+
+	inputFile >> num;
+	while (inputFile)
 	{
 		dataSum += num;
 		counter++;
-		dataFile >> num;
+		inputFile >> num;
 	}
 
-	answers << double(dataSum) / double(counter);
+	reopenData(inputFile);
 
+	return double(dataSum) / double(counter);
+}
 
-	dataFile.close();
-	dataFile.clear();
-	dataFile.open("DataFile2.txt");
+//Task C: Reread file and compute average of first 12 integers in the file. 
+double avgOf12(ifstream& inputFile)
+{
+	int dataSum = 0;
+	int counter = 1;
+	int num;
 
-
-	//Reread file and compute average of first 12 integers in the file. 
-	dataSum = 0;
-	counter = 1;
-
-	dataFile >> num;
+	inputFile >> num;
 	while (counter <= 12)
 	{
 		dataSum += num;
 		counter++;
-		dataFile >> num;
+		inputFile >> num;
 	}
 
-	answers << endl << endl << "The average of the first 12 numbers in the input file (with 3 decimal positions) is: ";
-	answers << double(dataSum) / double(counter - 1);
+	reopenData(inputFile);
 
-	dataFile.close();
-	dataFile.clear();
-	dataFile.open("DataFile2.txt");
+	return double(dataSum) / double(counter - 1);
+}
+
+//Task D: Reread file and get sum for every 3rd integer
+int sumevery3rd(ifstream& inputFile)
+{
+	int dataSum = 0;
+	int counter = 1;
+	int num;
 	
-	//Reread file and get sum for every 3rd integer
-	dataSum = 0;
-	counter = 1;
-	dataFile >> num;
-	while (dataFile)
+	inputFile >> num;
+	while (inputFile)
 	{
 		if (counter % 3 == 0) //then this is an iteration we want to capture!
 		{
 			dataSum += num;
 		}
 		counter++;
-		dataFile >> num;
+		inputFile >> num;
 	}
-	answers << endl << endl << "The sum of every third integer in the file is: ";
-	answers << dataSum;
-
-
-	dataFile.close();
-	dataFile.clear();
-	dataFile.open("DataFile2.txt");
-
-
-	//Reread the file and determine the range of the numbers.
-	int smallest = INT_MAX;
-	int largest = INT_MIN;
 	
-	dataFile >> num;
-	while (dataFile)
+	reopenData(inputFile);
+	return dataSum;
+
+}
+
+//Task E: Reread the file and determine the range of the numbers.
+void calculateRange(ifstream& inputFile, int& smallest, int& largest)
+{
+	int num;
+	
+	inputFile >> num;
+	while (inputFile)
 	{
 		if (largest < num)
 			largest = num;
 		if (smallest > num)
 			smallest = num;
-		dataFile >> num;
+		inputFile >> num;
 	}
-	
-	answers << endl << endl << "The smallest number is " << smallest << " and the largest is " << largest << ".";
 
+	reopenData(inputFile);
+}
 
-	dataFile.close();
-	dataFile.clear();
-	dataFile.open("DataFile2.txt");
-
-	//Reread the file and determine the integer which is closest to 200.
+//Task F: Reread the file and determine the integer which is closest to 200.
+int closest200(ifstream& inputFile)
+{
 	int closest;
 	int diff;
+	int num;
 
-	dataFile >> num;
+	inputFile >> num;
 	closest = num;
-	while (dataFile)
+	while (inputFile)
 	{
 		diff = abs(num - 200);
-		if ( diff < abs(closest - 200))
+		if (diff < abs(closest - 200))
 			closest = num;
-		dataFile >> num;
+		inputFile >> num;
 	}
+	reopenData(inputFile);
+	return closest;
+}
 
+//Task G: Reread the file and compute the average of all integers on the first two lines.
+double avg2lines(ifstream& inputFile)
+{
 
-	answers << endl << endl << "The closest number to 200 is: " << closest;
-
-	dataFile.close();
-	dataFile.clear();
-	dataFile.open("DataFile2.txt");
-
-	//Reread the file and compute the average of all integers on the first two lines.
-	dataSum = 0;
-	counter = 0;
+	int	dataSum = 0;
+	int counter = 0;
 	int lineCounter = 1;
+	int num;
 
-	dataFile >> num;
+	inputFile >> num;
 	while (lineCounter <= 2)
 	{
-		if (dataFile.peek() == '\n')
+		if (inputFile.peek() == '\n')
 			lineCounter++;
 		dataSum += num;
 		counter++;
-		dataFile >> num;
+		inputFile >> num;
 	}
 
-	answers << endl << endl << "The average of all integers on the first two lines is: ";
-	answers << double(dataSum) / double(counter);
+	reopenData(inputFile);
 
-	dataFile.close();
-	dataFile.clear();
-	dataFile.open("DataFile2.txt");
+	return double(dataSum) / double(counter);
+}
 
-	//Reread the file and compute the sum of integers as long as the sum does not exceed 1000.
+//Task H: Reread the file and compute the sum of integers as long as the sum does not exceed 1000.
+int sumlessthan1000(ifstream& inputFile)
+{
 	bool lessthan1000 = true;
-	dataSum = 0;
+	int dataSum = 0;
+	int num;
 
-	dataFile >> num;
+	inputFile >> num;
 	while (lessthan1000)
 	{
 		if (dataSum + num > 1000)
@@ -172,8 +175,53 @@ int main()
 			dataSum += num;
 	}
 
-	answers << endl << endl << "The sum of the integers without exceeding 1000 is: " << dataSum;
+	return dataSum;
+}
 
+int main()
+{
+	ifstream dataFile;
+	ofstream answers;
+
+	dataFile.open(inputFile);
+	answers.open(outputFile);
+
+	//Task A
+	answers << "The input file contains the following data:" << endl;
+	allIntegers(dataFile, answers);
+
+	//Task B
+	answers << fixed << setprecision(3);
+	answers << endl << endl << "The average of all numbers in the input file (with 3 decimal positions) is: ";
+	answers << avgOfAll(dataFile);
+	
+	//Task C	
+	answers << endl << endl << "The average of the first 12 numbers in the input file (with 3 decimal positions) is: ";
+	answers << avgOf12(dataFile);
+
+	//Task D
+	answers << endl << endl << "The sum of every third integer in the file is: ";
+	answers << sumevery3rd(dataFile);
+
+	//Task E
+	int smallest = INT_MAX;
+	int largest = INT_MIN;
+	calculateRange(dataFile, smallest, largest);
+
+	answers << endl << endl << "The smallest number is: " << smallest;
+	answers << endl << "The largest number is: " << largest;
+	
+	//Task F
+	answers << endl << endl << "The closest number to 200 is: ";
+	answers << closest200(dataFile);
+
+	//Task G
+	answers << endl << endl << "The average of all integers on the first two lines is (with 3 decimal positions): ";
+	answers << avg2lines(dataFile);
+
+	//Task H
+	answers << endl << endl << "The sum of the integers without exceeding 1000 is: ";
+	answers << sumlessthan1000(dataFile) << endl;
 
 	return 0;
 }

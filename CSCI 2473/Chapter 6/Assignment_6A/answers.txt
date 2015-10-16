@@ -5,12 +5,13 @@ The average of all numbers in the input file (with 3 decimal positions) is: 345.
 
 The average of the first 12 numbers in the input file (with 3 decimal positions) is: 340.083
 
-The sum of every third integer in the file is: 3000.000
+The sum of every third integer in the file is: 3000
 
-The smallest number is 14 and the largest is 950.
+The smallest number is: 14
+The largest number is: 950
 
 The closest number to 200 is: 167
 
-The average of all integers on the first two lines is: 266.889
+The average of all integers on the first two lines is (with 3 decimal positions): 266.889
 
-The sum of the integers without exceeding 1000 is: 990.000
+The sum of the integers without exceeding 1000 is: 990
