@@ -1,0 +1,8 @@
+All integers: 62 8 25 7 90 82 22 46 15 54 
+Fourth integer: 7
+Sum of last 6: 309
+Average of last 6: 51.5
+Smallest number: 7
+Largest number: 90
+First four ints in reverse order: 7 25 8 62 
+All integers: 7 8 15 22 25 46 54 62 82 90 
