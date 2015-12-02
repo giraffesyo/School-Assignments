@@ -1,9 +1,10 @@
 C Programming  
 CSC 2473  
 Programming Assignment  
-Chapter 11A - Single Dimension Arrays
-Chapter 11B - Two Dimension Arrays
-11A Due:  11/16/2015 11B Due: 11/30/2015
+Chapter 11A - Single Dimension Arrays  
+Chapter 11B - Two Dimension Arrays  
+11A Due:  11/16/2015  
+11B Due: 11/30/2015  
 
 1. Assignment 11A:
   1. Place the following values in a file. Use this file as an input to your program.
@@ -20,7 +21,7 @@ Chapter 11B - Two Dimension Arrays
     9. Output the 10 integers on the same line from the array to confirm that the sort took place correctly.
   3. All 10 integers must be read into the array before any other processing can be accomplished. That is, steps 1.2 through 1.9 cannot be performed during the reading of the integers. The purpose of this exercise is to practice manipulating a single dimension array.
   4. Write all output to a file.
-2. Assignment 11B:
+2. Assignment 11B:  
   The Oklahoma Fishery Laboratory has been doing research in 6 lakes in Oklahoma attempting to determine the populations of 4 different, almost extinct, fish living in the state.The researchers have compiled the data and are now ready to process it. They need a program as described below to process the data.
   
   The program will do the following:
