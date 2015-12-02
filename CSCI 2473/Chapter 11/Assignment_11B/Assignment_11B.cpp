@@ -33,7 +33,7 @@ int main()
 	//load our array from input file
 	for (int i = 0; i < 4; i++)
 	{
-		
+
 		for (int j = 0; j < 6; j++)
 		{
 			inputData >> FishyArray[i][j];
@@ -45,11 +45,12 @@ int main()
 	AvgRows(rowSum, rowAvg);
 	AvgColumns(columnSum, columnAvg);
 	DrawTable(FishyArray, rowSum, columnSum, rowAvg, columnAvg);
-	
+
 
 	return 0;
 }
 
+//Sums rows and stores them into an array, ordered by row number
 void SumRows(int Data[][6], int rowSum[])
 {
 	int sum = 0;
@@ -64,7 +65,7 @@ void SumRows(int Data[][6], int rowSum[])
 	}
 }
 
-
+//Sums columns and stores them into an array, ordered by column number
 void SumColumns(int Data[][6], int columnSum[])
 {
 	int sum = 0;
@@ -72,7 +73,7 @@ void SumColumns(int Data[][6], int columnSum[])
 	{
 		for (int i = 0; i < 4; i++)
 		{
-		
+
 			sum += Data[i][j];
 		}
 		columnSum[j] = sum;
@@ -80,7 +81,7 @@ void SumColumns(int Data[][6], int columnSum[])
 	}
 }
 
-
+//Averages Rows and Stores them into an array, ordered by row number
 void AvgRows(int rowSum[], double rowAvg[])
 {
 	for (int i = 0; i < 4; i++)
@@ -90,6 +91,7 @@ void AvgRows(int rowSum[], double rowAvg[])
 
 }
 
+//Averages Columns and stores them into an array, ordered by column number
 void AvgColumns(int columnSum[], double columnAvg[])
 {
 	for (int i = 0; i < 6; i++)
@@ -98,6 +100,7 @@ void AvgColumns(int columnSum[], double columnAvg[])
 	}
 }
 
+//Outputs to screen table of information using row and column data and averages.
 void DrawTable(int Data[][6], int rowSum[], int columnSum[], double rowAvg[], double columnAvg[])
 {
 	for (int n = 0; n <= 34; n++)
