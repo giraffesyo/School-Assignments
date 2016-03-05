@@ -30,7 +30,7 @@ Due: 03/08/2016
   - A printed copy of the output files
   - A USB device containing your soursce programs (.cpp) and header files
 
-8. **Note**:
+8. **Note**:  
   If a global variable is declared in one .cpp file and used in another .cpp file, declarations similar to the following must be used:
 
   In File1 (for example, the file that contains the main function)
