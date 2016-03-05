@@ -1,5 +1,5 @@
 **C++ Programming**  
-**CSC 2843**
+**CSC 2843**  
 **Programming Assignment #2**
 
 Due: 03/08/2016
@@ -38,7 +38,8 @@ Due: 03/08/2016
      - `using namespace std;`
      - `ofstream Fileout;`
      - `float number;`
-   In File2(for example, the file that contains the member function definitions)
+     
+  In File2(for example, the file that contains the member function definitions)
     - All include entries
     - `using namespace std;`
     - `extern ofstream Fileout;`
