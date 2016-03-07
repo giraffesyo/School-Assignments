@@ -12,6 +12,7 @@ public:
 	rectangle();
 	rectangle(double l);
 	rectangle(double l, double w);
+	~rectangle();
 	void setlength(double l);
 	void setwidth(double w);
 	double getlength();

@@ -49,6 +49,11 @@ rectangle::rectangle(double l, double w)
 	}
 }
 
+rectangle::~rectangle()
+{
+	RectOutput << "Object with length " << length << " and width " << width << " is now out of scope." << std::endl;
+}
+
 //Sets length of rectangle - must be between 0.0 and 20.0 or default will be used
 void rectangle::setlength(double l)
 {

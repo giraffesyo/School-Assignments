@@ -17,15 +17,15 @@ void outputTable(std::vector <rectangle> & Rectangles);
 
 int main()
 {
-
 	std::vector <rectangle> Rectangles;
+	Rectangles.reserve(5);
 
 	//Initialize all of our rectangle objects within our vector
-	Rectangles.push_back(rectangle());
-	Rectangles.push_back(rectangle(7.1, 3.2));
-	Rectangles.push_back(rectangle(6.3));
-	Rectangles.push_back(rectangle(21.0, 21.0));
-	Rectangles.push_back(rectangle(Rectangles[1]));
+	Rectangles.emplace_back();
+	Rectangles.emplace_back(7.1, 3.2);
+	Rectangles.emplace_back(6.3);
+	Rectangles.emplace_back(21.0, 21.0);
+	Rectangles.emplace_back(Rectangles[1]);
 
 	RectOutput << std::endl << "Original Data Table:" << std::endl;
 	outputTable(Rectangles);
@@ -37,6 +37,7 @@ int main()
 
 	RectOutput << std::endl << std::endl << "Changed Data Table:" << std::endl;
 	outputTable(Rectangles);
+	RectOutput << std::endl;
 
 	return 0;
 }
