@@ -1,7 +1,7 @@
 //Michael McQuade
 //C++ Programming
 //Assignment 2
-//Ass2_main.cpp
+//Ass2_rectangle.h
 //This file contains the rectangle class prototypes for assignment 2. 
 
 #pragma once

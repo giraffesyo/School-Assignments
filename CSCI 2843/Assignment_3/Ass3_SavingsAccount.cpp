@@ -1,6 +1,8 @@
 //Michael McQuade
-//C++ Progrmaming
-//Assigment 3
+//C++ Programming
+//Assignment 3
+//Ass3_SavingsAccount.cpp
+//This file contains the definitions for the SavingsAccount Class for assignment 3. 
 
 #include <string>
 #include <iostream>

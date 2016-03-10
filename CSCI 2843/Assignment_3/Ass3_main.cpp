@@ -1,5 +1,9 @@
 //Michael McQuade
 //C++ Programming
+//Assignment 3
+//Ass3_main.cpp
+//This file contains the main function for assignment 3. 
+
 
 #include "Ass3_SavingsAccount.h"
 
