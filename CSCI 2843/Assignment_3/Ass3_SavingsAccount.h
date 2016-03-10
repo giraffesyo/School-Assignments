@@ -15,8 +15,8 @@ public:
 	std::string getName() const;
 	void setBalance(double newBalance);
 	double getBalance() const;
-	void setInterestRate(double newInterestRate); //instructions said static?
-	double getInterestRate() const; //instructions said static?
+	static void setInterestRate(double newInterestRate);
+	static double getInterestRate(); 
 	double getNumber() const;
 	void display() const;
 	void calculateNewBalance();
@@ -28,4 +28,5 @@ private:
 	static double annualInterestRate;
 	static int objectCount;
 	const int objectNumber;
+	void SavingsAccount::parseName(std::string name);
 };
