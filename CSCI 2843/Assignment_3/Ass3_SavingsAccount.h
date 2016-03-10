@@ -13,6 +13,7 @@ public:
 	SavingsAccount();
 	SavingsAccount(std::string name);
 	SavingsAccount(std::string name, double startBalance);
+	~SavingsAccount();
 	
 	void setName(std::string name);
 	std::string getName() const;

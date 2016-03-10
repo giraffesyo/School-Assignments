@@ -6,7 +6,9 @@
 
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include "Ass3_SavingsAccount.h"
+
 
 int SavingsAccount::objectCount = 0;
 double SavingsAccount::annualInterestRate = 0.0;
@@ -31,6 +33,11 @@ SavingsAccount::SavingsAccount(std::string name, double startBalance) : objectNu
 	parseName(name);
 	savingBalance = startBalance;
 	objectCount++;
+}
+
+SavingsAccount::~SavingsAccount()
+{
+	std::cout << "Object has gone out of scope" << std::endl;
 }
 
 void SavingsAccount::setName(std::string name)
@@ -63,8 +70,10 @@ double SavingsAccount::getNumber() const
 }
 void SavingsAccount::display() const
 {
+	std::cout << std::fixed << std::showpoint << std::setprecision(2);
 	std::cout << "Name: " << getName() << std::endl;
 	std::cout << "Balance: " << getBalance() << std::endl;
+	std::cout << std::setprecision(0) << std::noshowpoint;
 	std::cout << "Account Number: " << getNumber() << std::endl << std::endl;
 }
 void SavingsAccount::calculateNewBalance()
