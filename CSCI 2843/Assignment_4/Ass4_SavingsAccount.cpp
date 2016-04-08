@@ -92,8 +92,16 @@ void SavingsAccount::parseName(std::string name)
 		firstName = name;
 }
 
+
 std::istream & operator>>(std::istream & input, SavingsAccount & account)
 {
-	std::string newName;
-	input >> newName;
+	std::cout << "Please enter in an an account name: ";
+	std::string inputString;
+	double newBalance;
+	std::getline(input, inputString);
+	account.parseName(inputString);
+	std::cout << "\nName set to: " << account.getName();
+	std::cout << "\nPlease enter in a new balance: ";
+	input >> newBalance;
+	account.setBalance(newBalance);
 }
