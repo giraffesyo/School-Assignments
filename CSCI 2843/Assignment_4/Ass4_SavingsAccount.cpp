@@ -92,6 +92,16 @@ void SavingsAccount::parseName(std::string name)
 		firstName = name;
 }
 
+void SavingsAccount::operator+=(const double ammountToIncrease)
+{
+	setBalance(getBalance() + ammountToIncrease);
+}
+
+void SavingsAccount::operator-=(const double ammountToDecrease)
+{
+	setBalance(getBalance() - ammountToDecrease);
+}
+
 
 std::istream & operator>>(std::istream & input, SavingsAccount & account)
 {
@@ -104,4 +114,11 @@ std::istream & operator>>(std::istream & input, SavingsAccount & account)
 	std::cout << "\nPlease enter in a new balance: ";
 	input >> newBalance;
 	account.setBalance(newBalance);
+	return input;
+}
+
+std::ostream & operator<<(std::ostream & output, const SavingsAccount & account)
+{
+	account.display();
+	return output; 
 }

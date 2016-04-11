@@ -6,6 +6,7 @@
 
 
 #include "Ass4_SavingsAccount.h"
+#include <iostream>
 
 int main()
 {
@@ -35,6 +36,17 @@ int main()
 	Saver1.display();
 	Saver2.display();
 	Saver3.display();
-	
+
+	//Begin 4th object for Assignment 4:
+
+	SavingsAccount Saver4;
+	std::cin >> Saver4;
+
+	Saver4 += 5000.00;
+	Saver4 -= 2500.00;
+
+	std::cout << Saver4;
+
+
 	return 0;
 }

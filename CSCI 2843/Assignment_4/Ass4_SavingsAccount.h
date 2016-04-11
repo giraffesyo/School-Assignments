@@ -26,6 +26,10 @@ public:
 	void display() const;
 	void calculateNewBalance();
 	friend std::istream & operator>>(std::istream & input, SavingsAccount & account);
+	friend std::ostream & operator<<(std::ostream & output, const SavingsAccount & account);
+	void operator+=(const double ammountToIncrease);
+	void operator-=(const double ammountToDecrease);
+
 
 private:
 	std::string firstName;
