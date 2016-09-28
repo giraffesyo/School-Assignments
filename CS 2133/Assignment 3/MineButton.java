@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 public class MineButton extends JButton {
     public boolean bomb;
     public int nearbyBombCount;
+    public boolean flagged = false;
 
     MineButton(MineModel game) {
         super();
@@ -16,8 +17,12 @@ public class MineButton extends JButton {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if(game.isPlaying) {
-                    game.onMove(MineButton.this);
-
+                    if(SwingUtilities.isRightMouseButton(e)){
+                        game.onRightClick(MineButton.this);
+                    }
+                        else{
+                        game.onMove(MineButton.this);
+                    }
                 }
             }
         });

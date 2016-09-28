@@ -98,6 +98,18 @@ public class MineModel {
         }
     }
 
+    public void onRightClick(MineButton ButtonPressed) {
+        if (!ButtonPressed.flagged) {
+            ButtonPressed.setText("Flag");
+            ButtonPressed.flagged = true;
+        }
+        else
+        {
+            ButtonPressed.setText("");
+            ButtonPressed.flagged = false;
+        }
+    }
+
 }
 
 
