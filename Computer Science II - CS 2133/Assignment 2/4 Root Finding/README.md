@@ -6,7 +6,7 @@ If we happen to know a value for which the function is positive and another valu
 This fact suggests that we can zero in on the value of `x` using the following algorithm, where epsilon is the amount of error we are willing to tolerate:
 
 1. Compute x, where x is halfway between `a` and `b`, ie `x = (a+b)/2`.
-2. If `|a − x| < epsilon` return `x`.
+2. If `|a − x| < epsilon` return `x`.
 3. If `f(x)` has the same sign as `f(a)`, the root lies between `x` and `b`. Recursively perform the algorithm with `x` as the new `a`.
 4. Otherwise, the root lies between `a` and `x`. Recursively perform the algorithm with x as the new `b`.
 
