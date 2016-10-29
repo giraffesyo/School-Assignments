@@ -8,3 +8,7 @@ Graphics object methods like `drawLine`, `drawPolygon`, `drawPolyline`, `drawRou
 although you won’t be graded on artistic merit. In the center of the bottle shape, add a message
 string. Create a `Message` class with a main method that instantiates the `MessageFrame` and gets
 the ball rolling.
+
+
+![Figure 1](https://i.stack.imgur.com/HWJL0.png)  
+Figure 1: Example output for this problem. Feel free to be more creative than this.
