@@ -2,7 +2,7 @@
 
 In Assignment 1, you used the Gregory formula to compute an approximation of π. Here, you will use Ramanujan’s series, discovered in 1910. It converges much faster than Gregory’s, and has been used to calculate π to billions of digits. Implement `Ramanujan.java` exactly like `Gregory.java`, taking a number n specified by the user on the command line and calculating π using the first `n` terms of the Ramanujan series. The program should print this approximate value of π, as well as the percentage error between this value and the one provided by Java in the constant `Math.PI`.
 
-[Ramanujan’s series](https://i.stack.imgur.com/12OWO.png)  
+![Ramanujan’s series](https://i.stack.imgur.com/12OWO.png)  
 
 Notice that this formula makes use of the factorial function. Call your `Factorial.calculate` method from Problem 1.
 

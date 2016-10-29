@@ -14,11 +14,11 @@ passed into `paintComponent`, drawing a one-pixel square at the given coordinate
 The solution will look a lot like Figure 3, with the largest triangle fitting into the largest square area of the frame, and the smallest triangles being three pixels in size.
 
 
-[Figure 1](https://i.stack.imgur.com/HWJL0.png)  
+![Figure 1](https://i.stack.imgur.com/HWJL0.png)  
 Figure 1: Example output for Problem 1. Feel free to be more creative than this.
 
-[Figure 2](https://i.stack.imgur.com/uFhM7.png)  
+![Figure 2](https://i.stack.imgur.com/uFhM7.png)  
 Figure 2: Fractal representation of Sierpinski construction from Problem 2. (Image source: Wikipedia)
 
-[Figure 3](https://i.stack.imgur.com/dBdJO.png)  
+![Figure 3](https://i.stack.imgur.com/dBdJO.png)  
 Figure 3: Representative illustration of the Sierpinski problem solution.
