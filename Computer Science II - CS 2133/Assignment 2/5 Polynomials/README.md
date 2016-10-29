@@ -1,6 +1,8 @@
 # Polynomials (30 points)
 
-Write a class `Poly.java` to represent polynomials (ie, functions of the form `ax^n + bx^(n−1) +· · ·+ cx^2 + dx + e). Implement the following methods:`
+Write a class `Poly.java` to represent polynomials (ie, functions of the form `ax^n + bx^(n−1) +· · ·+ cx^2 + dx + e)`.
+
+Implement the following methods:
 
 - `Poly(int[] coefficients)`: Constructor for an array of coefficients where `c[n]` is the coefficient of `x^n`. In other words, the polynomial `2x^5 + 3x^4 − 8x^2 + 4` would be represented by the array `[4, 0, −8, 0, 3, 2]`. This way, if I want to know the coefficient of `x`, I look at `c[2]`, and get `−8`. This convenience is worth the confusion that arises because we usually write arrays left-to-right starting from the smallest index, whereas we usually write polynomials left-to-right starting from the largest coefficient.
 
