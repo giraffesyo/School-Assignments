@@ -226,3 +226,6 @@ _Pvt_Extensions
 #Visual Studio Project 
 *.vcxproj*
 *.sln
+*.iml
+
+*.class
