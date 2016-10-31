@@ -6,11 +6,11 @@ public class MineModel {
     public static boolean isPlaying = true;
     public MineButton board[][];
     final static int BombChance = 3; //higher number == less bombs
+    public MinesweeperFrame frame;
 
-
-    public MineModel() {
-        board = generateBoard();
-        nearbyBombs();
+    public MineModel(MinesweeperFrame frame, MinesweeperPanel panel) {
+        this.frame = frame;
+        newGame(panel);
     }
     public static boolean createBomb() {
         Random RandomNumber = new Random();
@@ -109,6 +109,22 @@ public class MineModel {
             ButtonPressed.flagged = false;
         }
     }
+
+    public void newGame(MinesweeperPanel panel)
+    {
+        panel.removeAll();
+        board = generateBoard();
+        nearbyBombs();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                panel.add(board[i][j]);
+            }
+        }
+        isPlaying = true;
+        panel.revalidate();
+        frame.repaint();
+    }
+
 
 }
 

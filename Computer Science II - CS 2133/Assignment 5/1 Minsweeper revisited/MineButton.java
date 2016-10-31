@@ -12,7 +12,7 @@ public class MineButton extends JButton {
         super();
         nearbyBombCount = 0;
         bomb = MineModel.createBomb();
-        //int nearbyBombs = //
+
         addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
