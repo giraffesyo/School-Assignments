@@ -168,6 +168,7 @@ public class MineModel {
     public void loadGame(File selectedFile, MinesweeperPanel panel)
     {
         try{
+            //TODO: Load difficulty from model that way size is correct
             FileInputStream saveFile = new FileInputStream(selectedFile);
             ObjectInputStream save = new ObjectInputStream(saveFile);
             newGame((MineButton[][])save.readObject(), panel);
