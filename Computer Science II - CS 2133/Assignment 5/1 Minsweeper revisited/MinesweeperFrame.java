@@ -6,7 +6,7 @@ public class MinesweeperFrame extends JFrame {
     MinesweeperFrame(){
         super("Minesweeper");
         Toolkit kit = Toolkit.getDefaultToolkit();
-        setBounds(kit.getScreenSize().width/2, kit.getScreenSize().height/4, 800, 600);
+        setBounds(kit.getScreenSize().width/4, kit.getScreenSize().height/4, 150, 150);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         MinesweeperPanel MinePanel = new MinesweeperPanel(this);
         setJMenuBar(MinePanel.MenuBar);

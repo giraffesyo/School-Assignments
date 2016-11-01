@@ -1,16 +1,20 @@
+import javax.swing.*;
+import java.io.*;
 import java.util.Random;
 
 
 public class MineModel {
-    final static int GridSize = 10;
+    static int GridSize = 5;
     public static boolean isPlaying = true;
     public MineButton board[][];
-    final static int BombChance = 3; //higher number == less bombs
+    static int BombChance = 3; //higher number == less bombs
     public MinesweeperFrame frame;
 
+
     public MineModel(MinesweeperFrame frame, MinesweeperPanel panel) {
+
         this.frame = frame;
-        newGame(panel);
+        newGame(1, panel);
     }
     public static boolean createBomb() {
         Random RandomNumber = new Random();
@@ -24,7 +28,7 @@ public class MineModel {
         for (int i = 0; i < GridSize; i++)
             for (int j = 0; j <GridSize; j++)
                 if(board[i][j].bomb)
-                   board[i][j].setText("Bomb!");
+                   board[i][j].displayIcon();
                 else
                     board[i][j].setText(Integer.toString(board[i][j].nearbyBombCount));
     }
@@ -89,7 +93,7 @@ public class MineModel {
 
     public void onMove(MineButton ButtonPressed) {
         if(ButtonPressed.bomb){
-            ButtonPressed.setText("BOMB!");
+            ButtonPressed.displayIcon();
             loseGame();
         }
         else
@@ -110,8 +114,16 @@ public class MineModel {
         }
     }
 
-    public void newGame(MinesweeperPanel panel)
+    public void newGame(int difficulty, MinesweeperPanel panel)
     {
+        switch (difficulty) {
+            case 1: GridSize = 5;
+                break;
+            case 2: GridSize = 10;
+                break;
+            case 3: GridSize = 15;
+                break;
+        }
         panel.removeAll();
         board = generateBoard();
         nearbyBombs();
@@ -123,6 +135,50 @@ public class MineModel {
         isPlaying = true;
         panel.revalidate();
         frame.repaint();
+    }
+
+    public void newGame(MineButton[][] board, MinesweeperPanel panel)
+    {
+        panel.removeAll();
+        this.board = board;
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                panel.add(board[i][j]);
+            }
+        }
+        isPlaying = true;
+        panel.revalidate();
+        frame.repaint();
+    }
+
+    public void saveGame(File selectedFile)
+    {
+        try{
+            FileOutputStream saveFile = new FileOutputStream(selectedFile);
+            ObjectOutputStream save = new ObjectOutputStream(saveFile);
+            save.writeObject(board);
+            save.close();
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void loadGame(File selectedFile, MinesweeperPanel panel)
+    {
+        try{
+            FileInputStream saveFile = new FileInputStream(selectedFile);
+            ObjectInputStream save = new ObjectInputStream(saveFile);
+            newGame((MineButton[][])save.readObject(), panel);
+            save.close();
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }catch(ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
     }
 
 
