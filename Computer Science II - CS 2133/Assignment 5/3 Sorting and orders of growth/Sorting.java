@@ -8,7 +8,6 @@
 //Due to this exponential increase of time required to sort, it is only useful for smaller collections
 
 
-
 import java.util.Arrays;
 
 public class Sorting {
@@ -17,17 +16,31 @@ public class Sorting {
     static double[] Array2;
     static int ARRAY_LENGTH = 1;
 
+    static int stage = 0;
     static long MergeTime;
 
     public static void main(String[] args) {
+        try {
 
-        while (true) {
-            ARRAY_LENGTH *= 10;
-            generateArrays();
-            bubbleSort();
-            MergeTime = System.currentTimeMillis();
-            mergeSort(Array2);
-            System.out.println("Merge sort took " + (System.currentTimeMillis() - MergeTime) + " ms to execute");
+
+            while (true) {
+                ARRAY_LENGTH *= 10;
+                generateArrays();
+                stage = 0;
+                bubbleSort();
+                MergeTime = System.currentTimeMillis();
+                stage = 1;
+                mergeSort(Array2);
+                System.out.println("Merge sort took " + (System.currentTimeMillis() - MergeTime) + " ms to execute");
+            }
+        } catch (OutOfMemoryError e) {
+            if(stage == 0)
+                System.out.println("Bubble sort used up all the memory with array size of " + ARRAY_LENGTH);
+            else if (stage == 1)
+            {
+                System.out.println("Merge sort used up all the memory with array size of " + ARRAY_LENGTH);
+            }
+
         }
     }
 
@@ -68,8 +81,7 @@ public class Sorting {
 
     static double[] mergeSort(double[] array) {
 
-        if(MergeTime + 20000 <= System.currentTimeMillis())
-        {
+        if (MergeTime + 20000 <= System.currentTimeMillis()) {
             System.out.println("Merge sort ran out of time with an array length of " + ARRAY_LENGTH);
             System.exit(0);
         }
@@ -99,7 +111,6 @@ public class Sorting {
         right = mergeSort(right);
 
         result = merge(left, right);
-
 
 
         return result;
@@ -134,3 +145,4 @@ public class Sorting {
         return newArray;
     }
 }
+
