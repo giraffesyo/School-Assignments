@@ -48,13 +48,23 @@ public class city extends geographical {
         Rivers = new ArrayList<>();
     }
 
-    //create city with parent state and full parameters
+    //Create city with name, state, location, and knowledge of it being the capital
     city(state State, String name, coordinates location, boolean isCapitalCity) {
         super(name, location);
         this.State = State;
         this.isCapitalCity = isCapitalCity;
         Rivers = new ArrayList<>();
     }
+
+    //create city with all parameters used
+    city(state State, String name, coordinates location, boolean isCapitalCity, double area) {
+        super(name, location, area);
+        this.State = State;
+        this.isCapitalCity = isCapitalCity;
+        Rivers = new ArrayList<>();
+    }
+
+
 
     //Returns distance between city A and B
     public static double distance(city A, city B) {
@@ -107,6 +117,17 @@ public class city extends geographical {
         return Rivers;
     }
 
+    @Override
+    public double area()
+    {
+        return super.area();
+    }
+
+    @Override
+    public void area(double area)
+    {
+        super.area(area);
+    }
 
 
 }

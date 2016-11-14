@@ -73,4 +73,16 @@ public class state extends geographical {
 
 
 
+    @Override
+    public double area()
+    {
+        return super.area();
+    }
+
+    @Override
+    public void area(double area)
+    {
+        super.area(area);
+    }
+
 }

@@ -8,26 +8,44 @@ abstract class geographical {
 
     private geography.coordinates coordinates;
     private String name;
-    public ArrayList<boundary> Boundaries;
+    private ArrayList<boundary> Boundaries;
+    private double area;
 
     geographical() {
         coordinates = new coordinates();
         name = null;
     }
 
+    geographical(String name, coordinates location, double area)
+    {
+        this.coordinates = location;
+        this.name = name;
+        this.area = area;
+    }
+
+    geographical(String name, double area)
+    {
+        this.coordinates = null;
+        this.name = name;
+        this.area = area;
+    }
+
     geographical(coordinates location) {
         this.coordinates = location;
-        name = null;
+        this.name = null;
+        this.area = -1;
     }
 
     geographical(String name) {
-        coordinates = null;
+        this.coordinates = null;
         this.name = name;
+        this.area = -1;
     }
 
     geographical(String name, coordinates location) {
         this.coordinates = location;
         this.name = name;
+        this.area = -1;
     }
 
     public coordinates getCoordinates()
@@ -85,6 +103,15 @@ abstract class geographical {
         return Neighbors;
     }
 
-    //area()
+    double area()
+    {
+        return area;
+    }
+
+    void area(double area)
+    {
+        this.area = area;
+    }
+
 
 }
