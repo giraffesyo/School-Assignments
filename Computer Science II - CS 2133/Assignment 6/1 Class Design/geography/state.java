@@ -71,8 +71,6 @@ public class state extends geographical {
         return parentCountry;
     }
 
-
-
     @Override
     public double area()
     {
