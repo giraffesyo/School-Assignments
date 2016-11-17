@@ -1,7 +1,7 @@
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
+import java.util.HashMap;
 
 
 public class Huff {
@@ -21,6 +21,9 @@ public class Huff {
             input = new FileInputStream(FileName);
             bytes = new byte[input.available()];
             input.read(bytes);
+
+
+
         }catch(IOException e)
         {
 

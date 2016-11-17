@@ -1,4 +1,4 @@
-public class HuffmanNode implements Comparable {
+/*public class HuffmanNode implements Comparable {
 
     public HuffmanNode parent;
     public HuffmanNode zero;
@@ -16,3 +16,4 @@ public class HuffmanNode implements Comparable {
 
 
 }
+*/
