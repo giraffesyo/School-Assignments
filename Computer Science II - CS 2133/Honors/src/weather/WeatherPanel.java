@@ -1,23 +1,30 @@
 package weather;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-class WeatherPanel extends JPanel {
+class WeatherPanel extends JPanel implements ActionListener {
 
     private WeatherFrame weatherFrame;
     private WeatherMachine weatherMachine;
 
     private JLabel zipCodeLabel;
     private JTextField zipEntry;
+    private JButton setButton;
 
     private int state;
 
     WeatherPanel(WeatherFrame weatherFrame, WeatherMachine weatherMachine) {
         this.weatherFrame = weatherFrame;
         this.weatherMachine = weatherMachine;
+
+        this.zipEntry = new JTextField(Integer.toString(weatherMachine.getZipCode()));
+        this.setButton = new JButton("Set");
+        this.setButton.addActionListener(this);
+
         add(new JLabel("Zip Code:"));
 
-        zipEntry = new JTextField();
         addZipCodeLabel();
     }
 
@@ -34,15 +41,27 @@ class WeatherPanel extends JPanel {
         if (state == 1){
             remove(zipCodeLabel);
             add(zipEntry);
-            repaint();
+            add(setButton);
+            revalidate();
+            weatherFrame.repaint();
             state = 0;
         }
         else if (state == 0)
         {
             remove(zipEntry);
+            remove(setButton);
             addZipCodeLabel();
-            repaint();
+            revalidate();
+            weatherFrame.repaint();
             state = 1;
+        }
+    }
+
+    public void actionPerformed(ActionEvent e){
+        if (e.getActionCommand().equals("Set"))
+        {
+            weatherMachine.setZipCode(Integer.parseInt(zipEntry.getText()));
+            switchLabels();
         }
     }
 }

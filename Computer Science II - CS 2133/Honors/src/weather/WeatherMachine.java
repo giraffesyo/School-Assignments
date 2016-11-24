@@ -14,6 +14,7 @@ class WeatherMachine {
 
     private int zipCode; //TODO: set this from file or request it if no file
 
+    //todo: refresh weather data if zip code updated
 
     WeatherMachine() {
 
