@@ -15,7 +15,7 @@ class WeatherPanel extends JPanel implements ActionListener {
 
     private int state;
 
-    WeatherPanel(WeatherFrame weatherFrame, WeatherMachine weatherMachine) {
+    WeatherPanel(WeatherFrame weatherFrame, WeatherMachine weatherMachine, int state) {
         this.weatherFrame = weatherFrame;
         this.weatherMachine = weatherMachine;
 
@@ -25,29 +25,33 @@ class WeatherPanel extends JPanel implements ActionListener {
 
         add(new JLabel("Zip Code:"));
 
-        addZipCodeLabel();
+        if (state == 1) {
+            addZipCodeLabel();
+        } else {
+            addZipCodeEntry();
+        }
     }
 
-    void addZipCodeLabel()
-    {
+    private void addZipCodeLabel() {
         //TODO:if null? (object?) zip code prompt for one instead
         zipCodeLabel = new JLabel(Integer.toString(weatherMachine.getZipCode()));
         add(zipCodeLabel);
-        state = 1;
     }
 
-    void switchLabels()
-    {
-        if (state == 1){
+    private void addZipCodeEntry() {
+        add(zipEntry);
+        add(setButton);
+    }
+
+
+    void switchLabels() {
+        if (state == 1) {
             remove(zipCodeLabel);
-            add(zipEntry);
-            add(setButton);
+            addZipCodeEntry();
             revalidate();
             weatherFrame.repaint();
             state = 0;
-        }
-        else if (state == 0)
-        {
+        } else if (state == 0) {
             remove(zipEntry);
             remove(setButton);
             addZipCodeLabel();
@@ -57,9 +61,8 @@ class WeatherPanel extends JPanel implements ActionListener {
         }
     }
 
-    public void actionPerformed(ActionEvent e){
-        if (e.getActionCommand().equals("Set"))
-        {
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Set")) {
             weatherMachine.setZipCode(Integer.parseInt(zipEntry.getText()));
             switchLabels();
         }

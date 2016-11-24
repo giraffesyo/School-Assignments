@@ -11,7 +11,7 @@ class WeatherFrame extends JFrame {
     private final int width = 500;
     private final int height = 500;
 
-    public WeatherPanel getWeatherPanel() {
+    WeatherPanel getWeatherPanel() {
         return weatherPanel;
     }
 
@@ -19,7 +19,7 @@ class WeatherFrame extends JFrame {
         super("Weather Suggestion");
 
         weatherMachine = new WeatherMachine();
-        weatherPanel = new WeatherPanel(this, weatherMachine);
+        weatherPanel = new WeatherPanel(this, weatherMachine, weatherMachine.getProgramState());
 
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
