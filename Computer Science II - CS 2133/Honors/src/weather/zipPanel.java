@@ -3,7 +3,7 @@ package weather;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListener {
+class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListener {
 
     private JLabel zipCodeLabel;
     private JTextField zipEntry;

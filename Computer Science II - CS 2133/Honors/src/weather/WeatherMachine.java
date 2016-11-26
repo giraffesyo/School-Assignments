@@ -33,7 +33,7 @@ class WeatherMachine {
                 currentWeather = (Weather) in.readObject();
                 programState = 1;
                 in.close();
-                if (System.currentTimeMillis() - lastTime < waitingPeriod) {
+                if (System.currentTimeMillis() - lastTime > waitingPeriod) {
                     getWeather();
                 }
             } else {

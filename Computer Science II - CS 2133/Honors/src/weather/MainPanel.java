@@ -3,7 +3,7 @@ package weather;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainPanel extends JPanel {
+class MainPanel extends JPanel {
 
     MainPanel(WeatherFrame weatherFrame, WeatherMachine weatherMachine)
     {
