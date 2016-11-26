@@ -15,6 +15,10 @@ class WeatherFrame extends JFrame {
         return weatherPanel;
     }
 
+    WeatherMachine getWeatherMachine() {
+        return weatherMachine;
+    }
+
     WeatherFrame() {
         super("Weather Suggestion");
 

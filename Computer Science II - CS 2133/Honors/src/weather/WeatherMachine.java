@@ -11,32 +11,36 @@ class WeatherMachine {
 
     private File saveFile;
     private ObjectInputStream in;
+    private ObjectOutputStream out;
     private Weather currentWeather;
     private Long lastTime;
     private int programState;
+    private final int waitingPeriod = 600000; // 10 minutes
 
     private Integer zipCode; //TODO: set this from file or request it if no file
 
     //todo: refresh weather data if zip code updated
 
     WeatherMachine() {
-        zipCode = 74075;
         saveFile = new File("weather.osu");
 
 
         try {
             if (saveFile.exists()) {
                 in = new ObjectInputStream(new FileInputStream(saveFile));
-                zipCode = (Integer)in.readObject();
-                lastTime = (Long)in.readObject();
-                currentWeather = (Weather)in.readObject();
+                zipCode = (Integer) in.readObject();
+                lastTime = (Long) in.readObject();
+                currentWeather = (Weather) in.readObject();
                 programState = 1;
-                //getWeather();
-            }
-            else{
+                in.close();
+                if (System.currentTimeMillis() - lastTime < waitingPeriod) {
+                    getWeather();
+                }
+            } else {
                 programState = 0;
+                zipCode = 12345;
             }
-        } catch (IOException | ClassNotFoundException e ) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             //todo: we don't have write access?
         }
@@ -60,6 +64,18 @@ class WeatherMachine {
 
             String rawWeather = in.readLine();
             currentWeather = Weather.parseWeatherData(rawWeather);
+
+            try {
+                this.lastTime = System.currentTimeMillis();
+                out = new ObjectOutputStream(new FileOutputStream(saveFile));
+                out.writeObject(this.zipCode);
+                out.writeObject(this.lastTime);
+                out.writeObject(this.currentWeather);
+                out.flush();
+                out.close();
+            } catch (IOException e) {
+                //todo: we don't have write access?
+            }
         } catch (IOException e) {
             //TODO:do they have internet access?
             e.printStackTrace();
@@ -76,10 +92,11 @@ class WeatherMachine {
         //Test there is really an update so we don't needlessly update weather data
         if (zipCode != this.zipCode) {
             this.zipCode = zipCode;
+            getWeather();
         }
 
         //TODO: IF new ZipCode != oldZipCode
-        //TODO: redo weather panel after setting the zip code (this way
+        //TODO: redo weather panel after setting the zip code (this way we have accurate suggestions)
     }
 
     int getZipCode() {
@@ -88,5 +105,9 @@ class WeatherMachine {
 
     int getProgramState() {
         return programState;
+    }
+
+    public void setProgramState(int programState) {
+        this.programState = programState;
     }
 }

@@ -1,9 +1,11 @@
 package weather;
 
+import java.io.Serializable;
+
 /**
  * Data object storing weather information
  */
-class Weather {
+class Weather implements Serializable {
 
     private boolean raining;
     private boolean snowing;
@@ -59,9 +61,9 @@ class Weather {
         int beginIndex;
         int endIndex;
 
-        beginIndex =rawData.indexOf("wind:") + 15;
+        beginIndex =rawData.indexOf("wind") + 15;
         wind = Character.getNumericValue(rawData.charAt(beginIndex));
-        beginIndex = rawData.indexOf("temp:") + 6;
+        beginIndex = rawData.indexOf("temp") + 6;
         endIndex = beginIndex + 5;
         temperature = convertKelvin(Double.parseDouble(rawData.substring(beginIndex,endIndex)));
 

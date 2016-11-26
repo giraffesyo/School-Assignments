@@ -8,7 +8,7 @@ class WeatherMenuBar extends JMenuBar implements ActionListener {
 
     private WeatherFrame weatherFrame;
 
-    private class FileMenu extends JMenu  {
+    private class FileMenu extends JMenu {
 
         JMenuItem fileLoc;
         JMenuItem fileExit;
@@ -29,7 +29,9 @@ class WeatherMenuBar extends JMenuBar implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Change Location")) {
-            weatherFrame.getWeatherPanel().switchLabels();
+            if (weatherFrame.getWeatherMachine().getProgramState() == 1) {
+                weatherFrame.getWeatherPanel().switchLabels();
+            }
         } else if (e.getActionCommand().equals("Exit")) {
             System.exit(0);
         }
