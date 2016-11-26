@@ -8,7 +8,6 @@ import java.net.URL;
 class WeatherMachine {
 
 
-    private boolean debug = true;
     //TODO: Implement timer thread, automatically update weather data after 10 minutes and refresh everything.
 
     private File saveFile;
@@ -79,6 +78,11 @@ class WeatherMachine {
             String rawWeather = in.readLine();
             currentWeather = Weather.parseWeatherData(rawWeather);
 
+            if (Main.debug) {
+                System.out.println(rawWeather);
+                System.out.println();
+            }
+
             try {
                 this.lastTime = System.currentTimeMillis();
                 out = new ObjectOutputStream(new FileOutputStream(saveFile));
@@ -94,11 +98,13 @@ class WeatherMachine {
             //TODO:do they have internet access?
             e.printStackTrace();
         }
-        if (debug) {
+        if (Main.debug) {
             System.out.println("Temperature: " + currentWeather.getTemperature());
             System.out.println("Wind: " + currentWeather.getWind());
             System.out.println("Raining: " + currentWeather.isRaining());
             System.out.println("Snowing: " + currentWeather.isSnowing());
+            System.out.println();
+
         }
         processWeather();
     }
@@ -133,7 +139,7 @@ class WeatherMachine {
     }
 
     void processWeather() {
-
+        disableAll();
         if (currentWeather.isSnowing()) {
             gloves = true;
             boots = true;
@@ -161,8 +167,7 @@ class WeatherMachine {
             sweater = true;
         }
 
-        if (debug)
-        {
+        if (Main.debug) {
             System.out.println("hoodie : " + needHoodie());
             System.out.println("snowhat : " + needSnowhat());
             System.out.println("tshirt : " + needTshirt());
@@ -215,5 +220,18 @@ class WeatherMachine {
 
     boolean needUmbrella() {
         return umbrella;
+    }
+
+    void disableAll() {
+        hoodie = false;
+        snowhat = false;
+        tshirt = false;
+        shorts = false;
+        sweater = false;
+        gloves = false;
+        boots = false;
+        sandals = false;
+        raincoat = false;
+        umbrella = false;
     }
 }

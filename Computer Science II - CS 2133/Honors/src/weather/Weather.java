@@ -5,6 +5,8 @@ import java.io.Serializable;
 /**
  * Data object storing weather information
  */
+
+
 class Weather implements Serializable {
 
     private boolean raining;
@@ -31,29 +33,22 @@ class Weather implements Serializable {
     }
 
     Weather(final int code, final int wind, final double temperature) {
-        boolean precipitation;
+
         this.wind = wind;
         this.temperature = temperature;
         this.code = code;
 
         //refer to https://openweathermap.org/weather-conditions for codes
-        if ( code >= 200 && code < 800 )
-            precipitation = true;
-        else
-            precipitation = false;
-
-        //we cant be raining below 32 degrees, right?
-        if (precipitation) {
-            if (temperature < 32)
+        if (code >= 200 && code < 700) {
+            if (code >= 600) {
                 snowing = true;
-            else
+            } else {
                 raining = true;
+            }
         }
-
     }
 
-    static Weather parseWeatherData(final String rawData)
-    {
+    static Weather parseWeatherData(final String rawData) {
         int Code;
         int wind;
         double temperature;
@@ -61,23 +56,28 @@ class Weather implements Serializable {
         int beginIndex;
         int endIndex;
 
-        beginIndex =rawData.indexOf("wind") + 15;
+        beginIndex = rawData.indexOf("wind") + 15;
         wind = Character.getNumericValue(rawData.charAt(beginIndex));
         beginIndex = rawData.indexOf("temp") + 6;
         endIndex = beginIndex + 5;
-        temperature = convertKelvin(Double.parseDouble(rawData.substring(beginIndex,endIndex)));
+        temperature = convertKelvin(Double.parseDouble(rawData.substring(beginIndex, endIndex)));
 
         beginIndex = rawData.indexOf("id") + 4;
-        endIndex = beginIndex + 2;
+        endIndex = beginIndex + 3;
 
-        Code = Integer.parseInt(rawData.substring(beginIndex,endIndex));
+        Code = Integer.parseInt(rawData.substring(beginIndex, endIndex));
 
-        return new Weather(Code ,wind,temperature);
+        if (Main.debug) {
+            System.out.println("Raw Weather Code: " + Code);
+            System.out.println("Raw Wind: " + wind);
+            System.out.println("Raw temperature: " + temperature);
+        }
+
+        return new Weather(Code, wind, temperature);
     }
 
-    static private double convertKelvin(final double kT)
-    {
-        return kT * 9.0/5.0 - 459.67;
+    static private double convertKelvin(final double kT) {
+        return kT * 9.0 / 5.0 - 459.67;
     }
 
 
