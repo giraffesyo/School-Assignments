@@ -5,25 +5,20 @@ import java.awt.*;
 
 class WeatherFrame extends JFrame {
 
-    private WeatherPanel weatherPanel;
+    private MainPanel mainPanel;
+    private zipPanel ZipPanel;
     private WeatherMachine weatherMachine;
+    private JOptionPane notification;
 
     private final int width = 500;
-    private final int height = 500;
-
-    WeatherPanel getWeatherPanel() {
-        return weatherPanel;
-    }
-
-    WeatherMachine getWeatherMachine() {
-        return weatherMachine;
-    }
+    private final int height = 150;
 
     WeatherFrame() {
         super("Weather Suggestion");
 
+        notification = new JOptionPane();
         weatherMachine = new WeatherMachine();
-        weatherPanel = new WeatherPanel(this, weatherMachine, weatherMachine.getProgramState());
+        mainPanel = new MainPanel(this, weatherMachine);
 
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -31,8 +26,25 @@ class WeatherFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setJMenuBar(new WeatherMenuBar(this));
 
-        add(weatherPanel);
+        add(mainPanel);
         setVisible(true);
+    }
+
+    public void sendNotification(String Message)
+    {
+        notification.createDialog(this, Message);
+    }
+
+    zipPanel getZipPanel() {
+        return ZipPanel;
+    }
+
+    void setZipPanel(zipPanel ZipPanel) {
+        this.ZipPanel = ZipPanel;
+    }
+
+    WeatherMachine getWeatherMachine() {
+        return weatherMachine;
     }
 
 }

@@ -15,7 +15,7 @@ class WeatherMachine {
     private Weather currentWeather;
     private Long lastTime;
     private int programState;
-    private final int waitingPeriod = 600000; // 10 minutes
+    private final int waitingPeriod = 600000; // 10 minutes in ms
 
     private Integer zipCode; //TODO: set this from file or request it if no file
 

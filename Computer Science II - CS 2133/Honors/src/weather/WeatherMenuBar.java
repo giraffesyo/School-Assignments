@@ -30,7 +30,7 @@ class WeatherMenuBar extends JMenuBar implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Change Location")) {
             if (weatherFrame.getWeatherMachine().getProgramState() == 1) {
-                weatherFrame.getWeatherPanel().switchLabels();
+                weatherFrame.getZipPanel().switchLabels();
             }
         } else if (e.getActionCommand().equals("Exit")) {
             System.exit(0);
