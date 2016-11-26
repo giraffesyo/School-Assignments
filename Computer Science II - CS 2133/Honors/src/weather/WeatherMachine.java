@@ -19,6 +19,17 @@ class WeatherMachine {
 
     private Integer zipCode; //TODO: set this from file or request it if no file
 
+    private boolean jacket;
+    private boolean snowhat;
+    private boolean tshirt;
+    private boolean shorts;
+    private boolean sweater;
+    private boolean gloves;
+    private boolean boots;
+    private boolean sandals;
+    private boolean raincoat;
+    private boolean umbrella;
+
     //todo: refresh weather data if zip code updated
 
     WeatherMachine() {
@@ -80,6 +91,7 @@ class WeatherMachine {
             //TODO:do they have internet access?
             e.printStackTrace();
         }
+        processWeather();
     }
 
     private String constructRequestURL() {
@@ -107,7 +119,78 @@ class WeatherMachine {
         return programState;
     }
 
-    public void setProgramState(int programState) {
+    void setProgramState(int programState) {
         this.programState = programState;
+    }
+
+    void processWeather() {
+
+        if (currentWeather.isSnowing()) {
+            gloves = true;
+            boots = true;
+            if (currentWeather.getWind() > 10) {
+                snowhat = true;
+            }
+        } else if (currentWeather.isRaining()) {
+            boots = true;
+            if (currentWeather.getWind() < 20) {
+                umbrella = true;
+            } else {
+                raincoat = true;
+            }
+        } else if (currentWeather.getTemperature() >= 70) {
+            {
+                tshirt = true;
+                if (currentWeather.getTemperature() >= 80) {
+                    shorts = true;
+                    sandals = true;
+                }
+            }
+        } else if (currentWeather.getTemperature() >= 60 && currentWeather.getWind() > 10) {
+            jacket = true;
+        } else if (currentWeather.getTemperature() < 60) {
+            sweater = true;
+        }
+
+    }
+
+    boolean needJacket() {
+        return jacket;
+    }
+
+    boolean needSnowhat() {
+        return snowhat;
+    }
+
+    boolean needTshirt() {
+        return tshirt;
+    }
+
+    boolean needShorts() {
+        return shorts;
+    }
+
+    boolean needSweater() {
+        return sweater;
+    }
+
+    boolean needGloves() {
+        return gloves;
+    }
+
+    boolean needBoots() {
+        return boots;
+    }
+
+    boolean needSandals() {
+        return sandals;
+    }
+
+    boolean needRaincoat() {
+        return raincoat;
+    }
+
+    boolean needUmbrella() {
+        return umbrella;
     }
 }

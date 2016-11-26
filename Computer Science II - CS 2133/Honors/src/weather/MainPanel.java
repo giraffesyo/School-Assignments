@@ -1,14 +1,16 @@
 package weather;
 
 import javax.swing.*;
-import java.awt.*;
 
 class MainPanel extends JPanel {
 
     MainPanel(WeatherFrame weatherFrame, WeatherMachine weatherMachine)
     {
+
+        WeatherPanel weatherPanel = new WeatherPanel(weatherFrame, weatherMachine);
+        zipPanel ZipPanel = new zipPanel(weatherFrame, weatherMachine, weatherPanel);
         //setLayout(new GridLayout(0,1));
-        add(new zipPanel(weatherFrame,weatherMachine));
-        add(new WeatherPanel(weatherFrame,weatherMachine));
+        add(ZipPanel);
+        add(weatherPanel);
     }
 }

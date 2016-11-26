@@ -10,7 +10,7 @@ class WeatherFrame extends JFrame {
     private WeatherMachine weatherMachine;
     private JOptionPane notification;
 
-    private final int width = 200;
+    private final int width = 300;
     private final int height = 200;
 
     WeatherFrame() {

@@ -3,9 +3,6 @@ package weather;
 import javax.swing.*;
 import java.awt.*;
 
-
-//todo: change set button to change button and remove file menu
-
 class WeatherPanel extends JPanel {
 
     private WeatherFrame weatherFrame;
@@ -19,12 +16,17 @@ class WeatherPanel extends JPanel {
     private ClothingIcon gloves;
     private ClothingIcon boots;
     private ClothingIcon sandals;
+    private ClothingIcon raincoat;
+    private ClothingIcon umbrella;
 
 
 
     WeatherPanel(WeatherFrame weatherFrame, WeatherMachine weatherMachine)
     {
-        setLayout(new GridLayout(0,4));
+        this.weatherFrame = weatherFrame;
+        this.weatherMachine = weatherMachine;
+
+        setLayout(new GridLayout(0,5));
 
         jacket = new ClothingIcon("resources/jacket.png");
         snowhat = new ClothingIcon("resources/snowhat.png");
@@ -34,8 +36,8 @@ class WeatherPanel extends JPanel {
         gloves = new ClothingIcon("resources/gloves.png");
         boots = new ClothingIcon("resources/boots.png");
         sandals = new ClothingIcon("resources/sandals.png");
-
-        jacket.setEnabled(true);
+        raincoat = new ClothingIcon("resources/raincoat.png");
+        umbrella = new ClothingIcon("resources/umbrella.png");
 
         add(jacket);
         add(snowhat);
@@ -45,6 +47,10 @@ class WeatherPanel extends JPanel {
         add(gloves);
         add(boots);
         add(sandals);
+        add(raincoat);
+        add(umbrella);
+
+        enableIcons();
     }
 
     void disableAll()
@@ -57,44 +63,23 @@ class WeatherPanel extends JPanel {
         gloves.setEnabled(false);
         boots.setEnabled(false);
         sandals.setEnabled(false);
-    }
-    void enableJacket()
-    {
-        jacket.setEnabled(true);
+        raincoat.setEnabled(false);
+        umbrella.setEnabled(false);
+
     }
 
-    void enableSnowhat()
+    void enableIcons()
     {
-        jacket.setEnabled(true);
+        jacket.setEnabled(weatherMachine.needJacket());
+        snowhat.setEnabled(weatherMachine.needSnowhat());
+        tshirt.setEnabled(weatherMachine.needTshirt());
+        shorts.setEnabled(weatherMachine.needShorts());
+        sweater.setEnabled(weatherMachine.needSweater());
+        gloves.setEnabled(weatherMachine.needGloves());
+        boots.setEnabled(weatherMachine.needBoots());
+        sandals.setEnabled(weatherMachine.needSandals());
+        raincoat.setEnabled(weatherMachine.needRaincoat());
+        umbrella.setEnabled(weatherMachine.needUmbrella());
     }
 
-    void enableTshirt()
-    {
-        tshirt.setEnabled(true);
-    }
-
-    void enableShorts()
-    {
-        shorts.setEnabled(true);
-    }
-
-    void enableSweater()
-    {
-        sweater.setEnabled(true);
-    }
-
-    void enableGloves()
-    {
-        gloves.setEnabled(true);
-    }
-
-    void enableBoots()
-    {
-        boots.setEnabled(true);
-    }
-
-    void enableSandals()
-    {
-        sandals.setEnabled(true);
-    }
 }

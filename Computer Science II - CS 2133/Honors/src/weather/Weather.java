@@ -13,19 +13,19 @@ class Weather implements Serializable {
     private final double temperature;
     private final int code;
 
-    public boolean isSnowing() {
+    boolean isSnowing() {
         return snowing;
     }
 
-    public double getWind() {
+    double getWind() {
         return wind;
     }
 
-    public double getTemperature() {
+    double getTemperature() {
         return temperature;
     }
 
-    public boolean isRaining() {
+    boolean isRaining() {
 
         return raining;
     }

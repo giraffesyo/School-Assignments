@@ -12,13 +12,15 @@ class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListe
 
     private WeatherFrame weatherFrame;
     private WeatherMachine weatherMachine;
+    private WeatherPanel weatherPanel;
 
 
-    zipPanel(WeatherFrame weatherFrame, WeatherMachine weatherMachine) {
+    zipPanel(WeatherFrame weatherFrame, WeatherMachine weatherMachine, WeatherPanel weatherPanel) {
         weatherFrame.setZipPanel(this);
 
         this.weatherFrame = weatherFrame;
         this.weatherMachine = weatherMachine;
+        this.weatherPanel = weatherPanel;
 
         //Setup for Zip Code Box
         this.zipEntry = new JTextField(Integer.toString(weatherMachine.getZipCode()));
@@ -121,6 +123,8 @@ class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListe
         if (zipValid(zipText)) {
             weatherMachine.setZipCode(Integer.parseInt(zipText));
             switchLabels();
+            weatherPanel.disableAll();
+            weatherPanel.enableIcons();
         } else {
             notifyWrongZip(zipText);
         }
