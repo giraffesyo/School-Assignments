@@ -8,7 +8,7 @@ class WeatherPanel extends JPanel {
     private WeatherFrame weatherFrame;
     private WeatherMachine weatherMachine;
 
-    private ClothingIcon jacket;
+    private ClothingIcon hoodie;
     private ClothingIcon snowhat;
     private ClothingIcon tshirt;
     private ClothingIcon shorts;
@@ -28,7 +28,7 @@ class WeatherPanel extends JPanel {
 
         setLayout(new GridLayout(0,5));
 
-        jacket = new ClothingIcon("resources/jacket.png");
+        hoodie = new ClothingIcon("resources/hoodie.png");
         snowhat = new ClothingIcon("resources/snowhat.png");
         tshirt = new ClothingIcon("resources/tshirt.png");
         shorts = new ClothingIcon("resources/shorts.png");
@@ -39,7 +39,7 @@ class WeatherPanel extends JPanel {
         raincoat = new ClothingIcon("resources/raincoat.png");
         umbrella = new ClothingIcon("resources/umbrella.png");
 
-        add(jacket);
+        add(hoodie);
         add(snowhat);
         add(tshirt);
         add(shorts);
@@ -55,7 +55,7 @@ class WeatherPanel extends JPanel {
 
     void disableAll()
     {
-        jacket.setEnabled(false);
+        hoodie.setEnabled(false);
         snowhat.setEnabled(false);
         tshirt.setEnabled(false);
         shorts.setEnabled(false);
@@ -70,7 +70,7 @@ class WeatherPanel extends JPanel {
 
     void enableIcons()
     {
-        jacket.setEnabled(weatherMachine.needJacket());
+        hoodie.setEnabled(weatherMachine.needHoodie());
         snowhat.setEnabled(weatherMachine.needSnowhat());
         tshirt.setEnabled(weatherMachine.needTshirt());
         shorts.setEnabled(weatherMachine.needShorts());

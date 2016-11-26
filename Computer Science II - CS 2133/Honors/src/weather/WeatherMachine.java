@@ -7,6 +7,8 @@ import java.net.URL;
 
 class WeatherMachine {
 
+
+    private boolean debug = true;
     //TODO: Implement timer thread, automatically update weather data after 10 minutes and refresh everything.
 
     private File saveFile;
@@ -19,7 +21,7 @@ class WeatherMachine {
 
     private Integer zipCode; //TODO: set this from file or request it if no file
 
-    private boolean jacket;
+    private boolean hoodie;
     private boolean snowhat;
     private boolean tshirt;
     private boolean shorts;
@@ -44,6 +46,7 @@ class WeatherMachine {
                 currentWeather = (Weather) in.readObject();
                 programState = 1;
                 in.close();
+                processWeather();
                 if (System.currentTimeMillis() - lastTime > waitingPeriod) {
                     getWeather();
                 }
@@ -90,6 +93,12 @@ class WeatherMachine {
         } catch (IOException e) {
             //TODO:do they have internet access?
             e.printStackTrace();
+        }
+        if (debug) {
+            System.out.println("Temperature: " + currentWeather.getTemperature());
+            System.out.println("Wind: " + currentWeather.getWind());
+            System.out.println("Raining: " + currentWeather.isRaining());
+            System.out.println("Snowing: " + currentWeather.isSnowing());
         }
         processWeather();
     }
@@ -147,15 +156,29 @@ class WeatherMachine {
                 }
             }
         } else if (currentWeather.getTemperature() >= 60 && currentWeather.getWind() > 10) {
-            jacket = true;
+            hoodie = true;
         } else if (currentWeather.getTemperature() < 60) {
             sweater = true;
         }
 
+        if (debug)
+        {
+            System.out.println("hoodie : " + needHoodie());
+            System.out.println("snowhat : " + needSnowhat());
+            System.out.println("tshirt : " + needTshirt());
+            System.out.println("shorts : " + needShorts());
+            System.out.println("sweater : " + needSweater());
+            System.out.println("gloves : " + needGloves());
+            System.out.println("boots : " + needBoots());
+            System.out.println("sandals : " + needSandals());
+            System.out.println("raincoat : " + needRaincoat());
+            System.out.println("umbrella : " + needUmbrella());
+        }
+
     }
 
-    boolean needJacket() {
-        return jacket;
+    boolean needHoodie() {
+        return hoodie;
     }
 
     boolean needSnowhat() {
