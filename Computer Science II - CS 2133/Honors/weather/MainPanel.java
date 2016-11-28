@@ -9,7 +9,6 @@ class MainPanel extends JPanel {
 
         WeatherPanel weatherPanel = new WeatherPanel(weatherFrame, weatherMachine);
         zipPanel ZipPanel = new zipPanel(weatherFrame, weatherMachine, weatherPanel);
-        //setLayout(new GridLayout(0,1));
         add(ZipPanel);
         add(weatherPanel);
     }

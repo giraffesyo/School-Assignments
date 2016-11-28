@@ -30,7 +30,7 @@ class WeatherFrame extends JFrame {
         setVisible(true);
     }
 
-    public void sendNotification(String Message)
+    void sendNotification(String Message)
     {
         notification.createDialog(this, Message);
     }

@@ -13,7 +13,6 @@ class Weather implements Serializable {
     private boolean snowing;
     private final int wind; //skirts? umbrella?
     private final double temperature;
-    private final int code;
 
     boolean isSnowing() {
         return snowing;
@@ -36,7 +35,6 @@ class Weather implements Serializable {
 
         this.wind = wind;
         this.temperature = temperature;
-        this.code = code;
 
         //refer to https://openweathermap.org/weather-conditions for codes
         if (code >= 200 && code < 700) {

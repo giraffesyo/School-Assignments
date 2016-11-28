@@ -8,8 +8,6 @@ import java.net.URL;
 class WeatherMachine {
 
 
-    //TODO: Implement timer thread, automatically update weather data after 10 minutes and refresh everything.
-
     private File saveFile;
     private ObjectInputStream in;
     private ObjectOutputStream out;
@@ -18,7 +16,7 @@ class WeatherMachine {
     private int programState;
     private final int waitingPeriod = 600000; // 10 minutes in ms
 
-    private Integer zipCode; //TODO: set this from file or request it if no file
+    private Integer zipCode;
 
     private boolean hoodie;
     private boolean snowhat;
@@ -31,7 +29,6 @@ class WeatherMachine {
     private boolean raincoat;
     private boolean umbrella;
 
-    //todo: refresh weather data if zip code updated
 
     WeatherMachine() {
         saveFile = new File("weather.osu");
@@ -54,8 +51,7 @@ class WeatherMachine {
                 zipCode = 12345;
             }
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            //todo: we don't have write access?
+            e.printStackTrace(); //not sure this ever gets called? maybe when we don't have write access?
         }
 
 
@@ -92,10 +88,11 @@ class WeatherMachine {
                 out.flush();
                 out.close();
             } catch (IOException e) {
-                //todo: we don't have write access?
+                //we don't have write access?
+                e.printStackTrace();
             }
         } catch (IOException e) {
-            //TODO:do they have internet access?
+            //do they have internet access?
             e.printStackTrace();
         }
         if (Main.debug) {
@@ -121,9 +118,6 @@ class WeatherMachine {
             this.zipCode = zipCode;
             getWeather();
         }
-
-        //TODO: IF new ZipCode != oldZipCode
-        //TODO: redo weather panel after setting the zip code (this way we have accurate suggestions)
     }
 
     int getZipCode() {
