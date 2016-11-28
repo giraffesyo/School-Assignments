@@ -161,7 +161,7 @@ class WeatherMachine {
                     sandals = true;
                 }
             }
-        } else if (currentWeather.getTemperature() >= 60 && currentWeather.getWind() > 10) {
+        } else if (currentWeather.getTemperature() >= 60) {
             hoodie = true;
         } else if (currentWeather.getTemperature() < 60) {
             sweater = true;
