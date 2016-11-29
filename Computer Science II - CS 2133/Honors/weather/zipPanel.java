@@ -3,7 +3,7 @@ package weather;
 import javax.swing.*;
 import java.awt.event.*;
 
-class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListener {
+class zipPanel extends JPanel {
 
     private JLabel zipCodeLabel;
     private JTextField zipEntry;
@@ -23,9 +23,9 @@ class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListe
 
         //Setup for Zip Code Box
         this.zipEntry = new JTextField(Integer.toString(weatherMachine.getZipCode()));
-        this.zipEntry.addKeyListener(this);
+        this.zipEntry.addKeyListener(new keyEvent());
         this.setButton = new JButton("Set");
-        this.setButton.addActionListener(this);
+        this.setButton.addActionListener(new actionEvent());
         add((new JLabel("Zip Code:")));
 
         if (weatherMachine.getProgramState() == 1) {
@@ -37,7 +37,7 @@ class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListe
 
     private void addZipCodeLabel() {
         zipCodeLabel = new JLabel(Integer.toString(weatherMachine.getZipCode()));
-        zipCodeLabel.addMouseListener(this);
+        zipCodeLabel.addMouseListener(new mouseEvent());
         add(zipCodeLabel);
     }
 
@@ -125,48 +125,32 @@ class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListe
         }
     }
 
-    //Enable double click for label
-    public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2) {
-            switchLabels();
+
+    private class mouseEvent extends MouseAdapter{
+        //Enable double click for label
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (e.getClickCount() == 2) {
+                switchLabels();
+            }
         }
     }
 
-    public void mouseReleased(MouseEvent e) {
-        //nothing to do here
-    }
-
-    public void mouseEntered(MouseEvent e) {
-        //nothing to do here
-    }
-
-    public void mouseExited(MouseEvent e) {
-        //nothing to do here
-    }
-
-    public void mousePressed(MouseEvent e) {
-        //nothing to do here
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Set")) {
-            zipAction();
+    private class actionEvent implements ActionListener{
+        public void actionPerformed(ActionEvent e) {
+            if (e.getActionCommand().equals("Set")) {
+                zipAction();
+            }
         }
     }
 
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            zipAction();
-        }
-    }
-
-    public void keyReleased(KeyEvent e) {
-        //we don't do anything with this.
-    }
-
-    public void keyTyped(KeyEvent e) {
-        //we don't do anything with this.
-    }
-
-
+   private class keyEvent extends KeyAdapter
+   {
+       @Override
+       public void keyPressed(KeyEvent e) {
+           if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+               zipAction();
+           }
+       }
+   }
 }
