@@ -72,7 +72,7 @@ class WeatherMachine {
             in = new BufferedReader(new InputStreamReader(http.getInputStream()));
 
             String rawWeather = in.readLine();
-            currentWeather = Weather.parseWeatherData(rawWeather);
+            currentWeather = new Weather(rawWeather);
 
             if (Main.debug) {
                 System.out.println(rawWeather);
