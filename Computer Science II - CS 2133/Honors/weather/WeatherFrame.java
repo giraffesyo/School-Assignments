@@ -32,7 +32,7 @@ class WeatherFrame extends JFrame {
 
     void sendNotification(String Message)
     {
-        notification.createDialog(this, Message);
+        notification.showMessageDialog(this, Message);
     }
 
     zipPanel getZipPanel() {

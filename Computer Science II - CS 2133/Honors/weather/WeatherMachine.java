@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 
 import java.net.URL;
+import java.net.UnknownHostException;
 
 class WeatherMachine {
 
@@ -15,6 +16,7 @@ class WeatherMachine {
     private Long lastTime;
     private int programState;
     private final int waitingPeriod = 600000; // 10 minutes in ms
+
 
     private Integer zipCode;
 
@@ -51,13 +53,11 @@ class WeatherMachine {
                 zipCode = 12345;
             }
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace(); //not sure this ever gets called? maybe when we don't have write access?
+            if (Main.debug) {
+                e.printStackTrace(); //not sure this ever gets called? maybe when we don't have write access?
+            }
         }
 
-
-        //TODO:check timestamp on most recent weather is less than 10 minutes
-        //TODO:if less than ten minutes, load in weather object
-        //TODO:if not run getWeather
     }
 
     /**
@@ -88,12 +88,23 @@ class WeatherMachine {
                 out.flush();
                 out.close();
             } catch (IOException e) {
-                //we don't have write access?
+                if (Main.debug) {
+                    System.out.println("Reached catch block 1");
+                    e.printStackTrace();
+                }
+            }
+        } catch (UnknownHostException e) {
+            if (Main.debug) {
+                //do they have internet access?
+                System.out.println("Reached catch block 2");
                 e.printStackTrace();
             }
+
         } catch (IOException e) {
-            //do they have internet access?
-            e.printStackTrace();
+            if (Main.debug) {
+                System.out.println("Reached catch block 3");
+                e.printStackTrace();
+            }
         }
         if (Main.debug) {
             System.out.println("Temperature: " + currentWeather.getTemperature());
@@ -101,7 +112,6 @@ class WeatherMachine {
             System.out.println("Raining: " + currentWeather.isRaining());
             System.out.println("Snowing: " + currentWeather.isSnowing());
             System.out.println();
-
         }
         processWeather();
     }
@@ -160,6 +170,10 @@ class WeatherMachine {
         } else if (currentWeather.getTemperature() < 60) {
             sweater = true;
         }
+        if (currentWeather.getTemperature() < 40) {
+            snowhat = true;
+            gloves = true;
+        }
 
         if (Main.debug) {
             System.out.println("hoodie : " + needHoodie());
@@ -216,7 +230,7 @@ class WeatherMachine {
         return umbrella;
     }
 
-    void disableAll() {
+    private void disableAll() {
         hoodie = false;
         snowhat = false;
         tshirt = false;

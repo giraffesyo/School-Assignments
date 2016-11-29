@@ -14,7 +14,6 @@ class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListe
     private WeatherMachine weatherMachine;
     private WeatherPanel weatherPanel;
 
-
     zipPanel(WeatherFrame weatherFrame, WeatherMachine weatherMachine, WeatherPanel weatherPanel) {
         weatherFrame.setZipPanel(this);
 
@@ -34,12 +33,9 @@ class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListe
         } else {
             addZipCodeEntry();
         }
-
-
     }
 
     private void addZipCodeLabel() {
-        //TODO:if null? (object?) zip code prompt for one instead
         zipCodeLabel = new JLabel(Integer.toString(weatherMachine.getZipCode()));
         zipCodeLabel.addMouseListener(this);
         add(zipCodeLabel);
@@ -66,27 +62,7 @@ class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListe
             weatherFrame.repaint();
             weatherMachine.setProgramState(1);
         }
-    }
 
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Set")) {
-            zipAction();
-        }
-    }
-
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            zipAction();
-        }
-    }
-
-    public void keyReleased(KeyEvent e) {
-        //we don't do anything with this.
-    }
-
-    public void keyTyped(KeyEvent e)
-    {
-        //we don't do anything with this.
     }
 
     /**
@@ -119,6 +95,11 @@ class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListe
     }
 
     private void zipAction() {
+
+        if(Main.debug){
+            System.out.println("zipEntry.getText() result: " + zipEntry.getText());
+        }
+
         String zipText = zipEntry.getText();
         if (zipValid(zipText)) {
             weatherMachine.setZipCode(Integer.parseInt(zipText));
@@ -128,9 +109,13 @@ class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListe
         } else {
             notifyWrongZip(zipText);
         }
+
     }
 
     private void notifyWrongZip(String zipText) {
+        if(Main.debug){
+            System.out.println("notifyWrongZip() called with " + zipText);
+        }
         if (zipText.length() != 5 && !zipText.matches("[0-9]+")) {
             invalidDigitsAndString();
         } else if (zipText.length() != 5) {
@@ -141,34 +126,47 @@ class zipPanel extends JPanel implements ActionListener, KeyListener, MouseListe
     }
 
     //Enable double click for label
-    public void mouseClicked(MouseEvent e)
-    {
-        if(e.getClickCount() == 2)
-        {
+    public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() == 2) {
             switchLabels();
         }
     }
 
-    public void mouseReleased(MouseEvent e)
-    {
+    public void mouseReleased(MouseEvent e) {
         //nothing to do here
     }
 
-    public void mouseEntered(MouseEvent e)
-    {
+    public void mouseEntered(MouseEvent e) {
         //nothing to do here
     }
 
-    public void mouseExited(MouseEvent e)
-    {
+    public void mouseExited(MouseEvent e) {
         //nothing to do here
     }
 
-    public void mousePressed(MouseEvent e)
-    {
+    public void mousePressed(MouseEvent e) {
         //nothing to do here
     }
 
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Set")) {
+            zipAction();
+        }
+    }
+
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            zipAction();
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+        //we don't do anything with this.
+    }
+
+    public void keyTyped(KeyEvent e) {
+        //we don't do anything with this.
+    }
 
 
 }
