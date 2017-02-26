@@ -1,0 +1,10 @@
+# SELECT 32 by Michael McQuade
+
+inputNames { A[31:0] B[31:0] control}
+outputNames { out[31:0] }
+
+#2 16 bit selects to make a bigger select unit
+circuit SELECT16 LowOrder { A[15:0] B[15:0] control }
+circuit SELECT16 HighOrder { A[31:16] B[31:16] control }
+
+outputs { HighOrder.out[15:0] LowOrder.out[15:0] }

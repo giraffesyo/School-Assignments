@@ -1,0 +1,19 @@
+# 4-Bit Multiplexer by Michael McQuade
+
+inputNames { d[3:0] c[1:0] }
+outputNames { out }
+
+
+circuit NOT !c1 { c1 }
+circuit NOT !c0 { c0 }
+
+# 4 gates, 4 choices
+circuit AND3 c0&c1&d3 { c0 c1 d3 }
+circuit AND3 !c0&c1&d2 { !c0 c1 d2 }
+circuit AND3 c0&!c1&d1 { c0 !c1 d1 }
+circuit AND3 !c0&!c1&d0 { !c0 !c1 d0}
+
+#choose one
+circuit OR4 choose { c0&c1&d3 !c0&c1&d2 c0&!c1&d1 !c0&!c1&d0 }
+
+outputs { choose }
