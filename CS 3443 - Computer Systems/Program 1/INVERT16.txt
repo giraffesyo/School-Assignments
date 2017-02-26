@@ -1,0 +1,23 @@
+# Inverts 16 bits based off a control by Michael McQuade
+
+inputNames { control in[15:0] }
+outputNames { out[15:0] }
+
+circuit XOR invert15 { control in15 }
+circuit XOR invert14 { control in14 }
+circuit XOR invert13 { control in13 }
+circuit XOR invert12 { control in12 }
+circuit XOR invert11 { control in11 }
+circuit XOR invert10 { control in10 }
+circuit XOR invert9 { control in9 }
+circuit XOR invert8 { control in8 }
+circuit XOR invert7 { control in7 }
+circuit XOR invert6 { control in6 }
+circuit XOR invert5 { control in5 }
+circuit XOR invert4 { control in4 }
+circuit XOR invert3 { control in3 }
+circuit XOR invert2 { control in2 }
+circuit XOR invert1 { control in1 }
+circuit XOR invert0 { control in0 }
+
+outputs { invert[15:0] }

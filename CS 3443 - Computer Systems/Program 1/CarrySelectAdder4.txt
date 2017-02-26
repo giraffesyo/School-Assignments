@@ -1,0 +1,15 @@
+# 4-bit Carry Select Adder by Michael McQuade
+
+inputNames { A[3:0], B[3:0], cin }
+outputNames { sum[3:0] co }
+
+circuit RIPPLECARRY4 ADDER1 { A[3:0] B[3:0] 1 }
+circuit RIPPLECARRY4 ADDER0 { A[3:0] B[3:0] 0 }
+
+circuit MUX2 Choose0 { cin ADDER1.sum0 ADDER0.sum0 }
+circuit MUX2 Choose1 { cin ADDER1.sum1 ADDER0.sum1 }
+circuit MUX2 Choose2 { cin ADDER1.sum2 ADDER0.sum2 }
+circuit MUX2 Choose3 { cin ADDER1.sum3 ADDER0.sum3 }
+circuit MUX2 ChooseCOUT { cin ADDER1.co ADDER0.co }
+
+outputs { Choose3 Choose2 Choose1 Choose0 ChooseCOUT }

@@ -1,0 +1,22 @@
+# 16 bit not gate by Michael McQuade
+inputNames { in[15:0] }
+outputNames { out[15:0] }
+
+circuit NOT not15 { in15 }
+circuit NOT not14 { in14 }
+circuit NOT not13 { in13 }
+circuit NOT not12 { in12 }
+circuit NOT not11 { in11 }
+circuit NOT not10 { in10 }
+circuit NOT not9 { in9 }
+circuit NOT not8 { in8 }
+circuit NOT not7 { in7 }
+circuit NOT not6 { in6 }
+circuit NOT not5 { in5 }
+circuit NOT not4 { in4 }
+circuit NOT not3 { in3 }
+circuit NOT not2 { in2 }
+circuit NOT not1 { in1 }
+circuit NOT not0 { in0 }
+
+outputs { not15 not14 not13 not12 not11 not10 not9 not8 not7 not6 not5 not4 not3 not2 not1 not0 }

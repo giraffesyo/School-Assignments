@@ -1,0 +1,52 @@
+# Hack ALU by Michael McQuade
+
+inputNames { X[15:0] Y[15:0] zx nx zy ny f no }
+outputNames { out[15:0] zr ng }
+
+# ADD 16--\
+#   |      \
+#   0       ---- > Multiplex ---> out[15:0]
+#          /          |
+# AND 16--/           f
+#   ^
+#   |
+#    - - - - - - - - - - - - - - - - -
+#               ###       ######      |
+# x[15:0] --  #Z16# --- #inv16 #  - - -
+#              ###        #####
+#               |          |
+#              zx          |
+#             ___          nx
+# y[15:0] -- |Z16|
+#              |
+#             zy
+
+
+#ZERO 16
+circuit ZERO16 ZeroX { zx X[15:0] }
+circuit ZERO16 ZeroY { zy Y[15:0] }
+
+#Invert X, Invert Y
+circuit INVERT16 negateX { nx ZeroX.out[15:0] }
+circuit INVERT16 negateY { ny ZeroY.out[15:0] }
+
+
+#ADD 16
+circuit CarrySelectAdder16 X+Y { negateX.out[15:0] negateY.out[15:0] 0 }
+
+#AND 16
+circuit HACKAND16 X&Y { negateX.out[15:0] negateY.out[15:0]}
+
+# Both operations happen, choose which operation is output with Select 16
+circuit SELECT16 OutputChoice { f X+Y.sum[15:0] X&Y.out[15:0] }
+
+# do we invert the output?
+circuit INVERT16 negateOutput { no OutputChoice.out[15:0] }
+
+#is the output all zeroes?
+circuit OR16HACK outis0 { negateOutput.out[15:0] }
+
+#is the output less than 0?
+circuit AND outLT0 { negateOutput.out15 1 }
+
+outputs { negateOutput.out[15:0], outis0 , outLT0 }

@@ -1,0 +1,35 @@
+# Test cases for 5-input Majority Circuit by Michael McQuade
+# Test is exhaustive for 5-input majority circuit
+
+testCase { 00000 0 }
+testCase { 00001 0 }
+testCase { 00010 0 }
+testCase { 00011 0 }
+testCase { 00100 0 }
+testCase { 00101 0 }
+testCase { 00110 0 }
+testCase { 00111 1 }
+testCase { 01000 0 }
+testCase { 01001 0 }
+testCase { 01010 0 }
+testCase { 01011 1 }
+testCase { 01100 0 }
+testCase { 01101 1 }
+testCase { 01110 1 }
+testCase { 01111 1 }
+testCase { 10000 0 }
+testCase { 10001 0 }
+testCase { 10010 0 }
+testCase { 10011 1 }
+testCase { 10100 0 }
+testCase { 10101 1 }
+testCase { 10110 1 }
+testCase { 10111 1 }
+testCase { 11000 0 }
+testCase { 11001 1 }
+testCase { 11010 1 }
+testCase { 11011 1 }
+testCase { 11100 1 }
+testCase { 11101 1 }
+testCase { 11110 1 }
+testCase { 11111 1 }

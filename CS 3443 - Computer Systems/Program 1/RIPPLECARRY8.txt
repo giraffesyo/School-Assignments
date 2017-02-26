@@ -1,0 +1,17 @@
+# 8-bit ripple carry adder by Michael McQuade
+# NEEDS TEST CASES
+inputNames { A[7:0], B[7:0], cIn }
+outputNames { sum[7:0], cOut }
+
+
+# inA, inB, carryIN, outputs sum, co
+circuit FULLADDER ADDER0 { A0, B0, cIn }
+circuit FULLADDER ADDER1 { A1, B1, ADDER0.co }
+circuit FULLADDER ADDER2 { A2, B2, ADDER1.co }
+circuit FULLADDER ADDER3 { A3, B3, ADDER2.co }
+circuit FULLADDER ADDER4 { A4, B4, ADDER3.co }
+circuit FULLADDER ADDER5 { A5, B5, ADDER4.co }
+circuit FULLADDER ADDER6 { A6, B6, ADDER5.co }
+circuit FULLADDER ADDER7 { A7, B7, ADDER6.co }
+
+outputs { ADDER[7:0].sum, ADDER7.co }

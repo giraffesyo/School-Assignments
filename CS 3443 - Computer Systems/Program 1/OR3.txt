@@ -1,0 +1,20 @@
+# OR3 by Michael McQuade
+
+# TRUTH TABLE:
+# inA inB inC | out 
+# 000 | 0
+# 001 | 1
+# 010 | 1
+# 011 | 1
+# 100 | 1
+# 101 | 1
+# 110 | 1
+# 111 | 1
+
+inputNames { inA, inB, inC }
+outputNames { out }
+
+circuit OR ORinAinB { inA, inB }  # GATE 1
+circuit OR ORinCg1 { inC, ORinAinB }
+
+outputs { ORinCg1 }

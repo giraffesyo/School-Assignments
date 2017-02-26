@@ -1,0 +1,18 @@
+#OR Gate By Michael McQuade
+
+# TRUTH TABLE FROM CircuitSim.jar
+# inA inB | out
+#   0   0 |   0
+#   0   1 |   1
+#   1   0 |   1
+#   1   1 |   1
+
+
+inputNames { inA, inB }
+outputNames { out }
+
+circuit NAND nandA { inA, inA }
+circuit NAND nandB { inB, inB }
+circuit NAND nandAB { nandA, nandB }
+
+outputs { nandAB.out }

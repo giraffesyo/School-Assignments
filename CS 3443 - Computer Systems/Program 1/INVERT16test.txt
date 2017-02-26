@@ -1,0 +1,4 @@
+#INVERT 16 test by Michael McQuade
+testCase {1 0000 0000 0000 0000, 1111 1111 1111 1111} # passed
+testCase {0 1111 1111 1111 1111, 1111 1111 1111 1111} # passed
+testCase {1 1111 1111 1101 1111, 0000 0000 0010 0000} # passed

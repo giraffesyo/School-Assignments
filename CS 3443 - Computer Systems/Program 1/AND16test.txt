@@ -1,0 +1,3 @@
+#test case for AND16
+
+testCase { 1 1 1 1, 1 1 1 1, 1 1 1 1, 1 1 1 1, 1}

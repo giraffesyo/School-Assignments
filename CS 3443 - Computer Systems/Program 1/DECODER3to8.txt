@@ -1,0 +1,30 @@
+# 3:8 Decoder by Michael McQuade
+
+# TRUTH TABLE:
+# A B C | O0 O1 O2 O3 O4 O5 O6 O7
+# 000 | 1000 0000
+# 001 | 0100 0000
+# 010 | 0010 0000
+# 011 | 0001 0000
+# 100 | 0000 1000
+# 101 | 0000 0100
+# 110 | 0000 0010
+# 111 | 0000 0001
+
+inputNames { A B C }
+outputNames { O[0:7] }
+
+circuit NOT !A { A }
+circuit NOT !B { B }
+circuit NOT !C { C }
+
+circuit AND3 G0 { A B C }
+circuit AND3 G1 { A B !C }
+circuit AND3 G2 { A !B C }
+circuit AND3 G3 { A !B !C }
+circuit AND3 G4 { !A B C }
+circuit AND3 G5 { !A B !C }
+circuit AND3 G6 { !A !B C }
+circuit AND3 G7 { !A !B !C }
+
+outputs { G7 G6 G5 G4 G3 G2 G1 G0 }

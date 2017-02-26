@@ -1,0 +1,22 @@
+# Multiplexer by Michael McQuade
+
+# TRUTH TABLE:
+# C A1 A0 | out
+# 000 | 0
+# 001 | 1
+# 010 | 0
+# 011 | 1
+# 100 | 0
+# 101 | 0
+# 110 | 1
+# 111 | 1
+
+inputNames { C A[1:0] }
+outputNames { out }
+
+circuit AND A1&C { A1 C }         # Gate 1
+circuit NOT !C { C }            # Gate 2
+circuit AND A0&!C { A0 !C }       # Gate 3
+circuit OR g1|g3 { A0&!C A1&C }
+
+outputs { g1|g3 }

@@ -1,0 +1,11 @@
+# 4 bit ripple carry adder by Michael McQuade
+
+inputNames { A[3:0] B[3:0] cin}
+outputNames { sum[3:0] co }
+
+circuit FULLADDER ADDER0 { A0, B0, cin }
+circuit FULLADDER ADDER1 { A1, B1, ADDER0.co }
+circuit FULLADDER ADDER2 { A2, B2, ADDER1.co }
+circuit FULLADDER ADDER3 { A3, B3, ADDER2.co }
+
+outputs { ADDER[3:0].sum, ADDER3.co }

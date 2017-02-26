@@ -1,0 +1,13 @@
+# NOT gate by Michael McQuade
+
+# TRUTH TABLE:
+# in | out
+#  0 |   1
+#  1 |   0
+
+inputNames { in }
+outputNames { out }
+
+circuit NAND ~in { in, in }
+
+outputs { ~in.out }

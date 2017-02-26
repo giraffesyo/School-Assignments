@@ -1,0 +1,14 @@
+# XOR4 gate: c = a^b^c^d
+# Constructs a 4-way XOR gate from 3 2-way XOR gates
+
+inputNames { a, b, c, d }
+outputNames { e }
+
+circuit XOR x1 { a, b }
+circuit XOR x2 { c, d }
+circuit XOR x3 { x1, x2 }
+
+  # Alternate specification for x3 using macros
+  # circuit XOR x3 { x[1:2] }
+
+outputs { x3 }

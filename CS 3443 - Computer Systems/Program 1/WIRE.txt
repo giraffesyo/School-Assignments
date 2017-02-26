@@ -1,0 +1,8 @@
+# WIRE (useful for renaming things) : a=a, using a 1 constant
+
+inputNames { a }
+outputNames { b }
+
+circuit AND a&1 { a, 1 } # Using constant
+
+outputs { a&1 }

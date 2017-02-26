@@ -1,0 +1,28 @@
+# ZERO 16 by Michael McQuade
+
+inputNames { Control in[15:0] }
+outputNames { out[15:0]}
+
+#Control is backwards of what we want
+circuit NOT keep { Control } #now if we use keep, 1 is keep, 0 is zero
+
+circuit AND AND15 { in15 keep }
+circuit AND AND14 { in14 keep }
+circuit AND AND13 { in13 keep }
+circuit AND AND12 { in12 keep }
+circuit AND AND11 { in11 keep }
+circuit AND AND10 { in10 keep }
+circuit AND AND9 { in9 keep }
+circuit AND AND8 { in8 keep }
+circuit AND AND7 { in7 keep }
+circuit AND AND6 { in6 keep }
+circuit AND AND5 { in5 keep }
+circuit AND AND4 { in4 keep }
+circuit AND AND3 { in3 keep }
+circuit AND AND2 { in2 keep }
+circuit AND AND1 { in1 keep }
+circuit AND AND0 { in0 keep }
+
+
+
+outputs { AND[15:0] }

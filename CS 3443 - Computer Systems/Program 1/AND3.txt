@@ -1,0 +1,20 @@
+# AND3 by Michael McQuade
+
+# TRUTH TABLE:
+# inA inB inC | out
+# 000 | 0
+# 001 | 0
+# 010 | 0
+# 011 | 0
+# 100 | 0
+# 101 | 0
+# 110 | 0
+# 111 | 1
+
+inputNames { inA, inB, inC }
+outputNames { out }
+
+circuit AND ANDinAinB { inA, inB }  # GATE 1
+circuit AND ANDinCg1 { inC, ANDinAinB }
+
+outputs { ANDinCg1 }

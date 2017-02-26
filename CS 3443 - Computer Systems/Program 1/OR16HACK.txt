@@ -1,0 +1,32 @@
+# OR 16 Test if bits are 16 zeros by Michael McQuade
+# Returns true if they are all zero
+
+inputNames { in[15:0] }
+outputNames { out }
+
+#OR everything together
+circuit OR OR1 { in15 in14 }
+circuit OR OR2 { in13 in12 }
+circuit OR OR3 { in11 in10 }
+circuit OR OR4 { in9 in8 }
+circuit OR OR5 { in7 in6 }
+circuit OR OR6 { in5 in4 }
+circuit OR OR7 { in3 in2 }
+circuit OR OR8 { in1 in0 }
+
+#and them together
+circuit OR 1&2 { OR1 OR2 }
+circuit OR 3&4 { OR3 OR4 }
+circuit OR 5&6 { OR5 OR6 }
+circuit OR 7&8 { OR7 OR8 }
+
+#and those together
+circuit OR 1&2&3&4 { 1&2 3&4 }
+circuit OR 5&6&7&8 { 5&6 7&8 }
+
+#finally OR those together
+circuit OR allOR { 1&2&3&4 5&6&7&8 }
+
+circuit NOT notallOR { allOR }
+
+outputs { notallOR }

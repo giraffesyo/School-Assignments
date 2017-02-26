@@ -1,0 +1,25 @@
+# SELECT 16 by Michael McQuade
+
+inputNames { control A[15:0] B[15:0]}
+outputNames { out[15:0] }
+
+#These 16 1 bit muxers choose the output we want
+circuit MUX2 Choose15 { control A15 B15 }
+circuit MUX2 Choose14 { control A14 B14 }
+circuit MUX2 Choose13 { control A13 B13 }
+circuit MUX2 Choose12 { control A12 B12 }
+circuit MUX2 Choose11 { control A11 B11 }
+circuit MUX2 Choose10 { control A10 B10 }
+circuit MUX2 Choose9 { control A9 B9 }
+circuit MUX2 Choose8 { control A8 B8 }
+circuit MUX2 Choose7 { control A7 B7 }
+circuit MUX2 Choose6 { control A6 B6 }
+circuit MUX2 Choose5 { control A5 B5 }
+circuit MUX2 Choose4 { control A4 B4 }
+circuit MUX2 Choose3 { control A3 B3 }
+circuit MUX2 Choose2 { control A2 B2 }
+circuit MUX2 Choose1 { control A1 B1 }
+circuit MUX2 Choose0 { control A0 B0 }
+
+#output the result of all the muxers
+outputs { Choose[15:0] }

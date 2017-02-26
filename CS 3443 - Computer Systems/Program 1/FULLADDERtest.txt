@@ -1,0 +1,12 @@
+# Full Adder Test Cases by Michael McQuade
+
+# Exhaustive tests
+
+testCase { 000 00 }
+testCase { 001 10 }
+testCase { 010 10 }
+testCase { 011 01 }
+testCase { 100 10 }
+testCase { 101 01 }
+testCase { 110 01 }
+testCase { 111 11 }

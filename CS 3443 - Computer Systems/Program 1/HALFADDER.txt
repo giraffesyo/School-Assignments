@@ -1,0 +1,11 @@
+# HALF ADDER: a and b are addends
+# co = a & b (carry out)
+# sum = a ^ b
+
+inputNames { a, b }
+outputNames { co, sum }
+
+circuit AND a&b { a, b }
+circuit XOR a^b { a, b }
+
+outputs { a&b, a^b }

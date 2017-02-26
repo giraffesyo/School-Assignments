@@ -1,0 +1,21 @@
+# Normal AND 16 by Michael McQuade
+
+inputNames { in[15:0]}
+outputNames { out }
+
+# first layer
+circuit AND3 and1 { in[15:13] }
+circuit AND3 and2 { in[12:10] }
+circuit AND3 and3 { in[9:7] }
+circuit AND3 and4 { in[6:4] }
+circuit AND3 and5 { in[3:1] }
+circuit AND and6 { in0 1 }
+
+#first merge
+circuit AND3 A1&A2&A3 { and1 and2 and3 }
+circuit AND3 A4&A5&A6 { and4 and5 and6 }
+
+# second merge
+circuit AND andall { A1&A2&A3 A4&A5&A6 }
+
+outputs { andall }

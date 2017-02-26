@@ -1,0 +1,17 @@
+# XOR Gate by Michael McQuade
+
+# TRUTH TABLE:
+# inA inB | out
+# 0     0 | 0
+# 0     1 | 1
+# 1     0 | 1
+# 1     1 | 0
+
+inputNames { inA, inB }
+outputNames { out }
+
+circuit OR orAB { inA, inB }
+circuit NAND nandAB { inA, inB }
+circuit AND nandAB&orAB { orAB, nandAB }
+
+outputs { nandAB&orAB }

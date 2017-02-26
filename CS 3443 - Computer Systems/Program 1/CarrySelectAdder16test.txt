@@ -1,0 +1,15 @@
+#test case for CSA 16 Michael McQuade
+
+# inputNames { A[15:0], B[15:0], cin }
+# outputNames { sum[15:0], cout }
+
+testCase {
+0000 0000 0000 0001
+0000 0000 0000 0001 0,
+0000 0000 0000 0010 0
+ }
+ testCase {
+ 1111 1111 1111 1111
+ 0000 0000 0000 0001 0,
+ 0000 0000 0000 0000 1
+  }

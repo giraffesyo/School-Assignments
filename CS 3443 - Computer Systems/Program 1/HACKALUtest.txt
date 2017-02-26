@@ -1,0 +1,49 @@
+# test cases for HACK ALU by Michael McQuade
+
+# inputNames { X[15:0] Y[15:0] zx nx zy ny f no }
+# outputNames { out[15:0] zr ng }
+
+#F = 0 and
+#F = 1 add
+
+#adds 1 and 1 to get 2
+testCase { 0000 0000 0000 0001, #zx #nx #zy #ny #f #no
+           0000 0000 0000 0001,   0,  0,  0,  0, 1,  0,
+           0000 0000 0000 0010, 0, 0
+}
+
+# adds -1 to 1 and gets 0
+testCase { 1111 1111 1111 1111, #zx #nx #zy #ny #f #no
+           0000 0000 0000 0001,   0,  0,  0,  0, 1,  0,
+           0000 0000 0000 0000, 1, 0
+}
+
+#ands 1101 and 1011 to get 1001
+testCase { 0000 0000 0000 1101, #zx #nx #zy #ny #f #no
+           0000 0000 0000 1011,   0,  0,  0,  0, 0,  0,
+           0000 0000 0000 1001, 0, 0
+}
+
+#invert x (using add but not adding anything)
+testCase { 1111 1111 1111 0000, #zx #nx #zy #ny #f #no
+           0000 0000 0000 0000,   0,  1,  0,  0, 1,  0,
+           0000 0000 0000 1111, 0, 0
+}
+
+#invert y (using add but not adding anything)
+testCase { 0000 0000 0000 0000, #zx #nx #zy #ny #f #no
+           0000 0000 1111 0000,   0,  0,  0,  1, 1,  0,
+           1111 1111 0000 1111, 0, 1
+}
+
+#invert output of addition, we get a negative number
+testCase { 0000 0000 0000 0010, #zx #nx #zy #ny #f #no
+           0000 0000 0000 0001,   0,  0,  0,  0, 1,  1,
+           1111 1111 1111 1100, 0, 1
+}
+
+# inverted 0 with inverted 0 makes -1 + -1 = -2
+testCase { 0000 0000 0000 0000, #zx #nx #zy #ny #f #no
+           0000 0000 0000 0000,   0,  1,  0,  1, 1,  0,
+           1111 1111 1111 1110, 0, 1
+}

@@ -1,0 +1,11 @@
+# 16-Bit Carry Select adder by Michael McQuade
+
+inputNames { A[15:0], B[15:0], cin }
+outputNames { sum[15:0], cout }
+
+circuit RIPPLECARRY4 Adder0 { A[3:0] B[3:0] cin }
+circuit CarrySelectAdder4 Adder1 { A[7:4] B[7:4] Adder0.co }
+circuit CarrySelectAdder4 Adder2 { A[11:8] B[11:8] Adder1.co }
+circuit CarrySelectAdder4 Adder3 { A[15:12] B[15:12] Adder2.co }
+
+outputs { Adder3.sum[3:0], Adder2.sum[3:0] Adder1.sum[3:0] Adder0.sum[3:0] Adder3.co }

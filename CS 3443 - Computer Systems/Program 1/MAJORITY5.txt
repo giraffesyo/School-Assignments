@@ -1,0 +1,24 @@
+# 5-input Majority Gate by Michael McQuade
+# ALL TEST CASES PASSED
+
+# BRUTE FORCE:
+# (NOT A AND NOT B AND C AND D AND E) OR ( NOT A AND B AND NOT C AND D AND E ) OR ( NOT A AND B AND C AND NOT D AND E ) OR (NOT A AND B AND C AND D AND NOT E) OR (NOT A AND B AND C AND D AND E) OR ( A AND NOT B AND NOT C AND D AND E ) OR ( A AND NOT B AND C AND NOT D AND E ) OR ( A AND NOT B AND C AND D AND NOT E) OR (A AND NOT B AND C AND D AND E) OR ( A AND B AND NOT C AND NOT D AND E) OR ( A AND B AND NOT C AND D AND NOT E) OR ( A AND B AND NOT C AND D AND E) OR ( A AND B AND C AND NOT D AND NOT E ) OR ( A AND B AND C AND NOT D AND E) OR ( A AND B AND C AND D AND NOT E) OR (A AND B AND C AND D AND E)
+
+# REDUCTION:
+# A B C + A B D + A C D + B C D + A B E + A C E + B C E + A D E + B D E + CDE
+
+inputNames { inA, inB, inC, inD, inE }
+outputNames { out }
+
+circuit OR ORinAinE { inA, inE }                                   #GATE 1
+circuit NAND NANDinBinC { inB, inC }                               #GATE 2
+circuit OR ORinBinC { inB, inC }                                   #GATE 3
+circuit NAND NANDg3inD { ORinBinC, inD }                           #GATE 4
+circuit NAND NANDg4g2 { NANDg3inD, NANDinBinC }                    #GATE 5
+circuit AND ANDg1g5 { ORinAinE, NANDg4g2 }                         #GATE 6
+circuit AND3 AND3inBinCinD { inB, inC, inD }                       #GATE 7
+circuit OR3 OR3inBinCinD { inB, inC, inD }                         #GATE 8
+circuit AND3 AND3inAinEg8 { inA, inE, OR3inBinCinD }               #GATE 9
+circuit OR3 OR3g6g7g9 { ANDg1g5, AND3inBinCinD, AND3inAinEg8 }     #GATE 10
+
+outputs { OR3g6g7g9 }

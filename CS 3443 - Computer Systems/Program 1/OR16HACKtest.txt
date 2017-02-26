@@ -1,0 +1,5 @@
+#test cases for 16-bit nand by Michael McQuade
+
+testCase { 0000 0000 0000 0000, 1}
+testCase{ 1111 1111 1111 1111, 0}
+testCase{ 1111 0000 0000 0000, 0}

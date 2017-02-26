@@ -1,0 +1,16 @@
+# AND gate by Michael McQuade
+
+# TRUTH TABLE:
+# inA inB | out
+# 0     0 | 0
+# 0     1 | 0
+# 1     0 | 0
+# 1     1 | 1
+
+inputNames { inA, inB }
+outputNames { out }
+
+circuit NAND nandAB { inA, inB }
+circuit NOT andAB { nandAB }
+
+outputs{ andAB }

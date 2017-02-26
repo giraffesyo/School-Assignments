@@ -1,0 +1,13 @@
+# 16 Bit Multiplexer by Michael McQuade
+
+inputNames { C[3:0] D[15:0] }
+outputNames { out }
+
+circuit MUX4 multi1 { C1 C0 D15 D14 D13 D12 }
+circuit MUX4 multi2 { C1 C0 D11 D10 D9 D8 }
+circuit MUX4 multi3 { C1 C0 D7 D6 D5 D4 }
+circuit MUX4 multi4 { C1 C0 D3 D2 D1 D0 }
+
+circuit MUX4 choose { C3 C2 multi4 multi3 multi2 multi1}
+
+outputs { choose }
