@@ -2,6 +2,10 @@ package geography;
 
 import java.util.ArrayList;
 
+/**
+ * Boundary Class represents boundaries between other @geographical objects
+ *
+ */
 public class boundary {
 
     private coordinates beginning;
@@ -11,6 +15,11 @@ public class boundary {
 
     ArrayList<geographical> Places;
 
+    /**
+     *
+     * @param beginning This will mark the coordinates for the beginning of the boundary
+     * @param end This will mark the coordinates for the end of the boundary
+     */
     boundary(coordinates beginning, coordinates end)
     {
         this.beginning = beginning;
@@ -19,6 +28,10 @@ public class boundary {
         this.id = count;
     }
 
+    /**
+     *
+     * @return Returns distance of boundary using @beginning and @end
+     */
     public double boundaryLength()
     {
         double dist;
@@ -35,16 +48,28 @@ public class boundary {
         return dist;
     }
 
+    /**
+     *
+     * @return getter for Places, returns list of places which use this object as boundary
+     */
     public ArrayList<geographical> borderOf()
     {
         return Places;
     }
 
+    /**
+     *
+     * @param Place Place to be added to this object, used when adding boundary
+     */
     void addPlace(geographical Place)
     {
      Places.add(Place);
     }
 
+    /**
+     *
+     * @return getter for id, used to identify boundary by number
+     */
     int getId()
     {
         return id;

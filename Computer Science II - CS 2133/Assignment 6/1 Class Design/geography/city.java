@@ -10,14 +10,18 @@ public class city extends geographical {
     ArrayList<river> Rivers;
 
 
-    //city will have -1 in both X and Y coordinates
+    /**
+     * city will have -1 in both X and Y coordinates
+     */
     city() {
         super();
         isCapitalCity = false;
         Rivers = new ArrayList<>();
     }
 
-    //create city with coordinates
+    /**
+     * @param location create city with coordinates
+     */
     city(coordinates location) {
         super(location);
         isCapitalCity = false;
@@ -25,7 +29,9 @@ public class city extends geographical {
     }
 
 
-    //create a city with just name
+    /**
+     * @param name create a city with just name
+     */
     city(String name) {
         super(name);
         isCapitalCity = false;
@@ -33,22 +39,28 @@ public class city extends geographical {
     }
 
 
-    //create city with name and coordinates
+    /**
+     * @param name     create city with this name
+     * @param location create city with this location as @coordinates
+     */
     city(String name, coordinates location) {
         super(name, location);
         isCapitalCity = false;
         Rivers = new ArrayList<>();
     }
 
-
-    //create city with name, coordinates, and knowledge of it being the capital
+    /**
+     * create city with name, coordinates, and knowledge of it being the capital
+     */
     city(String name, coordinates location, boolean isCapitalCity) {
         super(name, location);
         this.isCapitalCity = isCapitalCity;
         Rivers = new ArrayList<>();
     }
 
-    //Create city with name, state, location, and knowledge of it being the capital
+    /**
+     * Create city with name, state, location, and knowledge of it being the capital
+     */
     city(state State, String name, coordinates location, boolean isCapitalCity) {
         super(name, location);
         this.State = State;
@@ -56,7 +68,9 @@ public class city extends geographical {
         Rivers = new ArrayList<>();
     }
 
-    //create city with all parameters used
+    /**
+     * create city with all parameters used
+     */
     city(state State, String name, coordinates location, boolean isCapitalCity, double area) {
         super(name, location, area);
         this.State = State;
@@ -65,8 +79,10 @@ public class city extends geographical {
     }
 
 
-
-    //Returns distance between city A and B
+    /**
+     *
+     * @return Returns distance between city A and B
+     */
     public static double distance(city A, city B) {
         double dist;
 
@@ -83,49 +99,72 @@ public class city extends geographical {
         return dist;
     }
 
-    //returns true if it is the capital of the state it belongs to
+    /**
+     *
+     * @return returns true if it is the capital of the state it belongs to
+     */
     public boolean Capital() {
         return isCapitalCity;
     }
 
-    //Sets capital true/false
+    /**
+     *
+     * @param isCapitalCity Sets capital true/false
+     */
     public void Capital(boolean isCapitalCity) {
         this.isCapitalCity = isCapitalCity;
     }
 
 
-    //Gets state this city belongs to
+    /**
+     *
+     * @return Gets state this city belongs to
+     */
     public state getState() {
         return this.State;
     }
 
-    //Set state that this city belogns to
+    /**
+     *
+     * @param parentState Set state that this city belogns to
+     */
     public void setState(state parentState) {
         this.State = parentState;
     }
 
-    //Add river to city and city to river.
-    public void addRiver(river River)
-    {
+    /**
+     *
+     * @param River Add river to city and city to river.
+     */
+    public void addRiver(river River) {
         River.addCity(this);
         Rivers.add(River);
     }
 
-    //Get rivers that run through city
-    public ArrayList<river> getRivers()
-    {
+    /**
+     *
+     * @return Get rivers that run through city
+     */
+    public ArrayList<river> getRivers() {
         return Rivers;
     }
 
+
+    /**
+     *
+     * @return Return area
+     */
     @Override
-    public double area()
-    {
+    public double area() {
         return super.area();
     }
 
+    /**
+     *
+     * @param area Sets area to this
+     */
     @Override
-    public void area(double area)
-    {
+    public void area(double area) {
         super.area(area);
     }
 
