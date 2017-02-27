@@ -1,7 +1,7 @@
 # 1-bit ALU by Michael McQuade
 
-inputNames { F1 F0 INVB CIN A0 B0 }
-outputNames { COUT S0 }
+inputNames { A0 B0 F1 F0 INVB CIN }
+outputNames { COUT S }
 
 # F1 F0
 # 00=add, 01=and, 10=or, 11=xor
