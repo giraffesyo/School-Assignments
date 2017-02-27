@@ -1,0 +1,13 @@
+# 1-bit Logical Right Shift by Michael McQuade
+
+inputNames { in cin shift }
+outputNames { out }
+
+circuit NOT !shift { shift }
+
+circuit AND shift&cin { cin shift }
+circuit AND !shift&in { !shift in }
+
+circuit OR result { shift&cin !shift&in }
+
+outputs { result }
