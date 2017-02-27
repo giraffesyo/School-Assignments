@@ -1,0 +1,61 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# MIPS Decoder by Michael McQuade                                           #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Purpose:                                                                  #
+#	Decode the MIPS instruction based on the opcode and funct fields.         #
+#	Send out control lines to control the "ALU32" unit, "TSelect" unit,       #
+#	"ShiftControlSelect" unit, And "OutputSelect" unit.                       #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#  Inputs (32):                                                             #
+#	 The 32 bits of the instruction                                           #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+inputNames { in[31:0] }
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#   Outputs (10):                                                           #
+#	  F1, F0, INVA, INVB, CIN: Control lines for ALU                          #
+#	  selectImm: Whether to use the immediate argument or the t register      #
+#	  signExtend: Whether to sign-extend the immediate argument               #
+#  	selectShAmt: Whether to use the immediate shift amount (sh4 .. sh0)     #
+#		or the variable amount (t4..t0) to control the shifter                  #
+#	  selectALU: Whether to choose the ALU or Shifter for the final output    #
+# 	selectMultiply: Whether to choose the multiply unit as the final output #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+outputNames { F1, F0, INVA, INVB, CIN, selectImm, signExtend, selectShAmt, selectALU, selectMultiply }
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# (NOT SURE IF MUST BE DONE IN HERE)
+# Instruction Types that must be decoded:
+# ADDU – add unsigned (does the same thing as ADD)
+# ADD – Add (ignore the overflow)
+# ADDI – Add immediate (ignore the overflow)
+# AND – Bitwise AND of two registers
+# ANDI – Bitwise AND immediate
+# OR – Bitwise OR
+# ORI – Bitwise OR immediate
+# SLT – Set less than
+# SLTI – Set less than immediate
+# SRL – Shift right logical
+# SRLV – Shift right logical variable
+# SRA – Shift right arithmetic
+# SUB – Subtract (ignore the overflow)
+# MULT – Multiply
+# XOR – Bitwise exclusive or
+# XORI – Bitwise exclusive or immediate
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# ADD - 0000 00ss ssst tttt dddd d000 0010 0000
+# XOR - 0000 00ss ssst tttt dddd d--- --10 0110
+# AND - 0000 00ss ssst tttt dddd d000 0010 0100
+# OR  - 0000 00ss ssst tttt dddd d000 0010 0101
+
+
+
+
+circuit
