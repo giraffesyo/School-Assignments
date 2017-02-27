@@ -7,12 +7,12 @@ outputNames { COUT S0 }
 # 00=add, 01=and, 10=or, 11=xor
 
 circuit NOT !B { B0 }
-circuit MUX2 Bselect { INVB !B B0 }
+circuit MUX2 Bselect { B0 !B INVB }
 circuit FULLADDER FA(A+B) { A0 Bselect CIN }
 
 circuit AND A&Bselect { A0 Bselect }
 circuit OR A|B { A0 Bselect }
 circuit XOR AxorBselect { A0 Bselect }
 
-circuit MUX4 result { F1 F0 AxorBselect A|B A&Bselect FA(A+B).sum }
+circuit MUX4 result { AxorBselect A|B A&Bselect FA(A+B).sum F1 F0 }
 outputs { FA(A+B).co result }

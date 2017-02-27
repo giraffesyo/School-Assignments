@@ -1,0 +1,13 @@
+# Full Adder circuit by Michael McQuade
+# ALL TEST CASES PASSED
+
+inputNames { inA, inB, carryIn }
+outputNames { sum, co }
+
+circuit XOR XORinAinB { inA, inB }                  # GATE 1
+circuit AND ANDinAinB { inA, inB }                  # GATE 2
+circuit AND ANDg1carryIn { XORinAinB, carryIn }     # GATE 3
+circuit OR ORg2g3 { ANDinAinB, ANDg1carryIn }       # GATE 4
+circuit XOR XORcarryIng1 { carryIn, XORinAinB }     # GATE 5
+
+outputs { XORcarryIng1, ORg2g3 }
