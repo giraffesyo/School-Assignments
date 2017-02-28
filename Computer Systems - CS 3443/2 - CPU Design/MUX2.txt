@@ -1,6 +1,6 @@
 # Multiplexer by Michael McQuade
 
-#0 for first input, 1 for second input
+#1 for first input 0 for second input (descending order)
 
 inputNames { A[1:0] C }
 outputNames { out }
@@ -10,6 +10,4 @@ circuit NOT !C { C }            # Gate 2
 circuit AND A0&!C { A0 !C }       # Gate 3
 circuit OR g1|g3 { A0&!C A1&C }
 
-circuit NOT !(g1|g3) { g1|g3 }
-
-outputs { !(g1|g3) }
+outputs { g1|g3 }
