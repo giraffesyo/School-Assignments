@@ -1,0 +1,21 @@
+# Test cases for MIPS Shift Right by 4 by Michael McQuade
+
+# 32 inputs, shift, arithmetic
+
+# test shifting logically
+testCase {
+1000 0000 0000 1111 1111 0000 0000 1111, 1 0,
+0000 1000 0000 0000 1111 1111 0000 0000
+}
+
+# test not shifting
+testCase {
+1000 0000 0000 1111 1111 0000 0000 1111, 0 0,
+1000 0000 0000 1111 1111 0000 0000 1111
+}
+
+# test arithmetic shift
+testCase {
+1000 0000 0000 1111 1111 0000 0000 1111, 1 1,
+1111 1000 0000 0000 1111 1111 0000 0000
+}
