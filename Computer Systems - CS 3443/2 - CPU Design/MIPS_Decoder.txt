@@ -30,24 +30,24 @@ inputNames { in[31:0] }
 outputNames { F1, F0, INVA, INVB, CIN, selectImm, signExtend, selectShAmt, selectALU, selectMultiply }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# (NOT SURE IF MUST BE DONE IN HERE)
-# Instruction Types that must be decoded:
-# ADDU – add unsigned (does the same thing as ADD)
-# ADD – Add (ignore the overflow)
-# ADDI – Add immediate (ignore the overflow)
-# AND – Bitwise AND of two registers
-# ANDI – Bitwise AND immediate
-# OR – Bitwise OR
-# ORI – Bitwise OR immediate
-# SLT – Set less than
-# SLTI – Set less than immediate
-# SRL – Shift right logical
-# SRLV – Shift right logical variable
-# SRA – Shift right arithmetic
-# SUB – Subtract (ignore the overflow)
-# MULT – Multiply
-# XOR – Bitwise exclusive or
-# XORI – Bitwise exclusive or immediate
+# (NOT SURE IF MUST BE DONE IN HERE)                                         #
+# Instruction Types that must be decoded:               # # # # # # # # #    #
+# ADDU – add unsigned (does the same thing as ADD)    # -- add32   -- #      #
+# ADD – Add (ignore the overflow)                     # -- add32   -- #      #
+# ADDI – Add immediate (ignore the overflow)          # -- add32   -- #      #
+# AND – Bitwise AND of two registers                  # -- and32   -- #      #
+# ANDI – Bitwise AND immediate                        # -- and32   -- #      #
+# OR – Bitwise OR                                     # -- or32    -- #      #
+# ORI – Bitwise OR immediate                          # -- or32    -- #      #
+# SLT – Set less than                                 # -- slt     -- #      #
+# SLTI – Set less than immediate                      # -- slt     -- #      #
+# SRL – Shift right logical                           # -- shift32 -- #      #
+# SRLV – Shift right logical variable                 # -- shift32 -- #      #
+# SRA – Shift right arithmetic                        # -- shift32 -- #      #
+# SUB – Subtract (ignore the overflow)                # -- add32   -- #      #
+# MULT – Multiply                                     # -- mult32  -- #      #
+# XOR – Bitwise exclusive or                          # -- xor32   -- #      #
+# XORI – Bitwise exclusive or immediate               # -- xor32   -- #      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # ADD - 0000 00ss ssst tttt dddd d000 0010 0000
