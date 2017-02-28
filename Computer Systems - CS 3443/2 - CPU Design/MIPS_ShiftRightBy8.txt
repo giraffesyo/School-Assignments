@@ -1,0 +1,47 @@
+# right shifter which shifts a 32 bit word by 8 bits by Michael McQuade
+
+
+inputNames { in[31:0] shift arithmetic }
+outputNames { out[31:0] }
+
+# if its an arithmetic shift we will sign extend the high order bit
+# achieved by anding it with arithmetic control bit
+circuit AND signExtend { in31 arithmetic }
+
+# we reverse this so its more logical
+circuit NOT keep { shift }
+
+circuit MUX2 bit31 { in31 signExtend keep }
+circuit MUX2 bit30 { in30 signExtend keep }
+circuit MUX2 bit29 { in29 signExtend keep }
+circuit MUX2 bit28 { in28 signExtend keep }
+circuit MUX2 bit27 { in27 signExtend keep }
+circuit MUX2 bit26 { in26 signExtend keep }
+circuit MUX2 bit25 { in25 signExtend keep }
+circuit MUX2 bit24 { in24 signExtend keep }
+circuit MUX2 bit23 { in23 in31 keep }
+circuit MUX2 bit22 { in22 in30 keep }
+circuit MUX2 bit21 { in21 in29 keep }
+circuit MUX2 bit20 { in20 in28 keep }
+circuit MUX2 bit19 { in19 in27 keep }
+circuit MUX2 bit18 { in18 in26 keep }
+circuit MUX2 bit17 { in17 in25 keep }
+circuit MUX2 bit16 { in16 in24 keep }
+circuit MUX2 bit15 { in15 in23 keep }
+circuit MUX2 bit14 { in14 in22 keep }
+circuit MUX2 bit13 { in13 in21 keep }
+circuit MUX2 bit12 { in12 in20 keep }
+circuit MUX2 bit11 { in11 in19 keep }
+circuit MUX2 bit10 { in10 in18 keep }
+circuit MUX2 bit9  { in9  in17 keep }
+circuit MUX2 bit8  { in8  in16 keep }
+circuit MUX2 bit7  { in7  in15 keep }
+circuit MUX2 bit6  { in6  in14 keep }
+circuit MUX2 bit5  { in5  in13  keep }
+circuit MUX2 bit4  { in4  in12  keep }
+circuit MUX2 bit3  { in3  in11  keep }
+circuit MUX2 bit2  { in2  in10  keep }
+circuit MUX2 bit1  { in1  in9  keep }
+circuit MUX2 bit0  { in0  in8  keep }
+
+outputs { bit[31:0] }
