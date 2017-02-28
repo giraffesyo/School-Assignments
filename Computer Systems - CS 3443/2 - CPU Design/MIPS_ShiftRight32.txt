@@ -1,15 +1,26 @@
 # 32-bit Logical Right Shift by Michael McQuade
 
-# ShiftRight32 unit
-# -----------------
-# Purpose:
-# 	Shift a 32 bit word right by an amount specified in the control lines
-# Inputs (37):
-# 	s31..s0: The word that will be shifted
-# 	shmt4..shmt0: The shift amount, where shmt4 equates to shift by 16,
-# 		and shmt0 equates to shift by 1.
-# Outputs (32):
-# 	H31..H0: The shifted word
+# # # # # # # # # # # # ## # # # # # # # # # # # # # # # # # # # # # # # # # #
+# ShiftRight32 unit                                                          #
+# -------------------------------------------------------------------------- #
+# Purpose:                                                                   #
+# 	Shift a 32 bit word right by an amount specified in the control lines    #
+# Inputs (37):                                                               #
+# 	s31..s0: The word that will be shifted                                   #
+# 	shmt4..shmt0: The shift amount, where shmt4 equates to shift by 16,      #
+# 		and shmt0 equates to shift by 1.                                       #
+# Outputs (32):                                                              #
+# 	H31..H0: The shifted word                                                #
+# # # # # # # # # # # # ## # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 inputNames { s[31:0] shamt[4:0] }
 outputNames { H[31:0] }
+
+# This is logical shift so all arithmetic values will be 0
+circuit MIPS_ShiftRightBy16 shiftBy16 { s[31:0] shamt4 0 }
+circuit MIPS_ShiftRightBy8 shiftBy8 { shiftBy16.out[31:0] shamt3 0 }
+circuit MIPS_ShiftRightBy4 shiftBy4 { shiftBy8.out[31:0] shamt2 0 }
+circuit MIPS_ShiftRightBy2 shiftBy2 { shiftBy4.out[31:0] shamt1 0 }
+circuit MIPS_ShiftRightBy1 shiftBy1 { shiftBy2.out[31:0] shamt0 0 }
+
+outputs { shiftBy1.out[31:0] }
