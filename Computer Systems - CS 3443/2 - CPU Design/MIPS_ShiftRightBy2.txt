@@ -1,0 +1,9 @@
+# Shift Right by 2 by Michael McQuade
+
+inputNames { in[31:0] shift arithmetic }
+outputNames { out[31:0] }
+
+circuit MIPS_ShiftRightBy1 shift1 { in[31:0] shift arithmetic }
+circuit MIPS_ShiftRightBy1 shift2 { shift1.out[31:0] shift arithmetic }
+
+outputs { shift2.out[31:0] }
