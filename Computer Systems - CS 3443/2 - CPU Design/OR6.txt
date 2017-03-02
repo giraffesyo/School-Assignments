@@ -1,0 +1,9 @@
+# OR 6-1 by Michael McQuade
+
+inputNames { in[5:0] }
+outputNames { out }
+
+circuit OR4 or1 { in[5:2] }
+circuit OR3 or2 { or1 in1 in0 }
+
+outputs { or2 }
