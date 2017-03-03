@@ -1,0 +1,11 @@
+# AND 12 by Michael McQuade
+
+inputNames { in[11:0] }
+outputNames { out }
+
+circuit AND6 A { in[11:6] }
+circuit AND6 B { in[5:0] }
+
+circuit AND A&B { A B }
+
+outputs { A&B }
