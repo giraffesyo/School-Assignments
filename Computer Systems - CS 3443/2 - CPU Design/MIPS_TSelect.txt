@@ -1,0 +1,12 @@
+# T Select unit by Michael McQuade
+
+inputNames { t[31:0] im[15:0] selectImm signExtend }
+outputNames { T[31:0] }
+
+circuit WIRE E { signExtend }
+
+circuit SELECT32 result {
+E E E E E E E E E E E E E E E E im[15:0], t[31:0], selectImm
+}
+
+outputs { result.out[31:0] }
