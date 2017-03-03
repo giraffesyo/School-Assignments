@@ -1,0 +1,8 @@
+# MIPS Output Select by Michael McQuade
+
+inputNames { A[31:0] H[31:0] selectALU }
+outputNames { X[31:0] }
+
+SELECT32 result { A[31:0] H[31:0] selectALU }
+
+outputs { result.out[31:0] }
