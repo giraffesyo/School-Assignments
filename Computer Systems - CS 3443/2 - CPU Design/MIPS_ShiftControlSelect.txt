@@ -1,0 +1,8 @@
+# Shift Control Select unit by Michael McQuade
+
+inputNames { sh[4:0] t[4:0] selectShamt }
+outputNames { shmt[4:0] }
+
+circuit SELECT5 result { sh[4:0] t[4:0] selectShamt }
+
+outputs { result.out[4:0] }

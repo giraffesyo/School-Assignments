@@ -1,0 +1,8 @@
+# Test Cases for MIPS Shift Control Select
+
+# inputNames { sh[4:0] t[4:0] selectShamt }
+# outputNames { shmt[4:0] }
+
+testCase { 01101, 10000, 1 01101 }
+
+testCase { 01101, 10000, 0 10000 }
