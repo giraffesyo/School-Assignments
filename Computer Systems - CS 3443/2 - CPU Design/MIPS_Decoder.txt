@@ -50,40 +50,6 @@ outputNames { F1, F0, INVA, INVB, CIN, selectImm, signExtend, selectShAmt, selec
 #                                                                            #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-
-#High order 6 bits, operation bits
-circuit WIRE op5 { in31 }
-circuit WIRE op4 { in30 }
-circuit WIRE op3 { in29 }
-circuit WIRE op2 { in28 }
-circuit WIRE op1 { in27 }
-circuit WIRE op0 { in26 }
-
-# Low order 6 btis, function bits
-circuit WIRE f5 { in5 }
-circuit WIRE f4 { in4 }
-circuit WIRE f3 { in3 }
-circuit WIRE f2 { in2 }
-circuit WIRE f1 { in1 }
-circuit WIRE f0 { in0 }
-
-circuit WIRE imm15 { in15 }
-circuit WIRE imm14 { in14 }
-circuit WIRE imm13 { in13 }
-circuit WIRE imm12 { in12 }
-circuit WIRE imm11 { in11 }
-circuit WIRE imm10 { in10 }
-circuit WIRE imm9 { in9 }
-circuit WIRE imm8 { in8 }
-circuit WIRE imm7 { in7 }
-circuit WIRE imm6 { in6 }
-circuit WIRE imm5 { in5 }
-circuit WIRE imm4 { in4 }
-circuit WIRE imm3 { in3 }
-circuit WIRE imm2 { in2 }
-circuit WIRE imm1 { in1 }
-circuit WIRE imm0 { in0 }
-
 circuit NOT !b31 { in31 }
 circuit NOT !b30 { in30 }
 circuit NOT !b29 { in29 }
@@ -164,3 +130,69 @@ circuit AND17 isXOR { !b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b6 !b6 in5 !b4
 
 #Test for XORI, in29, in28, in27
 circuit AND6 isANDI { !b31 !b30 in29 in28 in27 in26 }
+
+
+# # # # # ALU Controls # # # # #
+#00=add, 01=and, 10=or, 11=xor #
+#        F1  F0 INVB CIN       #
+# ADDU -  0   0    0   0       #
+# ADD  -  0   0    0   0       #
+# ADDI -  0   0    0   0       #
+# AND  -  0   1    0   0       #
+# ANDI -  0   1    0   0       #
+# OR   -  1   0    0   0       #
+# ORI  -  1   0    0   0       #
+# SUB  -  0   0    0   0       #   # subtract might be wrong
+# XOR  -  1   1    0   0       #
+# XORI -  1   1    0   0       #
+# # # # # # # # # # # # # # # #
+
+# Here we are going to OR together all
+# like instructions so we can get ready to send out F1 and F0
+
+circuit OR4 isAddInstruction { isADDU isADD isADDI isSUB }
+circuit OR isAndInstruction { isAND isANDI }
+circuit OR isOrInstruction { isOR isORI }
+circuit OR isXorInstruction { isXOR isXORI }
+
+#Select ALU should be on if its any of the above
+circuit OR4 isALU { isAddInstruction isAndInstruction isOrInstruction isXorInstruction }
+
+#outputs F1 and F0
+circuit MIPS_Decoder_ALUControls ALUControls { isAddInstruction isAndInstruction isOrInstruction isXorInstruction }
+
+# # # # # # # Shift Instructions # # # # # # # # #
+# SRL  - 0000 00-- ---t tttt dddd dhhh hh00 0010 #
+# SRLV – 0000 00ss ssst tttt dddd d000 0000 0110 #
+# SRA  – 0000 00-- ---t tttt dddd dhhh hh00 0011 #
+# # # # # # # # # # # # # # # # # # # # # # # # #
+
+#Check to see if we are SRL, SRLV, or SRA type instruction
+circuit AND12 isSRL { !b31 !b30 !b29 !b28 !b27 !b26 !b5 !b4 !b3 !b2 in1 !b0 }
+circuit AND12 isSRLV { !b31 !b30 !b29 !b28 !b27 !b26 !b5 !b4 !b3 in2 in1 !b0 }
+circuit AND12 isSRA { !b31 !b30 !b29 !b28 !b27 !b26 !b5 !b4 !b3 !b2 in1 in0 }
+
+# If we are any of those, we are a shift instruction
+circuit OR3 isShift { isSRL isSRLV isSRA }
+
+# SRL and SRA use SHAMT, SRLV uses variable shift amount
+circuit AND useVariableShift { isShift isSRLV }
+
+# # # # # SLT Instructions # # # # # # # # # # # #
+# SLT  - 0000 00ss ssst tttt dddd d000 0010 1010 #
+# SLTI - 0010 10ss ssst tttt iiii iiii iiii iiii #
+# # # # # # # # # # # # # # # # # # # # # # # # #
+
+circuit AND17 isSLT { !b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b7 !b6 in5 !b4 in3 !b2 in1 !b0 }
+circuit AND6 isSLTI { !b31 !b30 in29 !b28 in27 !b26 }
+
+#Are we an SLT instruction?
+circuit OR isSLT { isSLT isSLTI }
+
+# Check to use immediate
+
+# ADDI, ANDI, ORI, SLTI, XORI all use immediate value
+circuit OR6 useImmediate { isADDI isANDI isORI isSLTI isXORI 0 }
+
+#Not sure yet how to make SLT work for CIN, INVA, INVB
+outputs { ALUControls.F1, ALUControls.F0, INVA, INVB, CIN, useImmediate, isSRA, useVariableShift, isALU, selectMultiply }
