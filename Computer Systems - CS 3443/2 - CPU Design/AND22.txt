@@ -1,0 +1,9 @@
+# AND 22 By Michael McQuade
+
+inputNames { in[21:0] }
+outputNames { out }
+
+circuit AND17 and1 { in[0:16] }
+circuit AND6 result { in[17:21] and1 }
+
+outputs { result }
