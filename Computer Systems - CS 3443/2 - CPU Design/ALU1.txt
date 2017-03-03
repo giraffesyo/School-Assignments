@@ -7,7 +7,7 @@ outputNames { COUT S }
 # 00=add, 01=and, 10=or, 11=xor
 
 circuit NOT !B { B0 }
-circuit MUX2 Bselect { B0 !B INVB }
+circuit MUX2 Bselect { !B B0 INVB }
 circuit FULLADDER FA(A+B) { A0 Bselect CIN }
 
 circuit AND A&Bselect { A0 Bselect }
