@@ -1,0 +1,9 @@
+# Test cases for Mips Decoder ALU Controls by Michael McQuade
+
+# inputNames { isADD, isAND, isOR, isXOR }
+# outputNames { f1 f0 }
+
+testCase { 1 0 0 0, 00 }
+testCase { 0 1 0 0, 01 }
+testCase { 0 0 1 0, 10 }
+testCase { 0 0 0 1, 11 }

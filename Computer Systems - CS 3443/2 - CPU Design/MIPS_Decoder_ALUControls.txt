@@ -1,0 +1,39 @@
+inputNames { isADD, isAND, isOR, isXOR }
+outputNames { f1 f0 }
+
+# # # # # ALU Controls # # # # #
+#00=add, 01=and, 10=or, 11=xor #
+#        F1  F0 INVB CIN       #
+# ADDU -  0   0    0   0       #
+# ADD  -  0   0    0   0       #
+# ADDI -  0   0    0   0       #
+# AND  -  0   1    0   0       #
+# ANDI -  0   1    0   0       #
+# OR   -  1   0    0   0       #
+# ORI  -  1   0    0   0       #
+# SUB  -  0   0    0   0       #   # subtract might be wrong
+# XOR  -  1   1    0   0       #
+# XORI -  1   1    0   0       #
+# # # # # # # # # # # # # # # #
+
+# F1 (!A & !B & C & !D ) + ( !A & !B & !C & D )
+# F0 (!A & B & !C & !D ) + ( !A & !B & !C & D )
+
+circuit WIRE A { isADD }
+circuit WIRE B { isAND }
+circuit WIRE C { isOR }
+circuit WIRE D { isXOR }
+
+circuit NOT !A { A }
+circuit NOT !B { B }
+circuit NOT !C { C }
+circuit NOT !D { D }
+
+circuit AND4 !A&!B&C&!D { !A !B C !D }
+circuit AND4 !A&!B&!C&D { !A !B !C D }
+circuit OR F1result { !A&!B&C&!D !A&!B&!C&D }
+
+circuit AND4 !A&B&!C&!D { !A B !C !D }
+circuit OR F0result { !A&B&!C&!D !A&!B&!C&D }
+
+outputs { F1result F0result }
