@@ -1,0 +1,9 @@
+# AND 4 by Michael McQuade
+
+inputNames { A B C D }
+outputNames { out }
+
+circuit AND3 and1 { A B C }
+circuit AND and2 { and1 D }
+
+outputs { and2 }
