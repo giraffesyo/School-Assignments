@@ -29,9 +29,8 @@ inputNames { in[31:0] }
 
 outputNames { F1, F0, INVA, INVB, CIN, selectImm, signExtend, selectShAmt, selectALU, selectMultiply }
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# (NOT SURE IF MUST BE DONE IN HERE)                                         #
-# Instruction Types that must be decoded:               # # # # # # # # #    #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #                                       #
+# All Instruction Types that must be decoded:          # # # # # # # #    #
 # ADDU – add unsigned (does the same thing as ADD)    # -- add32   -- #      #
 # ADD – Add (ignore the overflow)                     # -- add32   -- #      #
 # ADDI – Add immediate (ignore the overflow)          # -- add32   -- #      #
@@ -48,14 +47,96 @@ outputNames { F1, F0, INVA, INVB, CIN, selectImm, signExtend, selectShAmt, selec
 # MULT – Multiply                                     # -- mult32  -- #      #
 # XOR – Bitwise exclusive or                          # -- xor32   -- #      #
 # XORI – Bitwise exclusive or immediate               # -- xor32   -- #      #
+#                                                                            #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# ADD - 0000 00ss ssst tttt dddd d000 0010 0000
-# XOR - 0000 00ss ssst tttt dddd d--- --10 0110
-# AND - 0000 00ss ssst tttt dddd d000 0010 0100
-# OR  - 0000 00ss ssst tttt dddd d000 0010 0101
+
+#High order 6 bits, operation bits
+circuit WIRE op5 { in31 }
+circuit WIRE op4 { in30 }
+circuit WIRE op3 { in29 }
+circuit WIRE op2 { in28 }
+circuit WIRE op1 { in27 }
+circuit WIRE op0 { in26 }
+
+# Low order 6 btis, function bits
+circuit WIRE f5 { in5 }
+circuit WIRE f4 { in4 }
+circuit WIRE f3 { in3 }
+circuit WIRE f2 { in2 }
+circuit WIRE f1 { in1 }
+circuit WIRE f0 { in0 }
+
+circuit WIRE imm15 { in15 }
+circuit WIRE imm14 { in14 }
+circuit WIRE imm13 { in13 }
+circuit WIRE imm12 { in12 }
+circuit WIRE imm11 { in11 }
+circuit WIRE imm10 { in10 }
+circuit WIRE imm9 { in9 }
+circuit WIRE imm8 { in8 }
+circuit WIRE imm7 { in7 }
+circuit WIRE imm6 { in6 }
+circuit WIRE imm5 { in5 }
+circuit WIRE imm4 { in4 }
+circuit WIRE imm3 { in3 }
+circuit WIRE imm2 { in2 }
+circuit WIRE imm1 { in1 }
+circuit WIRE imm0 { in0 }
+
+circuit NOT !b31 { in31 }
+circuit NOT !b30 { in30 }
+circuit NOT !b29 { in29 }
+circuit NOT !b28 { in28 }
+circuit NOT !b27 { in27 }
+circuit NOT !b26 { in26 }
+circuit NOT !b25 { in25 }
+circuit NOT !b24 { in24 }
+circuit NOT !b23 { in23 }
+circuit NOT !b22 { in22 }
+circuit NOT !b21 { in21 }
+circuit NOT !b20 { in20 }
+circuit NOT !b19 { in19 }
+circuit NOT !b18 { in18 }
+circuit NOT !b17 { in17 }
+circuit NOT !b16 { in16 }
+circuit NOT !b15 { in15 }
+circuit NOT !b14 { in14 }
+circuit NOT !b13 { in13 }
+circuit NOT !b12 { in12 }
+circuit NOT !b11 { in11 }
+circuit NOT !b10 { in10 }
+circuit NOT !b9 { in9 }
+circuit NOT !b8 { in8 }
+circuit NOT !b7 { in7 }
+circuit NOT !b6 { in6 }
+circuit NOT !b5 { in5 }
+circuit NOT !b4 { in4 }
+circuit NOT !b3 { in3 }
+circuit NOT !b2 { in2 }
+circuit NOT !b1 { in1 }
+circuit NOT !b0 { in0 }
+
+# # # # # # ALU INSTRUCTIONS # # # # # # # # # # #
+# ADDU - 0000 00ss ssst tttt dddd d000 0010 0001 #
+# ADD  - 0000 00ss ssst tttt dddd d000 0010 0000 #
+# ADDI - 0010 00ss ssst tttt iiii iiii iiii iiii #
+# AND  - 0000 00ss ssst tttt dddd d000 0010 0100 #
+# ANDI - 0011 00ss ssst tttt iiii iiii iiii iiii #
+# OR   - 0000 00ss ssst tttt dddd d000 0010 0101 #
+# ORI  - 0011 01ss ssst tttt iiii iiii iiii iiii #
+# SUB  - 0000 00ss ssst tttt dddd d000 0010 0010 #
+# XOR  - 0000 00ss ssst tttt dddd d--- --10 0110 #
+# XORI - 0011 10ss ssst tttt iiii iiii iiii iiii #
+# # # # # # # # # # # # # # # # # # # # # # # # #
 
 
+# brute force way for all 17 possible inputs not gates all of them
+# and gate, negated version for the zero instructions, if what comes out is a 1 then
+# what comes out is the instruction we thought
 
+# Test for ADDU, in5 and in0 on
+circuit AND17 isADDU {!b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b7 !b6 in5 !b4 !b3 !b2 !b1 in0 }
 
-circuit
+# Test for ADD, in5 on
+circuit AND17 isADD { !b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b7 !b6 in5 !b4 !b3 !b2 !b1 !b0 }
