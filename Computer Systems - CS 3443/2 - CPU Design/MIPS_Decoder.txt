@@ -186,13 +186,17 @@ circuit AND useVariableShift { isShift isSRLV }
 circuit AND17 isSLT { !b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b7 !b6 in5 !b4 in3 !b2 in1 !b0 }
 circuit AND6 isSLTI { !b31 !b30 in29 !b28 in27 !b26 }
 
-#Are we an SLT instruction?
+# Are we an SLT instruction?
 circuit OR isSLT { isSLT isSLTI }
 
-# Check to use immediate
-
-# ADDI, ANDI, ORI, SLTI, XORI all use immediate value
+# Check to use immediate: ADDI, ANDI, ORI, SLTI, XORI all use immediate value
 circuit OR6 useImmediate { isADDI isANDI isORI isSLTI isXORI 0 }
 
-#Not sure yet how to make SLT work for CIN, INVA, INVB
-outputs { ALUControls.F1, ALUControls.F0, INVA, INVB, CIN, useImmediate, isSRA, useVariableShift, isALU, selectMultiply }
+# Are we a multiply instruction?
+# 0000 00ss ssst tttt 0000 0000 0001 1000
+circuit AND22 isMultiply { !b31 !b30 !b29 !b28 !b27 !b26 !b15 !b14 !b13 !b12 !b11 !b10 !b9 !b8 !b7 !b6 !b5 in4 in3 !b2 !b1 !b0 }
+
+
+
+# Not sure yet how to make SLT work for CIN, INVA, INVB
+outputs { ALUControls.F1, ALUControls.F0, INVA, INVB, CIN, useImmediate, isSRA, useVariableShift, isALU, isMultiply }
