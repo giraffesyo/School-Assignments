@@ -1,6 +1,7 @@
 # Select 5 by Michael McQuade
 
 inputNames { A[4:0] B[4:0] control }
+outputNames { out[4:0] }
 
 circuit MUX2 Choose4 { A4 B4 control }
 circuit MUX2 Choose3 { A3 B3 control }
