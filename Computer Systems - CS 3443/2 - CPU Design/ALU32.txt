@@ -1,40 +1,39 @@
 # 32-bit ALU by Michael McQuade
 
 inputNames { S[31:0] T[31:0] F1 F0 INVB CIN}
-outputNames { A[31:0] }
-# should carry in be from previous ALU?
+outputNames {  A[31:0] cout }
 
-circuit ALU1 alu31 { S31 T31 F1 F0 INVB CIN)
-circuit ALU1 alu30 { S30 T30 F1 F0 INVB CIN)
-circuit ALU1 alu29 { S29 T29 F1 F0 INVB CIN)
-circuit ALU1 alu28 { S28 T28 F1 F0 INVB CIN)
-circuit ALU1 alu27 { S27 T27 F1 F0 INVB CIN)
-circuit ALU1 alu26 { S26 T26 F1 F0 INVB CIN)
-circuit ALU1 alu25 { S25 T25 F1 F0 INVB CIN)
-circuit ALU1 alu24 { S24 T24 F1 F0 INVB CIN)
-circuit ALU1 alu23 { S23 T23 F1 F0 INVB CIN)
-circuit ALU1 alu22 { S22 T22 F1 F0 INVB CIN)
-circuit ALU1 alu21 { S21 T21 F1 F0 INVB CIN)
-circuit ALU1 alu20 { S20 T20 F1 F0 INVB CIN)
-circuit ALU1 alu19 { S19 T19 F1 F0 INVB CIN)
-circuit ALU1 alu18 { S18 T18 F1 F0 INVB CIN)
-circuit ALU1 alu17 { S17 T17 F1 F0 INVB CIN)
-circuit ALU1 alu16 { S16 T16 F1 F0 INVB CIN)
-circuit ALU1 alu15 { S15 T15 F1 F0 INVB CIN)
-circuit ALU1 alu14 { S14 T14 F1 F0 INVB CIN)
-circuit ALU1 alu13 { S13 T13 F1 F0 INVB CIN)
-circuit ALU1 alu12 { S12 T12 F1 F0 INVB CIN)
-circuit ALU1 alu11 { S11 T11 F1 F0 INVB CIN)
-circuit ALU1 alu10 { S10 T10 F1 F0 INVB CIN)
-circuit ALU1 alu9 { S9 T9 F1 F0 INVB CIN)
-circuit ALU1 alu8 { S8 T8 F1 F0 INVB CIN)
-circuit ALU1 alu7 { S7 T7 F1 F0 INVB CIN)
-circuit ALU1 alu6 { S6 T6 F1 F0 INVB CIN)
-circuit ALU1 alu5 { S5 T5 F1 F0 INVB CIN)
-circuit ALU1 alu4 { S4 T4 F1 F0 INVB CIN)
-circuit ALU1 alu3 { S3 T3 F1 F0 INVB CIN)
-circuit ALU1 alu2 { S2 T2 F1 F0 INVB CIN)
-circuit ALU1 alu1 { S1 T1 F1 F0 INVB CIN)
-circuit ALU1 alu0 { S0 T0 F1 F0 INVB CIN)
+circuit ALU1 alu31 { S31 T31 F1 F0 INVB CIN }
+circuit ALU1 alu30 { S30 T30 F1 F0 INVB ALU31.COUT }
+circuit ALU1 alu29 { S29 T29 F1 F0 INVB ALU30.COUT }
+circuit ALU1 alu28 { S28 T28 F1 F0 INVB ALU29.COUT }
+circuit ALU1 alu27 { S27 T27 F1 F0 INVB ALU28.COUT }
+circuit ALU1 alu26 { S26 T26 F1 F0 INVB ALU27.COUT }
+circuit ALU1 alu25 { S25 T25 F1 F0 INVB ALU26.COUT }
+circuit ALU1 alu24 { S24 T24 F1 F0 INVB ALU25.COUT }
+circuit ALU1 alu23 { S23 T23 F1 F0 INVB ALU24.COUT }
+circuit ALU1 alu22 { S22 T22 F1 F0 INVB ALU23.COUT }
+circuit ALU1 alu21 { S21 T21 F1 F0 INVB ALU22.COUT }
+circuit ALU1 alu20 { S20 T20 F1 F0 INVB ALU21.COUT }
+circuit ALU1 alu19 { S19 T19 F1 F0 INVB ALU20.COUT }
+circuit ALU1 alu18 { S18 T18 F1 F0 INVB ALU19.COUT }
+circuit ALU1 alu17 { S17 T17 F1 F0 INVB ALU18.COUT }
+circuit ALU1 alu16 { S16 T16 F1 F0 INVB ALU17.COUT }
+circuit ALU1 alu15 { S15 T15 F1 F0 INVB ALU16.COUT }
+circuit ALU1 alu14 { S14 T14 F1 F0 INVB ALU15.COUT }
+circuit ALU1 alu13 { S13 T13 F1 F0 INVB ALU14.COUT }
+circuit ALU1 alu12 { S12 T12 F1 F0 INVB ALU13.COUT }
+circuit ALU1 alu11 { S11 T11 F1 F0 INVB ALU12.COUT }
+circuit ALU1 alu10 { S10 T10 F1 F0 INVB ALU11.COUT }
+circuit ALU1 alu9 { S9 T9 F1 F0 INVB ALU10.COUT }
+circuit ALU1 alu8 { S8 T8 F1 F0 INVB ALU9.COUT }
+circuit ALU1 alu7 { S7 T7 F1 F0 INVB ALU8.COUT }
+circuit ALU1 alu6 { S6 T6 F1 F0 INVB ALU7.COUT }
+circuit ALU1 alu5 { S5 T5 F1 F0 INVB ALU6.COUT }
+circuit ALU1 alu4 { S4 T4 F1 F0 INVB ALU5.COUT }
+circuit ALU1 alu3 { S3 T3 F1 F0 INVB ALU4.COUT }
+circuit ALU1 alu2 { S2 T2 F1 F0 INVB ALU3.COUT }
+circuit ALU1 alu1 { S1 T1 F1 F0 INVB ALU2.COUT }
+circuit ALU1 alu0 { S0 T0 F1 F0 INVB ALU1.COUT }
 
-outputs { alu[31:0].S }
+outputs { alu[31:0].S ALU0.COUT }
