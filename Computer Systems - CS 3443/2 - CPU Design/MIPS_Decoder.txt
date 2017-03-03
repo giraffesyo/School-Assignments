@@ -142,7 +142,7 @@ circuit AND6 isANDI { !b31 !b30 in29 in28 in27 in26 }
 # ANDI -  0   1    0   0       #
 # OR   -  1   0    0   0       #
 # ORI  -  1   0    0   0       #
-# SUB  -  0   0    0   0       #   # subtract might be wrong
+# SUB  -  0   0    1   1       #
 # XOR  -  1   1    0   0       #
 # XORI -  1   1    0   0       #
 # # # # # # # # # # # # # # # #
@@ -155,8 +155,14 @@ circuit OR isAndInstruction { isAND isANDI }
 circuit OR isOrInstruction { isOR isORI }
 circuit OR isXorInstruction { isXOR isXORI }
 
+# Are we an SLT instruction?
+circuit OR isSLT { isSLT isSLTI }
+
+# Are INVB and CIN on?
+circuit OR isSubInstruction { isSLT isSUB }
+
 #Select ALU should be on if its any of the above
-circuit OR4 isALU { isAddInstruction isAndInstruction isOrInstruction isXorInstruction }
+circuit OR6 isALU { isAddInstruction isAndInstruction isOrInstruction isXorInstruction isSUB isSLT }
 
 #outputs F1 and F0
 circuit MIPS_Decoder_ALUControls ALUControls { isAddInstruction isAndInstruction isOrInstruction isXorInstruction }
@@ -186,8 +192,7 @@ circuit AND useVariableShift { isShift isSRLV }
 circuit AND17 isSLT { !b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b7 !b6 in5 !b4 in3 !b2 in1 !b0 }
 circuit AND6 isSLTI { !b31 !b30 in29 !b28 in27 !b26 }
 
-# Are we an SLT instruction?
-circuit OR isSLT { isSLT isSLTI }
+
 
 # Check to use immediate: ADDI, ANDI, ORI, SLTI, XORI all use immediate value
 circuit OR6 useImmediate { isADDI isANDI isORI isSLTI isXORI 0 }
@@ -198,5 +203,5 @@ circuit AND22 isMultiply { !b31 !b30 !b29 !b28 !b27 !b26 !b15 !b14 !b13 !b12 !b1
 
 
 
-# Not sure yet how to make SLT work for CIN, INVA, INVB
-outputs { ALUControls.F1, ALUControls.F0, INVA, INVB, CIN, useImmediate, isSRA, useVariableShift, isALU, isMultiply }
+# INVA is 0 (not in use)
+outputs { ALUControls.F1, ALUControls.F0, 0, isSubInstruction, isSubInstruction, useImmediate, isSRA, useVariableShift, isALU, isMultiply }
