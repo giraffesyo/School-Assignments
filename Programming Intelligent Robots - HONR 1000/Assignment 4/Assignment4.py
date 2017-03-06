@@ -59,12 +59,15 @@ class Robot:
                     if self.bearingGoal - self.ballBearing < 5:
                         if self.ballDistance > 1.5:
                             twist.angular.z = 0
-                            twist.linear.x = self.distancePID.get_output(self.ballDistance)
+                            twist.linear.x = 1
                             self.Twistpub.publish(twist)
+                        else:
+                            self.lastChange = rospy.Time.now()
+                            self.state = "kick"
                     else:
                         twist.linear.x = 0
                         print "bearingPID.get results: " + str(self.bearingPID.get_output(self.ballBearing))
-                        twist.angular.z = self.bearingPID.get_output(self.ballBearing)*.001
+                        twist.angular.z = self.bearingPID.get_output(self.ballBearing)*.01
                         # Publish twist
                         self.Twistpub.publish(twist)
                     # when ready to implement kick we set timer here (self.lastchange)
