@@ -1,0 +1,4 @@
+#Takes in ALU
+#Takes in Shift
+#Takes in Multi
+#Takes in SLT
