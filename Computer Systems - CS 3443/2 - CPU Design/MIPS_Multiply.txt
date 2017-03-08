@@ -1,0 +1,114 @@
+#Multiply Unit
+
+#a is truly the a bit
+#b is S output from previous layer
+# C is coutput from previous layer
+# keep is one of the B bits from original unit
+
+inputNames { a[31:0] b[31:0] c[31:0] keep }
+outputNames { sum[31:0] co[31:0] }
+
+#32 and gate full adder combos
+circuit AND mm0 { a0 keep }
+circuit AND mm1 { a1 keep }
+circuit AND mm2 { a2 keep }
+circuit AND mm3 { a3 keep }
+circuit AND mm4 { a4 keep }
+circuit AND mm5 { a5 keep }
+circuit AND mm6 { a6 keep }
+circuit AND mm7 { a7 keep }
+circuit AND mm8 { a8 keep }
+circuit AND mm9 { a9 keep }
+circuit AND mm10 { a10 keep }
+circuit AND mm11 { a11 keep }
+circuit AND mm12 { a12 keep }
+circuit AND mm13 { a13 keep }
+circuit AND mm14 { a14 keep }
+circuit AND mm15 { a15 keep }
+circuit AND mm16 { a16 keep }
+circuit AND mm17 { a17 keep }
+circuit AND mm18 { a18 keep }
+circuit AND mm19 { a19 keep }
+circuit AND mm20 { a20 keep }
+circuit AND mm21 { a21 keep }
+circuit AND mm22 { a22 keep }
+circuit AND mm23 { a23 keep }
+circuit AND mm24 { a24 keep }
+circuit AND mm25 { a25 keep }
+circuit AND mm26 { a26 keep }
+circuit AND mm27 { a27 keep }
+circuit AND mm28 { a28 keep }
+circuit AND mm29 { a29 keep }
+circuit AND mm30 { a30 keep }
+circuit AND mm31 { a31 keep }
+
+circuit FULLADDER FA0 { mm0 b0 c0 }
+circuit FULLADDER FA1 { mm1 b1 c1 }
+circuit FULLADDER FA2 { mm2 b2 c2 }
+circuit FULLADDER FA3 { mm3 b3 c3 }
+circuit FULLADDER FA4 { mm4 b4 c4 }
+circuit FULLADDER FA5 { mm5 b5 c5 }
+circuit FULLADDER FA6 { mm6 b6 c6 }
+circuit FULLADDER FA7 { mm7 b7 c7 }
+circuit FULLADDER FA8 { mm8 b8 c8 }
+circuit FULLADDER FA9 { mm9 b9 c9 }
+circuit FULLADDER FA10 { mm10 b10 c10 }
+circuit FULLADDER FA11 { mm11 b11 c11 }
+circuit FULLADDER FA12 { mm12 b12 c12 }
+circuit FULLADDER FA13 { mm13 b13 c13 }
+circuit FULLADDER FA14 { mm14 b14 c14 }
+circuit FULLADDER FA15 { mm15 b15 c15 }
+circuit FULLADDER FA16 { mm16 b16 c16 }
+circuit FULLADDER FA17 { mm17 b17 c17 }
+circuit FULLADDER FA18 { mm18 b18 c18 }
+circuit FULLADDER FA19 { mm19 b19 c19 }
+circuit FULLADDER FA20 { mm20 b20 c20 }
+circuit FULLADDER FA21 { mm21 b21 c21 }
+circuit FULLADDER FA22 { mm22 b22 c22 }
+circuit FULLADDER FA23 { mm23 b23 c23 }
+circuit FULLADDER FA24 { mm24 b24 c24 }
+circuit FULLADDER FA25 { mm25 b25 c25 }
+circuit FULLADDER FA26 { mm26 b26 c26 }
+circuit FULLADDER FA27 { mm27 b27 c27 }
+circuit FULLADDER FA28 { mm28 b28 c28 }
+circuit FULLADDER FA29 { mm29 b29 c29 }
+circuit FULLADDER FA30 { mm30 b30 c30 }
+circuit FULLADDER FA31 { mm31 b31 c31 }
+
+#64 ouptuts come out of the above which is all the outputs of all the adders
+
+outputs { FA[31:0].sum FA[31:0].co }
+
+#4 full adders
+#4 and gates, 1 for each full adder, for the carry in
+
+#What comes into the and is a shifter version of A
+# Do we want a copy at this shift level? A0 and B0 go in to full adder
+Then two zeros go into each full adder
+
+#Each one of these levels has 32 full adders and 32 and gates and basically 96 inputs and 1 for b0
+# b0 controls whether we're going to add a copy at this shift level or not
+
+#For each full adder theres two outputs, and both of them go out of the multiply unit
+#Each full adder has a S and Cout
+
+#Each level feeds into the next level.
+
+
+#In the next level, each one also has an AND gate
+
+
+#The cout feed goes over one to the next levels (1 left) full adder), so the carry outs all
+#shift over to the left one and the S's go straight down. The right most adder gets all 0s because
+#output is never used from it
+
+#by using this unit we use twice as much hardware as required but its ok for our purposes
+#
+
+
+#AND GATES ARE A3, A2, A1, A0, B is B(level)
+
+
+
+#AndAdd32 MM0 { a[31:0, 0[32], 0[32], 60}
+#AndAdd32 MM1 { a[31:0], MM0.cout[31:0], 0, MM0.S[31:1], b1 }
