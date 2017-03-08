@@ -35,3 +35,24 @@ circuit WIRE im3  { f3 }
 circuit WIRE im2  { f2 }
 circuit WIRE im1  { f1 }
 circuit WIRE im0  { f0 }
+
+# Control/Decoder
+circuit MIPS_Decoder ControlUnit { op[5:0] rs[4:0] rt[4:0] rd[4:0] sh[4:0] f[5:0] }
+# outputNames { F1, F0, INVA, INVB, CIN, selectImm, signExtend, selectShAmt, selectALU, selectMultiply }
+
+# Choose amount to shift
+circuit MIPS_ShiftControlSelect ShiftSelect { t[4:0] sh[4:0] ControlUnit.selectShAmt }
+
+# T Select
+#inputNames { t[31:0] im[15:0] selectImm signExtend }
+circuit MIPS_TSelect TSelectUnit { t[31:0] im[15:0] ControlUnit.selectImm ControlUnit.signExtend }
+
+# Shift Right 32
+circuit MIPS_ShiftRight32 ShiftRightUnit { s[31:0] ShiftSelect.shmt[4:0] }
+
+# ALU 32
+# inputNames { S[31:0] T[31:0] F1 F0 INVB CIN}
+circuit ALU32 ALUUnit { s[31:0] t[31:0] ControlUnit.F1 ControlUnit.F0 ControlUnit.INVB ControlUnit.CIN }
+
+# SLT
+circuit MIPS_SLT SLTUnit { ALUUnit.A[31:0] }
