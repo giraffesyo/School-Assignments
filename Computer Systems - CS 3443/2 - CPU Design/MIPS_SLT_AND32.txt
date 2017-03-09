@@ -1,0 +1,9 @@
+# SLT AND 32 to 32 bits by Michael McQuade
+
+inputNames { in[31:0] }
+outputNames { out[31:0] }
+
+AND22 and21_0 { in[21:0] }
+AND12 result { in[31:22] 1 and21_0 }
+
+outputs {}
