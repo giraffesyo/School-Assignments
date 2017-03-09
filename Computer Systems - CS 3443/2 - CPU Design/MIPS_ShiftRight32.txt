@@ -13,14 +13,13 @@
 # 	H31..H0: The shifted word                                                #
 # # # # # # # # # # # # ## # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-inputNames { s[31:0] shamt[4:0] }
+inputNames { s[31:0] shamt[4:0] signExtend }
 outputNames { H[31:0] }
 
-# This is logical shift so all arithmetic values will be 0
-circuit MIPS_ShiftRightBy16 shiftBy16 { s[31:0] shamt4 0 }
-circuit MIPS_ShiftRightBy8 shiftBy8 { shiftBy16.out[31:0] shamt3 0 }
-circuit MIPS_ShiftRightBy4 shiftBy4 { shiftBy8.out[31:0] shamt2 0 }
-circuit MIPS_ShiftRightBy2 shiftBy2 { shiftBy4.out[31:0] shamt1 0 }
-circuit MIPS_ShiftRightBy1 shiftBy1 { shiftBy2.out[31:0] shamt0 0 }
+circuit MIPS_ShiftRightBy16 shiftBy16 { s[31:0] shamt4 signExtend }
+circuit MIPS_ShiftRightBy8 shiftBy8 { shiftBy16.out[31:0] shamt3 signExtend }
+circuit MIPS_ShiftRightBy4 shiftBy4 { shiftBy8.out[31:0] shamt2 signExtend }
+circuit MIPS_ShiftRightBy2 shiftBy2 { shiftBy4.out[31:0] shamt1 signExtend }
+circuit MIPS_ShiftRightBy1 shiftBy1 { shiftBy2.out[31:0] shamt0 signExtend }
 
 outputs { shiftBy1.out[31:0] }
