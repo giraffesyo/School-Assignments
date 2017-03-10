@@ -5,9 +5,9 @@
 
 
 # 11 ALU
-# 01 Shift
+# 01 SLT
 # 10 Multi
-# 00 SLT
+# 00 SHIFT
 
 
 testCase {
