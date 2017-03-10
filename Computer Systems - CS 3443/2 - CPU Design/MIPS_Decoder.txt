@@ -25,9 +25,10 @@ inputNames { in[31:0] }
 #		or the variable amount (t4..t0) to control the shifter                  #
 #	  selectALU: Whether to choose the ALU or Shifter for the final output    #
 # 	selectMultiply: Whether to choose the multiply unit as the final output #
+#   selectSLT: Select the SLT unit or not
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-outputNames { F1, F0, INVA, INVB, CIN, selectImm, signExtend, selectShAmt, selectALU, selectMultiply }
+outputNames { F1, F0, INVA, INVB, CIN, selectImm, signExtend, selectShAmt, selectALU, selectMultiply, selectSLT }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #                                       #
 # All Instruction Types that must be decoded:          # # # # # # # #    #
@@ -204,7 +205,7 @@ circuit AND22 isMultiply { !b31 !b30 !b29 !b28 !b27 !b26 !b15 !b14 !b13 !b12 !b1
 
 
 # INVA is 0 (not in use)
-outputs { ALUControls.F1, ALUControls.F0, 0, isSubInstruction, isSubInstruction, useImmediate, isSRA, useVariableShift, isALU, isMultiply }
+outputs { ALUControls.F1, ALUControls.F0, 0, isSubInstruction, isSubInstruction, useImmediate, isSRA, useVariableShift, isALU, isMultiply, isSLT }
 
 
 #The 16 bit immediate gets sign extended for ADDI and SLTI (for everything else it doesnt)
