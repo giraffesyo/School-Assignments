@@ -1,4 +1,27 @@
+# A big mux for MIPS output by Michael McQuade
+
 #Takes in ALU
 #Takes in Shift
 #Takes in Multi
 #Takes in SLT
+
+#128 inputs, 2 more for controls
+
+inputNames { ALU[31:0] SHIFT[31:0] Multi[31:0] SLT[31:0] C1 C0 }
+outputNames { out[31:0] }
+
+# 11 ALU
+# 01 Shift
+# 10 Multi
+# 00 SLT
+
+
+# C1 controls shift between first units
+circuit SELECT32 selectALUorShift { ALU[31:0] SHIFT[31:0] C1 }
+circuit SELECT32 selectMultiorSLT { Multi[31:0] SLT[31:0] C1 }
+
+#C0 picks between those two
+
+circuit SELECT32 selectASorMS { selectALUorShift.out[31:0] selectMultiorSLT.out[31:0] C0 }
+
+outputs { selectASorMS.out[31:0] }
