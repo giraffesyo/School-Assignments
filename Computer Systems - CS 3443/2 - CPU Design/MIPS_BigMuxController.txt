@@ -1,0 +1,23 @@
+# Choose control lines for the Big Mux by Michael McQuade
+
+inputNames { isSLT isALU isMult }
+outputNames { C1 C0 }
+
+circuit WIRE A { isSLT }
+circuit WIRE B { isALU }
+circuit WIRE C { isMult }
+
+circuit NOT !A { A }
+circuit NOT !B { B }
+circuit NOT !C { C }
+
+# C1
+circuit AND3 !A!C { !A B !C }
+circuit AND3 !A!B { !A !B C }
+circuit OR !A!C+!A!B {!A!C !A!B}
+
+# C0
+circuit AND3 !B!C { A !B !C }
+circuit OR !A!C+!B!C { !A!C !B!C }
+
+outputs { !A!C+!A!B !A!C+!B!C }
