@@ -55,41 +55,10 @@ circuit MIPS_ShiftRight32 ShiftRightUnit { s[31:0] ShiftSelect.shmt[4:0] }
 circuit ALU32 ALUUnit { s[31:0] t[31:0] ControlUnit.F1 ControlUnit.F0 ControlUnit.INVB ControlUnit.CIN }
 
 #Choose between ALU and shifter
-circuit SELECT32 OutputSelectUnit { ALUUnit.A[31:0] ShiftRightUnit.H[31:0] selectALU }
+circuit SELECT32 OutputSelectUnit { ALUUnit.A[31:0] ShiftRightUnit.H[31:0] ControlUnit.selectALU }
 
 # Multiply 32
-circuit MIPS_Multiply MM0 { a[31:0] 0[32] 0[32] b0 }
-circuit MIPS_Multiply MM1 { a[31:0], MM0.co[31:0], 0, MM0.S[31:1], b1 }
-circuit MIPS_Multiply MM2 { a[31:0], MM1.co[31:0], 0[2], MM1.S[31:2] b2 }
-circuit MIPS_Multiply MM3 { a[31:0], MM2.co[31:0], 0[3], MM2.s[31:3] b3 }
-circuit MIPS_Multiply MM4 { a[31:0], MM3.co[31:0], 0[4], MM3.s[31:4] b4 }
-circuit MIPS_Multiply MM5 { a[31:0], MM4.co[31:0], 0[5], MM4.s[31:5] b5 }
-circuit MIPS_Multiply MM6 { a[31:0], MM5.co[31:0], 0[6], MM5.s[31:6] b6 }
-circuit MIPS_Multiply MM7 { a[31:0], MM6.co[31:0], 0[7], MM6.s[31:7] b7 }
-circuit MIPS_Multiply MM8 { a[31:0], MM7.co[31:0], 0[8], MM7.s[31:8] b8 }
-circuit MIPS_Multiply MM9 { a[31:0], MM8.co[31:0], 0[9], MM8.s[31:9] b9 }
-circuit MIPS_Multiply MM10 { a[31:0], MM9.co[31:0], 0[10], MM9.s[31:10] b10 }
-circuit MIPS_Multiply MM11 { a[31:0], MM10.co[31:0], 0[11], MM10.s[31:11] b11 }
-circuit MIPS_Multiply MM12 { a[31:0], MM11.co[31:0], 0[12], MM11.s[31:12] b12 }
-circuit MIPS_Multiply MM13 { a[31:0], MM12.co[31:0], 0[13], MM12.s[31:13] b13 }
-circuit MIPS_Multiply MM14 { a[31:0], MM13.co[31:0], 0[14], MM13.s[31:14] b14 }
-circuit MIPS_Multiply MM15 { a[31:0], MM14.co[31:0], 0[15], MM14.s[31:15] b15 }
-circuit MIPS_Multiply MM16 { a[31:0], MM15.co[31:0], 0[16], MM15.s[31:16] b16 }
-circuit MIPS_Multiply MM17 { a[31:0], MM16.co[31:0], 0[17], MM16.s[31:17] b17 }
-circuit MIPS_Multiply MM18 { a[31:0], MM17.co[31:0], 0[18], MM17.s[31:18] b18 }
-circuit MIPS_Multiply MM19 { a[31:0], MM18.co[31:0], 0[19], MM18.s[31:19] b19 }
-circuit MIPS_Multiply MM20 { a[31:0], MM19.co[31:0], 0[20], MM19.s[31:20] b20 }
-circuit MIPS_Multiply MM21 { a[31:0], MM20.co[31:0], 0[21], MM20.s[31:21] b21 }
-circuit MIPS_Multiply MM22 { a[31:0], MM21.co[31:0], 0[22], MM21.s[31:22] b22 }
-circuit MIPS_Multiply MM23 { a[31:0], MM22.co[31:0], 0[23], MM22.s[31:23] b23 }
-circuit MIPS_Multiply MM24 { a[31:0], MM23.co[31:0], 0[24], MM23.s[31:24] b24 }
-circuit MIPS_Multiply MM25 { a[31:0], MM24.co[31:0], 0[25], MM24.s[31:25] b25 }
-circuit MIPS_Multiply MM26 { a[31:0], MM25.co[31:0], 0[26], MM25.s[31:26] b26 }
-circuit MIPS_Multiply MM27 { a[31:0], MM26.co[31:0], 0[27], MM26.s[31:27] b27 }
-circuit MIPS_Multiply MM28 { a[31:0], MM27.co[31:0], 0[28], MM27.s[31:28] b28 }
-circuit MIPS_Multiply MM29 { a[31:0], MM28.co[31:0], 0[29], MM28.s[31:29] b29 }
-circuit MIPS_Multiply MM30 { a[31:0], MM29.co[31:0], 0[30], MM29.s[31:30] b30 }
-circuit MIPS_Multiply MM31 { a[31:0], MM30.co[31:0], 0[31], MM30.s[31:31] b31 }
+
 
 # SLT
 circuit MIPS_SLT SLTUnit { ALUUnit.A[31:0] }

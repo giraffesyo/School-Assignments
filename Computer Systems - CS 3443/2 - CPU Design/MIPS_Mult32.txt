@@ -1,0 +1,39 @@
+# MIPS Multiply 32
+
+inputNames { a[31:0] b[31:0] }
+outputNames { m[31:0] }
+
+circuit MIPS_Multiply MM0 { a[31:0] 0[32] 0[32] b0 }
+circuit MIPS_Multiply MM1 { a[31:0], MM0.co[31:0], 0, MM0.sum[31:1], b1 }
+circuit MIPS_Multiply MM2 { a[31:0], MM1.co[31:0], 0[2], MM1.sum[31:2] b2 }
+circuit MIPS_Multiply MM3 { a[31:0], MM2.co[31:0], 0[3], MM2.sum[31:3] b3 }
+circuit MIPS_Multiply MM4 { a[31:0], MM3.co[31:0], 0[4], MM3.sum[31:4] b4 }
+circuit MIPS_Multiply MM5 { a[31:0], MM4.co[31:0], 0[5], MM4.sum[31:5] b5 }
+circuit MIPS_Multiply MM6 { a[31:0], MM5.co[31:0], 0[6], MM5.sum[31:6] b6 }
+circuit MIPS_Multiply MM7 { a[31:0], MM6.co[31:0], 0[7], MM6.sum[31:7] b7 }
+circuit MIPS_Multiply MM8 { a[31:0], MM7.co[31:0], 0[8], MM7.sum[31:8] b8 }
+circuit MIPS_Multiply MM9 { a[31:0], MM8.co[31:0], 0[9], MM8.sum[31:9] b9 }
+circuit MIPS_Multiply MM10 { a[31:0], MM9.co[31:0], 0[10], MM9.sum[31:10] b10 }
+circuit MIPS_Multiply MM11 { a[31:0], MM10.co[31:0], 0[11], MM10.sum[31:11] b11 }
+circuit MIPS_Multiply MM12 { a[31:0], MM11.co[31:0], 0[12], MM11.sum[31:12] b12 }
+circuit MIPS_Multiply MM13 { a[31:0], MM12.co[31:0], 0[13], MM12.sum[31:13] b13 }
+circuit MIPS_Multiply MM14 { a[31:0], MM13.co[31:0], 0[14], MM13.sum[31:14] b14 }
+circuit MIPS_Multiply MM15 { a[31:0], MM14.co[31:0], 0[15], MM14.sum[31:15] b15 }
+circuit MIPS_Multiply MM16 { a[31:0], MM15.co[31:0], 0[16], MM15.sum[31:16] b16 }
+circuit MIPS_Multiply MM17 { a[31:0], MM16.co[31:0], 0[17], MM16.sum[31:17] b17 }
+circuit MIPS_Multiply MM18 { a[31:0], MM17.co[31:0], 0[18], MM17.sum[31:18] b18 }
+circuit MIPS_Multiply MM19 { a[31:0], MM18.co[31:0], 0[19], MM18.sum[31:19] b19 }
+circuit MIPS_Multiply MM20 { a[31:0], MM19.co[31:0], 0[20], MM19.sum[31:20] b20 }
+circuit MIPS_Multiply MM21 { a[31:0], MM20.co[31:0], 0[21], MM20.sum[31:21] b21 }
+circuit MIPS_Multiply MM22 { a[31:0], MM21.co[31:0], 0[22], MM21.sum[31:22] b22 }
+circuit MIPS_Multiply MM23 { a[31:0], MM22.co[31:0], 0[23], MM22.sum[31:23] b23 }
+circuit MIPS_Multiply MM24 { a[31:0], MM23.co[31:0], 0[24], MM23.sum[31:24] b24 }
+circuit MIPS_Multiply MM25 { a[31:0], MM24.co[31:0], 0[25], MM24.sum[31:25] b25 }
+circuit MIPS_Multiply MM26 { a[31:0], MM25.co[31:0], 0[26], MM25.sum[31:26] b26 }
+circuit MIPS_Multiply MM27 { a[31:0], MM26.co[31:0], 0[27], MM26.sum[31:27] b27 }
+circuit MIPS_Multiply MM28 { a[31:0], MM27.co[31:0], 0[28], MM27.sum[31:28] b28 }
+circuit MIPS_Multiply MM29 { a[31:0], MM28.co[31:0], 0[29], MM28.sum[31:29] b29 }
+circuit MIPS_Multiply MM30 { a[31:0], MM29.co[31:0], 0[30], MM29.sum[31:30] b30 }
+circuit MIPS_Multiply MM31 { a[31:0], MM30.co[31:0], 0[31], MM30.sum31 b31 }
+
+outputs { MM31.sum[31:0] }
