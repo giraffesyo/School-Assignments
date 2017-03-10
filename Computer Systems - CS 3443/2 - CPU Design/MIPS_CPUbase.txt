@@ -63,14 +63,15 @@ circuit MIPS_Mult32 MultiplyUnit { s[31:0] t[31:0] }
 # SLT
 circuit MIPS_SLT SLTUnit { ALUUnit.A[31:0] }
 
-# Pick between SLT, Multiply, ALU, and Shifter
-# inputNames { ALU[31:0] SHIFT[31:0] Multi[31:0] SLT[31:0] C1 C0 }
+
+# Generate control lines for Big Mux
+# inputNames { isSLT isALU isMult }
+circuit MIPS_BigMuxController FinalMuxControls { ControlUnit.isSLT ControlUnit.isALU ControlUnit.isMult }
+
+# Pick between SLT, Multiply, ALU, and Shifter using those controls
+# inputNames { ALU[31:0] SLT[31:0] Multi[31:0] Shift[31:0] C1 C0 }
 # 11 ALU
 # 01 SLT
 # 10 Multi
 # 00 Shift
-
-
-
-
-circuit MIPS_BigMux finalResult { ALUUnit.A[31:0] SLTUnit.out[31:0] MultiplyUnit.sum[31:0] ShiftRightUnit.H[31:0]  }
+circuit MIPS_BigMux finalResult { ALUUnit.A[31:0] SLTUnit.out[31:0] MultiplyUnit.sum[31:0] ShiftRightUnit.H[31:0] FinalMuxControls.c1 FinalMuxControls.c0 }
