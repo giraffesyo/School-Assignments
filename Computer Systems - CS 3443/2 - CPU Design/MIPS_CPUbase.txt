@@ -58,7 +58,7 @@ circuit ALU32 ALUUnit { s[31:0] t[31:0] ControlUnit.F1 ControlUnit.F0 ControlUni
 circuit SELECT32 OutputSelectUnit { ALUUnit.A[31:0] ShiftRightUnit.H[31:0] ControlUnit.selectALU }
 
 # Multiply 32
-
+circuit MIPS_Mult32 MultiplyUnit { s[31:0] t[31:0] }
 
 # SLT
 circuit MIPS_SLT SLTUnit { ALUUnit.A[31:0] }
