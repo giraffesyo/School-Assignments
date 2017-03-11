@@ -157,6 +157,10 @@ circuit OR isAndInstruction { isAND isANDI }
 circuit OR isOrInstruction { isOR isORI }
 circuit OR isXorInstruction { isXOR isXORI }
 
+# Check if we are SLT or SLTI
+circuit AND17 isSLT { !b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b7 !b6 in5 !b4 in3 !b2 in1 !b0 }
+circuit AND6 isSLTI { !b31 !b30 in29 !b28 in27 !b26 }
+
 # Are we an SLT instruction?
 circuit OR isSLTInstruction { isSLT isSLTI }
 
@@ -192,11 +196,6 @@ circuit AND useVariableShift { isShift isSRLV }
 # SLT  - 0000 00ss ssst tttt dddd d000 0010 1010 #
 # SLTI - 0010 10ss ssst tttt iiii iiii iiii iiii #
 # # # # # # # # # # # # # # # # # # # # # # # # #
-
-circuit AND17 isSLT { !b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b7 !b6 in5 !b4 in3 !b2 in1 !b0 }
-circuit AND6 isSLTI { !b31 !b30 in29 !b28 in27 !b26 }
-
-
 
 # Check to use immediate: ADDI, ANDI, ORI, SLTI, XORI all use immediate value
 circuit OR6 useImmediate { isADDI isANDI isORI isSLTI isXORI 0 }
