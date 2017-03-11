@@ -158,7 +158,9 @@ circuit OR isOrInstruction { isOR isORI }
 circuit OR isXorInstruction { isXOR isXORI }
 
 # Are we an SLT instruction?
-circuit OR isSLT { isSLT isSLTI }
+circuit OR isSLTInstruction { isSLT isSLTI }
+
+
 
 # Are INVB and CIN on?
 circuit OR isSubInstruction { isSLT isSUB }
