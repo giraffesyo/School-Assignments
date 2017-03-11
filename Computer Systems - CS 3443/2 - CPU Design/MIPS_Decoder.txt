@@ -163,7 +163,7 @@ circuit OR isSLTInstruction { isSLT isSLTI }
 
 
 # Are INVB and CIN on?
-circuit OR isSubInstruction { isSLT isSUB }
+circuit OR3 isSubInstruction { isSLT isSLTI isSUB }
 
 #Select ALU should be on if its any of the above
 circuit OR6 isALU { isAddInstruction isAndInstruction isOrInstruction isXorInstruction isSUB isSLT }
