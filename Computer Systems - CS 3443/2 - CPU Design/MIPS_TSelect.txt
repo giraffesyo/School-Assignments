@@ -3,6 +3,8 @@
 inputNames { t[31:0] im[15:0] selectImm signExtend }
 outputNames { T[31:0] }
 
-circuit SELECT32 result { signExtend[16] im[15:0], t[31:0], selectImm }
+circuit AND E { im15 signExtend }
+
+circuit SELECT32 result { E[16] im[15:0], t[31:0], selectImm }
 
 outputs { result.out[31:0] }
