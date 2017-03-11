@@ -211,7 +211,7 @@ circuit AND22 isMultiply { !b31 !b30 !b29 !b28 !b27 !b26 !b15 !b14 !b13 !b12 !b1
 circuit WIRE zero { 0 }
 
 # INVA is 0 (not in use)
-outputs { ALUControls.F1, ALUControls.F0, 0, isSubInstruction, isSubInstruction, useImmediate, isSRA, useVariableShift, isALU, isMultiply, isSLT }
+outputs { ALUControls.f1, ALUControls.f0, zero, isSubInstruction, isSubInstruction, useImmediate, isSignExtend, useVariableShift, isALU, isMultiply, isSLTInstruction }
 
 
 #The 16 bit immediate gets sign extended for ADDI and SLTI (for everything else it doesnt)
