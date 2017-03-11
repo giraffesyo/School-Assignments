@@ -48,11 +48,11 @@ circuit MIPS_ShiftControlSelect ShiftSelect { t[4:0] sh[4:0] ControlUnit.selectS
 circuit MIPS_TSelect TSelectUnit { t[31:0] im[15:0] ControlUnit.selectImm ControlUnit.signExtend }
 
 # Shift Right 32
-circuit MIPS_ShiftRight32 ShiftRightUnit { s[31:0] ShiftSelect.shmt[4:0] }
+circuit MIPS_ShiftRight32 ShiftRightUnit { s[31:0] ShiftSelect.shmt[4:0] ControlUnit.signExtend }
 
 # ALU 32
 # inputNames { S[31:0] T[31:0] F1 F0 INVB CIN}
-circuit ALU32 ALUUnit { s[31:0] t[31:0] ControlUnit.F1 ControlUnit.F0 ControlUnit.INVB ControlUnit.CIN }
+circuit ALU32 ALUUnit { s[31:0] TSelectUnit.T[31:0] ControlUnit.F1 ControlUnit.F0 ControlUnit.INVB ControlUnit.CIN }
 
 #Choose between ALU and shifter
 circuit SELECT32 OutputSelectUnit { ALUUnit.A[31:0] ShiftRightUnit.H[31:0] ControlUnit.selectALU }
@@ -66,7 +66,9 @@ circuit MIPS_SLT SLTUnit { ALUUnit.A[31:0] }
 
 # Generate control lines for Big Mux
 # inputNames { isSLT isALU isMult }
-circuit MIPS_BigMuxController FinalMuxControls { ControlUnit.isSLT ControlUnit.isALU ControlUnit.isMult }
+circuit MIPS_BigMuxController FinalMuxControls { ControlUnit.selectSLT ControlUnit.selectALU  ControlUnit.selectMultiply }
+
+
 
 # Pick between SLT, Multiply, ALU, and Shifter using those controls
 # inputNames { ALU[31:0] SLT[31:0] Multi[31:0] Shift[31:0] C1 C0 }
@@ -74,4 +76,8 @@ circuit MIPS_BigMuxController FinalMuxControls { ControlUnit.isSLT ControlUnit.i
 # 01 SLT
 # 10 Multi
 # 00 Shift
-circuit MIPS_BigMux finalResult { ALUUnit.A[31:0] SLTUnit.out[31:0] MultiplyUnit.sum[31:0] ShiftRightUnit.H[31:0] FinalMuxControls.c1 FinalMuxControls.c0 }
+circuit MIPS_BigMux finalResult { ALUUnit.A[31:0] SLTUnit.out[31:0] MultiplyUnit.m[31:0] ShiftRightUnit.H[31:0] FinalMuxControls.C1 FinalMuxControls.C0 }
+
+circuit SELECT32 finalKlooger { SLTUnit.out[31:0] finalResult.out[31:0] ControlUnit.selectSLT }
+
+outputs { finalKlooger.out[31:0] }
