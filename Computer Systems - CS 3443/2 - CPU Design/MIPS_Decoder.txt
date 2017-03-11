@@ -204,7 +204,7 @@ circuit OR6 useImmediate { isADDI isANDI isORI isSLTI isXORI 0 }
 # 0000 00ss ssst tttt 0000 0000 0001 1000
 circuit AND22 isMultiply { !b31 !b30 !b29 !b28 !b27 !b26 !b15 !b14 !b13 !b12 !b11 !b10 !b9 !b8 !b7 !b6 !b5 in4 in3 !b2 !b1 !b0 }
 
-
+circuit WIRE zero { 0 }
 
 # INVA is 0 (not in use)
 outputs { ALUControls.F1, ALUControls.F0, 0, isSubInstruction, isSubInstruction, useImmediate, isSRA, useVariableShift, isALU, isMultiply, isSLT }
