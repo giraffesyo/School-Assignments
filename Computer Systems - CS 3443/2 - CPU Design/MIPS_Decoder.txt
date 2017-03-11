@@ -192,6 +192,10 @@ circuit OR3 isShift { isSRL isSRLV isSRA }
 # SRL and SRA use SHAMT, SRLV uses variable shift amount
 circuit AND useVariableShift { isShift isSRLV }
 
+
+# SLTI ADDI and SRA all sign extend
+circuit OR3 isSignExtend { isSRA isADDI isSLTI }
+
 # # # # # SLT Instructions # # # # # # # # # # # #
 # SLT  - 0000 00ss ssst tttt dddd d000 0010 1010 #
 # SLTI - 0010 10ss ssst tttt iiii iiii iiii iiii #
