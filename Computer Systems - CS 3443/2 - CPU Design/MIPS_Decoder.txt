@@ -121,7 +121,7 @@ circuit AND6 isANDI { !b31 !b30 in29 in28 !b27 !b26 }
 circuit AND17 isOR { !b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b6 !b6 in5 !b4 !b3 in2 !b1 in0 }
 
 #Test for ORI, in29, in28, in26
-circuit AND6 isANDI { !b31 !b30 in29 in28 !b27 in26 }
+circuit AND6 isORI { !b31 !b30 in29 in28 !b27 in26 }
 
 #Test for SUB, in1, in5 are on
 circuit AND17 isSUB { !b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b6 !b6 in5 !b4 !b3 !b2 in1 !b0 }
@@ -130,7 +130,8 @@ circuit AND17 isSUB { !b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b6 !b6 in5 !b4
 circuit AND17 isXOR { !b31 !b30 !b29 !b28 !b27 !b26 !b10 !b9 !b8 !b6 !b6 in5 !b4 !b3 in2 in1 !b0 }
 
 #Test for XORI, in29, in28, in27
-circuit AND6 isANDI { !b31 !b30 in29 in28 in27 in26 }
+circuit AND6 isXORI { !b31 !b30 in29 in28 in27 !b26 }
+
 
 
 # # # # # ALU Controls # # # # #
