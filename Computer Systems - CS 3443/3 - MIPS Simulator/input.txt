@@ -1,3 +1,8 @@
 [R13] 0x0000ffff
 [PC] 0x00004000
+[R15] 0x0000ffff 0x00004100
 [0x00400004] 0x27a50004   addiu $5, $29, 4;   184: addiu $a1 $sp 4
+[PC] 0x00004000 0x00004000 0x00004000 0x00004000 foobar
+0x00004000 0x00004000 this should be ignored
+[PC] 0x00001234 <-- this should be output
+
