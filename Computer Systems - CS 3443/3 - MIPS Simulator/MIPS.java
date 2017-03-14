@@ -6,12 +6,10 @@ import java.util.Scanner;
 
 public class MIPS {
 
+    static public Scanner sc; // static for testing
     private int MAIN_MEM[];
-
-
     private int GEN_REG[];
     private int SP_REG[];
-    static public Scanner sc;
 
 
     MIPS() {
@@ -23,39 +21,40 @@ public class MIPS {
     }
 
 
-
     public static void main(String[] args) {
         //String inputFileName = args[0];
         String inputFileName = "input.txt"; //hardcoded for testing purposes
 
         try {
             sc = new Scanner(new File(inputFileName));
-            String state = "none";
-            while (sc.hasNext())
-            {
-                String current = sc.next();
-                if(current.startsWith("["))
-                {
-                    current = current.substring(1,current.length()-1);
-                    System.out.println(current);
-                    state = "addr";
-
-                }
-                else if ( state.equals("addr"))
-                {
-                    System.out.println(current);
-                    sc.nextLine();
-                    state = "none";
+            while (sc.hasNextLine()) {
+                boolean StartOfLine = true;
+                String current = sc.nextLine();
+                String line[] = current.split("[\\s]");
+                for (String token : line) {
+                    if (token.startsWith("[")  ) {
+                        token = token.substring(1, token.length() - 1); //strip brackets
+                        System.out.println("loc: " + token);
+                        StartOfLine = false;
+                    } else if (token.startsWith("0x") && !StartOfLine) {
+                        System.out.println("addr: " + token);
+                    } else {
+                        break;
+                    }
                 }
             }
-        } catch (IOException e) {
+
+        } catch (
+                IOException e)
+
+        {
             e.printStackTrace();
             System.exit(0);
         }
-
 
 
     }
 
 
 }
+
