@@ -43,7 +43,7 @@ class Detector:
 		image[240:250,:,1] = 150
 		image[240:250,:,2] = 150
 		
-	
+		self.bearing = 0
 		Sum = 0;
 		Count = 0;
 		# we're checking only bottom half of screen, step by 5
@@ -55,7 +55,7 @@ class Detector:
 					Sum += y
 					Count+= 1
 	
-		if Count == 0:
+		if Count < 10:
 			self.bearing = -1 #no x value because no yellow found
 		else:
 			self.bearing = Sum / Count # bearing is the avg of all x values where yellow was found
