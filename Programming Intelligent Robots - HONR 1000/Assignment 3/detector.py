@@ -55,7 +55,7 @@ class Detector:
 					Sum += y
 					Count+= 1
 	
-		if Count < 10:
+		if Count < 5:
 			self.bearing = -1 #no x value because no yellow found
 		else:
 			self.bearing = Sum / Count # bearing is the avg of all x values where yellow was found
@@ -73,7 +73,7 @@ class Detector:
 	def handle_scan(self, msg):
 		# If the bearing is valid, store the corresponding range
 		# in self.distance. Decide what to do if range is NaN.
-		self.distance = msg.ranges[self.bearing]
+		self.distance = msg.ranges[-self.bearing]
 		if ( math.isnan(self.distance) ):
 			self.distance = -1.0
 			#self.bearing = -1.0
