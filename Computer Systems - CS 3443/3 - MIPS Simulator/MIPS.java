@@ -13,7 +13,7 @@ public class MIPS {
 
 
     MIPS() {
-        final int MEMAMT = 4194304; // 4(2^20) == 4 MB
+        final int MEMAMT = 1048576; // (2^20)
         MAIN_MEM = new int[MEMAMT]; //integer arrays are automatically instantiated to 0
 
         GEN_REG = new int[32]; //32 general purpose registers
@@ -32,7 +32,7 @@ public class MIPS {
                 String current = sc.nextLine();
                 String line[] = current.split("[\\s]");
                 for (String token : line) {
-                    if (token.startsWith("[")  ) {
+                    if (token.startsWith("[")) {
                         token = token.substring(1, token.length() - 1); //strip brackets
                         System.out.println("loc: " + token);
                         StartOfLine = false;
@@ -44,10 +44,7 @@ public class MIPS {
                 }
             }
 
-        } catch (
-                IOException e)
-
-        {
+        } catch (IOException e) {
             e.printStackTrace();
             System.exit(0);
         }
