@@ -54,9 +54,6 @@ circuit MIPS_ShiftRight32 ShiftRightUnit { s[31:0] ShiftSelect.shmt[4:0] Control
 # inputNames { S[31:0] T[31:0] F1 F0 INVB CIN}
 circuit ALU32 ALUUnit { s[31:0] TSelectUnit.T[31:0] ControlUnit.F1 ControlUnit.F0 ControlUnit.INVB ControlUnit.CIN }
 
-#Choose between ALU and shifter
-circuit SELECT32 OutputSelectUnit { ALUUnit.A[31:0] ShiftRightUnit.H[31:0] ControlUnit.selectALU }
-
 # Multiply 32
 circuit MIPS_Mult32 MultiplyUnit { s[31:0] t[31:0] }
 
