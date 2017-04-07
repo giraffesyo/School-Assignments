@@ -49,6 +49,11 @@ public class MIPS {
             System.exit(0);
         }
 
+    //Using this to test what is inside the brackets.
+    //If less than 64, we have a number, if More than 64 we have a letter. (ASCII Table)
+    private static boolean beginsAlphabetically(String s) {
+        return s.charAt(0) > 64;
+    }
 
     private static long parseHexString(String s) {
         return Long.parseLong(s, 16);
