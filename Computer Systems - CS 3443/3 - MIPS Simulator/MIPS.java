@@ -31,16 +31,60 @@ public class MIPS {
                 boolean StartOfLine = true;
                 String current = sc.nextLine();
                 String line[] = current.split("[\\s]");
+                int loc = 0;
+                boolean special = false;
                 for (String token : line) {
                     if (token.startsWith("[")) {
                         token = token.substring(1, token.length() - 1); //strip brackets
-                        System.out.println("loc: " + token);
+                        if (debug) {
+                            System.out.println("token: " + token);
+                        }
+                        if (beginsAlphabetically(token)) {
+                            if (debug) {
+                                System.out.println("Found PC Counter or Register");
+                            }
+                            special = true;
+                            //Set up a way to detect what register we're at later so we know where to store info
+
+                        } else { //Line doesn't start with PC or R
+                            token = token.substring(2, token.length());
+                            loc = (int)parseHexString(token); // Converted to decimal int from string
+                            if (debug) {
+
+                                System.out.println("Stripped token: " + token);
+                                System.out.println("Processed token: " + loc);
+                            }
+                        }
                         StartOfLine = false;
-                    } else if (token.startsWith("0x") && !StartOfLine) {
-                        System.out.println("addr: " + token);
+                    }
+                    //information associated with address
+                    else if (token.startsWith("0x") && !StartOfLine) {
+                        if (debug) {
+                            System.out.println("instr: " + token);
+                        }
+                        //Store data in loc/4 to location in memory
+                        if(!special){
+                            token = token.substring(2,token.length());
+                            if(debug){
+                                System.out.println("Stripped instr token:" + token);
+                            }
+                            MAIN_MEM[loc/4] = parseHexString(token);
+                            if(debug){
+                                System.out.println("Main memory " + loc/4 + " was set to " + "0x" + token + " (value of: " + Long.toBinaryString(parseHexString(token)) + ")");
+                                System.out.println("Padded Binary String: " + padBinaryString(Long.toBinaryString(MAIN_MEM[loc/4])));
+                                //System.out.println("Original length" + Long.toBinaryString(parseHexString(token)).length());
+                                //System.out.println("Was less than 32 characters: " + (Long.toBinaryString(parseHexString(token)).length() < 32));
+
+                            }
+                        }
+
                     } else {
                         break;
                     }
+                }
+                //blank line to separate lines of debug
+                if (debug) {
+                    System.out.println();
                 }
             }
 
@@ -48,6 +92,7 @@ public class MIPS {
             e.printStackTrace();
             System.exit(0);
         }
+    }
 
     //Using this to test what is inside the brackets.
     //If less than 64, we have a number, if More than 64 we have a letter. (ASCII Table)
