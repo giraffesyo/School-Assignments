@@ -52,6 +52,17 @@ public class MIPS {
 
     }
 
+    private static String padBinaryString(String s)
+    {
+        if(s.length() < 32)
+        {
+            int diff = 32 - s.length();
+            return String.format("%0" + diff + "d%s", 0, s);
+        }
+        else{
+            return s;
+        }
+    }
 
 }
 
