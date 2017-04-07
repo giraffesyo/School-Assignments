@@ -50,6 +50,8 @@ public class MIPS {
         }
 
 
+    private static long parseHexString(String s) {
+        return Long.parseLong(s, 16);
     }
 
     private static String padBinaryString(String s)
