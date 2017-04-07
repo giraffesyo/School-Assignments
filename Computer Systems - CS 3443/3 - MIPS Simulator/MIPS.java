@@ -6,19 +6,19 @@ import java.util.Scanner;
 
 public class MIPS {
 
-    static public Scanner sc; // static for testing
-    private int MAIN_MEM[];
-    private int GEN_REG[];
-    private int SP_REG[];
+    static private Scanner sc; // static for testing
 
+    private static final int MEMAMT = 1048576; // (2^20)
+    private static long MAIN_MEM[] = new long[MEMAMT]; //integer arrays are automatically instantiated to 0
+    private static int GEN_REG[] = GEN_REG = new int[32]; //32 general purpose registers
+    private static int SP_REG[] = new int[4]; // 4 special purpose registers: PC, nPC, LO, and HI
+    private static final boolean debug = true;
 
-    MIPS() {
-        final int MEMAMT = 1048576; // (2^20)
-        MAIN_MEM = new int[MEMAMT]; //integer arrays are automatically instantiated to 0
-
-        GEN_REG = new int[32]; //32 general purpose registers
-        SP_REG = new int[4]; // 4 special purpose registers: PC, nPC, LO, and HI
-    }
+    //So we don't have to remember which register is which
+    private final static int PC_addr = 0;
+    private final static int nPC_addr = 1;
+    private final static int LO_addr = 2;
+    private final static int HI_addr = 3;
 
 
     public static void main(String[] args) {
