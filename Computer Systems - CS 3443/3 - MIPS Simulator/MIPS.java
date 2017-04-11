@@ -33,17 +33,39 @@ public class MIPS {
                 String line[] = current.split("[\\s]");
                 int loc = 0;
                 boolean special = false;
+				boolean PC = false;
+				int register = -1;
                 for (String token : line) {
-                    if (token.startsWith("[")) {
+					if(token.equals("")){
+						if(debug)
+						{
+							System.out.println();
+						}
+						continue;
+						}
+					if (token.startsWith("[")) {
                         token = token.substring(1, token.length() - 1); //strip brackets
                         if (debug) {
                             System.out.println("token: " + token);
                         }
                         if (beginsAlphabetically(token)) {
-                            if (debug) {
-                                System.out.println("Found PC Counter or Register");
-                            }
                             special = true;
+							if ( token.charAt(0) == 'R' )
+							{
+								token = token.substring(1,token.length());
+								register = Integer.parseInt(token);
+								if(debug){
+									System.out.println("Found Register: " + register);
+								}
+							} else
+							{
+								PC = true;
+								if (debug){
+									System.out.println("Found PC");
+								}
+							}
+							
+							
                             //Set up a way to detect what register we're at later so we know where to store info
 
                         } else { //Line doesn't start with PC or R
@@ -58,6 +80,7 @@ public class MIPS {
                         StartOfLine = false;
                     }
                     //information associated with address
+
                     else if (token.startsWith("0x") && !StartOfLine) {
                         if (debug) {
                             System.out.println("instr: " + token);
@@ -76,9 +99,33 @@ public class MIPS {
                                 //System.out.println("Was less than 32 characters: " + (Long.toBinaryString(parseHexString(token)).length() < 32));
 
                             }
-                        }
-
+                        } else { // we're a pc or register 
+							if (PC) // we're the PC
+							{
+								token = token.substring(2,token.length());
+								long temporary = parseHexString(token);
+								SP_REG[PC_addr] = (int)parseHexString(token);
+								if(debug)
+								{
+									System.out.println("PC was set to: " + temporary);
+								}
+								special = false;
+								PC = false;
+							}
+							else // we're a register
+							{
+								token = token.substring(2,token.length());
+								long temporary = parseHexString(token);
+								GEN_REG[register - 1] =  (int)temporary;
+								if(debug)
+								{
+									System.out.println("Register " + register + " set to : " + temporary );
+								}
+								special = false;
+							} 
+						}
                     } else {
+						//System.out.println("We weren't a start of line or a valid token");
                         break;
                     }
                 }
