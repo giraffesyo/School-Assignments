@@ -21,54 +21,72 @@ public class MIPS {
     private final static int HI_addr = 3;
 
 
-    private final int ADD_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0000;
-    private final int ADDI_INSTR = 0b0010_0000_0000_0000_0000_0000_0000_0000;
-    private final int ADDIU_INSTR = 0b0010_0100_0000_0000_0000_0000_0000_0000;
-    private final int ADDU_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0001;
-    private final int AND_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0100;
-    private final int ANDI_INSTR = 0b0011_0000_0000_0000_0000_0000_0000_0000;
-    private final int BEQ_INSTR = 0b0001_0000_0000_0000_0000_0000_0000_0000;
-    private final int BGEZ_INSTR = 0b0000_0100_0000_0001_0000_0000_0000_0000;
-    private final int BGEZAL_INSTR = 0b0000_0100_0001_0001_0000_0000_0000_0000;
-    private final int BGTZ_INSTR = 0b0001_1100_0000_0000_0000_0000_0000_0000;
-    private final int BLEZ_INSTR = 0b0001_1000_0000_0000_0000_0000_0000_0000;
-    private final int BLTZ_INSTR = 0b0000_0100_0000_0000_0000_0000_0000_0000;
-    private final int BLTZAL_INSTR = 0b0000_0100_0001_0000_0000_0000_0000_0000;
-    private final int BNE_INSTR = 0b0001_0100_0000_0000_0000_0000_0000_0000;
-    private final int DIV_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_1010;
-    private final int J_INSTR = 0b0000_1000_0000_0000_0000_0000_0000_0000;
-    private final int JAL_INSTR = 0b0000_1100_0000_0000_0000_0000_0000_0000;
-    private final int JR_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_1000;
-    private final int LB_INSTR = 0b1000_0000_0000_0000_0000_0000_0000_0000;
-    private final int LUI_INSTR = 0b0011_1100_0000_0000_0000_0000_0000_0000;
-    private final int LW_INSTR = 0b1000_1100_0000_0000_0000_0000_0000_0000;
-    private final int MFHI_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_0000;
-    private final int MFLO_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_0010;
-    private final int MULT_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_1000;
-    private final int NOOP_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0000;
-    private final int OR_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0101;
-    private final int ORI_INSTR = 0b0011_0100_0000_0000_0000_0000_0000_0000;
-    private final int SB_INSTR = 0b1010_0000_0000_0000_0000_0000_0000_0000;
-    private final int SLL_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0000;
-    private final int SLLV_INSTR = 0b0000_0000_00000_0000_0000_0000_0000_0100;
-    private final int SLT_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_1010;
-    private final int SLTI_INSTR = 0b0010_1000_0000_0000_0000_0000_0000_0000;
-    private final int SLTIU_INSTR = 0b0010_1100_0000_0000_0000_0000_0000_0000;
-    private final int SLTU_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_1011;
-    private final int SRA_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0011;
-    private final int SRL_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0010;
-    private final int SRLV_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0110;
-    private final int SUB_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0010;
-    private final int SUBU_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0011;
-    private final int SW_ISNTR = 0b1010_1100_0000_0000_0000_0000_0000_0000;
-    private final int SYSCALL_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_1100;
-    private final int XOR_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0110;
-    private final int XORI_INSTR = 0b0011_1000_0000_0000_0000_0000_0000_0000;
+    private final static int ADD_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0000;
+    private final static int ADDI_INSTR = 0b0010_0000_0000_0000_0000_0000_0000_0000;
+    private final static int ADDIU_INSTR = 0b0010_0100_0000_0000_0000_0000_0000_0000;
+    private final static int ADDU_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0001;
+    private final static int AND_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0100;
+    private final static int ANDI_INSTR = 0b0011_0000_0000_0000_0000_0000_0000_0000;
+    private final static int BEQ_INSTR = 0b0001_0000_0000_0000_0000_0000_0000_0000;
+    private final static int BGEZ_INSTR = 0b0000_0100_0000_0001_0000_0000_0000_0000;
+    private final static int BGEZAL_INSTR = 0b0000_0100_0001_0001_0000_0000_0000_0000;
+    private final static int BGTZ_INSTR = 0b0001_1100_0000_0000_0000_0000_0000_0000;
+    private final static int BLEZ_INSTR = 0b0001_1000_0000_0000_0000_0000_0000_0000;
+    private final static int BLTZ_INSTR = 0b0000_0100_0000_0000_0000_0000_0000_0000;
+    private final static int BLTZAL_INSTR = 0b0000_0100_0001_0000_0000_0000_0000_0000;
+    private final static int BNE_INSTR = 0b0001_0100_0000_0000_0000_0000_0000_0000;
+    private final static int DIV_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_1010;
+    private final static int J_INSTR = 0b0000_1000_0000_0000_0000_0000_0000_0000;
+    private final static int JAL_INSTR = 0b0000_1100_0000_0000_0000_0000_0000_0000;
+    private final static int JR_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_1000;
+    private final static int LB_INSTR = 0b1000_0000_0000_0000_0000_0000_0000_0000;
+    private final static int LUI_INSTR = 0b0011_1100_0000_0000_0000_0000_0000_0000;
+    private final static int LW_INSTR = 0b1000_1100_0000_0000_0000_0000_0000_0000;
+    private final static int MFHI_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_0000;
+    private final static int MFLO_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_0010;
+    private final static int MULT_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_1000;
+    private final static int NOOP_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0000;
+    private final static int OR_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0101;
+    private final static int ORI_INSTR = 0b0011_0100_0000_0000_0000_0000_0000_0000;
+    private final static int SB_INSTR = 0b1010_0000_0000_0000_0000_0000_0000_0000;
+    private final static int SLL_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0000;
+    private final static int SLLV_INSTR = 0b0000_0000_00000_0000_0000_0000_0000_0100;
+    private final static int SLT_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_1010;
+    private final static int SLTI_INSTR = 0b0010_1000_0000_0000_0000_0000_0000_0000;
+    private final static int SLTIU_INSTR = 0b0010_1100_0000_0000_0000_0000_0000_0000;
+    private final static int SLTU_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_1011;
+    private final static int SRA_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0011;
+    private final static int SRL_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0010;
+    private final static int SRLV_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0110;
+    private final static int SUB_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0010;
+    private final static int SUBU_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0011;
+    private final static int SW_ISNTR = 0b1010_1100_0000_0000_0000_0000_0000_0000;
+    private final static int SYSCALL_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_1100;
+    private final static int XOR_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0110;
+    private final static int XORI_INSTR = 0b0011_1000_0000_0000_0000_0000_0000_0000;
+
+    private final static int MASK1 = 0b1111_1100_0000_0000_0000_0111_1111_1111; // ADD, ADDU, AND, OR, SLT, SLTU, SRLV, SUB, SUBU
+    private final static int MASK2 = 0b1111_1100_0000_0000_0000_0000_0000_0000; // ADDI, ADDIU, ANDI, BEQ, BNE, J, JAL, LB, LUI, LW, ORI, SB, SLTI, SLTIU, SW, XORI
+    private final static int MASK3 = 0b1111_1100_0001_1111_0000_0000_0000_0000; // BGEZ, BGEZAL, BGTZ, BLEZ, BLTZ, BLTZAL,
+    private final static int MASK4 = 0b1111_1100_0000_0000_1111_1111_1111_1111; // DIV, MULT
+    private final static int MASK5 = 0b1111_1100_0001_1111_1111_1111_1111_1111; // JR
+    private final static int MASK6 = 0b1111_1111_1111_1111_0000_0111_1111_1111; // MFHI, MFLO
+    private final static int MASK7 = 0b1111_1111_1111_1111_1111_1111_1111_1111; // NOOP
+    private final static int MASK8 = 0b1111_1100_0000_0000_0000_0000_0011_1111; // SLL, SLLV, SRA, SRL, SYSCALL, XOR
+
+
 
     public static void main(String[] args) {
         //String inputFileName = args[0];
         String inputFileName = "input.txt"; //hardcoded for testing purposes
         parseInputFile(inputFileName);
+
+        long Instr = MAIN_MEM[SP_REG[PC_addr]/4];
+
+        if((Instr & some_mask) == ADD_INSTR)
+        {
+            //do addd instr stuff
+        }
 
 
     }
