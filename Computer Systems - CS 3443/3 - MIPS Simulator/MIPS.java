@@ -68,7 +68,36 @@ public class MIPS {
     public static void main(String[] args) {
         //String inputFileName = args[0];
         String inputFileName = "input.txt"; //hardcoded for testing purposes
+        parseInputFile(inputFileName);
 
+
+    }
+
+    //Using this to test what is inside the brackets.
+    //If less than 64, we have a number, if More than 64 we have a letter. (ASCII Table)
+    private static boolean beginsAlphabetically(String s) {
+        return s.charAt(0) > 64;
+    }
+
+    private static long parseHexString(String s) {
+        return Long.parseLong(s, 16);
+    }
+
+    private static String padBinaryString(String s) {
+        if (s.length() < 32) {
+            int diff = 32 - s.length();
+            return String.format("%0" + diff + "d%s", 0, s);
+        } else {
+            return s;
+        }
+    }
+
+    private static void advance_pc(int offset) {
+        SP_REG[PC_addr] = SP_REG[nPC_addr];
+        SP_REG[nPC_addr] += offset;
+    }
+
+    private static void parseInputFile(String inputFileName) {
         try {
             sc = new Scanner(new File(inputFileName));
             while (sc.hasNextLine()) {
@@ -77,44 +106,41 @@ public class MIPS {
                 String line[] = current.split("[\\s]");
                 int loc = 0;
                 boolean special = false;
-				boolean PC = false;
-				int register = -1;
+                boolean PC = false;
+                int register = -1;
                 for (String token : line) {
-					if(token.equals("")){
-						if(debug)
-						{
-							System.out.println();
-						}
-						continue;
-						}
-					if (token.startsWith("[")) {
+                    if (token.equals("")) {
+                        if (debug) {
+                            System.out.println();
+                        }
+                        continue;
+                    }
+                    if (token.startsWith("[")) {
                         token = token.substring(1, token.length() - 1); //strip brackets
                         if (debug) {
                             System.out.println("token: " + token);
                         }
                         if (beginsAlphabetically(token)) {
                             special = true;
-							if ( token.charAt(0) == 'R' )
-							{
-								token = token.substring(1,token.length());
-								register = Integer.parseInt(token);
-								if(debug){
-									System.out.println("Found Register: " + register);
-								}
-							} else
-							{
-								PC = true;
-								if (debug){
-									System.out.println("Found PC");
-								}
-							}
-							
-							
+                            if (token.charAt(0) == 'R') {
+                                token = token.substring(1, token.length());
+                                register = Integer.parseInt(token);
+                                if (debug) {
+                                    System.out.println("Found Register: " + register);
+                                }
+                            } else {
+                                PC = true;
+                                if (debug) {
+                                    System.out.println("Found PC");
+                                }
+                            }
+
+
                             //Set up a way to detect what register we're at later so we know where to store info
 
                         } else { //Line doesn't start with PC or R
                             token = token.substring(2, token.length());
-                            loc = (int)parseHexString(token); // Converted to decimal int from string
+                            loc = (int) parseHexString(token); // Converted to decimal int from string
                             if (debug) {
 
                                 System.out.println("Stripped token: " + token);
@@ -130,46 +156,43 @@ public class MIPS {
                             System.out.println("instr: " + token);
                         }
                         //Store data in loc/4 to location in memory
-                        if(!special){
-                            token = token.substring(2,token.length());
-                            if(debug){
+                        if (!special) {
+                            token = token.substring(2, token.length());
+                            if (debug) {
                                 System.out.println("Stripped instr token:" + token);
                             }
-                            MAIN_MEM[loc/4] = parseHexString(token);
-                            if(debug){
-                                System.out.println("Main memory " + loc/4 + " was set to " + "0x" + token + " (value of: " + Long.toBinaryString(parseHexString(token)) + ")");
-                                System.out.println("Padded Binary String: " + padBinaryString(Long.toBinaryString(MAIN_MEM[loc/4])));
+                            MAIN_MEM[loc / 4] = parseHexString(token);
+                            if (debug) {
+                                System.out.println("Main memory " + loc / 4 + " was set to " + "0x" + token + " (value of: " + Long.toBinaryString(parseHexString(token)) + ")");
+                                System.out.println("Padded Binary String: " + padBinaryString(Long.toBinaryString(MAIN_MEM[loc / 4])));
                                 //System.out.println("Original length" + Long.toBinaryString(parseHexString(token)).length());
                                 //System.out.println("Was less than 32 characters: " + (Long.toBinaryString(parseHexString(token)).length() < 32));
 
                             }
-                        } else { // we're a pc or register 
-							if (PC) // we're the PC
-							{
-								token = token.substring(2,token.length());
-								long temporary = parseHexString(token);
-								SP_REG[PC_addr] = (int)parseHexString(token);
-								if(debug)
-								{
-									System.out.println("PC was set to: " + temporary);
-								}
-								special = false;
-								PC = false;
-							}
-							else // we're a register
-							{
-								token = token.substring(2,token.length());
-								long temporary = parseHexString(token);
-								GEN_REG[register - 1] =  (int)temporary;
-								if(debug)
-								{
-									System.out.println("Register " + register + " set to : " + temporary );
-								}
-								special = false;
-							} 
-						}
+                        } else { // we're a pc or register
+                            if (PC) // we're the PC
+                            {
+                                token = token.substring(2, token.length());
+                                long temporary = parseHexString(token);
+                                SP_REG[PC_addr] = (int) parseHexString(token);
+                                if (debug) {
+                                    System.out.println("PC was set to: " + temporary);
+                                }
+                                special = false;
+                                PC = false;
+                            } else // we're a register
+                            {
+                                token = token.substring(2, token.length());
+                                long temporary = parseHexString(token);
+                                GEN_REG[register - 1] = (int) temporary;
+                                if (debug) {
+                                    System.out.println("Register " + register + " set to : " + temporary);
+                                }
+                                special = false;
+                            }
+                        }
                     } else {
-						//System.out.println("We weren't a start of line or a valid token");
+                        //System.out.println("We weren't a start of line or a valid token");
                         break;
                     }
                 }
@@ -185,27 +208,7 @@ public class MIPS {
         }
     }
 
-    //Using this to test what is inside the brackets.
-    //If less than 64, we have a number, if More than 64 we have a letter. (ASCII Table)
-    private static boolean beginsAlphabetically(String s) {
-        return s.charAt(0) > 64;
-    }
 
-    private static long parseHexString(String s) {
-        return Long.parseLong(s, 16);
-    }
-
-    private static String padBinaryString(String s)
-    {
-        if(s.length() < 32)
-        {
-            int diff = 32 - s.length();
-            return String.format("%0" + diff + "d%s", 0, s);
-        }
-        else{
-            return s;
-        }
-    }
 
 }
 
