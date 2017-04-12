@@ -10,7 +10,7 @@ public class MIPS {
 
     private static final int MEMAMT = 1048576; // (2^20)
     private static long MAIN_MEM[] = new long[MEMAMT]; //integer arrays are automatically instantiated to 0
-    private static int GEN_REG[] = GEN_REG = new int[32]; //32 general purpose registers
+    private static int GEN_REG[] = new int[32]; //32 general purpose registers
     private static int SP_REG[] = new int[4]; // 4 special purpose registers: PC, nPC, LO, and HI
     private static final boolean debug = true;
 
@@ -20,6 +20,50 @@ public class MIPS {
     private final static int LO_addr = 2;
     private final static int HI_addr = 3;
 
+
+    private final int ADD_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0000;
+    private final int ADDI_INSTR = 0b0010_0000_0000_0000_0000_0000_0000_0000;
+    private final int ADDIU_INSTR = 0b0010_0100_0000_0000_0000_0000_0000_0000;
+    private final int ADDU_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0001;
+    private final int AND_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0100;
+    private final int ANDI_INSTR = 0b0011_0000_0000_0000_0000_0000_0000_0000;
+    private final int BEQ_INSTR = 0b0001_0000_0000_0000_0000_0000_0000_0000;
+    private final int BGEZ_INSTR = 0b0000_0100_0000_0001_0000_0000_0000_0000;
+    private final int BGEZAL_INSTR = 0b0000_0100_0001_0001_0000_0000_0000_0000;
+    private final int BGTZ_INSTR = 0b0001_1100_0000_0000_0000_0000_0000_0000;
+    private final int BLEZ_INSTR = 0b0001_1000_0000_0000_0000_0000_0000_0000;
+    private final int BLTZ_INSTR = 0b0000_0100_0000_0000_0000_0000_0000_0000;
+    private final int BLTZAL_INSTR = 0b0000_0100_0001_0000_0000_0000_0000_0000;
+    private final int BNE_INSTR = 0b0001_0100_0000_0000_0000_0000_0000_0000;
+    private final int DIV_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_1010;
+    private final int J_INSTR = 0b0000_1000_0000_0000_0000_0000_0000_0000;
+    private final int JAL_INSTR = 0b0000_1100_0000_0000_0000_0000_0000_0000;
+    private final int JR_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_1000;
+    private final int LB_INSTR = 0b1000_0000_0000_0000_0000_0000_0000_0000;
+    private final int LUI_INSTR = 0b0011_1100_0000_0000_0000_0000_0000_0000;
+    private final int LW_INSTR = 0b1000_1100_0000_0000_0000_0000_0000_0000;
+    private final int MFHI_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_0000;
+    private final int MFLO_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_0010;
+    private final int MULT_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_1000;
+    private final int NOOP_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0000;
+    private final int OR_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0101;
+    private final int ORI_INSTR = 0b0011_0100_0000_0000_0000_0000_0000_0000;
+    private final int SB_INSTR = 0b1010_0000_0000_0000_0000_0000_0000_0000;
+    private final int SLL_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0000;
+    private final int SLLV_INSTR = 0b0000_0000_00000_0000_0000_0000_0000_0100;
+    private final int SLT_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_1010;
+    private final int SLTI_INSTR = 0b0010_1000_0000_0000_0000_0000_0000_0000;
+    private final int SLTIU_INSTR = 0b0010_1100_0000_0000_0000_0000_0000_0000;
+    private final int SLTU_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_1011;
+    private final int SRA_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0011;
+    private final int SRL_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0010;
+    private final int SRLV_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0110;
+    private final int SUB_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0010;
+    private final int SUBU_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0011;
+    private final int SW_ISNTR = 0b1010_1100_0000_0000_0000_0000_0000_0000;
+    private final int SYSCALL_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_1100;
+    private final int XOR_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0110;
+    private final int XORI_INSTR = 0b0011_1000_0000_0000_0000_0000_0000_0000;
 
     public static void main(String[] args) {
         //String inputFileName = args[0];
