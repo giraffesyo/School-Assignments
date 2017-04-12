@@ -83,9 +83,12 @@ public class MIPS {
 
         long Instr = MAIN_MEM[SP_REG[PC_addr]/4];
 
-        if((Instr & some_mask) == ADD_INSTR)
+        if((Instr & MASK1) == ADD_INSTR)
         {
-            //do addd instr stuff
+            //$d = $s + $t; advance_pc (4);
+        } else if((Instr & MASK2 ) == ADDI_INSTR )
+        {
+            //$t = $s + imm; advance_pc (4);
         }
 
 
