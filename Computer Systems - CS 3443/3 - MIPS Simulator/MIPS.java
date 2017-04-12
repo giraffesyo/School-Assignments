@@ -48,7 +48,6 @@ public class MIPS {
     private final static int MFHI_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_0000;
     private final static int MFLO_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_0010;
     private final static int MULT_INSTR = 0b0000_0000_0000_0000_0000_0000_0001_1000;
-    private final static int NOOP_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0000;
     private final static int OR_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0101;
     private final static int ORI_INSTR = 0b0011_0100_0000_0000_0000_0000_0000_0000;
     private final static int SB_INSTR = 0b1010_0000_0000_0000_0000_0000_0000_0000;
@@ -74,7 +73,7 @@ public class MIPS {
     private final static int MASK4 = 0b1111_1100_0000_0000_1111_1111_1111_1111; // DIV, MULT
     private final static int MASK5 = 0b1111_1100_0001_1111_1111_1111_1111_1111; // JR
     private final static int MASK6 = 0b1111_1111_1111_1111_0000_0111_1111_1111; // MFHI, MFLO
-    private final static int MASK7 = 0b1111_1111_1111_1111_1111_1111_1111_1111; // NOOP
+    //private final static int MASK7 = 0b1111_1111_1111_1111_1111_1111_1111_1111; // NOOP
     private final static int MASK8 = 0b1111_1100_0000_0000_0000_0000_0011_1111; // SLL, SLLV, SRA, SRL, SYSCALL, XOR
 
 
