@@ -1,5 +1,7 @@
 // Simulates MIPS
 
+import com.sun.tools.javac.jvm.Gen;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -15,13 +17,15 @@ public class MIPS {
     private static long MAIN_MEM[] = new long[MEMAMT]; //integer arrays are automatically instantiated to 0
     private static int GEN_REG[] = new int[32]; //32 general purpose registers
     private static int SP_REG[] = new int[4]; // 4 special purpose registers: PC, nPC, LO, and HI
-    private static final boolean fulldebug = true;
+    private static final boolean fulldebug = false;
 
     //So we don't have to remember which register is which
     private final static int PC_addr = 0;
     private final static int nPC_addr = 1;
     private final static int LO_addr = 2;
     private final static int HI_addr = 3;
+
+    private static int MemoryAllocation = 524288;
 
 
     private final static int ADD_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0000;
@@ -85,12 +89,10 @@ public class MIPS {
 
         while (true) {
             int Instr = (int) MAIN_MEM[SP_REG[PC_addr] / 4];
-            int opcode = (Instr >> 26) & 0b111111;
             int source = (Instr >> 21) & 0b11111;
             int target = (Instr >> 16) & 0b11111;
             int destination = (Instr >> 11) & 0b11111;
             int shift = (Instr >> 6) & 0b11111;
-            int funct = Instr & 0b111111;
             int immediate = Instr & 0xFFFF;
 
 
@@ -247,38 +249,30 @@ public class MIPS {
                 }
             } else if ((Instr & MASK2) == SLTI_INSTR) {
                 //if $s < imm $t = 1; advance_pc (4); else $t = 0; advance_pc (4);
-                if(GEN_REG[source] < immediate)
-                {
+                if (GEN_REG[source] < immediate) {
                     GEN_REG[target] = 1;
                     advance_pc(offset);
-                }
-                else
-                {
+                } else {
                     GEN_REG[target] = 0;
                     advance_pc(offset);
                 }
             } else if ((Instr & MASK2) == SLTIU_INSTR) {
                 //if $s < imm $t = 1; advance_pc (4); else $t = 0; advance_pc (4);
                 //TODO: Should be Unsigned immediate
-                if (GEN_REG[source] < immediate)
-                {
+                if (GEN_REG[source] < immediate) {
                     GEN_REG[target] = 1;
                     advance_pc(offset);
-                }
-                else
-                {
+                } else {
                     GEN_REG[target] = 0;
                     advance_pc(offset);
                 }
             } else if ((Instr & MASK1) == SLTU_INSTR) {
                 //if $s < $t $d = 1; advance_pc (4); else $d = 0; advance_pc (4);
                 //TODO: Unsigned (duplicate of SLT)
-                if ( GEN_REG[source] < GEN_REG[target]) {
+                if (GEN_REG[source] < GEN_REG[target]) {
                     GEN_REG[destination] = 1;
                     advance_pc(offset);
-                }
-                else
-                {
+                } else {
                     GEN_REG[destination] = 0;
                     advance_pc(offset);
                 }
@@ -308,7 +302,51 @@ public class MIPS {
                 advance_pc(offset);
             } else if ((Instr & MASK8) == SYSCALL_INSTR) {
                 //advance_pc (4);
-                //TODO: Check what kind of system call to do?
+                if (GEN_REG[2] == 4) // Print integer
+                {
+                    System.out.print(GEN_REG[4]);
+                } else if (GEN_REG[2] == 4) // Print String (null-terminated)
+                {
+                    //String is stored in Main memory at the address stored in $a0 (Register 4)
+                    char current = (char) MAIN_MEM[GEN_REG[4]];
+                    System.out.print(current);
+                    int i = 0;
+                    while (current != '\n') {
+                        i++;
+                        current = (char) (MAIN_MEM[GEN_REG[4]] + i);
+                        System.out.print(current);
+
+                    }
+                } else if (GEN_REG[2] == 11) //Print Character
+                {
+                    System.out.print((char) GEN_REG[4]);
+                } else if (GEN_REG[2] == 5) // Read Integer
+                {
+                    Scanner keyIn = new Scanner(System.in);
+                    GEN_REG[2] = keyIn.nextInt();
+                } else if (GEN_REG[2] == 8) //Read String
+                {
+                    /*
+                    (8) Read string – Reads a string into address pointed to by $a0=$4, up to $a1-1 characters,
+                     and null terminates the string. Note that the characters must be stored as bytes,
+                     so you will have to deal with converting a string from the language used for your simulator to a null terminated string stored in an array of ints.
+                     */
+                    Scanner keyIn = new Scanner(System.in);
+                    //MAIN_MEM[GEN_REG[4]] = a string
+                    int size = GEN_REG[5] - 1; // $A1 - 1
+                    String userString = keyIn.nextLine();
+                    for (int i = 0; i < size; i++) {
+                        MAIN_MEM[GEN_REG[4 + i]] = (int) userString.charAt(i);
+                    }
+                } else if (GEN_REG[2] == 9) // Allocate Memory
+                {
+                    int space = GEN_REG[4];
+                    GEN_REG[2] = MemoryAllocation;
+                    MemoryAllocation += space;
+                } else if (GEN_REG[2] == 10) // Exit
+                {
+                    System.exit(0);
+                }
                 advance_pc(offset);
             } else if ((Instr & MASK8) == XOR_INSTR) {
                 //$d = $s ^ $t; advance_pc (4);
