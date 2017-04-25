@@ -77,24 +77,101 @@ public class MIPS {
     private final static int MASK8 = 0b1111_1100_0000_0000_0000_0000_0011_1111; // SLL, SLLV, SRA, SRL, SYSCALL, XOR
 
 
-
     public static void main(String[] args) {
         //String inputFileName = args[0];
         String inputFileName = "input.txt"; //hardcoded for testing purposes
         parseInputFile(inputFileName);
 
-        long Instr = MAIN_MEM[SP_REG[PC_addr]/4];
-
-        if((Instr & MASK1) == ADD_INSTR)
-        {
-            //$d = $s + $t; advance_pc (4);
-        } else if((Instr & MASK2 ) == ADDI_INSTR )
-        {
-            //$t = $s + imm; advance_pc (4);
+        long Instr = MAIN_MEM[SP_REG[PC_addr] / 4];
+        while (true) {
+            if ((Instr & MASK1) == ADD_INSTR) {
+                //$d = $s + $t; advance_pc (4);
+            } else if ((Instr & MASK2) == ADDI_INSTR) {
+                //$t = $s + imm; advance_pc (4);
+            } else if ((Instr & MASK2) == ADDIU_INSTR) {
+                //$t = $s + imm; advance_pc (4);
+            } else if ((Instr & MASK1) == ADDU_INSTR) {
+                //$d = $s + $t; advance_pc (4);
+            } else if ((Instr & MASK1) == AND_INSTR) {
+                //$d = $s & $t; advance_pc (4);
+            } else if ((Instr & MASK2) == ANDI_INSTR) {
+                //$t = $s & imm; advance_pc (4);
+            } else if ((Instr & MASK2) == BEQ_INSTR) {
+                //if $s == $t advance_pc (offset << 2)); else advance_pc (4);
+            } else if ((Instr & MASK3) == BGEZ_INSTR) {
+                //if $s >= 0 advance_pc (offset << 2)); else advance_pc (4);
+            } else if ((Instr & MASK3) == BGEZAL_INSTR) {
+                //if $s >= 0 $31 = PC + 8 (or nPC + 4); advance_pc (offset << 2)); else advance_pc (4);
+            } else if ((Instr & MASK3) == BGTZ_INSTR) {
+                //if $s > 0 advance_pc (offset << 2)); else advance_pc (4);
+            } else if ((Instr & MASK3) == BLEZ_INSTR) {
+                //if $s <= 0 advance_pc (offset << 2)); else advance_pc (4);
+            } else if ((Instr & MASK3) == BLTZ_INSTR) {
+                //if $s < 0 advance_pc (offset << 2)); else advance_pc (4);
+            } else if ((Instr & MASK3) == BLTZAL_INSTR) {
+                //if $s < 0 $31 = PC + 8 (or nPC + 4); advance_pc (offset << 2)); else advance_pc (4);
+            } else if ((Instr & MASK2) == BNE_INSTR) {
+                //if $s != $t advance_pc (offset << 2)); else advance_pc (4);
+            } else if ((Instr & MASK4) == DIV_INSTR) {
+                //$LO = $s / $t; $HI = $s % $t; advance_pc (4);
+            } else if ((Instr & MASK4) == MULT_INSTR) {
+                //$LO = $s * $t; advance_pc (4);
+            } else if ((Instr & MASK2) == J_INSTR) {
+                //PC = nPC; nPC = (PC & 0xf0000000) | (target << 2);
+            } else if ((Instr & MASK2) == JAL_INSTR) {
+                //$31 = PC + 8 (or nPC + 4); PC = nPC; nPC = (PC & 0xf0000000) | (target << 2);
+            } else if ((Instr & MASK5) == JR_INSTR) {
+                //PC = nPC; nPC = $s;
+            } else if ((Instr & MASK2) == LB_INSTR) {
+                //$t = MEM[$s + offset]; advance_pc (4);
+            } else if ((Instr & MASK2) == LUI_INSTR) {
+                //$t = (imm << 16); advance_pc (4);
+            } else if ((Instr & MASK2) == LW_INSTR) {
+                //$t = MEM[$s + offset]; advance_pc (4);
+            } else if ((Instr & MASK6) == MFHI_INSTR) {
+                //$d = $HI; advance_pc (4);
+            } else if ((Instr & MASK6) == MFLO_INSTR) {
+                //$d = $LO; advance_pc (4);
+            } else if ((Instr & MASK1) == OR_INSTR) {
+                //$d = $s | $t; advance_pc (4);
+            } else if ((Instr & MASK2) == ORI_INSTR) {
+                //$t = $s | imm; advance_pc (4);
+            } else if ((Instr & MASK2) == SB_INSTR) {
+                //MEM[$s + offset] = (0xff & $t); advance_pc (4);
+            } else if ((Instr & MASK8) == SLL_INSTR) {
+                //$d = $t << h; advance_pc (4);
+            } else if ((Instr & MASK8) == SLLV_INSTR) {
+                //$d = $t << $s; advance_pc (4);
+            } else if ((Instr & MASK1) == SLT_INSTR) {
+                //if $s < $t $d = 1; advance_pc (4); else $d = 0; advance_pc (4);
+            } else if ((Instr & MASK2) == SLTI_INSTR) {
+                //if $s < imm $t = 1; advance_pc (4); else $t = 0; advance_pc (4);
+            } else if ((Instr & MASK2) == SLTIU_INSTR) {
+                //if $s < imm $t = 1; advance_pc (4); else $t = 0; advance_pc (4);
+            } else if ((Instr & MASK1) == SLTU_INSTR) {
+                //if $s < $t $d = 1; advance_pc (4); else $d = 0; advance_pc (4);
+            } else if ((Instr & MASK8) == SRA_INSTR) {
+                //$d = $t >> h; advance_pc (4);
+            } else if ((Instr & MASK8) == SRL_INSTR) {
+                //$d = $t >> h; advance_pc (4);
+            } else if ((Instr & MASK1) == SRLV_INSTR) {
+                //$d = $t >> $s; advance_pc (4);
+            } else if ((Instr & MASK1) == SUB_INSTR) {
+                //$d = $s - $t; advance_pc (4);
+            } else if ((Instr & MASK1) == SUBU_INSTR) {
+                //$d = $s - $t; advance_pc (4);
+            } else if ((Instr & MASK2) == SW_INSTR) {
+                //MEM[$s + offset] = $t; advance_pc (4);
+            } else if ((Instr & MASK8) == SYSCALL_INSTR) {
+                //advance_pc (4);
+            } else if ((Instr & MASK8) == XOR_INSTR) {
+                //$d = $s ^ $t; advance_pc (4);
+            } else if ((Instr & MASK2) == XORI_INSTR) {
+                //$t = $s ^ imm; advance_pc (4);
+            }
         }
-
-
     }
+
 
     //Using this to test what is inside the brackets.
     //If less than 64, we have a number, if More than 64 we have a letter. (ASCII Table)
@@ -212,6 +289,7 @@ public class MIPS {
                                 GEN_REG[register - 1] = (int) temporary;
                                 if (fulldebug) {
                                     System.out.println("Register " + register + " set to : " + temporary);
+
                                 }
                                 special = false;
                             }
@@ -232,7 +310,6 @@ public class MIPS {
             System.exit(0);
         }
     }
-
 
 
 }
