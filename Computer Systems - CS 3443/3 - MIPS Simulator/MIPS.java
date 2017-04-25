@@ -450,7 +450,7 @@ public class MIPS {
                             if (fulldebug) {
                                 System.out.println("Stripped instr token:" + token);
                             }
-                            MAIN_MEM[loc / 4 + (dataNumber * 4)] = parseHexString(token);
+                            MAIN_MEM[loc / 4 + (dataNumber)] = parseHexString(token);
                             if (fulldebug) {
                                 System.out.println("Main memory " + loc / 4 + "(" + loc + "/4) with offset of: " + (dataNumber * 4) + " was set to " + "0x" + token + " (value of: " + Long.toBinaryString(parseHexString(token)) + ")");
                                 System.out.println("Padded Binary String: " + padBinaryString(Long.toBinaryString(MAIN_MEM[loc / 4])));
