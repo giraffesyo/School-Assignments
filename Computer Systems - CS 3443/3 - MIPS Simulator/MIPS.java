@@ -94,7 +94,8 @@ public class MIPS {
             int destination = (Instr >> 11) & 0b11111;
             int shift = (Instr >> 6) & 0b11111;
             int immediate = Instr & 0xFFFF;
-
+            // PC, Current Instruction in Hex, the registers, have ways to write command to get values from main memory
+            
 
             if ((Instr & MASK1) == ADD_INSTR) {
                 //$d = $s + $t; advance_pc (4);
@@ -308,14 +309,21 @@ public class MIPS {
                 } else if (GEN_REG[2] == 4) // Print String (null-terminated)
                 {
                     //String is stored in Main memory at the address stored in $a0 (Register 4)
-                    char current = (char) MAIN_MEM[GEN_REG[4]];
-                    System.out.print(current);
-                    int i = 0;
-                    while (current != '\n') {
-                        i++;
-                        current = (char) (MAIN_MEM[GEN_REG[4]] + i);
-                        System.out.print(current);
 
+                    int address = GEN_REG[4];
+                    while (true) {
+                        //get character out of int array
+                        //check if its \0, if \0 break;
+                        int temp = (int)MAIN_MEM[address/4];
+                        //System.out.println("Next address: " + (int)MAIN_MEM[address/4+1]);
+                        //System.out.printf("Temp Hex: %x%n", temp);
+                        temp >>= (address % 4) * 8;
+                        temp &= 0xFF;
+                        //System.out.println("Temp before break: " + temp);
+                        if (temp == '\0')
+                            break;
+                        address++;
+                        System.out.print((char)temp);
                     }
                 } else if (GEN_REG[2] == 11) //Print Character
                 {
