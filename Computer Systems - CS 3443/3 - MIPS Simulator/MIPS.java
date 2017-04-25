@@ -62,7 +62,7 @@ public class MIPS {
     private final static int SRLV_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_0110;
     private final static int SUB_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0010;
     private final static int SUBU_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0011;
-    private final static int SW_ISNTR = 0b1010_1100_0000_0000_0000_0000_0000_0000;
+    private final static int SW_INSTR = 0b1010_1100_0000_0000_0000_0000_0000_0000;
     private final static int SYSCALL_INSTR = 0b0000_0000_0000_0000_0000_0000_0000_1100;
     private final static int XOR_INSTR = 0b0000_0000_0000_0000_0000_0000_0010_0110;
     private final static int XORI_INSTR = 0b0011_1000_0000_0000_0000_0000_0000_0000;
