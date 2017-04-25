@@ -302,7 +302,7 @@ public class MIPS {
                 advance_pc(offset);
             } else if ((Instr & MASK8) == SYSCALL_INSTR) {
                 //advance_pc (4);
-                if (GEN_REG[2] == 4) // Print integer
+                if (GEN_REG[2] == 1) // Print integer
                 {
                     System.out.print(GEN_REG[4]);
                 } else if (GEN_REG[2] == 4) // Print String (null-terminated)
