@@ -81,93 +81,242 @@ public class MIPS {
         //String inputFileName = args[0];
         String inputFileName = "input.txt"; //hardcoded for testing purposes
         parseInputFile(inputFileName);
+        final int offset = 4;
 
-        long Instr = MAIN_MEM[SP_REG[PC_addr] / 4];
         while (true) {
+            int Instr = (int) MAIN_MEM[SP_REG[PC_addr] / 4];
+            int opcode = (Instr >> 26) & 0b111111;
+            int source = (Instr >> 21) & 0b11111;
+            int target = (Instr >> 16) & 0b11111;
+            int destination = (Instr >> 11) & 0b11111;
+            int shift = (Instr >> 6) & 0b11111;
+            int funct = Instr & 0b111111;
+            int immediate = Instr & 0xFFFF;
+
+
             if ((Instr & MASK1) == ADD_INSTR) {
                 //$d = $s + $t; advance_pc (4);
+                GEN_REG[destination] = GEN_REG[source] + GEN_REG[target];
+                advance_pc(offset);
             } else if ((Instr & MASK2) == ADDI_INSTR) {
                 //$t = $s + imm; advance_pc (4);
+                //TODO: Make sign extended
+                GEN_REG[target] = GEN_REG[source] + immediate;
+                advance_pc(offset);
             } else if ((Instr & MASK2) == ADDIU_INSTR) {
                 //$t = $s + imm; advance_pc (4);
+                //No difference between ADDI
+                //TODO: Make sign extended
+                //TODO: Unsigned
+                GEN_REG[target] = GEN_REG[source] + immediate;
+                advance_pc(offset);
             } else if ((Instr & MASK1) == ADDU_INSTR) {
                 //$d = $s + $t; advance_pc (4);
+                //same as ADD instruction
+                //TODO: Unsigned
+                GEN_REG[destination] = GEN_REG[source] + GEN_REG[target];
+                advance_pc(offset);
             } else if ((Instr & MASK1) == AND_INSTR) {
                 //$d = $s & $t; advance_pc (4);
+                GEN_REG[destination] = GEN_REG[source] & GEN_REG[target];
+                advance_pc(offset);
             } else if ((Instr & MASK2) == ANDI_INSTR) {
                 //$t = $s & imm; advance_pc (4);
+                GEN_REG[target] = GEN_REG[source] & immediate;
+                advance_pc(offset);
             } else if ((Instr & MASK2) == BEQ_INSTR) {
                 //if $s == $t advance_pc (offset << 2)); else advance_pc (4);
+                if (GEN_REG[source] == GEN_REG[target])
+                    advance_pc(offset << 2);
+                else advance_pc(offset);
             } else if ((Instr & MASK3) == BGEZ_INSTR) {
                 //if $s >= 0 advance_pc (offset << 2)); else advance_pc (4);
+                if (GEN_REG[source] >= 0)
+                    advance_pc(offset << 2);
+                else
+                    advance_pc(offset);
             } else if ((Instr & MASK3) == BGEZAL_INSTR) {
                 //if $s >= 0 $31 = PC + 8 (or nPC + 4); advance_pc (offset << 2)); else advance_pc (4);
+                if (GEN_REG[source] >= 0) {
+                    GEN_REG[31] = SP_REG[PC_addr] + 8;
+                    advance_pc(offset << 2);
+                } else
+                    advance_pc(offset);
             } else if ((Instr & MASK3) == BGTZ_INSTR) {
                 //if $s > 0 advance_pc (offset << 2)); else advance_pc (4);
+                if (GEN_REG[source] > 0)
+                    advance_pc(offset << 2);
+                else
+                    advance_pc(offset);
             } else if ((Instr & MASK3) == BLEZ_INSTR) {
                 //if $s <= 0 advance_pc (offset << 2)); else advance_pc (4);
+                if (GEN_REG[source] <= 0)
+                    advance_pc(offset << 2);
+                else
+                    advance_pc(offset);
             } else if ((Instr & MASK3) == BLTZ_INSTR) {
                 //if $s < 0 advance_pc (offset << 2)); else advance_pc (4);
+                if (GEN_REG[source] < 0)
+                    advance_pc(offset << 2);
+                else
+                    advance_pc(offset);
             } else if ((Instr & MASK3) == BLTZAL_INSTR) {
                 //if $s < 0 $31 = PC + 8 (or nPC + 4); advance_pc (offset << 2)); else advance_pc (4);
+                if (GEN_REG[source] < 0) {
+                    GEN_REG[31] = SP_REG[PC_addr] + 8;
+                    advance_pc(offset << 2);
+                } else
+                    advance_pc(offset);
+
             } else if ((Instr & MASK2) == BNE_INSTR) {
                 //if $s != $t advance_pc (offset << 2)); else advance_pc (4);
+                if (GEN_REG[source] != GEN_REG[target])
+                    advance_pc(offset << 2);
+                else
+                    advance_pc(offset);
             } else if ((Instr & MASK4) == DIV_INSTR) {
                 //$LO = $s / $t; $HI = $s % $t; advance_pc (4);
+                SP_REG[LO_addr] = GEN_REG[source] / GEN_REG[target];
+                SP_REG[HI_addr] = GEN_REG[source] % GEN_REG[target];
+                advance_pc(offset);
             } else if ((Instr & MASK4) == MULT_INSTR) {
                 //$LO = $s * $t; advance_pc (4);
+                SP_REG[LO_addr] = GEN_REG[source] * GEN_REG[target];
+                advance_pc(offset);
             } else if ((Instr & MASK2) == J_INSTR) {
                 //PC = nPC; nPC = (PC & 0xf0000000) | (target << 2);
+                SP_REG[PC_addr] = SP_REG[nPC_addr];
+                SP_REG[nPC_addr] = (SP_REG[PC_addr] & 0xf0000000) | (target << 2);
             } else if ((Instr & MASK2) == JAL_INSTR) {
                 //$31 = PC + 8 (or nPC + 4); PC = nPC; nPC = (PC & 0xf0000000) | (target << 2);
+                GEN_REG[31] = SP_REG[PC_addr] + 8;
+                SP_REG[PC_addr] = SP_REG[nPC_addr];
+                SP_REG[nPC_addr] = (SP_REG[PC_addr] & 0xf0000000) | (target << 2);
             } else if ((Instr & MASK5) == JR_INSTR) {
                 //PC = nPC; nPC = $s;
+                SP_REG[PC_addr] = SP_REG[nPC_addr];
+                SP_REG[nPC_addr] = GEN_REG[source];
             } else if ((Instr & MASK2) == LB_INSTR) {
                 //$t = MEM[$s + offset]; advance_pc (4);
+                GEN_REG[target] = (int) MAIN_MEM[source + offset];
+                advance_pc(offset);
             } else if ((Instr & MASK2) == LUI_INSTR) {
                 //$t = (imm << 16); advance_pc (4);
+                GEN_REG[target] = (immediate << 16);
+                advance_pc(offset);
             } else if ((Instr & MASK2) == LW_INSTR) {
                 //$t = MEM[$s + offset]; advance_pc (4);
+                GEN_REG[target] = (int) MAIN_MEM[source + offset];
+                advance_pc(offset);
             } else if ((Instr & MASK6) == MFHI_INSTR) {
                 //$d = $HI; advance_pc (4);
+                GEN_REG[destination] = SP_REG[HI_addr];
+                advance_pc(offset);
             } else if ((Instr & MASK6) == MFLO_INSTR) {
                 //$d = $LO; advance_pc (4);
+                GEN_REG[destination] = SP_REG[LO_addr];
+                advance_pc(offset);
             } else if ((Instr & MASK1) == OR_INSTR) {
                 //$d = $s | $t; advance_pc (4);
+                GEN_REG[destination] = GEN_REG[source] | GEN_REG[target];
+                advance_pc(offset);
             } else if ((Instr & MASK2) == ORI_INSTR) {
                 //$t = $s | imm; advance_pc (4);
+                GEN_REG[target] = GEN_REG[source] | immediate;
+                advance_pc(offset);
             } else if ((Instr & MASK2) == SB_INSTR) {
                 //MEM[$s + offset] = (0xff & $t); advance_pc (4);
+                MAIN_MEM[source + offset] = (0xff & GEN_REG[target]);
+                advance_pc(offset);
             } else if ((Instr & MASK8) == SLL_INSTR) {
                 //$d = $t << h; advance_pc (4);
+                GEN_REG[destination] = GEN_REG[target] << shift;
+                advance_pc(offset);
             } else if ((Instr & MASK8) == SLLV_INSTR) {
                 //$d = $t << $s; advance_pc (4);
+                GEN_REG[destination] = GEN_REG[target] << GEN_REG[source];
+                advance_pc(offset);
             } else if ((Instr & MASK1) == SLT_INSTR) {
                 //if $s < $t $d = 1; advance_pc (4); else $d = 0; advance_pc (4);
+                if (GEN_REG[source] < GEN_REG[target]) {
+                    GEN_REG[destination] = 1;
+                    advance_pc(offset);
+                } else {
+                    GEN_REG[destination] = 0;
+                    advance_pc(offset);
+                }
             } else if ((Instr & MASK2) == SLTI_INSTR) {
                 //if $s < imm $t = 1; advance_pc (4); else $t = 0; advance_pc (4);
+                if(GEN_REG[source] < immediate)
+                {
+                    GEN_REG[target] = 1;
+                    advance_pc(offset);
+                }
+                else
+                {
+                    GEN_REG[target] = 0;
+                    advance_pc(offset);
+                }
             } else if ((Instr & MASK2) == SLTIU_INSTR) {
                 //if $s < imm $t = 1; advance_pc (4); else $t = 0; advance_pc (4);
+                //TODO: Should be Unsigned immediate
+                if (GEN_REG[source] < immediate)
+                {
+                    GEN_REG[target] = 1;
+                    advance_pc(offset);
+                }
+                else
+                {
+                    GEN_REG[target] = 0;
+                    advance_pc(offset);
+                }
             } else if ((Instr & MASK1) == SLTU_INSTR) {
                 //if $s < $t $d = 1; advance_pc (4); else $d = 0; advance_pc (4);
+                //TODO: Unsigned (duplicate of SLT)
+                if ( GEN_REG[source] < GEN_REG[target]) {
+                    GEN_REG[destination] = 1;
+                    advance_pc(offset);
+                }
+                else
+                {
+                    GEN_REG[destination] = 0;
+                    advance_pc(offset);
+                }
             } else if ((Instr & MASK8) == SRA_INSTR) {
                 //$d = $t >> h; advance_pc (4);
+                GEN_REG[destination] = GEN_REG[target] >> shift;
+                advance_pc(offset);
             } else if ((Instr & MASK8) == SRL_INSTR) {
                 //$d = $t >> h; advance_pc (4);
+                GEN_REG[destination] = GEN_REG[target] >> shift;
+                advance_pc(offset);
             } else if ((Instr & MASK1) == SRLV_INSTR) {
                 //$d = $t >> $s; advance_pc (4);
+                GEN_REG[destination] = GEN_REG[target] >> GEN_REG[source];
+                advance_pc(offset);
             } else if ((Instr & MASK1) == SUB_INSTR) {
                 //$d = $s - $t; advance_pc (4);
+                GEN_REG[destination] = GEN_REG[source] - GEN_REG[target];
+                advance_pc(offset);
             } else if ((Instr & MASK1) == SUBU_INSTR) {
                 //$d = $s - $t; advance_pc (4);
+                GEN_REG[destination] = GEN_REG[source] - GEN_REG[target];
+                advance_pc(offset);
             } else if ((Instr & MASK2) == SW_INSTR) {
                 //MEM[$s + offset] = $t; advance_pc (4);
+                MAIN_MEM[source + offset] = GEN_REG[target];
+                advance_pc(offset);
             } else if ((Instr & MASK8) == SYSCALL_INSTR) {
                 //advance_pc (4);
+                //TODO: Check what kind of system call to do?
+                advance_pc(offset);
             } else if ((Instr & MASK8) == XOR_INSTR) {
                 //$d = $s ^ $t; advance_pc (4);
+                GEN_REG[destination] = GEN_REG[source] ^ GEN_REG[target];
+                advance_pc(offset);
             } else if ((Instr & MASK2) == XORI_INSTR) {
                 //$t = $s ^ imm; advance_pc (4);
+                GEN_REG[target] = GEN_REG[source] ^ immediate;
             }
         }
     }
