@@ -110,12 +110,12 @@ public class MIPS {
                         // ask for register number
                         System.out.print("Register: ");
                         int readInt = userDebug.nextInt();
-                        System.out.println("Register " + readInt + " contains: " + GEN_REG[readInt]);
+                        System.out.println("Register " + readInt + " contains: " + String.format("0x%08X",GEN_REG[readInt]));
                     } else if ( readString.toLowerCase().equals("memory")){
                         // ask for memory address
                         System.out.print("Memory address: ");
                         int readInt = userDebug.nextInt();
-                        System.out.println("Address " + readInt + " contains: " + MAIN_MEM[readInt]);
+                        System.out.println("Address " + readInt + " contains: " + String.format("0x%08X", MAIN_MEM[readInt]));
                     }
                 }
             }
