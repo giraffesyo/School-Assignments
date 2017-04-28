@@ -96,7 +96,7 @@ public class MIPS {
             int immediate = Instr & 0xFFFF;
             // PC, Current Instruction in Hex, the registers, have ways to write command to get values from main memory
             if (debug) {
-                System.out.println("PC: " + SP_REG[PC_addr] + '\t' + "Current Instr: " + Instr);
+                System.out.println("PC: " + SP_REG[PC_addr] + '\t' + "Current Instr: " + String.format("0x%08X", Instr));
 
                 while (true) {
                     System.out.println();
