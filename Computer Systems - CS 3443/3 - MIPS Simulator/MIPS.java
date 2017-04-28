@@ -16,6 +16,7 @@ public class MIPS {
     private static int GEN_REG[] = new int[32]; //32 general purpose registers
     private static int SP_REG[] = new int[4]; // 4 special purpose registers: PC, nPC, LO, and HI
     private static final boolean parseDebug = false;
+    private static final boolean debug = true;
 
     //So we don't have to remember which register is which
     private final static int PC_addr = 0;
@@ -85,6 +86,7 @@ public class MIPS {
         parseInputFile(inputFileName);
         final int offset = 4;
 
+
         while (true) {
             int Instr = (int) MAIN_MEM[SP_REG[PC_addr] / 4];
             int source = (Instr >> 21) & 0b11111;
@@ -93,7 +95,30 @@ public class MIPS {
             int shift = (Instr >> 6) & 0b11111;
             int immediate = Instr & 0xFFFF;
             // PC, Current Instruction in Hex, the registers, have ways to write command to get values from main memory
+            if (debug) {
+                System.out.println("PC: " + SP_REG[PC_addr] + '\t' + "Current Instr: " + Instr);
 
+                while (true) {
+                    System.out.println();
+                    System.out.println("Enter to continue, else try: register, memory");
+                    Scanner userDebug = new Scanner(System.in);
+                    String readString = userDebug.nextLine();
+                    if (readString.isEmpty()) {
+                        System.out.println("Continuing...");
+                        break;
+                    } else if (readString.toLowerCase().equals("register")){
+                        // ask for register number
+                        System.out.print("Register: ");
+                        int readInt = userDebug.nextInt();
+                        System.out.println("Register " + readInt + " contains: " + GEN_REG[readInt]);
+                    } else if ( readString.toLowerCase().equals("memory")){
+                        // ask for memory address
+                        System.out.print("Memory address: ");
+                        int readInt = userDebug.nextInt();
+                        System.out.println("Address " + readInt + " contains: " + MAIN_MEM[readInt]);
+                    }
+                }
+            }
 
             if ((Instr & MASK1) == ADD_INSTR) {
                 //$d = $s + $t; advance_pc (4);
@@ -312,7 +337,7 @@ public class MIPS {
                     while (true) {
                         //get character out of int array
                         //check if its \0, if \0 break;
-                        int temp = (int)MAIN_MEM[address/4];
+                        int temp = (int) MAIN_MEM[address / 4];
                         //System.out.println("Next address: " + (int)MAIN_MEM[address/4+1]);
                         //System.out.printf("Temp Hex: %x%n", temp);
                         temp >>= (address % 4) * 8;
@@ -321,7 +346,7 @@ public class MIPS {
                         if (temp == '\0')
                             break;
                         address++;
-                        System.out.print((char)temp);
+                        System.out.print((char) temp);
                     }
                 } else if (GEN_REG[2] == 11) //Print Character
                 {
