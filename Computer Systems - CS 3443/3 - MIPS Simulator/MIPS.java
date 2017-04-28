@@ -1,7 +1,5 @@
 // Simulates MIPS
 
-import com.sun.tools.javac.jvm.Gen;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -17,7 +15,7 @@ public class MIPS {
     private static long MAIN_MEM[] = new long[MEMAMT]; //integer arrays are automatically instantiated to 0
     private static int GEN_REG[] = new int[32]; //32 general purpose registers
     private static int SP_REG[] = new int[4]; // 4 special purpose registers: PC, nPC, LO, and HI
-    private static final boolean fulldebug = false;
+    private static final boolean parseDebug = false;
 
     //So we don't have to remember which register is which
     private final static int PC_addr = 0;
@@ -95,7 +93,7 @@ public class MIPS {
             int shift = (Instr >> 6) & 0b11111;
             int immediate = Instr & 0xFFFF;
             // PC, Current Instruction in Hex, the registers, have ways to write command to get values from main memory
-            
+
 
             if ((Instr & MASK1) == ADD_INSTR) {
                 //$d = $s + $t; advance_pc (4);
@@ -406,7 +404,7 @@ public class MIPS {
                 int dataNumber = 0;
                 for (String token : line) {
                     if (token.equals("")) {
-                        if (fulldebug) {
+                        if (parseDebug) {
                             System.out.println();
                         }
                         continue;
@@ -414,7 +412,7 @@ public class MIPS {
 
                     if (token.startsWith("[")) {
                         token = token.substring(1, token.length() - 1); //strip brackets
-                        if (fulldebug) {
+                        if (parseDebug) {
                             System.out.println("token: " + token);
                         }
                         if (beginsAlphabetically(token)) {
@@ -422,12 +420,12 @@ public class MIPS {
                             if (token.charAt(0) == 'R') {
                                 token = token.substring(1, token.length());
                                 register = Integer.parseInt(token);
-                                if (fulldebug) {
+                                if (parseDebug) {
                                     System.out.println("Found Register: " + register);
                                 }
                             } else {
                                 PC = true;
-                                if (fulldebug) {
+                                if (parseDebug) {
                                     System.out.println("Found PC");
                                 }
                             }
@@ -438,7 +436,7 @@ public class MIPS {
                         } else { //Line doesn't start with PC or R
                             token = token.substring(2, token.length());
                             loc = (int) parseHexString(token); // Converted to decimal int from string
-                            if (fulldebug) {
+                            if (parseDebug) {
 
                                 System.out.println("Stripped token: " + token);
                                 System.out.println("Processed token: " + loc);
@@ -449,17 +447,17 @@ public class MIPS {
                     //information associated with address
 
                     else if (token.startsWith("0x") && !StartOfLine) {
-                        if (fulldebug) {
+                        if (parseDebug) {
                             System.out.println("instr: " + token + " Associated with loc: " + loc);
                         }
                         //Store data in loc/4 to location in memory
                         if (!special) {
                             token = token.substring(2, token.length());
-                            if (fulldebug) {
+                            if (parseDebug) {
                                 System.out.println("Stripped instr token:" + token);
                             }
                             MAIN_MEM[loc / 4 + (dataNumber)] = parseHexString(token);
-                            if (fulldebug) {
+                            if (parseDebug) {
                                 System.out.println("Main memory " + loc / 4 + "(" + loc + "/4) with offset of: " + (dataNumber * 4) + " was set to " + "0x" + token + " (value of: " + Long.toBinaryString(parseHexString(token)) + ")");
                                 System.out.println("Padded Binary String: " + padBinaryString(Long.toBinaryString(MAIN_MEM[loc / 4])));
                                 //System.out.println("Original length" + Long.toBinaryString(parseHexString(token)).length());
@@ -472,7 +470,7 @@ public class MIPS {
                                 token = token.substring(2, token.length());
                                 long temporary = parseHexString(token);
                                 SP_REG[PC_addr] = (int) parseHexString(token);
-                                if (fulldebug) {
+                                if (parseDebug) {
                                     System.out.println("PC was set to: " + temporary);
                                 }
                                 special = false;
@@ -482,7 +480,7 @@ public class MIPS {
                                 token = token.substring(2, token.length());
                                 long temporary = parseHexString(token);
                                 GEN_REG[register - 1] = (int) temporary;
-                                if (fulldebug) {
+                                if (parseDebug) {
                                     System.out.println("Register " + register + " set to : " + temporary);
 
                                 }
@@ -494,8 +492,8 @@ public class MIPS {
                         break;
                     }
                 }
-                //blank line to separate lines of fulldebug
-                if (fulldebug) {
+                //blank line to separate lines of parseDebug
+                if (parseDebug) {
                     System.out.println();
                 }
             }
