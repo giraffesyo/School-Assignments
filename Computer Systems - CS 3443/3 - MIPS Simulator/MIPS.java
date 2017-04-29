@@ -96,7 +96,8 @@ public class MIPS {
             int immediate = Instr & 0xFFFF;
             // PC, Current Instruction in Hex, the registers, have ways to write command to get values from main memory
             if (debug) {
-                System.out.println("PC: " + SP_REG[PC_addr] + '\t' + "Current Instr: " + String.format("0x%08X", Instr));
+                System.out.println("PC: " + SP_REG[PC_addr] + '\t' + "Current Instr: " + String.format("0x%08X", Instr) +
+                 " Current source: " + source + " Current target: " + target);
 
                 while (true) {
                     System.out.println();
@@ -215,9 +216,9 @@ public class MIPS {
                 SP_REG[nPC_addr] = (SP_REG[PC_addr] & 0xf0000000) | (target << 2);
             } else if ((Instr & MASK2) == JAL_INSTR) {
                 //$31 = PC + 8 (or nPC + 4); PC = nPC; nPC = (PC & 0xf0000000) | (target << 2);
-                GEN_REG[31] = SP_REG[PC_addr] + 8;
-                SP_REG[PC_addr] = SP_REG[nPC_addr];
-                SP_REG[nPC_addr] = (SP_REG[PC_addr] & 0xf0000000) | (target << 2);
+                GEN_REG[31] = SP_REG[PC_addr] + 8; //PC+8
+                SP_REG[PC_addr] = SP_REG[nPC_addr]; // PC = nPC
+                SP_REG[nPC_addr] = (SP_REG[PC_addr] & 0xf0000000) | (target << 2); // nPC = (PC & 0xf0000000) | (target <<2)
             } else if ((Instr & MASK5) == JR_INSTR) {
                 //PC = nPC; nPC = $s;
                 SP_REG[PC_addr] = SP_REG[nPC_addr];
