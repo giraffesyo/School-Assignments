@@ -31,7 +31,7 @@ class Robot:
 		self.maxAngularZ = 1.0
 
 		self.bearingGoal = 320
-		self.bearingP = .003125 #1/320
+		self.bearingP = .004125 #1/320
 		self.bearingI =  0 #.000001
 		self.bearingD = 0 #.25
 
@@ -54,8 +54,8 @@ class Robot:
 		self.thetaPID = PID(self.thetaGoal, self.thetaP, self.thetaI, self.thetaD)
 
 		self.intermediateGoal = 0
-		self.intermediateP = .1
-		self.intermediateI = 0
+		self.intermediateP = -.005
+		self.intermediateI = -.0001
 		self.intermediateD = 0
 		self.intermediatePID = PID(self.intermediateGoal, self.intermediateP, self.intermediateI, self.intermediateD)
 
@@ -91,7 +91,7 @@ class Robot:
 				self.lineUp()
 			elif self.state == "kick":  # Drive forward at 1 m/s for 1.5 seconds
 				self.kick()
-			print "We're in state: " + self.state, " Distance is: ", self.ballDistance, " Bearing is", self.ballBearing
+			print "We're in state: " + self.state
 			self.limitSpeeds() # makes sure we don't go over our max speeds
 			self.Twistpub.publish(self.twist) 
 			rate.sleep()
@@ -116,37 +116,62 @@ class Robot:
 				self.twist.linear.x = self.distancePID.get_output(self.ballDistance)
 			else: #we're within .25 of the distance goal and 10 of the bearing goal. 
 				# we need to calculate where we want to be to kick the ball
-				self.kickPositionX = self.x
-				self.kickPositionY = self.y + 3*(math.sqrt(2)) #(6(sqrt(2)))/2 this is double the distance from the intermediate goal
-				goalBearing = self.theta - math.pi/4
-				goalDistance = self.y + (3*(math.sqrt(2)))/2
+				self.kickPositionX = self.x + (2 * self.ballDistance * math.cos(self.theta))
+				self.kickPositionY = self.y + (2 * self.ballDistance * math.sin(self.theta)) #(6(sqrt(2)))/2 this is double the distance from the intermediate goal
 				
-				self.intermediateX = self.x - ( (3*(math.sqrt(2))/2) * math.sin(goalBearing) )  
-				self.intermediateY = self.y + self.ballDistance # right side of triangle
+				goalBearing = self.theta + math.pi/4
+				#goalDistance = self.y + (3*(math.sqrt(2)))/2
+				
+				self.intermediateX = self.x + ( self.ballDistance * math.sqrt(2) * math.cos(goalBearing)) 
+				self.intermediateY = self.y + (self.ballDistance * math.sqrt(2) * math.sin(goalBearing)) #right side of triangle 
 				self.state = "navigate to intermediate"
+		print "Ball Distance is: ", self.ballDistance, " Bearing is", self.ballBearing
 
 	def navigateIntermediate(self):
-		print "self.theta: ", self.theta, " self.x: ", self.x, " self.y: ", self.y, " intermediateX: ", self.intermediateX, " intermediateY: ", self.intermediateY  
+		#print "self.theta: ", self.theta, " self.x: ", self.x, " self.y: ", self.y, " intermediateX: ", self.intermediateX, " intermediateY: ", self.intermediateY  
 		intermediateBearing, intermediateDistance = get_vector(self.x, self.y, self.intermediateX, self.intermediateY)
 		print "intermediateBearing: ", intermediateBearing, " intermediateDistance: ", intermediateDistance
-		if ( abs(intermediateDistance) < .2): #we're within .2 meters of our goal, lets try to get in position to kick
-			self.state = "navigateKick"
+		print "Current position: (", self.x, ",", self.y, ") Goal position: (", self.intermediateX, ",", self.intermediateY, ")"
+				
+		if (intermediateBearing > math.pi):
+			intermediateBearing = intermediateBearing - 2*(math.pi)
+		elif (intermediateBearing < -math.pi):
+			intermediateBearing = intermediateBearing + 2*(math.pi)	
+		if ( abs(intermediateDistance) < .4): #we're within .2 meters of our goal, lets try to get in position to kick
+			self.state = "navigate to kick"
 		else:
 			self.twist.linear.x = self.intermediatePID.get_output(intermediateDistance)
-			self.twist.angular.z = self.thetaPID.get_output(intermediateBearing)
-			
+			self.twist.angular.z = self.thetaPID.get_output(self.theta - intermediateBearing)
 		#we're going to change to navigateKick
-		return None
+
 
 	def navigateKick(self):
-		#some more code here ok
-		#we're going to change to kick
-		#self.lastChange = rospy.Time.now() # record how long we're in kick state
-		return None
+		kickBearing, kickDistance = get_vector(self.x, self.y, self.kickPositionX, self.kickPositionY)
+		if (kickBearing > math.pi):
+			kickBearing = kickBearing - 2*(math.pi)
+		elif (kickBearing < -math.pi):
+			kickBearing = kickBearing + 2*(math.pi)	
+		print "Current position: (", self.x, ",", self.y, ") Goal position: (", self.kickPositionX, ",", self.kickPositionY, ")"
+		 
+		self.twist.angular.z = self.thetaPID.get_output(self.theta - kickBearing)
+		self.twist.angular.x = self.intermediatePID.get_output(kickDistance)
+		#we're going to change to lineUp
+		if (abs(kickDistance) < .4):
+			self.state = "line up"
 
 	def lineUp(self):
-		#ok final code for real here ok
-		return None
+		self.twist.linear.x = 0
+		#self.twist.angular.z = self.bearingPID.get_output(self.ballBearing)
+		if self.ballBearing == -1 or self.ballDistance == -1:
+			self.twist.linear.x = 0
+			self.twist.angular.z = self.maxAngularZ
+		else:
+			if (abs(self.ballBearing - self.bearingGoal) > self.bearingTolerance):			
+				self.twist.angular.z = self.bearingPID.get_output(self.ballBearing)
+				self.twist.linear.x = 0			
+			else:				
+				self.lastChange = rospy.Time.now() # record how long we're in kick state		
+				self.state = "kick"
 
 	def kick(self):
 		self.twist.linear.x = self.maxLinearX
