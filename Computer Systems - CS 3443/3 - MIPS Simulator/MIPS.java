@@ -388,6 +388,7 @@ public class MIPS {
                 //$t = $s ^ imm; advance_pc (4);
                 GEN_REG[target] = GEN_REG[source] ^ immediate;
             }
+            GEN_REG[0] = 0; // register 0 should always be zero.
         }
     }
 
