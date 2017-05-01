@@ -101,18 +101,19 @@ public class MIPS {
 
                 while (true) {
                     System.out.println();
-                    System.out.println("Enter to continue, else try: register, memory");
+                    System.out.println("Enter to continue, else try: registers, memory");
                     Scanner userDebug = new Scanner(System.in);
                     String readString = userDebug.nextLine();
                     if (readString.isEmpty()) {
                         System.out.println("Continuing...");
                         break;
-                    } else if (readString.toLowerCase().equals("register")){
-                        // ask for register number
-                        System.out.print("Register: ");
-                        int readInt = userDebug.nextInt();
-                        System.out.println("Register " + readInt + " contains: " + String.format("0x%08X",GEN_REG[readInt]));
-                    } else if ( readString.toLowerCase().equals("memory")){
+                    } else if (readString.toLowerCase().equals("registers")) {
+                        // dump all registers
+                        System.out.println("Registers: ");
+                        for (int i = 0; i < 32; i++) {
+                            System.out.println("Register " + i + ": " + String.format("0x%08X", GEN_REG[i]));
+                        }
+                    } else if (readString.toLowerCase().equals("memory")) {
                         // ask for memory address
                         System.out.print("Memory address: ");
                         int readInt = userDebug.nextInt();
