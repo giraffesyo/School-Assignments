@@ -225,7 +225,7 @@ public class MIPS {
                 SP_REG[nPC_addr] = GEN_REG[source];
             } else if ((Instr & MASK2) == LB_INSTR) {
                 //$t = MEM[$s + offset]; advance_pc (4);
-                GEN_REG[target] = (int) MAIN_MEM[source + offset];
+                GEN_REG[target] = (int) MAIN_MEM[source + immediate];
                 advance_pc(offset);
             } else if ((Instr & MASK2) == LUI_INSTR) {
                 //$t = (imm << 16); advance_pc (4);
@@ -233,7 +233,7 @@ public class MIPS {
                 advance_pc(offset);
             } else if ((Instr & MASK2) == LW_INSTR) {
                 //$t = MEM[$s + offset]; advance_pc (4);
-                GEN_REG[target] = (int) MAIN_MEM[source + offset];
+                GEN_REG[target] = (int) MAIN_MEM[source + immediate];
                 advance_pc(offset);
             } else if ((Instr & MASK6) == MFHI_INSTR) {
                 //$d = $HI; advance_pc (4);
