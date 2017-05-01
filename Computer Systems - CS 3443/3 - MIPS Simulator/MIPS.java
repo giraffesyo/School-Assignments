@@ -506,7 +506,7 @@ public class MIPS {
                             {
                                 token = token.substring(2, token.length());
                                 long temporary = parseHexString(token);
-                                GEN_REG[register - 1] = (int) temporary;
+                                GEN_REG[register] = (int) temporary;
                                 if (parseDebug) {
                                     System.out.println("Register " + register + " set to : " + temporary);
 
