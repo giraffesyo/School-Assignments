@@ -16,7 +16,7 @@ public class MIPS {
     private static int GEN_REG[] = new int[32]; //32 general purpose registers
     private static int SP_REG[] = new int[4]; // 4 special purpose registers: PC, nPC, LO, and HI
     private static final boolean parseDebug = false;
-    private static final boolean debug = true;
+    private static final boolean debug = false;
 
     //So we don't have to remember which register is which
     private final static int PC_addr = 0;
@@ -81,8 +81,8 @@ public class MIPS {
 
 
     public static void main(String[] args) {
-        //String inputFileName = args[0];
-        String inputFileName = "input.txt"; //hardcoded for testing purposes
+        String inputFileName = args[0];
+        //String inputFileName = "input.txt"; //hardcoded for testing purposes
         parseInputFile(inputFileName);
         final int offset = 4;
 
@@ -94,6 +94,8 @@ public class MIPS {
             int destination = (Instr >> 11) & 0b11111;
             int shift = (Instr >> 6) & 0b11111;
             int immediate = Instr & 0xFFFF;
+            int signExtendedimmedaite = immediate;
+            if( signExtendedimmedaite < 0) signExtendedimmedaite &= 0xFFFFFFFF;
             int jumptarget = Instr & 0b1111_1111_1111_1111_1111_111111;
 
             // PC, Current Instruction in Hex, the registers, have ways to write command to get values from main memory
@@ -130,15 +132,13 @@ public class MIPS {
                 advance_pc(offset);
             } else if ((Instr & MASK2) == ADDI_INSTR) {
                 //$t = $s + imm; advance_pc (4);
-                //TODO: Make sign extended
-                GEN_REG[target] = GEN_REG[source] + immediate;
+                GEN_REG[target] = GEN_REG[source] + signExtendedimmedaite;
                 advance_pc(offset);
             } else if ((Instr & MASK2) == ADDIU_INSTR) {
                 //$t = $s + imm; advance_pc (4);
                 //No difference between ADDI
-                //TODO: Make sign extended
                 //TODO: Unsigned
-                GEN_REG[target] = GEN_REG[source] + immediate;
+                GEN_REG[target] = GEN_REG[source] + signExtendedimmedaite;
                 advance_pc(offset);
             } else if ((Instr & MASK1) == ADDU_INSTR) {
                 //$d = $s + $t; advance_pc (4);
@@ -157,51 +157,51 @@ public class MIPS {
             } else if ((Instr & MASK2) == BEQ_INSTR) {
                 //if $s == $t advance_pc (offset << 2)); else advance_pc (4);
                 if (GEN_REG[source] == GEN_REG[target])
-                    advance_pc(offset << 2);
+                    advance_pc(signExtendedimmedaite << 2); //sign extended immediate
                 else advance_pc(offset);
             } else if ((Instr & MASK3) == BGEZ_INSTR) {
                 //if $s >= 0 advance_pc (offset << 2)); else advance_pc (4);
                 if (GEN_REG[source] >= 0)
-                    advance_pc(offset << 2);
+                    advance_pc(signExtendedimmedaite << 2);
                 else
                     advance_pc(offset);
             } else if ((Instr & MASK3) == BGEZAL_INSTR) {
                 //if $s >= 0 $31 = PC + 8 (or nPC + 4); advance_pc (offset << 2)); else advance_pc (4);
                 if (GEN_REG[source] >= 0) {
                     GEN_REG[31] = SP_REG[PC_addr] + 8;
-                    advance_pc(offset << 2);
+                    advance_pc(signExtendedimmedaite << 2);
                 } else
                     advance_pc(offset);
             } else if ((Instr & MASK3) == BGTZ_INSTR) {
                 //if $s > 0 advance_pc (offset << 2)); else advance_pc (4);
                 if (GEN_REG[source] > 0)
-                    advance_pc(offset << 2);
+                    advance_pc(signExtendedimmedaite << 2);
                 else
                     advance_pc(offset);
             } else if ((Instr & MASK3) == BLEZ_INSTR) {
                 //if $s <= 0 advance_pc (offset << 2)); else advance_pc (4);
                 if (GEN_REG[source] <= 0)
-                    advance_pc(offset << 2);
+                    advance_pc(signExtendedimmedaite << 2);
                 else
                     advance_pc(offset);
             } else if ((Instr & MASK3) == BLTZ_INSTR) {
                 //if $s < 0 advance_pc (offset << 2)); else advance_pc (4);
                 if (GEN_REG[source] < 0)
-                    advance_pc(offset << 2);
+                    advance_pc(signExtendedimmedaite << 2);
                 else
                     advance_pc(offset);
             } else if ((Instr & MASK3) == BLTZAL_INSTR) {
                 //if $s < 0 $31 = PC + 8 (or nPC + 4); advance_pc (offset << 2)); else advance_pc (4);
                 if (GEN_REG[source] < 0) {
                     GEN_REG[31] = SP_REG[PC_addr] + 8;
-                    advance_pc(offset << 2);
+                    advance_pc(signExtendedimmedaite << 2);
                 } else
                     advance_pc(offset);
 
             } else if ((Instr & MASK2) == BNE_INSTR) {
                 //if $s != $t advance_pc (offset << 2)); else advance_pc (4);
                 if (GEN_REG[source] != GEN_REG[target])
-                    advance_pc(offset << 2);
+                    advance_pc(signExtendedimmedaite << 2);
                 else
                     advance_pc(offset);
             } else if ((Instr & MASK4) == DIV_INSTR) {
