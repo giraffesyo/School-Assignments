@@ -62,12 +62,6 @@
 		
 		jal printStars #print bottom stars
 		nop
-		
-		
-	 # run function
-	 # print word
-	 # run function
-	 #exit program
 	 
 	addi $v0, $zero, 10 #indicates we're exiting
 	syscall #exit the program
