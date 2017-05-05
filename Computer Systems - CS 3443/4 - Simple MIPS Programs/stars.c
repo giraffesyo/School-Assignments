@@ -10,7 +10,7 @@ int main() {
     printf("%s", "Michael McQuade\n");
 
     //Get input
-    char string[64];
+    char string[100];
     scanf("%s", string); // no prompt before this input
 
     int length = stringlen(string);
