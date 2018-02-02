@@ -1,4 +1,4 @@
-Numerical Methods
+Numerical Methods  
 Homework 2
 
 - Create a program that finds the high accuracy, forward, backward, and centered derivatives using Matlab. 
