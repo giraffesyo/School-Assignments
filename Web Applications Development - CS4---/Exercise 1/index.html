@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 1</title>
+    <script src="https://fb.me/react-15.1.0.js"></script>
+    <script src="https://fb.me/react-dom-15.1.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+    <style>
+        body {
+            font-family: 'Robotto', sans-serif;
+        }
+
+        .list {
+            background-color: rgb(240, 240, 240);
+            display: inline-block;
+            padding: 20px;
+        }
+
+        .list h1 {
+            color: #333;
+            font-weight: 300;
+            padding-left: 10px;
+        }
+
+        .list ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .list ul li {
+            border: 1px solid #CCC;
+            padding: 15px;
+            background-color: #FEFEFE;
+            min-width: 300px;
+            min-height: 70px;
+            margin-bottom: 10px;
+            box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.10)
+        }
+
+        .list ul li span.name {
+            display: block;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .list ul li span.character {
+            display: block;
+            font-weight: 200;
+            font-size: 16px;
+            padding-top: 5px;
+        }
+
+        .list ul li span.photo {
+            height: 70px;
+            width: 70px;
+            overflow: hidden;
+            display: inline-block;
+            float: left;
+            margin-right: 10px;
+        }
+
+        .list ul li span.photo img {
+            display: inline-block;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    const actors = [
+        {
+            name: "Emilia Clarke",
+            character: "Daenerys Targaryen",
+            photo: "https://images-na.ssl-images-amazon.com/images/M/MV5BNjg3OTg4MDczMl5BMl5BanBnXkFtZTgwODc0NzUwNjE@._V1_UX214_CR0,0,214,317_AL_.jpg"
+        },
+        {
+            name: "Kit Harington",
+            character: "Jon Snow",
+            photo: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTA2NTI0NjYxMTBeQTJeQWpwZ15BbWU3MDIxMjgyNzY@._V1_UX214_CR0,0,214,317_AL_.jpg"
+        },
+        {
+            name: "Peter Dinklage",
+            character: "Tyrion Lannister",
+            photo: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTM1MTI5Mzc0MF5BMl5BanBnXkFtZTYwNzgzOTQz._V1_UY317_CR20,0,214,317_AL_.jpg"
+        }
+    ];
+    
+    const target = document.getElementById("root");
+    
+    const Actor = ({ name, character, photo }) =>
+        <li>
+            <span className='photo'>
+                <img src={photo} />
+            </span>
+            <span className='name'>
+                {name}
+            </span>
+            <span className='character'>
+                {character}
+            </span>
+        </li>
+    
+    const ActorList = ({ actors }) =>
+        <div className='list'>
+            <h1>Game of Thrones</h1>
+            <ul>
+                {actors.map((actor, i) =>
+                    <Actor key={i} {...actor} />
+                )}
+            </ul>
+        </div>
+    
+    ReactDOM.render(<ActorList actors={actors} />, target);
+    </script>
+</body>
+
+</html>
