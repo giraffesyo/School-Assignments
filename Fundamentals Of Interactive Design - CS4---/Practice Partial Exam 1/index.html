@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Fundamentals of Interactive Design - Michael McQuade
+    </title>
+    <link href="./cssreset.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,700" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 200;
+            background-color: #15b0d8;
+        }
+
+        #mainwrapper {
+            width: 960px;
+            position: absolute;
+            left: 10%;
+
+        }
+
+        nav li {
+            font-weight: 700;
+            float: left;
+            text-align: center;
+            width: 25%;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+
+        header img {
+            float: left;
+        }
+
+        .headertext {
+            position: absolute;
+            right: 0;
+            top: 25%;
+            text-align: right;
+        }
+
+        header {
+            color: white;
+            clear:both;
+        }
+
+        header h1 {
+            font-weight: 700;
+            font-size: 3em;
+        }
+
+        header span {
+            font-weight: 200;
+        }
+
+        header a {
+            display: block;
+
+        }
+
+        #bottomnav {
+            background-color: #087ab2;
+            padding-bottom: 25px;
+        }
+
+        #bottomnav li {
+            text-align: center;
+            padding: 25px 0;
+            float: left;
+            width: 25%;
+        }
+
+        #bottomnav li h2 {
+            color: rgba(204, 201, 201, 0.884);
+            font-weight: 200;
+        }
+
+        #bottomnav li img {
+            width: 100%;
+        }
+
+        #bottomnav form  {
+            width: 100%;
+            text-align: center;
+        }
+        
+        #bottomnav form input {
+            margin-left: 30px;
+            width: 20%;
+            padding: 5px 0;
+        }
+        
+        #bottomnav form select {
+            margin: 0px 10px;
+        }
+
+        #bottomnav #enter {
+            padding: 10px 10px;
+            margin-left: 0px;
+            width: 10%;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="mainwrapper">
+        <nav id="topnav">
+            <ul>
+                <li>
+                    HOME
+                </li>
+                <li>
+                    ABOUT
+                </li>
+                <li>
+                    BLOG
+                </li>
+                <li>
+                    CONTACT
+                </li>
+            </ul>
+        </nav>
+        <header>
+            <img src="./imgF/splash.jpg" alt="site header picture" />
+            <div class="headertext">
+                <h1>FDI - 1st Partial</h1>
+                <span>Michael McQuade | A01677104</span>
+                <a href="#.">Learn More</a>
+            </div>
+        </header>
+
+        <div id="bottomnav">
+            <ul>
+                <li>
+                    <h2>COLORS</h2>
+                    <img src="./imgF/blue.jpg" alt="">
+                </li>
+                <li>
+                    <h2>MIX</h2>
+                    <img src="./imgF/mix.jpg" alt="">
+                </li>
+                <li>
+                    <h2>GLOVES</h2>
+                    <img src="./imgF/gloves.jpg" alt="">
+                </li>
+                <li>
+                    <h2>INSPIRE</h2>
+                    <img src="./imgF/inspire.jpg" alt="">
+                </li>
+            </ul>
+            <form>
+                
+                    <input placeholder="name"></input>
+                    <input type="email" placeholder="e-mail"></input>
+                    <select>
+                        <option value="store">STORE</option>
+                        <option value="CLIENT">CLIENT</option>
+                    </select>
+                    <input id="enter" type="submit" value="ENTER"></input>
+
+                
+            </form>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

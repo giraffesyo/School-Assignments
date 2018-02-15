@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>A01677104</title>
+    <meta charset="utf-8" />
+    <link href="./reset.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:500" rel="stylesheet">
+    <style>
+        #outerwrapper {
+            width: 1120px;
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+        }
+
+        #topnav {
+            height: 80px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, .07);
+            margin-top: 5px;
+        }
+
+        #topnav img {
+            position: relative;
+            left: 10%;
+            top: 50%;
+            transform: translateX(-75%) translateY(-50%);
+        }
+
+        #topnav ul {
+            float: right;
+            font-size: 12px;
+            margin-right: 50px;
+            
+        }
+
+        #topnav ul li {
+            float: left;
+            padding-right: 10px;
+            padding-left: 10px;
+            padding-top: 30px;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 500;
+
+
+        }
+
+        .deselected {
+            color: #a0a0a0;
+            transform: translateY(3px);
+        }
+
+        #selected {
+            border-top: 3px solid #F91B24;
+            box-sizing: border-box;
+            color: #292929;
+        }
+
+
+
+        p {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+        }
+
+        #middlecontent {
+            margin-top: 50px;
+        }
+
+        #leftimg {
+            width: 295px;
+            float: left;
+        }
+
+        #leftimg img {
+            width: 100%;
+        }
+
+        #righttext {
+            display: inline;
+            text-align: center;
+        }
+
+        #righttext h6 {
+            font-weight: 500;
+            color: #F91B24;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 11px;
+        }
+
+        #righttext h1 {
+            font-size: 36px;
+            color: #292929;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #righttext p {
+            position: relative;
+            left: 22%;
+            transform: translateX(-25%);
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 15px;
+            color: #696969;
+            width: 600px;
+            display: inline-block;
+        }
+
+        #bottomtext {
+            text-align:center;
+        }
+
+        #bottomtext li {
+            display: inline-block;
+            padding-right: 50px;
+            padding-left: 50px;
+            
+            text-align: center;
+            margin-right: 25px;
+            margin-top: 75px;
+            box-sizing: border-box;
+
+        }
+        
+        #bottomtext h2 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 22px;
+            color: #292929;
+
+            margin-bottom: 20px;
+        }
+
+        #bottomtext h6 {
+            font-size: 11px;
+            color: #F91B24;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 500;
+        }
+
+        #bordersleftright {
+            border-right: solid 1px #a0a0a0;
+            border-left: solid 1px #a0a0a0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outerwrapper">
+        <nav id="topnav">
+            <img src="./images/logo.svg" alt="logo" />
+            <ul>
+                <li id="selected">
+                    HOME
+                </li>
+                <li class="deselected">
+                    PRODUCTS
+                </li>
+                <li class="deselected">
+                    SERVICES
+                </li>
+                <li class="deselected">
+                    COMPANY
+                </li>
+            </ul>
+        </nav>
+        <div id="middlecontent">
+            <section id="leftimg">
+                <img src="./images/phone.png" alt="phone" />
+            </section>
+            <section id="righttext">
+                <h6>CAREERS</h6>
+                <h1>Let's build great things together</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                    anim id est laborum.</p>
+            </section>
+            <section id="bottomtext">
+                <ul>
+                    <li>
+                        <h2>128</h2>
+                        <h6>EMPLOYEES</h6>
+                    </li>
+                    <li id="bordersleftright">
+                        <h2>$28M</h2>
+                        <h6>INVESTED</h6>
+                    </li>
+                    <li>
+                        <h2>82%</h2>
+                        <h6>SUCCESS RATE</h6>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
