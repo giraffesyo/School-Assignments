@@ -1,5 +1,5 @@
-Numerical Methods
-Homework 1
+Numerical Methods  
+Homework 3  
 
 Create a Matlab program that solves a system of equations using Gauss elimination.
 
