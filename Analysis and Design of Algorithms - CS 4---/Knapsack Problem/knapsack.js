@@ -12,17 +12,48 @@ function knapsack(n, w, v, weights, values) {
     )
 }
 
-const weights = [2, 1, 3, 2]
-const values = [12, 10, 20, 15]
-const initialWeight = 5
-const initialValue = 0
+const OriginalProblem = () => {
+  const initialTime = new Date()
 
-console.log(
-  `Found max value of: ${knapsack(
+  const weights = [2, 1, 3, 2]
+  const values = [12, 10, 20, 15]
+  const initialWeight = 5
+  const initialValue = 0
+  const Answer = knapsack(
     weights.length,
     initialWeight,
     initialValue,
     weights,
     values
-  )}`
-)
+  )
+
+  const endTime = new Date()
+  const ElapsedTime = endTime - initialTime
+
+  console.log(`Found max value of: ${Answer}, time taken was ${ElapsedTime}`)
+}
+
+TestCases = numberOfCases => {
+  const initialWeight = 5
+  const initialValue = 0
+  const stepSize = 1
+  for (let i = stepSize; i <= stepSize * numberOfCases; i = i + stepSize) {
+    let initialTime = new Date()
+    let weights = Array.from({ length: i }, () => Math.floor(Math.random() * 4))
+    let values = Array.from({ length: i }, () => Math.floor(Math.random() * 15))
+    let Answer = knapsack(
+      weights.length,
+      initialWeight,
+      initialValue,
+      weights,
+      values
+    )
+    let endTime = new Date()
+    let ElapsedTime = endTime - initialTime
+    console.log(`Test ${i/stepSize}/${numberOfCases}: Array of size ${i} took, in ms, ${ElapsedTime}`)
+  }
+}
+
+//OriginalProblem()
+
+TestCases(100)
