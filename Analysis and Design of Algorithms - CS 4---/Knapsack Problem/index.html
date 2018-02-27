@@ -21,7 +21,8 @@
 </head>
 
 <body>
-  <canvas id="myChart" width="800" height="400"></canvas>
+  <h1 style="text-align: center;">Knapsack Problem Test Cases</h1>
+  <canvas style="position: relative; left: 50%; transform: translateX(-50%);" id="myChart" width="800" height="400"></canvas>
   <script>
     const chartObj = {
       type: 'bar',
@@ -44,7 +45,7 @@
         scales: {
           xAxes: [{
             scaleLabel: {
-              labelString: 'Experiment number',
+              labelString: 'Experiment number, Array size = Experiment #',
               display: true
             }
           }],
@@ -93,6 +94,8 @@
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, chartObj);
   </script>
+  <h4 style="font-weight: normal; text-align: center;">Refresh to rerun program</h4>
+
 </body>
 
 </html>
