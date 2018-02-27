@@ -6,7 +6,8 @@
   <title>A01677104 | Partial 2 - HW 1 | Knapsack Problem Analysis</title>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-  <script>function knapsack(n, w, v, weights, values) {
+  <script>
+    function knapsack(n, w, v, weights, values) {
       if (n == 0) return v
       else if (w == 0) return v
       else if (w - weights[n - 1] < 0) return knapsack(n - 1, w, v, weights, values)
@@ -15,16 +16,19 @@
           knapsack(n - 1, w - weights[n - 1], v + values[n - 1], weights, values),
           knapsack(n - 1, w, v, weights, values)
         )
-    }</script>
+    }
+  </script>
 
 
 </head>
 
 <body>
   <h1 style="text-align: center;">Knapsack Problem Test Cases</h1>
-  <canvas style="position: relative; left: 50%; transform: translateX(-50%);" id="myChart" width="800" height="400"></canvas>
+  <canvas style="position: relative; left: 50%; transform: translateX(-50%);" id="normalChart" width="800" height="400"></canvas>
+  <canvas style="position: relative; left: 50%; transform: translateX(-50%);" id="logChart" width="800" height="400"></canvas>
+
   <script>
-    const chartObj = {
+    const normalChartObj = {
       type: 'bar',
       data: {
         labels: [],
@@ -66,6 +70,45 @@
       }
     }
 
+    const logChartObj = {
+      type: 'scatter',
+
+      data: {
+        datasets: [{
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255,99,132,1)',
+          label: 'Runtime',
+          data: [],
+        }]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          xAxes: [{
+            type: 'linear',
+            position: 'bottom',
+            scaleLabel: {
+              labelString: 'Experiment number, Array size = Experiment #',
+              display: true
+            }
+          }],
+          yAxes: [{
+            scaleLabel: {
+              labelString: 'log10(Duration of Experiment)',
+              display: true
+            },
+            ticks: {
+              callback: function (value, index, values) {
+                return value + ' ms';
+              },
+
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    }
+
 
     TestCases = numberOfCases => {
       const initialWeight = 5
@@ -84,15 +127,19 @@
         )
         let endTime = new Date()
         let ElapsedTime = endTime - initialTime
-        chartObj.data.labels.push(`Experiment ${i}`)
-        chartObj.data.datasets[0].data.push(ElapsedTime)
+        normalChartObj.data.labels.push(`Experiment ${i}`)
+        normalChartObj.data.datasets[0].data.push(ElapsedTime)
+        const logElapsedTime = (ElapsedTime == 0) ? 0 : Math.log10(ElapsedTime)
+        logChartObj.data.datasets[0].data.push({ x: i, y: logElapsedTime })
       }
     }
 
     TestCases(40)
 
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var myChart = new Chart(ctx, chartObj);
+    var normalctx = document.getElementById("normalChart").getContext('2d');
+    var logctx = document.getElementById("logChart").getContext('2d');
+    var normalChart = new Chart(normalctx, normalChartObj);
+    var logChart = new Chart(logctx, logChartObj);
   </script>
   <h4 style="font-weight: normal; text-align: center;">Refresh to rerun program</h4>
 
