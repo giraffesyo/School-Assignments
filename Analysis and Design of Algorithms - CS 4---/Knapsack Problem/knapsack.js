@@ -50,7 +50,10 @@ TestCases = numberOfCases => {
     )
     let endTime = new Date()
     let ElapsedTime = endTime - initialTime
-    console.log(`Test ${i/stepSize}/${numberOfCases}: Array of size ${i} took, in ms, ${ElapsedTime}`)
+    console.log(
+      `Test ${i /
+        stepSize}/${numberOfCases}: Array of size ${i} took, in ms, ${ElapsedTime}`
+    )
   }
 }
 

@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>A01677104 | Partial 2 - HW 1 | Knapsack Problem Analysis</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+  <script>function knapsack(n, w, v, weights, values) {
+      if (n == 0) return v
+      else if (w == 0) return v
+      else if (w - weights[n - 1] < 0) return knapsack(n - 1, w, v, weights, values)
+      else
+        return Math.max(
+          knapsack(n - 1, w - weights[n - 1], v + values[n - 1], weights, values),
+          knapsack(n - 1, w, v, weights, values)
+        )
+    }</script>
+
+
+</head>
+
+<body>
+  <canvas id="myChart" width="800" height="400"></canvas>
+  <script>
+    const chartObj = {
+      type: 'bar',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Runtime',
+          data: [],
+          backgroundColor:
+            'rgba(255, 99, 132, 0.2)'
+          ,
+          borderColor:
+            'rgba(255,99,132,1)'
+          ,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: false,
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              labelString: 'Experiment number',
+              display: true
+            }
+          }],
+          yAxes: [{
+            scaleLabel: {
+              labelString: 'Duration of Experiment',
+              display: true
+            },
+            ticks: {
+              callback: function (value, index, values) {
+                return value + ' ms';
+              },
+
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    }
+
+
+    TestCases = numberOfCases => {
+      const initialWeight = 5
+      const initialValue = 0
+      const stepSize = 1
+      for (let i = stepSize; i <= stepSize * numberOfCases; i = i + stepSize) {
+        let initialTime = new Date()
+        let weights = Array.from({ length: i }, () => Math.floor(Math.random() * 4))
+        let values = Array.from({ length: i }, () => Math.floor(Math.random() * 15))
+        let Answer = knapsack(
+          weights.length,
+          initialWeight,
+          initialValue,
+          weights,
+          values
+        )
+        let endTime = new Date()
+        let ElapsedTime = endTime - initialTime
+        chartObj.data.labels.push(`Experiment ${i}`)
+        chartObj.data.datasets[0].data.push(ElapsedTime)
+      }
+    }
+
+    TestCases(40)
+
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, chartObj);
+  </script>
+</body>
+
+</html>
