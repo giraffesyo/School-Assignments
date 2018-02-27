@@ -33,7 +33,7 @@ const OriginalProblem = () => {
   console.log(`Found max value of: ${Answer}, time taken was ${ElapsedTime}`)
 }
 
-TestCases = numberOfCases => {
+/*TestCases = numberOfCases => {
   const initialWeight = 5
   const initialValue = 0
   const stepSize = 1
@@ -56,7 +56,9 @@ TestCases = numberOfCases => {
     )
   }
 }
-
-//OriginalProblem()
-
 TestCases(100)
+*/
+
+OriginalProblem()
+
+
