@@ -1,0 +1,91 @@
+body{
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  font-family: 'Lobster', sans-serif;
+}
+
+section {
+  width: 100vw;
+  height: 100vh;
+  float: left;
+}
+
+#slide1 {
+  background-color: darkseagreen;
+}
+
+.next {
+  width: 60%;
+  text-align: center;
+  font-size: 40px;
+  margin: 50px auto;
+  height: 80px;
+  background-color: darkmagenta;
+  color: white;
+  line-height: 80px;
+  border-radius: 10px;
+}
+
+.error, .res {
+  color: floralwhite;
+  font-size: 30px;
+  text-align: center;
+}
+
+#slide2 {
+  background-color: darkslategray;
+}
+
+#slide3 {
+  background-color: dodgerblue;
+}
+
+#slide4 {
+  background-color: coral;
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+  padding: 40px;
+  color: white;
+}
+
+.item, li {
+  width: 60%;
+  text-align: center;
+  font-size: 40px;
+  margin: 50px auto;
+  height: 80px;
+  background-color: azure;
+  line-height: 80px;
+  border-radius: 10px;
+}
+
+.selected {
+  box-shadow: 0 0 6px 4px deeppink;
+}
+
+.error {
+  display: none;
+}
+
+.avatar {
+  width: 200px;
+  height: 220px;
+  background-image: url('narutocharacters.png');
+  background-size: 1024px auto;
+  margin: 20px auto;
+}
+
+/* Hide all the sections except current section */
+
+section {
+  display: none;
+}
+
+#slide1 {
+  display: block;
+}
+

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Mobile Interface</title>
+  <link rel="stylesheet" href="cssreset.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <section id="slide1">
+    <h1>Start</h1>
+    <div class="item" data-g='1'>Man</div>
+    <div class="item" data-g='2'>Woman</div>
+
+    <div class="next">Next</div>
+    <div class="error">Please select an option.</div>
+  </section>
+
+  <section id="slide2">
+    <h1>2</h1>
+    <ul>
+      <li class="animal" data-g='30'>Dog</li>
+      <li class="animal" data-g='40'>Cat</li>
+    </ul>
+  </section>
+  </section>
+  <section id="slide3">
+    <h1>3</h1>
+    <ul>
+      <li data-g='500'>Yellow</li>
+      <li data-g='600'>Green</li>
+    </ul>
+  </section>
+
+  <section id="slide4">
+    <h1>Results</h1>
+    <div class="res">
+      <h2>You are:</h2>
+      <p class="results"></p>
+      <div class="avatar"></div>
+    </div>
+  </section>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
