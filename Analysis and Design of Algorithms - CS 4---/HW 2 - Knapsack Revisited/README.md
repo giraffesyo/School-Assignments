@@ -1,3 +1,9 @@
+Partial 2 - Homework 2
+
+Knapsack Problem Revisited
+
+---
+
 Implement a solution to the Knapsack problem utilizing three different techniques:
 
 1. Brute force
