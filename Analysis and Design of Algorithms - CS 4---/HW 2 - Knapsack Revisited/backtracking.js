@@ -1,7 +1,6 @@
 //Michael McQuade A01677104
 //Run this using node.js or chrome developer tools.
 
-
 const weights = [2, 1, 3, 2]
 const values = [12, 10, 20, 15]
 const initialWeight = 5
@@ -18,7 +17,7 @@ function knapsack(n, w, v, weights, values) {
     )
 }
 
- const Answer = knapsack(
+const Answer = knapsack(
   weights.length,
   initialWeight,
   initialValue,
@@ -26,4 +25,3 @@ function knapsack(n, w, v, weights, values) {
   values
 )
 console.log(Answer)
-
