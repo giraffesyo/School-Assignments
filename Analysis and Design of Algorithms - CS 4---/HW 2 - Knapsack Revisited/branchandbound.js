@@ -6,7 +6,12 @@ var values = [12, 10, 20, 15]
 const initialWeight = 5
 const initialValue = 0
 
-function findGreedyBest(weights, values, initialWeight, initialValue) {
+function findGreedyBest(
+  weights = [2, 1, 3, 2],
+  values = [12, 10, 20, 15],
+  initialWeight = 5,
+  initialValue = 0
+) {
   //Get ratios of all value pairs
   ratios = []
   for (i in weights) {
@@ -33,10 +38,7 @@ function findGreedyBest(weights, values, initialWeight, initialValue) {
   return bestValue
 }
 
-const initialBest = findGreedyBest(weights, values, initialWeight, initialValue)
-
-weights = [2, 1, 3, 2]
-values = [12, 10, 20, 15]
+const initialBest = findGreedyBest()
 
 function knapsack(n, w, v, weights, values) {
   //find the sum of all remaining values
@@ -48,11 +50,15 @@ function knapsack(n, w, v, weights, values) {
   }
   //if we're not better than greedy algorithm, return
   if (tempSum < initialBest) return v //bound part of branch and bound
-  if (n == 0) return v //return if we're out of elements
-  else if (w == 0) return v //return if we're out of weight
-  //return other leg of branch if we're going to exceed our weight by adding element to knapsack
-  else if (w - weights[n - 1] < 0) return knapsack(n - 1, w, v, weights, values)
-  else //Return greatest of two paths recursively
+  if (n == 0) return v
+  else if (w == 0)
+    //return if we're out of elements
+    return v
+  else if (w - weights[n - 1] < 0)
+    //return if we're out of weight
+    //return other leg of branch if we're going to exceed our weight by adding element to knapsack
+    return knapsack(n - 1, w, v, weights, values) //Return greatest of two paths recursively
+  else
     return Math.max(
       knapsack(n - 1, w - weights[n - 1], v + values[n - 1], weights, values),
       knapsack(n - 1, w, v, weights, values)

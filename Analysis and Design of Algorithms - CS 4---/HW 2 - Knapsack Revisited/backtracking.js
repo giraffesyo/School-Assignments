@@ -1,6 +1,9 @@
 //Michael McQuade A01677104
 //Run this using node.js or chrome developer tools.
 
+//This is the backtracking algorithm with the case discussed in class.
+//Testing is done in a separate file.
+
 const weights = [2, 1, 3, 2]
 const values = [12, 10, 20, 15]
 const initialWeight = 5
