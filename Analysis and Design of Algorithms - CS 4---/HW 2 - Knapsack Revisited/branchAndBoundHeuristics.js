@@ -1,12 +1,16 @@
 //Michael McQuade A01677104
-//Run this using Node.js or chrome developer tools
-
+//Run this using Node.js (uses node.js file system api, cannot be run in browser)
 /*
 In this file, we'll implement heuristic time complexity analysis for the branch and bound method:
 
 The implementation is copied from the other file, brandandbound.js which I wrote prior to making this file, 
 with customizable parameters in order to test the algorithm with varying sizes of arrays.
+
+The output is in csv format. It outputs to the console and to a csv file saved to the directory you run this from. 
+The file will be called branchandboundrawdata.csv
 */
+
+const fs = require('fs')
 
 function branchandbound(n, w, v, weights, values) {
   const initialWeights = [...weights]
@@ -86,6 +90,7 @@ function branchandbound(n, w, v, weights, values) {
   }
 }
 
+let FileOutput = ''
 TestCases = numberOfCases => {
   const initialWeight = 5
   const initialValue = 0
@@ -104,10 +109,13 @@ TestCases = numberOfCases => {
     )
     let endTime = new Date()
     let ElapsedTime = endTime - initialTime
-    console.log(
-      `Test ${i /
-        stepSize}/${numberOfCases}: Array of size ${i} took, in ms, ${ElapsedTime}`
-    )
+    //console.log(`Test ${i /stepSize}/${numberOfCases}: Array of size ${i} took, in ms, ${ElapsedTime}`)
+    console.log(`${i}, ${ElapsedTime}`)
+    FileOutput += `${i}, ${ElapsedTime}\n`
   }
 }
 TestCases(100)
+fs.writeFile('./branchandboundrawdata.csv', FileOutput, err => {
+  if (err) throw 'error writing file: ' + err
+  console.log('succesfully wrote to file the test case results')
+})
