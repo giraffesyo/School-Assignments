@@ -38,18 +38,26 @@ function findGreedyBest(
   return bestValue
 }
 
-const initialBest = findGreedyBest()
+var Best = findGreedyBest()
+var iterations = 0
 
 function knapsack(n, w, v, weights, values) {
+  iterations++
   //find the sum of all remaining values
   let tempValues = [...values]
-  tempValues.splice(n - 1) //removes values after n-1
+  if (n > 0) {
+    tempValues.splice(n - 1) //removes values after n-1
+  } else tempValues = [] //so we don't restart at end of array when n-index is 0
+
   let tempSum = v
   for (i in tempValues) {
     tempSum += tempValues[i]
   }
   //if we're not better than greedy algorithm, return
-  if (tempSum < initialBest) return v //bound part of branch and bound
+  if (tempSum < Best) return v //bound part of branch and bound
+  let vLeft
+  let vRight
+  let maxV
   if (n == 0) return v
   else if (w == 0)
     //return if we're out of elements
@@ -57,12 +65,21 @@ function knapsack(n, w, v, weights, values) {
   else if (w - weights[n - 1] < 0)
     //return if we're out of weight
     //return other leg of branch if we're going to exceed our weight by adding element to knapsack
-    return knapsack(n - 1, w, v, weights, values) //Return greatest of two paths recursively
-  else
-    return Math.max(
-      knapsack(n - 1, w - weights[n - 1], v + values[n - 1], weights, values),
-      knapsack(n - 1, w, v, weights, values)
+    return knapsack(n - 1, w, v, weights, values)
+  else {
+    //Return greatest of two paths recursively
+    vLeft = knapsack(
+      n - 1,
+      w - weights[n - 1],
+      v + values[n - 1],
+      weights,
+      values
     )
+    vRight = knapsack(n - 1, w, v, weights, values)
+    maxV = Math.max(vLeft, vRight)
+    if (maxV > Best) Best = maxV //Get new best
+    return maxV
+  }
 }
 
 const Answer = knapsack(
@@ -74,3 +91,4 @@ const Answer = knapsack(
 )
 
 console.log(Answer)
+console.log(`Iterations: ${iterations}`)

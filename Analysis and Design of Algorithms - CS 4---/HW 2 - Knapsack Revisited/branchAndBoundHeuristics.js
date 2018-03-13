@@ -58,6 +58,9 @@ function branchandbound(n, w, v, weights, values) {
     }
     //if we're not better than greedy algorithm, return
     if (tempSum < initialBest) return v //bound part of branch and bound
+    let vLeft
+    let vRight
+    let maxV
     if (n == 0) return v
     else if (w == 0)
       //return if we're out of elements
@@ -65,12 +68,21 @@ function branchandbound(n, w, v, weights, values) {
     else if (w - weights[n - 1] < 0)
       //return if we're out of weight
       //return other leg of branch if we're going to exceed our weight by adding element to knapsack
-      return knapsack(n - 1, w, v, weights, values) //Return greatest of two paths recursively
-    else
-      return Math.max(
-        knapsack(n - 1, w - weights[n - 1], v + values[n - 1], weights, values),
-        knapsack(n - 1, w, v, weights, values)
+      return knapsack(n - 1, w, v, weights, values)
+    else {
+      //Return greatest of two paths recursively
+      vLeft = knapsack(
+        n - 1,
+        w - weights[n - 1],
+        v + values[n - 1],
+        weights,
+        values
       )
+      vRight = knapsack(n - 1, w, v, weights, values)
+      maxV = Math.max(vLeft, vRight)
+      if (maxV > Best) Best = maxV //Get new best
+      return maxV
+    }
   }
 }
 
