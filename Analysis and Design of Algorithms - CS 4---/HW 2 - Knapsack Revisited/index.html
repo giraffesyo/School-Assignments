@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Knapsack Problem Revisited - Backtracking, Bruteforce, and Branch and Bound</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', { 'packages': ['corechart'] });
+
+    //disabled since we added buttons to top
+    //google.charts.setOnLoadCallback(drawChart); 
+
+    // Callback that creates and populates a data table,
+    // instantiates the chart, passes in the data and
+    // draws it.
+
+
+    function drawChartBANDB() {
+
+      //hide instructions
+      document.getElementById('instructions').style.display = 'none'
+      // Create the data table.
+      generateBANDBdata()
+      ////////////BRANCH AND BOUND
+      TestCases(50) //50 testcases for branch and bound
+      function generateBANDBdata() {
+        BranchAndBounddata = new google.visualization.DataTable();
+        BranchAndBounddata.addColumn('number', 'Array Size');
+        BranchAndBounddata.addColumn('number', 'Time (in ms)');
+
+        function branchandbound(n, w, v, weights, values) {
+          const initialWeights = [...weights]
+          const initialValues = [...values]
+          const initialWeight = 5
+          const initialValue = 0
+          function findGreedyBest(weights, values, initialWeight, initialValue) {
+            //Get ratios of all value pairs
+            ratios = []
+            for (i in weights) {
+              ratios.push(values[i] / weights[i])
+            }
+
+            //get initial "best" solution (greedy algorithm, not real max)
+            let temporaryWeight = initialWeight
+            let bestValue = initialValue
+
+            for (r in ratios) {
+              //console.log(`Ratios: ${ratios}\n Weights: ${weights} \n Values: ${values}`)
+              //Find the index of the highest ratio'd item in our ratios array
+              let bestIndex = ratios.indexOf(Math.max(...ratios))
+              if (temporaryWeight - weights[bestIndex] < 0) break
+              //console.log(`Best Index found was: ${bestIndex}`)
+              //Remove that ratio from our array (modifies array in place)
+              ratios.splice(bestIndex, 1)
+              //Reduce our weight by the amount of the weight we found to be the best ratio
+              temporaryWeight -= weights.splice(bestIndex, 1)[0]
+              //Increase our value by the amount of the value we found to be the best ratio
+              bestValue += values.splice(bestIndex, 1)[0]
+            }
+            return bestValue
+          }
+          const initialBest = findGreedyBest(
+            weights,
+            values,
+            initialWeight,
+            initialValue
+          )
+
+          weights = [...initialWeights]
+          values = [...initialValues]
+          function knapsack(n, w, v, weights, values) {
+            //find the sum of all remaining values
+            let tempValues = [...values]
+            tempValues.splice(n - 1) //removes values after n-1
+            let tempSum = v
+            for (i in tempValues) {
+              tempSum += tempValues[i]
+            }
+            //if we're not better than greedy algorithm, return
+            if (tempSum < initialBest) return v //bound part of branch and bound
+            let vLeft
+            let vRight
+            let maxV
+            if (n == 0) return v
+            else if (w == 0)
+              //return if we're out of elements
+              return v
+            else if (w - weights[n - 1] < 0)
+              //return if we're out of weight
+              //return other leg of branch if we're going to exceed our weight by adding element to knapsack
+              return knapsack(n - 1, w, v, weights, values)
+            else {
+              //Return greatest of two paths recursively
+              vLeft = knapsack(
+                n - 1,
+                w - weights[n - 1],
+                v + values[n - 1],
+                weights,
+                values
+              )
+              vRight = knapsack(n - 1, w, v, weights, values)
+              maxV = Math.max(vLeft, vRight)
+              if (maxV > Best) Best = maxV //Get new best
+              return maxV
+            }
+          }
+        }
+
+
+        TestCases = numberOfCases => {
+          const initialWeight = 5
+          const initialValue = 0
+          const stepSize = 100
+
+          for (let i = stepSize; i <= stepSize * numberOfCases; i = i + stepSize) {
+            let initialTime = new Date()
+            let weights = Array.from({ length: i }, () => Math.floor(Math.random() * 4))
+            let values = Array.from({ length: i }, () => Math.floor(Math.random() * 15))
+            let Answer = branchandbound(
+              weights.length,
+              initialWeight,
+              initialValue,
+              weights,
+              values
+            )
+            let endTime = new Date()
+            let ElapsedTime = endTime - initialTime
+            //console.log(`Test ${i /stepSize}/${numberOfCases}: Array of size ${i} took, in ms, ${ElapsedTime}`)
+            BranchAndBounddata.addRow([i, ElapsedTime])
+          }
+        }
+
+      }
+
+      ////////////END BRANCH AND BOUND
+
+      // Set chart options
+      var options = {
+        'title': 'Branch and Bound',
+        'width': 500,
+        'height': 300,
+        'vAxis': { 'title': 'Time in Milliseconds' },
+        'hAxis': { 'title': 'Size of Array' },
+        'trendlines': { 0: {} }
+      }
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.ScatterChart(document.getElementById('BANDBchart_div'));
+      chart.draw(BranchAndBounddata, options);
+    }
+
+    function drawChartBruteforce() {
+
+      //hide instructions
+      document.getElementById('instructions').style.display = 'none'
+      // Create the data table.
+      generateBruteforcedata()
+      ////////////Bruteforce
+      function generateBruteforcedata() {
+        Bruteforcedata = new google.visualization.DataTable();
+        Bruteforcedata.addColumn('number', 'Array Size');
+        Bruteforcedata.addColumn('number', 'Time (in ms)');
+        var solutionSet = []
+
+        function knapsack(n, w, v, weights, values) {
+          if (n == 0)
+            return [v, w] // returning value and weight when we reach 0 remaining items
+          else var currentValues = []
+          //Store value returned for n-1 and weight[n-1]
+          currentValues[0] = knapsack(
+            n - 1,
+            w - weights[n - 1],
+            v + values[n - 1],
+            weights,
+            values
+          )
+          //Store value for other route, where we don't put the item in the knapsack
+          currentValues[1] = knapsack(n - 1, w, v, weights, values)
+
+          //Determine the max, not using Math.max() so we can keep track of the weight too
+          maxValue = []
+          if (currentValues[0][0] > currentValues[0][1]) {
+            maxValue = currentValues[0]
+          } else {
+            maxValue = currentValues[1]
+          }
+
+          //Add max value and weight to solution set and return them as array.
+          solutionSet.push(maxValue)
+          return maxValue
+        }
+
+        TestCases = numberOfCases => {
+          const initialWeight = 5
+          const initialValue = 0
+          const stepSize = 1
+          for (let i = stepSize; i <= stepSize * numberOfCases; i = i + stepSize) {
+            let initialTime = new Date()
+            let weights = Array.from({ length: i }, () => Math.floor(Math.random() * 4))
+            let values = Array.from({ length: i }, () => Math.floor(Math.random() * 15))
+            solutionSet = []
+            knapsack(weights.length, initialWeight, initialValue, weights, values)
+            //Determine highest non negative solution found:
+            solution = [0, 0]
+            for (j in solutionSet) {
+              if (solutionSet[j][1] >= 0 && solutionSet[j][0] > solution[0])
+                solution = solutionSet[j]
+            }
+            //console.log(solution)
+            let endTime = new Date()
+            let ElapsedTime = endTime - initialTime
+            Bruteforcedata.addRow([i, ElapsedTime])
+          }
+        }
+        TestCases(23)//23 testcases for bruteforce (more than 25 takes a long time)
+
+
+      }
+
+      ////////////END Bruteforce
+
+      // Set chart options
+      var options = {
+        'title': 'Bruteforce',
+        'width': 500,
+        'height': 300,
+        'vAxis': { 'title': 'Time in Milliseconds' },
+        'hAxis': { 'title': 'Size of Array' },
+        'trendlines': { 0: { type: 'polynomial' } }
+      }
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.ScatterChart(document.getElementById('Bruteforcechart_div'));
+      chart.draw(Bruteforcedata, options);
+    }
+
+    function drawChartbacktracking() {
+      //hide instructions
+      document.getElementById('instructions').style.display = 'none'
+      // Create the data table for backtracking.
+      generatebacktrackingdata()
+
+      ////////////backtracking
+      function generatebacktrackingdata() {
+        backtrackingdata = new google.visualization.DataTable()
+        backtrackingdata.addColumn('number', 'Array Size')
+        backtrackingdata.addColumn('number', 'Time (in ms)')
+
+        function knapsack(n, w, v, weights, values) {
+          if (n == 0) return v
+          else if (w == 0) return v
+          else if (w - weights[n - 1] < 0)
+            return knapsack(n - 1, w, v, weights, values)
+          else
+            return Math.max(
+              knapsack(
+                n - 1,
+                w - weights[n - 1],
+                v + values[n - 1],
+                weights,
+                values
+              ),
+              knapsack(n - 1, w, v, weights, values)
+            )
+        }
+
+        TestCases = numberOfCases => {
+          const initialWeight = 5
+          const initialValue = 0
+          const stepSize = 1
+          for (let i = stepSize; i <= stepSize * numberOfCases; i = i + stepSize) {
+            let initialTime = new Date()
+            let weights = Array.from({ length: i }, () =>
+              Math.floor(Math.random() * 4)
+            )
+            let values = Array.from({ length: i }, () =>
+              Math.floor(Math.random() * 15)
+            )
+            let Answer = knapsack(
+              weights.length,
+              initialWeight,
+              initialValue,
+              weights,
+              values
+            )
+            let endTime = new Date()
+            let ElapsedTime = endTime - initialTime
+            backtrackingdata.addRow([i, ElapsedTime])
+          }
+        }
+        // Test cases for backtracking
+        TestCases(50) //50 takes quite a while 
+      }
+
+      ////////////END backtracking
+
+      // Set chart options
+      var options = {
+        title: 'Backtracking (with logarithm applied to time)',
+        width: 500,
+        height: 300,
+        vAxis: { title: 'Time in Milliseconds (logarithmic', scaleType: 'log' },
+        hAxis: { title: 'Size of Array' },
+        trendlines: { 0: {} },
+      }
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.ScatterChart(
+        document.getElementById('backtrackingchart_div')
+      )
+      chart.draw(backtrackingdata, options)
+    }
+
+  </script>
+
+</head>
+
+<body>
+  <button onclick="drawChartbacktracking()">Run Backtracking</button>
+  <button onclick="drawChartBruteforce()">Run Bruteforce</button>
+  <button onclick="drawChartBANDB()">Run Branch And Bound</button>
+
+
+  <h1 style="text-align: center;">Knapsack Problem Test Cases</h1>
+  <div id="backtrackingchart_div"></div>
+  <div id="BANDBchart_div"></div>
+  <div id="Bruteforcechart_div"></div>
+  <script>
+
+  </script>
+  <h4 id="instructions" style="font-weight: normal; text-align: center;">Please choose an option above and then be patient while it loads...</h4>
+
+</body>
+
+</html>
