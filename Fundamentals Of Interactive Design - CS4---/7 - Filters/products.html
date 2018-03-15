@@ -1,0 +1,292 @@
+<!doctype html>
+<html>
+
+<head>test
+    <title>Javascript products object</title>
+    <meta charset="utf-8">
+
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href="css/estilos.css" rel="stylesheet" type="text/css" />
+    <link href="css/chosen.css" type="text/css" rel="stylesheet" />
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/chosen.jquery.js"></script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="top">
+            <div id="socials">
+                <a href="http://www.pinterest.com/davidpompa" title="davidpompa" target="_blank">
+                    <img class="socials" src="img/pinterest.svg">
+                </a>
+                <a href="https://www.facebook.com/s.davidpompa" target="_blank">
+                    <img class="socials" src="img/facebook.svg">
+                </a>
+                <a href="http://instagram.com/studiodavidpompa" title="davidpompa" target="_blank">
+                    <img class="socials" src="img/instagram.svg">
+                </a>
+            </div>
+            <a href="">
+                <img src="img/logo.png" class="mainlogo" />
+            </a>
+            <nav class="mainmenu cl-effect-5">
+                <a href="products/">
+                    <span data-hover="PRODUCTS">PRODUCTS</span>
+                </a>
+                <a href="discover/">
+                    <span data-hover="DISCOVER">DISCOVER</span>
+                </a>
+                <a href="crafts/artisans-crafts/">
+                    <span data-hover="CRAFTS">CRAFTS</span>
+                </a>
+                <a href="#." id="contact">
+                    <span data-hover="CONTACT">CONTACT</span>
+                </a>
+            </nav>
+            <nav class="submenu cl-effect-5" id="submenucontact">
+                <a href="contact/studios/">
+                    <span data-hover="showroom">showroom</span>
+                </a>
+                <a href="contact/where-to-buy/">
+                    <span data-hover="where to buy">where to buy</span>
+                </a>
+                <a href="contact/retailers/">
+                    <span data-hover="retailers">retailers</span>
+                </a>
+                <a href="contact/jobs/">
+                    <span data-hover="careers">careers</span>
+                </a>
+            </nav>
+            <nav class="submenu cl-effect-5" id="submenutop">
+                <a href="about/studio-history/">about</a>
+                <a href="contact/architects/">professionals</a>
+                <a href="about/recent-press/">recent press</a>
+                <a href="about/events/">events</a>
+            </nav>
+        </div>
+        <div id="topmobile">
+            <a href="index.php">
+                <img src="img/logo.png" class="mainlogomobile" />
+            </a>
+            <img src="img/menu-icon.png" class="menuicon" />
+        </div>
+        <div id="mobilemenu">
+            <ul>
+                <a href="products/">
+                    <li>
+                        <span data-hover="PRODUCTS">PRODUCTS</span>
+                    </li>
+                </a>
+                <a href="discover/">
+                    <li>
+                        <span data-hover="DISCOVER">DISCOVER</span>
+                    </li>
+                </a>
+                <a href="crafts/artisans-crafts/">
+                    <li>
+                        <span data-hover="CRAFTS">CRAFTS</span>
+                    </li>
+                </a>
+                <a href="#." id="mobilecontact">
+                    <li>
+                        <span data-hover="CONTACT">CONTACT</span>
+                    </li>
+                </a>
+                <ul class="mobilesubmenu" id="mobilesubmenucontact">
+                    <a href="contact/studios/">
+                        <li>showroom</li>
+                    </a>
+                    <a href="contact/where-to-buy/">
+                        <li>where to buy</li>
+                    </a>
+                    <a href="contact/retailers/">
+                        <li>retailers</li>
+                    </a>
+                    <a href="contact/jobs/">
+                        <li>careers</li>
+                    </a>
+                </ul>
+                <a href="about/studio-history/">
+                    <li class="gray">about</li>
+                </a>
+                <a href="contact/architects/">
+                    <li class="gray">professionals</li>
+                </a>
+                <a href="about/recent-press/">
+                    <li class="gray">recent press</li>
+                </a>
+                <a href="about/events/">
+                    <li class="gray">events</li>
+                </a>
+            </ul>
+        </div>
+
+        <section id="prodfilters">
+            <div class="productsfilter">
+                <select id="material" name="material" data-placeholder="Material" class="chzn-select" tabindex="-1">
+                    <option value="0" selected="selected"></option>
+                    <option value="barro-negro">Barro negro</option>
+                    <option value="talavera">Talavera</option>
+                    <option value="handblown-glass">Handblown glass</option>
+                    <option value="woven-plastic">Woven plastic</option>
+                </select>
+
+                <div id="matsel" class="selecteditem">handblown-glass<span></span></div>
+
+                <select id="mobilematerial" name="mobilematerial" data-placeholder="Material" style="width:150px;" tabindex="4">
+                    <option value="0" selected="selected">Material</option>
+                    <option value="barro-negro">Barro negro</option>
+                    <option value="talavera">Talavera</option>
+                    <option value="handblown-glass">Handblown glass</option>
+                    <option value="woven-plastic">Woven plastic</option>
+                </select>
+            </div>
+            <div class="productsfilter">
+                <select id="type" name="type" data-placeholder="Type" class="chzn-select" tabindex="-1">
+                    <option value="0" selected="selected"></option>
+                    <option value="lighting">Lighting</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="tiles">Tiles</option>
+                </select>
+                <select id="mobiletype" name="mobiletype" data-placeholder="Type" style="width:150px;" tabindex="4">
+                    <option value="0" selected="selected">Type</option>
+                    <option value="lighting">Lighting</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="tiles">Tiles</option>
+                </select>
+            </div>
+            <form action="index.php" method="get">
+                <input type="text" name="search" id="search" placeholder="search...">
+            </form>
+
+        </section>
+        <div class="clearfix"></div>
+        <section>
+            <div class="products">
+
+            </div>
+        </section>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+
+        //Mobile menu
+        $('.menuicon').click(function (e) {
+            $('#mobilemenu').slideToggle();
+        });
+
+        currentsubmenu = "none";
+
+
+        //Submenu
+        $('#about').click(function (e) {
+            $('#submenucontact').hide();
+            $('#submenuabout').slideToggle(200);
+        });
+        $('#contact').click(function (e) {
+            $('#submenucontact').fadeToggle(100);
+            $('#submenuabout').hide();
+        });
+        $('#mobilecontact').click(function (e) {
+            $('#mobilesubmenucontact').slideToggle(300);
+        });
+
+        //SELECTS
+        $(".chzn-select").chosen({
+            disable_search: true
+        });
+
+
+    });
+
+    var products = [
+        // 0=Product code    1=IMG    2=NAME    3=SAFENAME     4=OBJECT     5=TYPE    6=MATERIAL1    7=MATERIAL2    8=MATERIAL3    9=ILLUMINANT
+        ['VS0047', 'thumb.jpg', 'mingo', 'mingo', 'pendant lamp', 'lighting', 'handblown-glass', 'cable-PVC-black', 'brass', 'G9'],
+        ['BN741', 'thumb.jpg', 'COMETA', 'Cometa', 'pendant lamp', 'lighting', 'barro-negro', 'cable-PVC-black', 'copper', 'G9'],
+        ['TA005', 'thumb.jpg', 'HIELO', 'Hielo', 'pendant lamp', 'lighting', 'talavera', 'cable-PVC-transparent', '#', 'LED'],
+        ['BN73', 'thumb.jpg', 'CAN', 'Can', 'pendant lamp', 'lighting', 'barro-negro', 'cable-PVC-black', '#', 'GU10'],
+        ['PV001', 'thumb.jpg', 'AMBRA', 'Ambra', 'floor lamp', 'lighting', 'contera stone', 'copper', '#', 'GU10'],
+        ['PV003', 'thumb.jpg', 'AMBRA', 'Ambra', 'table lamp', 'lighting', 'contera stone', 'copper', '#', 'GU10'],
+        ['PV002', 'thumb.jpg', 'AMBRA', 'Ambra', 'wall lamp', 'lighting', 'contera stone', 'copper', '#', 'G9'],
+        ['MA0011', 'thumb.jpg', 'Mayo', 'Mayo', 'pendant lamp', 'lighting', 'wood', 'polished metal', '#', 'GU10'],
+        ['OX001', 'thumb.jpg', 'OOLA', 'OOLA', 'pendant lamp', 'lighting', 'onyx white', 'polished metal', '#', 'GU10'],
+        ['VS0046', 'thumb.jpg', 'CUPALLO', 'Cupallo', 'pendant lamp', 'lighting', 'handblown-glass', 'cable-PVC-transparent', 'brass', 'E27'],
+        ['VS0046-cp', 'thumb.jpg', 'CUPALLO', 'Cupallo', 'pendant lamp', 'lighting', 'handblown-glass', 'cable-PVC-transparent', 'copper', 'E27'],
+        ['VS0046-cr', 'thumb.jpg', 'CUPALLO', 'Cupallo', 'pendant lamp', 'lighting', 'handblown-glass', 'cable-PVC-transparent', 'chrome', 'E27'],
+        ['BNC01', 'thumb.jpg', 'VITRIF', 'Vitrif', 'pendant lamp', 'lighting', 'barro-negro', 'cable-PVC-black', 'copper', 'GU10'],
+        ['AK001H2', 'thumb.jpg', 'La Caleta', 'La Caleta', 'Medium pendant', 'lighting', 'woven-plastic', 'metal-powder-coated', 'cable-PVC-transparent', 'E27'],
+        ['AK001H3', 'thumb.jpg', 'La Caleta', 'La Caleta', 'Large pendant', 'lighting', 'woven-plastic', 'metal-powder-coated', 'cable-PVC-transparent', 'E27'],
+        ['AK001W', 'thumb.jpg', 'La Caleta', 'La Caleta', 'Wall Lamp', 'lighting', 'woven-plastic', 'metal-powder-coated', 'cable-PVC-transparent', 'E27'],
+        ['MA0013', 'thumb.jpg', 'AMELIA', 'Amelia', 'pendant lamp', 'lighting', 'barro-negro', 'cable-PVC-black', 'copper', 'GU10'],
+        ['VS0033', 'thumb.jpg', 'La Trufa Mini', 'La Trufa', 'pendant lamp', 'lighting', 'handblown-glass', 'cable-PVC-transparent', 'copper', 'G9'],
+        ['VS003', 'thumb.jpg', 'La Trufa', 'La Trufa', 'pendant lamp', 'lighting', 'handblown-glass', 'cable-PVC-transparent', 'chromed-metal', 'E27'],
+        ['VS0034', 'thumb.jpg', 'La Trufa', 'La Trufa', 'Wall lamp', 'lighting', 'handblown-glass', 'cable-PVC-transparent', 'chromed-metal', 'E27'],
+        ['VS002D', 'thumb.jpg', 'La Trufa', 'La Trufa', 'Table lamp', 'lighting', 'handblown-glass', 'cable-PVC-transparent', 'chromed-metal', 'LED'],
+        ['VS0042', 'thumb.jpg', 'NYX', 'Nyx', 'pendant lamp', 'lighting', 'handblown-glass', 'enamel', 'cable-PVC-black', 'E27'],
+        ['C-S30', 'thumb.jpg', 'Canopy', 'canopy', 'square rectangular', 'lighting', 'chromed-metal', 'barro-negro', 'handblown-glass', '#'],
+        ['VSV12', 'thumb.jpg', 'BON', 'Bon', 'tealight votive', 'accessories', 'handblown-glass', '#', '#', '#'],
+        ['BN14', 'thumb.jpg', 'Rajo', 'Rajo', 'tiles', 'tiles', 'barro-negro', '#', '#', '#'],
+        ['TA901', 'thumb.jpg', 'Triango', 'Triango', 'tiles', 'tiles', 'talavera', '#', '#', '#'],
+        ['TA903', 'thumb.jpg', 'Lino', 'Lino', 'tiles', 'tiles', 'talavera', '#', '#', '#'],
+        ['AK012', 'thumb.jpg', 'TAC', 'Tac', 'table', 'furniture', 'woven-plastic', 'metal-powder-coated', 'pine-wood', '#'],
+        ['AK011', 'thumb.jpg', 'TAC', 'Tac', 'table', 'furniture', 'woven-plastic', 'metal-powder-coated', 'pine-wood', '#']
+    ];
+
+    for (var i = 0; i < products.length; i++) {
+        //console.log(products[i][0]);
+
+
+        //Add the product to the page
+
+        //let p = document.getElementsByClassName('products')
+        //$('.products').append(products[i][0]+"<br>")
+        $('.products').append(`
+            <a href="${products[i][0]}/index.html">
+                <div class="product"><img src="${products[i][0]}/thumb.jpg">
+                    <p class="producttitle">${products[i][2]}</p>
+                    <p class="productdesc">${products[i][4]}</p>
+                </div>
+            </a>
+        `)
+    }
+
+    $("#material").change(selMat);
+
+
+    function selMat() {
+
+        var selectedmaterial = jQuery('#material option:selected').attr('value');
+        var selectedtype = jQuery('#type option:selected').attr('value');
+
+        //Remove all the products
+        $('.products').empty()
+
+        //Add the products, one by one, ut cehcking for each one that its material matches the selected material
+        for (var i = 0; i < products.length; i++) {
+            if (products[i][6] === selectedmaterial) {
+                $('.products').append(`
+                    <a href="${products[i][0]}/index.html">
+                        <div class="product"><img src="${products[i][0]}/thumb.jpg">
+                            <p class="producttitle">${products[i][2]}</p>
+                            <p class="productdesc">${products[i][4]}</p>
+                        </div>
+
+                    </a>`)
+            }
+        }
+    }
+
+    //Show the filter on the page
+    $
+
+
+</script>
+
+</html>
