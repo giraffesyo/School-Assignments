@@ -133,9 +133,8 @@
                     <option value="handblown-glass">Handblown glass</option>
                     <option value="woven-plastic">Woven plastic</option>
                 </select>
+                <div class="matselcontainer">
 
-                <div id="matsel" class="selecteditem">handblown-glass
-                    <span></span>
                 </div>
 
                 <select id="mobilematerial" name="mobilematerial" data-placeholder="Material" style="width:150px;" tabindex="4">
@@ -161,6 +160,8 @@
                     <option value="accessories">Accessories</option>
                     <option value="tiles">Tiles</option>
                 </select>
+                <div class="typeselcontainer"></div>
+
             </div>
             <form action="index.php" method="get">
                 <input type="text" name="search" id="search" placeholder="search...">
@@ -269,9 +270,58 @@
         var selectedtype = jQuery('#type option:selected').attr('value');
         //Remove all the products
         $('.products').empty()
-        if (selectedmaterial == 0 && selectedtype != 0) {
-            //Add the products, one by one, but cehcking for each one that its type matches the selected type
+        //if neither is selected
+        if (selectedmaterial == 0 && selectedtype == 0) {
+            for (let i = 0; i < products.length; i++) {
+                $('.products').append(`
+                    <a href="${products[i][0]}/index.html">
+                        <div class="product"><img src="${products[i][0]}/thumb.jpg">
+                            <p class="producttitle">${products[i][2]}</p>
+                            <p class="productdesc">${products[i][4]}</p>
+                        </div>
 
+                    </a>`)
+            }
+        }
+        //if both are selected
+        if (selectedmaterial != 0 && selectedtype != 0) {
+            //empty filters
+            $('#matsel').remove()
+            $('#typesel').remove()
+            //Add filter to filter list
+            $('.matselcontainer').html(`
+            <div id="matsel" class="selecteditem" data-selectedmaterial='${selectedmaterial}'>
+                ${selectedmaterial}<span class="closemat"></span>
+            </div>
+            `)
+            $('.typeselcontainer').html(`
+            <div id="typesel" class="selecteditem" data-selectedmaterial='${selectedtype}'>
+                ${selectedtype}<span class="closetype"></span>
+            </div>`)
+            for (let i = 0; i < products.length; i++) {
+                if ((products[i][6] === selectedmaterial) && (products[i][5] === selectedtype)) {
+                    $('.products').append(`
+                    <a href="${products[i][0]}/index.html">
+                        <div class="product"><img src="${products[i][0]}/thumb.jpg">
+                            <p class="producttitle">${products[i][2]}</p>
+                            <p class="productdesc">${products[i][4]}</p>
+                        </div>
+
+                    </a>`)
+                }
+            }
+        }
+        //if type is selected
+        else if (selectedmaterial == 0 && selectedtype != 0) {
+            //empty filters
+            $('#typesel').remove()
+            //Add filter to filter list
+            $('.matselcontainer').html(`
+            <div id="typesel" class="selecteditem" data-selectedmaterial='${selectedtype}'>
+                ${selectedtype}<span class="closetype"></span>
+            </div>`)
+
+            //Add the products, one by one, but cehcking for each one that its type matches the selected type
             for (let i = 0; i < products.length; i++) {
                 if (products[i][5] === selectedtype) {
                     $('.products').append(`
@@ -284,8 +334,18 @@
                     </a>`)
                 }
             }
-        } else if (selectedmaterial != 0 && selectedtype == 0) {
-            //Add the products, one by one, but cehcking for each one that its material matches the selected material
+        }
+        //if material is selected
+        else if (selectedmaterial != 0 && selectedtype == 0) {
+            //remove filter
+            $('#matsel').remove()
+            //Add filter to filter list
+            $('.matselcontainer').html(`
+            <div id="matsel" class="selecteditem" data-selectedmaterial='${selectedmaterial}'>
+                ${selectedmaterial}<span class="closemat"></span>
+            </div>`)
+
+            //Add the products, one by one, but checking for each one that its material matches the selected material
             for (let i = 0; i < products.length; i++) {
                 if (products[i][6] === selectedmaterial) {
                     $('.products').append(`
@@ -298,22 +358,20 @@
                     </a>`)
                 }
             }
-        } else if (selectedmaterial != 0 && selectedtype != 0) {
-            for (let i = 0; i < products.length; i++) {
-                if (products[i][6] === selectedmaterial && products[i][5] === selectedtype) {
-                    $('.products').append(`
-                    <a href="${products[i][0]}/index.html">
-                        <div class="product"><img src="${products[i][0]}/thumb.jpg">
-                            <p class="producttitle">${products[i][2]}</p>
-                            <p class="productdesc">${products[i][4]}</p>
-                        </div>
-
-                    </a>`)
-                }
-
-
-            }
         }
+        $('.closemat').on('click', () => {
+            $('#material').val('0')
+            $('#material').trigger("chosen:updated");
+            $('#matsel').remove()
+            selMat()
+        })
+
+        $('.closetype').on('click', () => {
+            $('#type').val('0')
+            $('#type').trigger("chosen:updated");
+            $('#typesel').remove()
+            selMat()
+        })
     }
 
     //TODO: Show the filter on the page
