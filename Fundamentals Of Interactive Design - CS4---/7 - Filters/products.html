@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 
-<head>test
+<head>
     <title>Javascript products object</title>
     <meta charset="utf-8">
 
@@ -134,7 +134,9 @@
                     <option value="woven-plastic">Woven plastic</option>
                 </select>
 
-                <div id="matsel" class="selecteditem">handblown-glass<span></span></div>
+                <div id="matsel" class="selecteditem">handblown-glass
+                    <span></span>
+                </div>
 
                 <select id="mobilematerial" name="mobilematerial" data-placeholder="Material" style="width:150px;" tabindex="4">
                     <option value="0" selected="selected">Material</option>
@@ -258,20 +260,21 @@
     }
 
     $("#material").change(selMat);
+    $("#type").change(selMat);
 
-
+    //Filter by Material
     function selMat() {
 
         var selectedmaterial = jQuery('#material option:selected').attr('value');
         var selectedtype = jQuery('#type option:selected').attr('value');
-
         //Remove all the products
         $('.products').empty()
+        if (selectedmaterial == 0 && selectedtype != 0) {
+            //Add the products, one by one, but cehcking for each one that its type matches the selected type
 
-        //Add the products, one by one, ut cehcking for each one that its material matches the selected material
-        for (var i = 0; i < products.length; i++) {
-            if (products[i][6] === selectedmaterial) {
-                $('.products').append(`
+            for (let i = 0; i < products.length; i++) {
+                if (products[i][5] === selectedtype) {
+                    $('.products').append(`
                     <a href="${products[i][0]}/index.html">
                         <div class="product"><img src="${products[i][0]}/thumb.jpg">
                             <p class="producttitle">${products[i][2]}</p>
@@ -279,12 +282,42 @@
                         </div>
 
                     </a>`)
+                }
+            }
+        } else if (selectedmaterial != 0 && selectedtype == 0) {
+            //Add the products, one by one, but cehcking for each one that its material matches the selected material
+            for (let i = 0; i < products.length; i++) {
+                if (products[i][6] === selectedmaterial) {
+                    $('.products').append(`
+                    <a href="${products[i][0]}/index.html">
+                        <div class="product"><img src="${products[i][0]}/thumb.jpg">
+                            <p class="producttitle">${products[i][2]}</p>
+                            <p class="productdesc">${products[i][4]}</p>
+                        </div>
+
+                    </a>`)
+                }
+            }
+        } else if (selectedmaterial != 0 && selectedtype != 0) {
+            for (let i = 0; i < products.length; i++) {
+                if (products[i][6] === selectedmaterial && products[i][5] === selectedtype) {
+                    $('.products').append(`
+                    <a href="${products[i][0]}/index.html">
+                        <div class="product"><img src="${products[i][0]}/thumb.jpg">
+                            <p class="producttitle">${products[i][2]}</p>
+                            <p class="productdesc">${products[i][4]}</p>
+                        </div>
+
+                    </a>`)
+                }
+
+
             }
         }
     }
 
-    //Show the filter on the page
-    $
+    //TODO: Show the filter on the page
+
 
 
 </script>
