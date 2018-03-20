@@ -133,15 +133,45 @@ while counter < 4
        break; 
     end
 end
-disp("Crests:")
+disp("2 Crests to the left of 0.5: ")
 disp(leftCrests)
-disp("Valleys:")
+disp("2 Valleys to the left of 0.5: ")
 disp(leftValleys)
 
 
 
-%%% Right is same as above but positive
-
+i = floor(size(x,2)/2); %% start at half of the array
+counter = 0;
+Error = .001;
+rightCrests = [];
+rightValleys = [];
+while ( counter < 4 )
+    %%% Right is same as above but positive
+    dyForward = (y(i+1)-y(i))/(2*(x(i+1))-x(i));
+    dyCentered= (y(i+1)-y(i-1))/(2*(x(i+1))-x(i-1));
+    dyFinal = min(abs(dyForward), abs(dyCentered));
+    
+    if abs(dyFinal) < Error
+        if y(i) > 0 
+           rightCrests = [rightCrests; [x(i), y(i)]];
+        elseif y(i) < 0
+           rightValleys = [rightValleys; [x(i), y(i)]];
+        end
+        counter = counter + 1;
+        i = i + floor(size(x, 2)*.005); %%% Skip .5% of array size
+    else
+        i = i + 1;
+    end
+    
+    %%% make sure we never crash because we ran out of data
+    if( i < 5)
+       break; 
+    end
+end
+disp("2 Crests to the right of 0.5:")
+disp(rightCrests)
+disp("2 Valleys to the right of 0.5:")
+disp(rightValleys)
 
 %%% Problem 3: Take second derivative of functions where they its zero.
 
