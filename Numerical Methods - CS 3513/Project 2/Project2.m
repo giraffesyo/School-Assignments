@@ -95,7 +95,7 @@ plot(x,y)
 %%%Problem 1 and Problem 2: Find derivative to left when derivative is going close to
 %%%zero will be the crest. (same for right) 
 %%% Make starting point 0.5, make a counter of 4, go to the left and record
-%%% each time derivative is at zero then continue left. If function value at that point is negative then its a valley, if its positive its a crest
+%%% each time derivative is ~at zero then continue left. If function value at that point is negative then its a valley, if its positive its a crest
 %%% Same for right. 
 
 i = floor(size(x,2)/2); %% start at half of the array
@@ -173,7 +173,42 @@ disp(rightCrests)
 disp("2 Valleys to the right of 0.5:")
 disp(rightValleys)
 
-%%% Problem 3: Take second derivative of functions where they its zero.
+%%% Problem 3: Take second derivative of functions. Where they are zero we have an inflection point.
+%%% Since we will have a hard time finding where the second derivative
+%%% evaluates at zero, we instead see where it changes sign.
+i = 2; %% since we're using centered we need to start with an extra point
+counter = 0;
+Error = .001;
+inflections = [];
+negative = 0;
+positive = 0;
+while ( counter < 4 )
+    dy2Centered = (y(i+2)-(2*y(i+1))+y(i))/((x(i+1)-x(i-1))^2);
+    %dyFinal = min(abs(dyForward), abs(dyCentered));
+    if (dy2Centered < 0 && positive == 1) | (dy2Centered > 0 && negative == 1)
+        inflections = [inflections; [x(i), y(i)]];
+        counter = counter + 1;
+        i = i + floor(size(x, 2)*.005); %%% Skip .5% of array size
+    else
+        i = i + 1;
+    end
+    %%% make sure we never crash because we ran out of data
+    if( i > 999)
+       break; 
+    end
+    
+    if dy2Centered < 0 
+        negative = 1;
+        positive = 0;
+    else
+        negative = 0;
+        positive = 1;
+    end
+        
+end
+
+disp("The first four inflection points are: ");
+disp(inflections)
 
 %%% Problem 4: 
 
