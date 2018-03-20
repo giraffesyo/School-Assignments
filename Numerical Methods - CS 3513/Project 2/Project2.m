@@ -164,7 +164,7 @@ while ( counter < 4 )
     end
     
     %%% make sure we never crash because we ran out of data
-    if( i < 5)
+    if( i < 1000)
        break; 
     end
 end
@@ -184,7 +184,6 @@ negative = 0;
 positive = 0;
 while ( counter < 4 )
     dy2Centered = (y(i+2)-(2*y(i+1))+y(i))/((x(i+1)-x(i-1))^2);
-    %dyFinal = min(abs(dyForward), abs(dyCentered));
     if (dy2Centered < 0 && positive == 1) | (dy2Centered > 0 && negative == 1)
         inflections = [inflections; [x(i), y(i)]];
         counter = counter + 1;
@@ -211,7 +210,6 @@ disp("The first four inflection points are: ");
 disp(inflections)
 
 %%% Problem 4: 
-
 disp(strcat("Time signal is above 0.5: ", num2str(size(find(y>.5),2)* .001), " seconds"))
 %%% Problem 5:
 disp(strcat("Time signal is below -0.8: ", num2str(size(find(y<-.8),2)* .001), " seconds"))
@@ -219,3 +217,23 @@ disp(strcat("Time signal is below -0.8: ", num2str(size(find(y<-.8),2)* .001), "
 disp(strcat("Time signal is below 0.1: ", num2str(size(find(y<.1),2)* .001), " seconds"))
 
 
+%%% Problem 7: 
+%%% Find all valleys in dataset...
+Error = .001;
+Valleys = [];
+for i = 2:size(x,2)-1 %%% go through entire dataset form the left, start at two because we use centered derivation
+    dyForward = (y(i+1)-y(i))/(2*(x(i+1))-x(i));
+    dyCentered= (y(i+1)-y(i-1))/(2*(x(i+1))-x(i-1));
+    dyFinal = min(abs(dyForward), abs(dyCentered));
+    
+    if abs(dyFinal) < Error
+        if y(i) < 0
+           Valleys = [Valleys; [x(i), y(i)]];
+        end
+        i = i + floor(size(x, 2)*.005); %%% Skip .5% of array size
+    end
+    
+end
+
+disp("All valleys: ")
+disp(Valleys)
