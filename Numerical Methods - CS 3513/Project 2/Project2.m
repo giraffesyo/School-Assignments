@@ -89,6 +89,8 @@ while x(i)<1
     end 
 end   
 figure(2)
+ylabel("Amplitude [dB]");
+xlabel("Time in Seconds [s]");
 plot(x,y)
 
 
