@@ -164,7 +164,7 @@ while ( counter < 4 )
     end
     
     %%% make sure we never crash because we ran out of data
-    if( i < 1000)
+    if( i > 1000)
        break; 
     end
 end
