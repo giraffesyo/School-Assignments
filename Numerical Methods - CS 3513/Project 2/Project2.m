@@ -88,11 +88,12 @@ while x(i)<1
        i=i+1;
     end 
 end   
-figure(2)
 ylabel("Amplitude [dB]");
 xlabel("Time in Seconds [s]");
+figure(2)
 plot(x,y)
-
+ylabel("Amplitude [dB]");
+xlabel("Time in Seconds [s]");
 
 %%%Problem 1 and Problem 2: Find derivative to left when derivative is going close to
 %%%zero will be the crest. (same for right) 
