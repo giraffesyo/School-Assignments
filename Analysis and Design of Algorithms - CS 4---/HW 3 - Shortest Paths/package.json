@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "graph-data-structure": "^1.8.0"
+  }
+}
