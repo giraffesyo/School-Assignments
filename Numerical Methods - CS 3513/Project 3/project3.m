@@ -69,31 +69,29 @@ plot(xo,yo)
 
 disp('big boop');
 %%%Find Y Value
-counter = 0;
-sum = 0;
-trashed = 0;
-
-%%% Fix matlab's floating point problems with this fix command. (Truncates after 4th decimal.)
-xo = xo.*1000;
-for i = min(xo): 1 : max(xo)
-    
-    %%% again fix matlabs shit
-    xIndexes = find(xo==i);
-    maxY = max(yo(xIndexes));
-    minY = min(yo(xIndexes));
-    if(~isempty(xIndexes))
-        sum = sum + ((maxY + minY)/2);
-    else 
-        trashed = trashed + 1;
-    end
-
-    %%% Keep track of how many averages we took
-    counter = counter + 1;
+counter=0;
+sumy=0;
+sumx=0;
+xo=1000.*xo;
+for i=min(xo):max(xo)
+  index=find((xo<i+.5) & (xo>i-.5));
+  ymax=max(yo(index));
+  ymin=min(yo(index));
+  sumy=sumy+(ymax+ymin)/2;
+  sumx=sumx+i*(ymax+ymin)/2;
+  
+  if isempty(index)
+    display('fail');
+  end
+  %%% keep track of how many averages we took
+  counter=counter+1;
 end
 
+yCenter=sumy/counter;
 %%% Find x value
-yValue = sum/(1000*counter);
-xValue = (min(xo) + max(xo))/2;
+xCenter=sumx/(1000*counter);
+
+
 hold on;
-plot(xValue, yValue, '+r', 'MarkerSize', 20);
+plot(xCenter, yCenter, '+r', 'MarkerSize', 20);
 
