@@ -1,0 +1,300 @@
+/* CSS RESET */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+
+
+header{
+    height: 80px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+    position: relative;
+    margin-bottom: 80px;
+}
+
+header #logo{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 40px;
+}
+
+header ul{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+header ul li{
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: 'Work Sans', sans-serif;
+    color: #a0a0a0;
+    font-size: 12px;
+    width: 120px;
+    text-align: center;
+    height: 80px;
+    line-height: 80px;   
+    cursor: pointer;
+}
+
+header ul li.selected{
+    color: #292929;
+    border-top: 5px solid #F91B24;
+}
+
+.col{
+    float: left;
+}
+
+.col1{
+    width: 60%;
+    margin-top: 160px;
+    text-align: center;
+}
+.col2{
+    width: 40%;
+}
+
+.col2 img{
+    width: 100%;
+}
+
+h1{
+    font-size: 11px;
+    font-family: 'Work Sans', sans-serif;
+    color: #F91B24;
+    text-transform: uppercase;
+}
+
+p.title{
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #292929;
+    margin: 30px 0 40px 0;
+}
+
+p.desc{
+    font-size: 15px;
+    color: #696969;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    line-height: 2;
+}
+
+
+
+.onethird{
+    box-sizing: border-box;
+    float: left;
+    width: 33.33333333%;
+    text-align: center;
+    border-right: 1px solid #ccc;
+    height: 130px;
+    margin-top: 30px;
+}
+
+h2{
+    font-size: 22px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #292929;
+    margin: 30px 0 10px 0;
+}
+
+.last{
+    border-right: none;
+}
+
+/* Hide all sections but the first one */
+
+section{
+    display: none;
+}
+
+#home{
+    display: block;
+}
+
+@media only screen and (min-width: 1121px)
+{
+    #wrapper{
+        width: 1120px;
+        margin: 0 auto;
+    }
+
+    .hamburger{
+        display: none;
+    }
+
+    .menu {
+        display: inline-block;
+    }
+}
+
+@media only screen and (max-width: 1120px){
+
+    header{
+        height: initial;
+        margin-bottom: 40px;
+    }
+
+    header .logo {
+        height: 80px;
+        display: inline-block;
+        transform: translateY(25%);
+    }
+
+    header #logo {
+        position: relative;
+        top: initial;
+        transform: translateX(25%) translateY(25%);
+        left: initial;
+    }
+
+
+
+    .hamburger {
+        font-size: 36px;
+        float: right !important;
+        padding-right: 16px;
+        line-height: 2;
+    }
+
+    .menu ul {
+        clear: both;
+        display: none;
+        position: relative;
+        right: initial;
+        top: initial;
+        transform: initial;
+    }
+
+    .menu ul li {
+        display: block;
+        width: initial;
+    }
+    
+    .menu ul.active {
+        display: block;
+        
+    }
+  
+    .menu ul.active li {
+        display: block;
+    }
+
+    header {
+        clear: both;
+    
+    }
+
+    #extrawrapper {
+        display: block;
+        position: static;
+
+    } 
+}
+
+@media only screen and (max-width: 670px){
+    
+    header ul li.selected{
+        color: #292929;
+        border: 0;
+        border-right: 2px solid #F91B24;
+    }
+
+
+    .col {
+        clear: both;
+        float: none;
+    }
+    
+    .col.col1{
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .col.col2 {
+        display: block;
+        width: 100%;
+    }
+
+    .col1 .desc {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
