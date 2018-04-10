@@ -1,12 +1,13 @@
 Instructions:
 
-Add responsiveness to the given webpage by adhering to the following breakponts:
+- Add functionality to the menu links using JQuery. 
+- Add responsiveness to the given webpage by adhering to the following breakponts:
 
 <p align="center">
   <img src="https://i.stack.imgur.com/z2D4z.png" alt="Mobile Breakpoints" />
 </p>
 
-Add functionality to the menu links using JQuery. 
+# Samples:
 
 <p align="center">
 <img src="https://i.stack.imgur.com/10xm2.png" alt="Mobile Design" />  
