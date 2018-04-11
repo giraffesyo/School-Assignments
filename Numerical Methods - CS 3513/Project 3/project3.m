@@ -1,34 +1,26 @@
+%%Original
 close all; clc; clear *;
 
 
 fileO=load('original.mat');
-x=fileO.x;
-y=fileO.y;
+xo=fileO.x;
+yo=fileO.y;
 
 %%% Round to 3 decimal places so we process less points in the whole array,
 %%% so this data then will be accurate within half of a milimeter. 
-xo=round(x,3); 
-yo=y;
-figure(1)
-plot(xo,yo)
-
-fileR=load('redesign.mat');
-xr=fileR.x;
-yr=fileR.y;
-figure(2)
-plot(xr,yr)
+xo=round(xo,3); 
 
 
 %%% Get evenly spaced data in order to easily find center of mass.
 i=2;
-tam=size(xo,2);
+arraySize=size(xo,2);
 while 1
     %%% Matlab doesn't update the value on each loop iteration so we use
     %%% this to break instead of a loop condition
-    if i>tam-1
+    if i>arraySize-1
        break; 
     end
-    %%% Find distance between preveious point and current point
+    %%% Find distance between previous point and current point
     dist = xo(i)- xo(i-1);
     if abs(dist) > 0.0011
       if dist < 0
@@ -39,7 +31,7 @@ while 1
         %%% When we're going to the right we need to add the x value to be
         %%% the next value to the right
         %%% Where is previous x plus the step we're making (.001)
-        newX = xo(i-1)+.001; 
+        newX = xo(i-1) + .001; 
       end
 
       %%% Use Newton's divided difference for quadratic in order to
@@ -53,26 +45,23 @@ while 1
       yo=[yo(1:i-1) newY yo(i:end)];
       
       %%% We must adjust the size so we don't stop short
-      tam=size(xo,2);
+      arraySize=size(xo,2);
     end
  
  i=i+1;   
 end
-
-figure(3)
-plot(xo,yo)
 
 
 %%% For every x find all values. Take the highest value and add lowest value.
 %%% Then divide by two, this finds the mean value of y for that point of x.
 %%% This is for all x.
 
-disp('big boop');
-%%%Find Y Value
+
+%%%Find Y Value of center of mass for  Original X 
 counter=0;
 sumy=0;
 sumx=0;
-xo=1000.*xo;
+xo = 1000.*xo;
 for i=min(xo):max(xo)
   index=find((xo<i+.5) & (xo>i-.5));
   ymax=max(yo(index));
@@ -87,11 +76,126 @@ for i=min(xo):max(xo)
   counter=counter+1;
 end
 
+xo = xo./1000;
 yCenter=sumy/counter;
 %%% Find x value
 xCenter=sumx/(1000*counter);
 
 
+figure(1);
+plot(xo,yo); %%% plot evenly spaced heart
+
 hold on;
 plot(xCenter, yCenter, '+r', 'MarkerSize', 20);
+title('Center of Mass for Original');
+xlabel('Width - Centimeters [cm]');
+ylabel('Height - Centimeters [cm]');
+set(gcf, 'Units', 'Normalized', 'OuterPosition', [0, 0.5, 0.5, 0.5]);
 
+
+
+%% Redesign
+fileR=load('redesign.mat');
+xr=fileR.x;
+yr=fileR.y;
+%%figure(2)
+%%plot(xr,yr)
+
+
+%%% Round to 3 decimal places so we process less points in the whole array,
+%%% so this data then will be accurate within half of a milimeter. 
+xr=round(xr,3); 
+
+
+%%% Get evenly spaced data in order to easily find center of mass.
+i=2;
+arraySize=size(xr,2);
+while 1
+    %%% Matlab doesn't update the value on each loop iteration so we use
+    %%% this to break instead of a loop condition
+    if i>arraySize-1
+       break; 
+    end
+    %%% Find distance between preveious point and current point
+    dist = xr(i)- xr(i-1);
+    if abs(dist) > 0.0011
+      if dist < 0
+        %%% When we're going to the left we need to add the x value to be
+        %%% the next value to the left of the previous value. 
+        newX = xr(i-1) - .001;
+      else
+        %%% When we're going to the right we need to add the x value to be
+        %%% the next value to the right
+        %%% Where is previous x plus the step we're making (.001)
+        newX = xr(i-1)+.001; 
+      end
+
+      %%% Use Newton's divided difference for quadratic in order to
+      %%% calculate the new y. 
+      b0=yr(i-1);
+      b1=(yr(i)-b0)/(xr(i)-xr(i-1));
+      b2=((yr(i+1)-yr(i))/(xr(i+1)-xr(i))-b1)/(xr(i+1)-xr(i-1));
+      newY= b0+b1*(newX-xr(i-1))+b2*(newX-xr(i-1))*(newX-xr(i));
+      
+      xr=[xr(1:i-1) newX xr(i:end)];
+      yr=[yr(1:i-1) newY yr(i:end)];
+      
+      %%% We must adjust the size so we don't stop short
+      arraySize=size(xr,2);
+    end
+ 
+ i=i+1;   
+end
+
+
+
+%%% For every x find all values. Take the highest value and add lowest value.
+%%% Then divide by two, this finds the mean value of y for that point of x.
+%%% This is for all x.
+
+%%%Find Y Value
+counter=0;
+sumy=0;
+sumx=0;
+xr = 1000.*xr;
+for i=min(xr):max(xr)
+  index=find((xr<i+.5) & (xr>i-.5));
+  ymax=max(yr(index));
+  ymin=min(yr(index));
+  sumy=sumy+(ymax+ymin)/2;
+  sumx=sumx+i*(ymax+ymin)/2;
+  
+  if isempty(index)
+    display('fail');
+  end
+  %%% keep track of how many averages we took
+  counter=counter+1;
+end
+
+
+xr = xr./1000;
+yrCenter=sumy/counter;
+%%% Find x value
+xrCenter=sumx/(1000*counter);
+
+figure(2);
+plot(xr,yr);
+hold on;
+plot(xrCenter, yrCenter, '+r', 'MarkerSize', 20);
+title('Center of Mass for Redesign');
+xlabel('Width - Centimeters [cm]');
+ylabel('Height - Centimeters [cm]');
+% Make figure fit in upper right quadrant..
+set(gcf, 'Units', 'Normalized', 'OuterPosition', [0.5, 0.5, 0.5, 0.5]);
+
+distance = sqrt((xrCenter-xCenter)^2 + (yrCenter - yCenter)^2);
+
+answer = round(distance,3);
+
+disp(strcat("The cookie moved ", num2str(answer), " centimeters from its original position"));
+
+if(distance > 0.5)
+    disp("Chinacorp is at fault.");
+else 
+    disp("The wildbeast is at fault.");
+end
