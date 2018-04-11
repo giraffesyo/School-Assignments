@@ -1,3 +1,6 @@
+%%% Michael McQuade, Joshua Ben McMahan, Jose Ramon Luna, Vincent Vargas
+%%% A01677104, A01677115, A01337885, A01335644
+
 %%Original
 close all; clc; clear *;
 
@@ -62,15 +65,24 @@ counter=0;
 sumy=0;
 sumx=0;
 xo = 1000.*xo;
-for i=min(xo):max(xo)
+for i=min(xo):max(xo) %%%i is set to the minimum value of the matrix and proceeds to the right. 
+  %%%finds the points where the x values are the value of i. 
+  %%% The reason for this is because of matlab floating point comparison
+  %%% problems
   index=find((xo<i+.5) & (xo>i-.5));
   ymax=max(yo(index));
   ymin=min(yo(index));
   sumy=sumy+(ymax+ymin)/2;
+  %%% Sum x's for use in xCenter of mass,
+  %%% Instead of using min(x)+max(x))/2, which would only work if the
+  %%% object was known to be symmetrical, we use ymax and ymin of the
+  %%% current index, multiplied by the current x value (i), this will give
+  %%% us the weighted sum of our x's, which we will later use as the center
+  %%% of mass (this value divided by the number of x values
   sumx=sumx+i*(ymax+ymin)/2;
   
   if isempty(index)
-    display('fail');
+    disp('fail');
   end
   %%% keep track of how many averages we took
   counter=counter+1;
@@ -166,12 +178,11 @@ for i=min(xr):max(xr)
   sumx=sumx+i*(ymax+ymin)/2;
   
   if isempty(index)
-    display('fail');
+    disp('fail');
   end
   %%% keep track of how many averages we took
   counter=counter+1;
 end
-
 
 xr = xr./1000;
 yrCenter=sumy/counter;
