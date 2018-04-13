@@ -9,9 +9,8 @@ fileO=load('original.mat');
 xo=fileO.x;
 yo=fileO.y;
 
-displacement = 0;
+displacement = 100;
 xo = xo + displacement;
-%%%yo = yo + 5;
 
 %%% Round to 3 decimal places so we process less points in the whole array,
 %%% so this data then will be accurate within half of a milimeter. 
@@ -121,9 +120,6 @@ xr=fileR.x;
 yr=fileR.y;
 
 xr= xr + displacement;
-%%%yr = yr+5;
-%%figure(2)
-%%plot(xr,yr)
 
 
 %%% Round to 3 decimal places so we process less points in the whole array,
