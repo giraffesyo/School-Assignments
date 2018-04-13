@@ -9,6 +9,10 @@ fileO=load('original.mat');
 xo=fileO.x;
 yo=fileO.y;
 
+displacement = 0;
+xo = xo + displacement;
+%%%yo = yo + 5;
+
 %%% Round to 3 decimal places so we process less points in the whole array,
 %%% so this data then will be accurate within half of a milimeter. 
 xo=round(xo,3); 
@@ -65,6 +69,11 @@ counter=0;
 sumy=0;
 sumx=0;
 xo = 1000.*xo;
+d0 = 0;
+
+%%% According to: 
+%%% https://www.khanacademy.org/science/physics/linear-momentum/center-of-mass/v/center-of-mass-equation
+
 for i=min(xo):max(xo) %%%i is set to the minimum value of the matrix and proceeds to the right. 
   %%%finds the points where the x values are the value of i. 
   %%% The reason for this is because of matlab floating point comparison
@@ -79,7 +88,8 @@ for i=min(xo):max(xo) %%%i is set to the minimum value of the matrix and proceed
   %%% current index, multiplied by the current x value (i), this will give
   %%% us the weighted sum of our x's, which we will later use as the center
   %%% of mass (this value divided by the number of x values
-  sumx=sumx+i*(ymax+ymin)/2;
+  sumx=sumx+i*abs(ymax-ymin); %%% numerator
+  d0=d0+abs(ymax-ymin); %%%denominator
   
   if isempty(index)
     disp('fail');
@@ -91,8 +101,7 @@ end
 xo = xo./1000;
 yCenter=sumy/counter;
 %%% Find x value
-xCenter=sumx/(1000*counter);
-
+xCenter=sumx/(1000*d0);
 
 figure(1);
 plot(xo,yo); %%% plot evenly spaced heart
@@ -110,6 +119,9 @@ set(gcf, 'Units', 'Normalized', 'OuterPosition', [0, 0.5, 0.5, 0.5]);
 fileR=load('redesign.mat');
 xr=fileR.x;
 yr=fileR.y;
+
+xr= xr + displacement;
+%%%yr = yr+5;
 %%figure(2)
 %%plot(xr,yr)
 
@@ -129,7 +141,7 @@ while 1
        break; 
     end
     %%% Find distance between preveious point and current point
-    dist = xr(i)- xr(i-1);
+    dist = xr(i) - xr(i-1);
     if abs(dist) > 0.0011
       if dist < 0
         %%% When we're going to the left we need to add the x value to be
@@ -139,7 +151,7 @@ while 1
         %%% When we're going to the right we need to add the x value to be
         %%% the next value to the right
         %%% Where is previous x plus the step we're making (.001)
-        newX = xr(i-1)+.001; 
+        newX = xr(i-1) + .001; 
       end
 
       %%% Use Newton's divided difference for quadratic in order to
@@ -170,12 +182,14 @@ counter=0;
 sumy=0;
 sumx=0;
 xr = 1000.*xr;
+d0 = 0;
 for i=min(xr):max(xr)
   index=find((xr<i+.5) & (xr>i-.5));
   ymax=max(yr(index));
   ymin=min(yr(index));
   sumy=sumy+(ymax+ymin)/2;
-  sumx=sumx+i*(ymax+ymin)/2;
+  sumx=sumx+i*abs(ymax-ymin);
+  d0=d0+abs(ymax-ymin);  
   
   if isempty(index)
     disp('fail');
@@ -187,7 +201,9 @@ end
 xr = xr./1000;
 yrCenter=sumy/counter;
 %%% Find x value
-xrCenter=sumx/(1000*counter);
+%%xrCenter=sumx/(1000*counter);
+xrCenter=sumx/(1000*d0);
+
 
 figure(2);
 plot(xr,yr);
