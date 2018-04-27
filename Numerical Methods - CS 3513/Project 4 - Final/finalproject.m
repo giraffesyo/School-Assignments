@@ -35,5 +35,5 @@ for ti = t
     
     counter = counter + 1;
 end 
-
-plot(v,dv)
+v(end) = [];
+plot(t,v)
