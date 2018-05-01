@@ -1,13 +1,13 @@
 close all; clear *; clc;
+
+%%%Problem1: 
+
 %%%CONSTANTS, Provided by professor:
 RESISTANCE = 200;
 VOLTAGE = 5;
 INDUCTANCE = 1; %%% 1H
 CAPACITANCE = .000001; %%% C =1?F
 INTERVAL = .1;
-
-%%% q is charge
-%%% z is derivative of q
 
 %%% Form a system of equations
 %%% Use first derivative of V "z"
@@ -17,7 +17,7 @@ g_xyz = @(x, y, z) (VOLTAGE - RESISTANCE * CAPACITANCE * z - y) / CAPACITANCE * 
 v(1) = 0;
 dv(1) = 0;
 
-h = 0.0005; %%% (t_n - t_0)/n
+h = 0.0005;
 t = 0:h:.1;
 counter = 1;
 
@@ -47,6 +47,9 @@ disp(['The voltage at time ' num2str(t(end)) ' was ' num2str(v(end)), ' volts'])
 
 
 %%% Problem 2:
+disp(newline);
+disp('Problem 2:')
+
 
 prevV = v(end);
 prevT = t(end);
@@ -87,14 +90,29 @@ while counter < maxIterations
     end
     counter = counter + 1;
 end
-
 figure;
 plot(t,v);
-t(end)
-v(end)
 xlabel('Time [s]');
 ylabel('Volts [v]');
 title('Problem 2: Voltage change in the capacitor when power source is disconnected');
-disp('Problem 2:')
+
 disp(['Starting at time ' num2str(t(1)) 's it took ' num2str(t(end)-t(1)) ' seconds to discharge the capacitor.']) 
 disp(['The above mentioned value is with a tolerance for zero of ' num2str(tolerance)])
+
+%%% Problem 3:
+disp(newline);
+disp('Problem 3:');
+
+
+%%% Problem 4:
+disp(newline);
+disp('Problem 4:');
+
+
+%%% Problem 5:
+disp(newline);
+disp('Problem 5:');
+
+%%% Problem 6:
+disp(newline);
+disp('Problem 6:');
