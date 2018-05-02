@@ -157,12 +157,42 @@ disp(['The above mentioned value is with a tolerance for zero of ' num2str(toler
 %%% Problem 3:
 disp(newline);
 disp('Problem 3:');
-disp('See graphs.');
+disp('See graphs, figures 1 - 6.');
 
 
 %%% Problem 4:
 disp(newline);
 disp('Problem 4:');
+%%%Energy change for capacitor:
+
+figure;
+
+energy_c = CAPACITANCE/2 .* v.^2;
+plot(t,energy_c)
+
+xlabel('Time [s]');
+ylabel('Volts [v]');
+title('Energy change in the capacitor while system is discharging');
+%%%Energy change for inductor:
+figure;
+
+energy_l = INDUCTANCE/2.*current.^2;
+plot(t,energy_l)
+
+xlabel('Time [s]');
+ylabel('Volts [v]');
+title('Energy change in the inductor while system is discharging');
+
+%%% Sum of energy for both the inductor and resistor
+figure;
+
+energy_lc = energy_l + energy_c;
+plot(t, energy_lc);
+
+xlabel('Time [s]');
+ylabel('Volts [v]');
+title('Energy change in the system while the system is discharging');
+
 
 
 %%% Problem 5:
