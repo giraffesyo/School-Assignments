@@ -163,8 +163,8 @@ disp('See graphs, figures 1 - 6.');
 %%% Problem 4:
 disp(newline);
 disp('Problem 4:');
-%%%Energy change for capacitor:
 
+%%%Energy change for capacitor:
 figure;
 
 energy_c = CAPACITANCE/2 .* v.^2;
@@ -193,7 +193,41 @@ xlabel('Time [s]');
 ylabel('Volts [v]');
 title('Energy change in the system while the system is discharging');
 
+%%% Find interpolated function for energy change in system so we can find
+%%% area
 
+intervals = size(t,2)-1;
+deltax = (t(end) - t(1))/intervals;
+
+
+%%%First sum of simpson 3/8
+
+counter = 2;
+firstSum = 0;
+while counter < size(energy_lc,2)-2
+    firstSum = firstSum + energy_lc(counter);
+    counter = counter + 3;
+end
+
+%%% Second sum of simpson 3/8
+counter = 3;
+secondSum = 0;
+while counter < size(energy_lc,2)-1
+    secondSum = secondSum + energy_lc(counter);
+    counter = counter + 3;
+end
+
+%%% Third sum of simpson 3/8
+counter = 4;
+thirdSum = 0;
+while counter < size(energy_lc,2)-3
+    thirdSum = thirdSum + energy_lc(counter);
+    counter = counter + 3;
+end
+
+%%% Simpson 3 /8 
+total_energy_change = (3*deltax/8)*(energy_lc(1))+3*firstSum+3*secondSum+2*thirdSum+energy_lc(end);
+disp(['The total energy change for the system while discharging is ' num2str(total_energy_change) ' watts per second']);
 
 %%% Problem 5:
 disp(newline);
