@@ -232,6 +232,8 @@ disp(['The total energy change for the system while discharging is ' num2str(tot
 %%% Problem 5:
 disp(newline);
 disp('Problem 5:');
+disp('The decay of energy as the system is discharged is represented by an exponential function.');
+disp('See figure 10 and compare it to figure 9 from problem 4.');
 
 counter = 1;
 sumW = 0;
@@ -270,4 +272,39 @@ title('Power Model regression of energy change in the system while the system is
 disp(newline);
 disp('Problem 6:');
 
+roots = [];
+positive = 0;
 
+if(v(1) > 0)
+   positive = 1;
+end
+
+counter = 1;
+while counter < size(t,2) - 1
+    if positive == 1
+        if v(counter +1) < 0
+           positive = 0;
+           roots = [roots (t(counter)+t(counter + 1))/2];
+        end
+    else
+        if v(counter + 1) > 0
+            positive = 1;
+            roots = [roots (t(counter)+t(counter+1))/2];
+        end
+    end
+    counter = counter + 1;
+end
+
+figure;
+plot(t, v);
+hold on;
+title('Roots of capacitor while discharging');
+xlabel('Time [s]');
+ylabel('Volts [v]');
+plot(roots, 0, '+r');
+
+disp('Figure 11 displays the roots.');
+rootstrs = num2str(roots);
+
+disp('Roots are at times (seconds): ');
+disp(rootstrs);
