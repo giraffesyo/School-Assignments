@@ -190,7 +190,7 @@ energy_lc = energy_l + energy_c;
 plot(t, energy_lc);
 
 xlabel('Time [s]');
-ylabel('Volts [v]');
+ylabel('Watts [W]');
 title('Energy change in the system while the system is discharging');
 
 %%% Find interpolated function for energy change in system so we can find
@@ -233,6 +233,41 @@ disp(['The total energy change for the system while discharging is ' num2str(tot
 disp(newline);
 disp('Problem 5:');
 
+counter = 1;
+sumW = 0;
+sumZ = 0;
+sumWsquared = 0;
+sumWZ = 0;
+while counter < size(t,2)
+    z = log(energy_lc(counter));
+    w = t(counter);
+    sumW = sumW + w;
+    sumZ = sumZ + z;
+    sumWsquared = sumWsquared + w*w;
+    sumWZ = sumWZ + w*z;
+    counter = counter + 1;
+end
+
+powerModel = [size(t,2), sumW;sumW, sumWsquared];
+powerModel_solutionVector = [sumZ; sumWZ];
+powerModel_solutions = rref([powerModel powerModel_solutionVector]);
+
+b0= powerModel_solutions(1, end);
+b1 = powerModel_solutions(2, end);
+a0 = exp(b0);
+a1 = b1;
+
+n = a0 * exp(a1*t);
+
+figure;
+plot(t, n);
+xlabel('Time [s]');
+ylabel('Watts [W]');
+title('Power Model regression of energy change in the system while the system is discharging');
+
+
 %%% Problem 6:
 disp(newline);
 disp('Problem 6:');
+
+
