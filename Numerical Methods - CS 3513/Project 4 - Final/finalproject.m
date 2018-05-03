@@ -46,7 +46,7 @@ ddv_c(end) = [];
 
 %%%Plot for capacitor:
 plot(t,v);
-title('Voltage change in the capacitor while charging for 0.1 seconds');
+title('Problem 3: Voltage change in the capacitor while charging for 0.1 seconds');
 ylabel('Volts [v]');
 xlabel('Time [s]');
 
@@ -55,7 +55,7 @@ figure;
 current = dv.*CAPACITANCE;
 Voltage_resistor = current*RESISTANCE;
 plot(t,Voltage_resistor);
-title('Voltage change in the resistor while charging for 0.1 seconds');
+title('Problem 3: Voltage change in the resistor while charging for 0.1 seconds');
 ylabel('Volts [v]');
 xlabel('Time [s]');
 
@@ -63,7 +63,7 @@ xlabel('Time [s]');
 figure;
 Voltage_inductor = ddv_c.*CAPACITANCE.*INDUCTANCE;
 plot(t, Voltage_inductor);
-title('Voltage change in the inductor while charging for 0.1 seconds');
+title('Problem 3: Voltage change in the inductor while charging for 0.1 seconds');
 ylabel('Volts [v]');
 xlabel('Time [s]');
 
@@ -130,7 +130,7 @@ figure;
 plot(t,v);
 xlabel('Time [s]');
 ylabel('Volts [v]');
-title('Voltage change in the capacitor when power source is disconnected');
+title('Problem 3: Voltage change in the capacitor when power source is disconnected');
 
 
 %%%Plot for resistor:
@@ -138,7 +138,7 @@ figure;
 current = dv.*CAPACITANCE;
 Voltage_resistor = current*RESISTANCE;
 plot(t,Voltage_resistor);
-title('Voltage change in the resistor when power source is disconnected');
+title('Problem 3: Voltage change in the resistor when power source is disconnected');
 ylabel('Volts [v]');
 xlabel('Time [s]');
 
@@ -146,7 +146,7 @@ xlabel('Time [s]');
 figure;
 Voltage_inductor = ddv_c.*CAPACITANCE.*INDUCTANCE;
 plot(t, Voltage_inductor);
-title('Voltage change in the inductor when power source is disconnected');
+title('Problem 3: Voltage change in the inductor when power source is disconnected');
 ylabel('Volts [v]');
 xlabel('Time [s]');
 
