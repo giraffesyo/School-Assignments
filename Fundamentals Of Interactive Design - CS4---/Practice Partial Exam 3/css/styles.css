@@ -1,94 +1,92 @@
-body{
-    font-family: 'Amatic SC';
-    margin: 0;
+body {
+  font-family: 'Amatic SC';
+  margin: 0;
 }
 
-#form{
-    width: 500px;
-    text-align: center;
-    margin: 20px auto;
+#form {
+  width: 500px;
+  text-align: center;
+  margin: 20px auto;
 }
 
-textarea{
-    width: 280px;
-    height: 150px;
-    background-color: #fafafa;
-    color: white;
-    padding: 10px;
-    font-size: 24px;
-    color: #333;
+textarea {
+  width: 280px;
+  height: 150px;
+  background-color: #fafafa;
+  color: white;
+  padding: 10px;
+  font-size: 24px;
+  color: #333;
 }
 
-
-.colors{
-    width: 40px;
-    height: 40px;
-    margin: 10px;
-    display: inline-block;
+.colors {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  display: inline-block;
 }
 
-.colors img{
-    width: 100%;
+.colors img {
+  width: 100%;
 }
 
-
-#agregar{
-    width: 300px;
-    height: 40px;
-    border-radius: 12px;
-    background-color: #666;
-    font-family: 'Amatic SC';
-    font-size: 30px;
-    line-height: 40px;
-    color: white;
-    margin: 20px auto;
+#add {
+  width: 300px;
+  height: 40px;
+  border-radius: 12px;
+  background-color: #666;
+  font-family: 'Amatic SC';
+  font-size: 30px;
+  line-height: 40px;
+  color: white;
+  margin: 20px auto;
 }
 
-.nota{
-    width: 300px;
-    height: 300px;
-    float: left;
-    position: relative;
+.note {
+  width: 300px;
+  height: 300px;
+  float: left;
+  position: relative;
 }
 
-.selected{
-    box-shadow: 0 0 7px 2px rgba(0,0,0,0.4);
+.selected {
+  box-shadow: 0 0 7px 2px rgba(0, 0, 0, 0.4);
 }
 
-.yellow{
-    background: url("../img/sticky-yellow.png");
+.yellow {
+  background: url('../img/sticky-yellow.png');
 }
-.purple{
-    background: url("../img/sticky-purple.png");
+.purple {
+  background: url('../img/sticky-purple.png');
 }
-.green{
-    background: url("../img/sticky-green.png");
+.green {
+  background: url('../img/sticky-green.png');
 }
-.orange{
-    background: url("../img/sticky-orange.png");
-}
-
-.inner{
-    padding: 40px;
-    display: block;
-    font-size: 44px;
-    line-height: 40px;
+.orange {
+  background: url('../img/sticky-orange.png');
 }
 
-#error{
-    color: red;
-    font-size: 24px;
-    display: none;
+.inner {
+  padding: 40px;
+  display: block;
+  font-size: 44px;
+  line-height: 40px;
 }
 
-.delete{
-    display: block;
-    width: 20px;
-    height: 20px;
-    background: url('../img/delete.png');
-    background-size: 100%;
-    position: absolute;
-    right: 20px;
-    bottom: 46px;
-    cursor: pointer;
+#error {
+  color: red;
+  font-size: 24px;
+  display: none;
+}
+
+.delete {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url('../img/delete.png');
+  background-size: 100%;
+  position: absolute;
+  right: 20px;
+  bottom: 46px;
+  cursor: pointer;
 }
