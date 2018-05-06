@@ -80,4 +80,6 @@ function addNote(note) {
       <span class="inner">${note.text}</span>
   </div>
   `)
+  $('textarea').val('')
+  $('.colors').removeClass('selected')
 }
