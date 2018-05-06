@@ -13,7 +13,7 @@
 
 <body>
     <div id="form">
-        <textarea id="texto"></textarea>
+        <textarea id="text"></textarea>
         <br>
         <div data-color="yellow" class="colors">
             <img src="img/sticky-yellow.png">
@@ -30,16 +30,14 @@
         <br>
         <div id="add">Add note</div>
 
-        <div id="error">Please select note's color and write some text.</div>
+        <div id="errorboth" class="error">Please write some text and select a color.</div>
+        <div id="errortext" class="error">Please write some text.</div>
+        <div id="errorcolor" class="error">Please select a color.</div>
+
     </div>
 
-    <div id="notes-container">
-        <div class="note yellow">
-            <span class="delete" data-nota="nota1"></span>
-            <span class="inner">Just a sample note</span>
-        </div>
-    </div>
-
+    <div id="notes-container"></div>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -73,11 +73,12 @@ textarea {
   line-height: 40px;
 }
 
-#error {
+.error {
   color: red;
   font-size: 24px;
   display: none;
 }
+
 
 .delete {
   display: block;
