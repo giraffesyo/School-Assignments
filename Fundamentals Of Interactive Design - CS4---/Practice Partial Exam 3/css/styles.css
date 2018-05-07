@@ -19,6 +19,22 @@ textarea {
   color: #333;
 }
 
+.yellow-background {
+  background-color: #faf08e;
+}
+
+.purple-background {
+  background-color: #ec8efa;
+}
+
+.orange-background {
+  background-color: #fabb8e;
+}
+
+.green-background {
+  background-color: #9efa8e;
+}
+
 .colors {
   width: 40px;
   height: 40px;
@@ -100,7 +116,7 @@ textarea {
     height: 280px;
   }
 
-  #notes-container{
+  #notes-container {
     position: relative;
     width: 100vw;
     height: 100vh;

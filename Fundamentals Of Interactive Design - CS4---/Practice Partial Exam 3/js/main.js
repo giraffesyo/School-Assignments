@@ -11,6 +11,9 @@ if (notes.length !== 0) {
 $('.colors').click(function() {
   $('.colors').removeClass('selected')
   $(this).addClass('selected')
+  $('textarea').removeClass()
+  const color = $(this).data('color')
+  $('textarea').addClass(`${color}-background`)
 })
 
 $('#add').click(function() {
@@ -80,6 +83,10 @@ function addNote(note) {
       <span class="inner">${note.text}</span>
   </div>
   `)
+  //Remove all text from textarea
   $('textarea').val('')
+  //Remove color backgrounds from texarea
+  $('textarea').removeClass()
+  //Remove selected class from color choosers
   $('.colors').removeClass('selected')
 }
