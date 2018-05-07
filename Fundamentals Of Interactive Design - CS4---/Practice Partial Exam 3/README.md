@@ -24,8 +24,18 @@ Note - design detail:
 
   [![Feedback to user][3]][3]
 
-  
+[![Design Detail][4]][4]
+
+Responsive:
+
+The application should be viewed well on mobile devices.
+
+[![Points and Responsive Design][5]][5]
+
+
   
 [1]: https://i.stack.imgur.com/mnQgb.png
 [2]: https://i.stack.imgur.com/2PR7j.png
 [3]: https://i.stack.imgur.com/M7gCM.png
+[4]: https://i.stack.imgur.com/tYNhY.png
+[5]: https://i.stack.imgur.com/U5K0f.png
