@@ -1,317 +1,216 @@
-body{
-    font-family: 'Raleway';
-    margin: 0;
-    background-color: #0d77b5;
+body {
+  font-family: 'Raleway';
+  margin: 0;
+  background-color: #0d77b5;
 }
 
-section{
-    max-width: 800px;
-    margin: 0 auto;
+section {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.vote_icon{
-    max-width: 200px;
-    margin: 20% auto 0 auto;
-    display: block;
+.vote_icon {
+  max-width: 200px;
+  margin: 20% auto 0 auto;
+  display: block;
 }
 
-#ine{
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid white;
-    font-family: 'Raleway', sans-serif;
-    display: block;
-    margin: 20px auto;
-    max-width: 300px;
-    width: 100%;
-    padding: 8px;
-    color: white;
-    font-size: 18px;
-    box-sizing: border-box;
+#ine {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  font-family: 'Raleway', sans-serif;
+  display: block;
+  margin: 20px auto;
+  max-width: 300px;
+  width: 100%;
+  padding: 8px;
+  color: white;
+  font-size: 18px;
+  box-sizing: border-box;
 }
 
-#ine:focus, input:focus{
-    outline: none;
+#ine:focus,
+input:focus {
+  outline: none;
 }
 
-.user_label{
-    color: rgba(255,255,255,0.7);
-    font-size: 12px;
-    display: block;
-    margin: -16px auto 20px auto;
-    max-width: 300px;
-    width: 100%;
+.user_label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  display: block;
+  margin: -16px auto 20px auto;
+  max-width: 300px;
+  width: 100%;
 }
 
-.login_button{
-    border: 1px solid white;
-    padding: 8px 18px;
-    border-radius: 6px;
-    color: white;
-    max-width: 300px;
-    width: 100%;
-    display: block;
-    margin: 50px auto 0 auto;
-    text-align: center;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: all 0.1s ease-in;
+.login_button {
+  border: 1px solid white;
+  padding: 8px 18px;
+  border-radius: 6px;
+  color: white;
+  max-width: 300px;
+  width: 100%;
+  display: block;
+  margin: 50px auto 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
 }
 
-.login_button:hover{
-    background-color: rgba(6,104,160,0.5);
+.login_button:hover {
+  background-color: rgba(6, 104, 160, 0.5);
 }
 
-
-.error{
-    display: block;
-    width: 100%;
-    text-align: center;
-    color: #ffd803;
-    font-weight: 700;
-    margin-top: 5%;
-    display: none;
+.error {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #ffd803;
+  font-weight: 700;
+  margin-top: 5%;
+  display: none;
 }
 
-#voting{
-    text-align: center;
-    display: none;
+#voting {
+  text-align: center;
+  display: none;
 }
 
-.candidate{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 7px solid rgba(255,255,255,0.8);
-    display: inline-block;
-    margin: 20px;
-    position: relative;
-    transition: all 0.2s ease-in;
-    opacity: 0.8;
-    cursor: pointer;
+.candidate {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 7px solid rgba(255, 255, 255, 0.8);
+  display: inline-block;
+  margin: 20px;
+  position: relative;
+  transition: all 0.2s ease-in;
+  opacity: 0.8;
+  cursor: pointer;
 }
 
-.candidate:hover{
-    width: 210px;
-    height: 210px;
-    opacity: 1;
+.candidate:hover {
+  width: 210px;
+  height: 210px;
+  opacity: 1;
 }
 
-.candidate span{
-    width: 70px;
-    height: 70px;
-    background-color: rgba(255,255,255,1);
-    display: block;
-    border-radius: 50%;
-    position: absolute;
-    right: -10px;
-    bottom: -10px;
-    color: white;
-    text-align: center;
-    line-height: 64px;
-    font-size: 24px;
-    
+.candidate span {
+  width: 70px;
+  height: 70px;
+  background-color: rgba(255, 255, 255, 1);
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  color: white;
+  text-align: center;
+  line-height: 64px;
+  font-size: 24px;
 }
 
-.amlo{
-    background: url('../img/amlo.jpg') center;
-    background-size: 100% 100%;
+.amlo {
+  background: url('../img/amlo.jpg') center;
+  background-size: 100% 100%;
 }
 
-.amlo span{
-    background-color: #b40000;
+.amlo span {
+  background-color: #b40000;
 }
 
-.zavala{
-    background: url('../img/margarita.jpg') center;
-    background-size: 100% 100%;
+.zavala {
+  background: url('../img/margarita.jpg') center;
+  background-size: 100% 100%;
 }
 
-.zavala span{
-    background-color: #d4af00;
+.zavala span {
+  background-color: #d4af00;
 }
 
-
-.bronco{
-    background: url('../img/bronco.jpg') center;
-    background-size: 100% 100%;
+.bronco {
+  background: url('../img/bronco.jpg') center;
+  background-size: 100% 100%;
 }
 
-.bronco span{
-    background-color: #720076;
+.bronco span {
+  background-color: #720076;
 }
 
-
-.meade{
-    background: url('../img/meade.jpg') center;
-    background-size: 100% 100%;
+.meade {
+  background: url('../img/meade.jpg') center;
+  background-size: 100% 100%;
 }
 
-.meade span{
-    background-color: #077600;
+.meade span {
+  background-color: #077600;
 }
 
-
-.anaya{
-    background: url('../img/anaya.jpg') center;
-    background-size: 100% 100%;
+.anaya {
+  background: url('../img/anaya.jpg') center;
+  background-size: 100% 100%;
 }
 
-.anaya span{
-    background-color: #005b95;
+.anaya span {
+  background-color: #005b95;
 }
 
-h1{
-    font-weight: 300;
-    color: white;
-    font-size: 36px;
+h1 {
+  font-weight: 300;
+  color: white;
+  font-size: 36px;
 }
 
-h3{
-    color: #ffd803;
-    font-weight: 700;
-    display: none;
+h3 {
+  color: #ffd803;
+  font-weight: 700;
+  display: none;
 }
 
 @media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 1.2rem;
+  }
 
-    h1 {
-        font-size: 1.2rem;
-    }
+  .candidate {
+    height: 25vh;
+    width: 25vh;
+  }
 
-    .candidate {
-        height: 25vh;
-        width: 25vh;
-    }
+  .candidate:hover {
+    height: 26vh;
+    width: 26vh;
+  }
 
-    .candidate:hover {
-        height: 26vh;
-        width: 26vh;
-    }
-
-    .candidate span{
+  .candidate span {
     font-size: 1.6rem;
     line-height: 3.2rem;
     width: 10vh;
     height: 10vh;
-    }
+  }
 }
 
-
 @media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.2rem;
+  }
 
-    h1 {
-        font-size: 1.2rem;
-    }
+  .candidate {
+    height: 15vh;
+    width: 15vh;
+  }
 
-    .candidate {
-        height: 15vh;
-        width: 15vh;
-    }
+  .candidate:hover {
+    height: 16vh;
+    width: 16vh;
+  }
 
-    .candidate:hover {
-        height: 16vh;
-        width: 16vh;
-    }
-
-    .candidate span{
+  .candidate span {
     font-size: 1.2rem;
     line-height: 2.4rem;
     width: 6vh;
     height: 6vh;
-    }
-
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
