@@ -69,11 +69,13 @@ section{
     text-align: center;
     color: #ffd803;
     font-weight: 700;
+    margin-top: 5%;
     display: none;
 }
 
 #voting{
     text-align: center;
+    display: none;
 }
 
 .candidate{

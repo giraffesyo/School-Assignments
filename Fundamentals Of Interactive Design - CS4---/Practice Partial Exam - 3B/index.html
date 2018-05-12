@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <script src="js/jquery-1.12.1.min.js"></script>
         <script src="js/store.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,700" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
         </head>
@@ -13,20 +14,20 @@
             <img src="img/vote-icon.jpg" class="vote_icon">
             <input type="text" id="ine">
             <span class="user_label">Enter your INE number</span>
-            <span class="error error1">Please enter an INE number.</span>
             <span class="login_button">ENTER</span>
+            <div class="error error1">Please enter an INE number.</div>
         </section>
         
         <section id="voting">
             <h1>Click on the candidate to register your vote</h1>
             <h3>Thanks, your vote has been registered.</h3>
             <h3 class="error3">You can only vote 1 time.</h3>
-            <div class="candidate amlo"><span>#</span></div>
-            <div class="candidate zavala"><span>#</span></div>
-            <div class="candidate bronco"><span>#</span></div>
-            <div class="candidate meade"><span>#</span></div>
-            <div class="candidate anaya"><span>#</span></div>
+            <div data-candidate="amlo" class="candidate amlo"><span>#</span></div>
+            <div data-candidate="zavala" class="candidate zavala"><span>#</span></div>
+            <div data-candidate="bronco" class="candidate bronco"><span>#</span></div>
+            <div data-candidate="meade" class="candidate meade"><span>#</span></div>
+            <div data-candidate="anaya" class="candidate anaya"><span>#</span></div>
         </section>
-        
+        <script src="js/main.js"></script>
     </body>
 </html>
