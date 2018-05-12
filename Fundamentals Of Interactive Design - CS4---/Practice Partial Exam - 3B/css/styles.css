@@ -173,12 +173,55 @@ h3{
     display: none;
 }
 
+@media only screen and (max-width: 768px) {
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .candidate {
+        height: 25vh;
+        width: 25vh;
+    }
+
+    .candidate:hover {
+        height: 26vh;
+        width: 26vh;
+    }
+
+    .candidate span{
+    font-size: 1.6rem;
+    line-height: 3.2rem;
+    width: 10vh;
+    height: 10vh;
+    }
+}
 
 
+@media only screen and (max-width: 600px) {
 
+    h1 {
+        font-size: 1.2rem;
+    }
 
+    .candidate {
+        height: 15vh;
+        width: 15vh;
+    }
 
+    .candidate:hover {
+        height: 16vh;
+        width: 16vh;
+    }
 
+    .candidate span{
+    font-size: 1.2rem;
+    line-height: 2.4rem;
+    width: 6vh;
+    height: 6vh;
+    }
+
+}
 
 
 
