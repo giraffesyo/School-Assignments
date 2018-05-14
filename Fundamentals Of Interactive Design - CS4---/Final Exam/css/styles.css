@@ -1,0 +1,181 @@
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Raleway';
+  margin: 0;
+  background: #333 url('../img/bg.jpg');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#wrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+h2 {
+  color: white;
+}
+
+.group {
+  border: 1px solid black;
+  padding: 20px 60px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#pos-1,
+#pos-2,
+#pos-3,
+#pos-4 {
+  margin-bottom: 30px;
+}
+
+.arrow-down {
+  display: block;
+  float: right;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid #444;
+  background: url('../img/arrow-down.jpg');
+  background-size: cover;
+}
+.arrow-up {
+  display: block;
+  float: right;
+  margin-right: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid #444;
+  background: url('../img/arrow-up.jpg');
+  background-size: cover;
+}
+
+.flag {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.name {
+  display: inline-block;
+  width: 347px;
+  height: 80px;
+  margin-left: 30px;
+}
+
+#pos-1 .arrow-2,
+#pos-4 .arrow-7 {
+  opacity: 0.2;
+}
+
+.arrow-1,
+.arrow-3,
+.arrow-4,
+.arrow-5,
+.arrow-6,
+.arrow-8 {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.2s ease-in;
+}
+
+.arrow-1:hover,
+.arrow-3:hover,
+.arrow-4:hover,
+.arrow-5:hover,
+.arrow-6:hover,
+.arrow-8:hover {
+  opacity: 1;
+}
+
+.russia .flag {
+  background: url('../img/Russia-Flag.jpg');
+  background-size: cover;
+}
+
+.russia .name {
+  background: url('../img/Russia-Text.png');
+  background-size: cover;
+}
+
+.saudi-arabia .flag {
+  background: url('../img/Arabia-Saudi-Flag.jpg');
+  background-size: cover;
+}
+
+.saudi-arabia .name {
+  background: url('../img/Arabia-Saudi-Text.png');
+  background-size: cover;
+}
+
+.egypt .flag {
+  background: url('../img/Egypt-Flag.jpg');
+  background-size: cover;
+}
+
+.egypt .name {
+  background: url('../img/Egypt-Text.png');
+  background-size: cover;
+}
+
+.uruguay .flag {
+  background: url('../img/Uruguay-Flag.jpg');
+  background-size: cover;
+}
+
+.uruguay .name {
+  background: url('../img/Uruguay-Text.png');
+  background-size: cover;
+}
+
+@media only screen and (max-width: 1000px) {
+    #wrapper {
+        width: initial;
+        margin: initial;
+      }
+      .flag {
+        width: 10vw;
+        height: 10vw;
+      }
+      .name {
+        display: inline-block;
+        width: 40vw;
+        height: 10vw;
+        margin-left: 0px;
+    }
+
+      .group {
+        padding: 20px 5px;
+      }
+
+      .arrow-down {
+        display: block;
+        float: right;
+        width: 10vw;
+        height: 10vw;
+      }
+      .arrow-up {
+        display: block;
+        float: right;
+        width: 10vw;
+        height: 10vw;
+      }
+
+      h1{ 
+          font-size: 1.2rem;
+      }
+
+}
