@@ -8,7 +8,8 @@ var Money2 = Cash(money: 0.00)
 var Money3 = Cash(money: 54.25)
 var Money4 = Cash(money: 4.16)
 var Money5 = Cash(money: 99.99)
-var Money6 = Cash(money: 31.01)
+var Money6 = Cash(money: 47.23)
+
 
 let bills1: [Int]? = Money1.getBills()
 let bills2: [Int]? = Money2.getBills()

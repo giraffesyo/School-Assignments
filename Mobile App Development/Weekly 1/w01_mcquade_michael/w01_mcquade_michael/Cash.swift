@@ -12,13 +12,14 @@ import Foundation
 public class Cash {
     private var changeDue: Double = 0.0
     public func getBills() -> [Int]? {
-        var remainingMoney = self.changeDue
+        //We lose any value that is less than a penny by casting to Int (think stocks)
+        var remainingMoney: Int = Int(self.changeDue * 100)
         if remainingMoney < 0 {
             return nil
         }
         var bills = Array(repeating: 0, count: 9)
         
-        let denominations = [50, 20, 10, 5, 1, 0.25, 0.10, 0.05, 0.01]
+        let denominations = [5000, 2000, 1000, 500, 100, 25, 10, 5, 1]
         
         for (index, denomination) in denominations.enumerated() {
             while remainingMoney >= denomination {
