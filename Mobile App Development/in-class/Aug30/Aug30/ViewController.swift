@@ -12,7 +12,12 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var labelGoPokes: UILabel!
     @IBAction func buttonTapped(_ sender: UIButton) {
-        
+        if (sender.titleLabel)!.text == "Black" {
+            labelGoPokes.textColor = UIColor.black
+        }
+        else {
+            labelGoPokes.textColor = UIColor.orange
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
