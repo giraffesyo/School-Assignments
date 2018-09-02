@@ -1,11 +1,17 @@
 import React from 'react'
+import 'bootstrap-css-only'
+import styled from 'styled-components'
 
- class Layout extends React.PureComponent{
+import './main.css'
+import { Header } from './Header'
 
+class Layout extends React.PureComponent {
   render() {
-
     return (
-      <div>{this.props.children}</div>
+      <>
+        <Header />
+        <div className="container">{this.props.children}</div>
+      </>
     )
   }
 }
