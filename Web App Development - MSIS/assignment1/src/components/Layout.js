@@ -1,6 +1,5 @@
 import React from 'react'
 import 'bootstrap-css-only'
-import styled from 'styled-components'
 
 import './main.css'
 import { Header } from './Header'

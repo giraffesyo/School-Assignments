@@ -10,12 +10,16 @@
   "dependencies": {
     "bootstrap-css-only": "^4.1.1",
     "gatsby": "next",
+    "gatsby-image": "^2.0.0-rc.1",
     "gatsby-plugin-sharp": "^2.0.0-rc.3",
     "gatsby-source-filesystem": "^2.0.1-rc.1",
     "gatsby-transformer-sharp": "^2.1.1-rc.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-icons": "^3.0.5",
-    "styled-components": "^3.4.5"
+    "react-slick": "^0.23.1",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^3.4.5",
+    "typeface-raleway": "^0.0.54"
   }
 }

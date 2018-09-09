@@ -1,10 +1,10 @@
 import React from 'react'
 import { FaLinkedinIn, FaTwitter, FaGithub } from 'react-icons/fa'
 import styled from 'styled-components'
-import { lightpurple } from '../colors'
+import { purple, darkgray } from '../colors'
 
 const Nav = styled.nav`
-  background-color: rgb(60, 60, 60);
+  background-color: ${darkgray};
   a {
     font-size: 3rem;
   }
@@ -40,10 +40,12 @@ const LinkedinLink = styled.a`
   }
 `
 
-const Brand = styled.div`
-  font-size: 3rem;
+const Brand = styled.h1`
   font-weight: 300;
-  color: ${lightpurple};
+  color: ${purple};
+  @media screen and (max-width: 767px){
+    font-size: 2rem;
+  }
 `
 
 class Header extends React.PureComponent {
@@ -85,7 +87,7 @@ class Header extends React.PureComponent {
             </LinkedinLink>
           </li>
         </ul>
-        <Brand className="navbar-brand">Michael McQuade</Brand>
+        <Brand>Michael McQuade</Brand>
       </Nav>
     )
   }
