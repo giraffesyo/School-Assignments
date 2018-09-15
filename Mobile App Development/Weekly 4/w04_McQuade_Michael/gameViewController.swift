@@ -9,14 +9,32 @@
 import UIKit
 
 class gameViewController: UIViewController {
-
+    
+    var countdownTimer:Timer!
+    var timeLeft:Int = 30;
+    
+    @IBOutlet var timerLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        timerLabel.text = String(self.timeLeft)
+        startTimer()
     }
     
-
+    func startTimer() {
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _  in
+            self.timeLeft = self.timeLeft - 1
+            self.timerLabel.text = String(self.timeLeft)
+            if self.timeLeft <= 0 {
+                self.countdownTimer.invalidate()
+                //do game over stuff here
+            }
+            
+        })
+    }
+    
+    
+    
     @IBAction func handleGoBack(_ sender: UIButton) {
         //handle resetting the game here perhaps
         dismiss(animated: false, completion: nil )

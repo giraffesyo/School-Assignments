@@ -83,6 +83,13 @@
                                     <action selector="handleGoBack:" destination="YSU-j3-uau" eventType="touchUpInside" id="FcE-lC-yHi"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Rn-eI-sUu">
+                                <rect key="frame" x="329" y="26" width="65" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="53"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -93,6 +100,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TBh-jw-4fc"/>
                     </view>
+                    <connections>
+                        <outlet property="timerLabel" destination="3Rn-eI-sUu" id="Ru0-sS-Xac"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="814" y="24"/>
