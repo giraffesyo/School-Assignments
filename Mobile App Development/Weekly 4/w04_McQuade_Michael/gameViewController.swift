@@ -11,7 +11,8 @@ import UIKit
 class gameViewController: UIViewController {
     
     var countdownTimer:Timer!
-    var timeLeft:Int = 30;
+    var timeLeft:Int = 5;
+    var Score:Int = 0;
     
     @IBOutlet var timerLabel: UILabel!
     override func viewDidLoad() {
@@ -28,6 +29,7 @@ class gameViewController: UIViewController {
             if self.timeLeft <= 0 {
                 self.countdownTimer.invalidate()
                 //do game over stuff here
+                self.performSegue(withIdentifier: "segueToGameOver", sender: self)
             }
             
         })
