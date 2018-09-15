@@ -10,14 +10,21 @@ import UIKit
 
 class gameOverViewController: UIViewController {
 
+    //Create a var that will store our score from the previous screen
+    var finalScore: Int = 0
+    
+    @IBOutlet var scoreLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
+        scoreLabel.text = "Score: " + String(finalScore)
     }
     
-
+    @IBAction func handleBackButton(_ sender: UIButton) {
+        //Im sure there is a better way to do this but this is what I got,
+        //Brings us back to the main menu and lets us start again
+        self.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

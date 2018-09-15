@@ -18,11 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stripes" translatesAutoresizingMaskIntoConstraints="NO" id="eV1-Cj-CST">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stripes" translatesAutoresizingMaskIntoConstraints="NO" id="eV1-Cj-CST">
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="eV1-Cj-CST" secondAttribute="height" multiplier="15:8" id="TtS-xd-lhj"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZd-1A-Fpg">
                                 <rect key="frame" x="100" y="535" width="215" height="64"/>
@@ -44,18 +42,12 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eV1-Cj-CST" secondAttribute="trailing" id="10H-9J-YvA"/>
-                            <constraint firstItem="eV1-Cj-CST" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3WP-vc-F7H"/>
-                            <constraint firstItem="eV1-Cj-CST" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="TfQ-z6-MSo"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="eV1-Cj-CST" secondAttribute="bottom" id="lYe-nY-j6D"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-220" y="24"/>
+            <point key="canvasLocation" x="-220.28985507246378" y="23.64130434782609"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="KpE-Wj-ono">
@@ -65,11 +57,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stripes" translatesAutoresizingMaskIntoConstraints="NO" id="p2d-Nr-2AY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stripes" translatesAutoresizingMaskIntoConstraints="NO" id="p2d-Nr-2AY">
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="p2d-Nr-2AY" secondAttribute="height" multiplier="15:8" id="rVb-wX-MWC"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWV-Gc-pda">
                                 <rect key="frame" x="93" y="20" width="310" height="51"/>
@@ -99,28 +90,57 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FoZ-Go-pkn">
-                                <rect key="frame" x="93" y="192" width="240" height="128"/>
+                                <rect key="frame" x="157" y="146" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" identifier="gestureImageView"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Instruction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnE-kV-wtC">
+                                <rect key="frame" x="20" y="254" width="383" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="TBh-jw-4fc" firstAttribute="trailing" secondItem="p2d-Nr-2AY" secondAttribute="trailing" id="EWU-Xy-yAf"/>
-                            <constraint firstItem="p2d-Nr-2AY" firstAttribute="leading" secondItem="TBh-jw-4fc" secondAttribute="leading" id="h3x-q1-Ind"/>
-                            <constraint firstItem="TBh-jw-4fc" firstAttribute="bottom" secondItem="p2d-Nr-2AY" secondAttribute="bottom" id="rup-FF-u32"/>
-                            <constraint firstItem="p2d-Nr-2AY" firstAttribute="top" secondItem="TBh-jw-4fc" secondAttribute="top" id="wcj-k6-QyZ"/>
-                        </constraints>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="TBh-jw-4fc"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="fQE-Rr-To8" appends="YES" id="IsN-z2-k7I"/>
+                            <outletCollection property="gestureRecognizers" destination="dly-97-Eet" appends="YES" id="tHJ-ri-EsI"/>
+                            <outletCollection property="gestureRecognizers" destination="kKO-qW-lDr" appends="YES" id="ZPX-EG-LJG"/>
+                            <outletCollection property="gestureRecognizers" destination="lby-D8-uDn" appends="YES" id="4c8-6D-8XV"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="gestureImage" destination="FoZ-Go-pkn" id="app-nK-nNw"/>
+                        <outlet property="instructionLabel" destination="gnE-kV-wtC" id="d3i-Km-hWF"/>
                         <outlet property="scoreLabel" destination="vWV-Gc-pda" id="EVb-3D-LJP"/>
                         <outlet property="timerLabel" destination="3Rn-eI-sUu" id="Ru0-sS-Xac"/>
                         <segue destination="TFA-2u-OL1" kind="show" identifier="segueToGameOver" animates="NO" id="wZz-sy-JM0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WEq-lu-qub" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="fQE-Rr-To8">
+                    <connections>
+                        <action selector="handleTap:" destination="YSU-j3-uau" id="MwF-G1-URG"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="dly-97-Eet">
+                    <connections>
+                        <action selector="handleSwipe:" destination="YSU-j3-uau" id="RVt-zu-vz9"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="kKO-qW-lDr">
+                    <connections>
+                        <action selector="handleSwipe:" destination="YSU-j3-uau" id="mhP-gA-PY5"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <pinchGestureRecognizer id="lby-D8-uDn">
+                    <connections>
+                        <action selector="handlePinch:" destination="YSU-j3-uau" id="r0L-l4-Uu5"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="813.04347826086962" y="23.64130434782609"/>
         </scene>
@@ -132,11 +152,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stripes" translatesAutoresizingMaskIntoConstraints="NO" id="9oY-FE-ZnF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stripes" translatesAutoresizingMaskIntoConstraints="NO" id="9oY-FE-ZnF">
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="9oY-FE-ZnF" secondAttribute="height" multiplier="15:8" id="czY-6H-oHA"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Over!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Bh-5Z-Rf0">
                                 <rect key="frame" x="75" y="84" width="264" height="63"/>
@@ -145,20 +163,36 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fV-Jh-vrH">
+                                <rect key="frame" x="20" y="155" width="374" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="53"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWS-gr-g36">
+                                <rect key="frame" x="0.0" y="407" width="414" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="54"/>
+                                <state key="normal" title="← Main Menu">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleBackButton:" destination="TFA-2u-OL1" eventType="touchUpInside" id="B3f-1l-fPj"/>
+                                    <action selector="handleGoBack:" destination="YSU-j3-uau" eventType="touchUpInside" id="rWn-A4-3pi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="9oY-FE-ZnF" firstAttribute="top" secondItem="53L-cS-ubQ" secondAttribute="top" id="6wk-aj-6l1"/>
-                            <constraint firstItem="53L-cS-ubQ" firstAttribute="bottom" secondItem="9oY-FE-ZnF" secondAttribute="bottom" id="9Zg-wk-2DH"/>
-                            <constraint firstItem="53L-cS-ubQ" firstAttribute="trailing" secondItem="9oY-FE-ZnF" secondAttribute="trailing" id="ReV-le-uYF"/>
-                            <constraint firstItem="9oY-FE-ZnF" firstAttribute="leading" secondItem="53L-cS-ubQ" secondAttribute="leading" id="kcI-ga-9cq"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="53L-cS-ubQ"/>
                     </view>
+                    <connections>
+                        <outlet property="scoreLabel" destination="5fV-Jh-vrH" id="Xga-xk-9g4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLV-sp-JH9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1645" y="24"/>
+            <point key="canvasLocation" x="1644.9275362318842" y="23.64130434782609"/>
         </scene>
     </scenes>
     <resources>
