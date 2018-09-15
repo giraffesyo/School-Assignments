@@ -12,6 +12,7 @@
 		5130C938214CA82300CF5825 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5130C936214CA82300CF5825 /* Main.storyboard */; };
 		5130C93A214CA82400CF5825 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5130C939214CA82400CF5825 /* Assets.xcassets */; };
 		5130C93D214CA82400CF5825 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5130C93B214CA82400CF5825 /* LaunchScreen.storyboard */; };
+		51A9D241214CB20400FECB69 /* gameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A9D240214CB20400FECB69 /* gameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		5130C939214CA82400CF5825 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5130C93C214CA82400CF5825 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5130C93E214CA82400CF5825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51A9D240214CB20400FECB69 /* gameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				5130C932214CA82300CF5825 /* AppDelegate.swift */,
 				5130C934214CA82300CF5825 /* ViewController.swift */,
 				5130C936214CA82300CF5825 /* Main.storyboard */,
+				51A9D240214CB20400FECB69 /* gameViewController.swift */,
 				5130C939214CA82400CF5825 /* Assets.xcassets */,
 				5130C93B214CA82400CF5825 /* LaunchScreen.storyboard */,
 				5130C93E214CA82400CF5825 /* Info.plist */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51A9D241214CB20400FECB69 /* gameViewController.swift in Sources */,
 				5130C935214CA82300CF5825 /* ViewController.swift in Sources */,
 				5130C933214CA82300CF5825 /* AppDelegate.swift in Sources */,
 			);
@@ -285,6 +289,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4VGXX56KF;
 				INFOPLIST_FILE = w04_McQuade_Michael/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,6 +308,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4VGXX56KF;
 				INFOPLIST_FILE = w04_McQuade_Michael/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
