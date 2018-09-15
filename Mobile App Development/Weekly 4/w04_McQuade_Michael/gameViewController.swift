@@ -14,12 +14,23 @@ class gameViewController: UIViewController {
     var timeLeft:Int = 5;
     var Score:Int = 0;
     
+    @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var timerLabel: UILabel!
+    @IBOutlet var gestureImage: UIImageView!
+    var GestureImages: [UIImage] = [#imageLiteral(resourceName: "TapButton"),#imageLiteral(resourceName: "PinchButton"),#imageLiteral(resourceName: "SwipeLeft"),#imageLiteral(resourceName: "SwipeRight")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         timerLabel.text = String(self.timeLeft)
         startTimer()
+        pickImage()
+        
+    }
+    
+    func pickImage() {
+        let gestureIndex = Int.random(in: 0 ..< 4)
+        self.gestureImage.image = GestureImages[gestureIndex]
     }
     
     func startTimer() {
@@ -34,8 +45,6 @@ class gameViewController: UIViewController {
             
         })
     }
-    
-    
     
     @IBAction func handleGoBack(_ sender: UIButton) {
         //handle resetting the game here perhaps

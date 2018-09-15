@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -59,7 +60,6 @@
         <!--Game View Controller-->
         <scene sceneID="KpE-Wj-ono">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WEq-lu-qub" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="YSU-j3-uau" customClass="gameViewController" customModule="w04_McQuade_Michael" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Vy-0b-RaD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -98,6 +98,11 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FoZ-Go-pkn">
+                                <rect key="frame" x="93" y="192" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" identifier="gestureImageView"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -109,10 +114,13 @@
                         <viewLayoutGuide key="safeArea" id="TBh-jw-4fc"/>
                     </view>
                     <connections>
+                        <outlet property="gestureImage" destination="FoZ-Go-pkn" id="app-nK-nNw"/>
+                        <outlet property="scoreLabel" destination="vWV-Gc-pda" id="EVb-3D-LJP"/>
                         <outlet property="timerLabel" destination="3Rn-eI-sUu" id="Ru0-sS-Xac"/>
                         <segue destination="TFA-2u-OL1" kind="show" identifier="segueToGameOver" animates="NO" id="wZz-sy-JM0"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WEq-lu-qub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="813.04347826086962" y="23.64130434782609"/>
         </scene>
@@ -124,10 +132,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stripes" translatesAutoresizingMaskIntoConstraints="NO" id="0nu-ez-3Wk">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stripes" translatesAutoresizingMaskIntoConstraints="NO" id="9oY-FE-ZnF">
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="0nu-ez-3Wk" secondAttribute="height" multiplier="207:358" id="GGC-c3-d4h"/>
+                                    <constraint firstAttribute="width" secondItem="9oY-FE-ZnF" secondAttribute="height" multiplier="15:8" id="czY-6H-oHA"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Over!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Bh-5Z-Rf0">
@@ -140,10 +148,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="0nu-ez-3Wk" firstAttribute="trailing" secondItem="53L-cS-ubQ" secondAttribute="trailing" id="5BO-rm-nmR"/>
-                            <constraint firstItem="0nu-ez-3Wk" firstAttribute="top" secondItem="PTz-nV-O2U" secondAttribute="top" id="a1J-9h-u11"/>
-                            <constraint firstItem="0nu-ez-3Wk" firstAttribute="leading" secondItem="53L-cS-ubQ" secondAttribute="leading" id="atr-yu-V5U"/>
-                            <constraint firstItem="53L-cS-ubQ" firstAttribute="bottom" secondItem="0nu-ez-3Wk" secondAttribute="bottom" id="fiB-tc-HsZ"/>
+                            <constraint firstItem="9oY-FE-ZnF" firstAttribute="top" secondItem="53L-cS-ubQ" secondAttribute="top" id="6wk-aj-6l1"/>
+                            <constraint firstItem="53L-cS-ubQ" firstAttribute="bottom" secondItem="9oY-FE-ZnF" secondAttribute="bottom" id="9Zg-wk-2DH"/>
+                            <constraint firstItem="53L-cS-ubQ" firstAttribute="trailing" secondItem="9oY-FE-ZnF" secondAttribute="trailing" id="ReV-le-uYF"/>
+                            <constraint firstItem="9oY-FE-ZnF" firstAttribute="leading" secondItem="53L-cS-ubQ" secondAttribute="leading" id="kcI-ga-9cq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="53L-cS-ubQ"/>
                     </view>
@@ -154,6 +162,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="stripes" width="48.527999877929688" height="35.279998779296875"/>
+        <image name="stripes" width="674" height="490"/>
     </resources>
 </document>
