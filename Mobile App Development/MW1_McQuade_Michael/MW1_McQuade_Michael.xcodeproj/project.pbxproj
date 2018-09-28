@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C8E5DB2215DB6DB0051DEAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8E5DB1215DB6DB0051DEAE /* AppDelegate.swift */; };
-		0C8E5DB4215DB6DB0051DEAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8E5DB3215DB6DB0051DEAE /* ViewController.swift */; };
+		0C8E5DB4215DB6DB0051DEAE /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8E5DB3215DB6DB0051DEAE /* TimerViewController.swift */; };
 		0C8E5DB7215DB6DB0051DEAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C8E5DB5215DB6DB0051DEAE /* Main.storyboard */; };
 		0C8E5DB9215DB6DC0051DEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C8E5DB8215DB6DC0051DEAE /* Assets.xcassets */; };
 		0C8E5DBC215DB6DC0051DEAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C8E5DBA215DB6DC0051DEAE /* LaunchScreen.storyboard */; };
@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		0C8E5DAE215DB6DB0051DEAE /* MW1_McQuade_Michael.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MW1_McQuade_Michael.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C8E5DB1215DB6DB0051DEAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0C8E5DB3215DB6DB0051DEAE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0C8E5DB3215DB6DB0051DEAE /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		0C8E5DB6215DB6DB0051DEAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C8E5DB8215DB6DC0051DEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C8E5DBB215DB6DC0051DEAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				0C8E5DB1215DB6DB0051DEAE /* AppDelegate.swift */,
-				0C8E5DB3215DB6DB0051DEAE /* ViewController.swift */,
+				0C8E5DB3215DB6DB0051DEAE /* TimerViewController.swift */,
 				0C8E5DB5215DB6DB0051DEAE /* Main.storyboard */,
 				0C8E5DB8215DB6DC0051DEAE /* Assets.xcassets */,
 				0C8E5DBA215DB6DC0051DEAE /* LaunchScreen.storyboard */,
@@ -135,7 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C8E5DB4215DB6DB0051DEAE /* ViewController.swift in Sources */,
+				0C8E5DB4215DB6DB0051DEAE /* TimerViewController.swift in Sources */,
 				0C8E5DB2215DB6DB0051DEAE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +285,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4VGXX56KF;
 				INFOPLIST_FILE = MW1_McQuade_Michael/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,6 +304,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R4VGXX56KF;
 				INFOPLIST_FILE = MW1_McQuade_Michael/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
