@@ -14,6 +14,7 @@ class TimerViewController: UIViewController {
     @IBOutlet var LapTimeLabel: UILabel!
     @IBOutlet var TotalLapTimeLabel: UILabel!
     @IBOutlet var LapTrackerButton: UIButton!
+    @IBOutlet var StartStopButton: UIButton!
     
     //create instance of our stopwatch class
     var stopwatch: Stopwatch = Stopwatch()
@@ -24,13 +25,28 @@ class TimerViewController: UIViewController {
         super.viewDidLoad()
         
     }
-    
-    @IBAction func StartStopButtonPressed(_ sender: UIButton) {
-        //call the appropriate function based on current state
-        if stopwatch.active {
-            stop(stopbutton: sender)
+    //processing double tap here
+    @IBAction func handleStartDoubleTapped(_ sender: UITapGestureRecognizer) {
+        // only do this if we were stopped
+        if sender.numberOfTapsRequired == 1 {
+            //call the appropriate function based on current state
+            if stopwatch.active {
+                stop(stopbutton: StartStopButton)
+            } else {
+                start(startbutton: StartStopButton)
+            }
         } else {
-            start(startbutton: sender)
+            if stopwatch.active{
+                stopwatch.restart()
+                timer.invalidate()
+                self.LapTimeLabel.text = "0:00:00.0"
+                self.TotalLapTimeLabel.text = "0:00:00.0"
+                self.lapNumberLabel.text = "0"
+                self.StartStopButton.setTitle("START", for: .normal)
+                self.StartStopButton.setTitleColor(.green, for: .normal)
+                self.LapTrackerButton.backgroundColor = .white
+                self.LapTrackerButton.setTitle("Lapster", for: .normal)
+            }
         }
     }
     
@@ -57,7 +73,7 @@ class TimerViewController: UIViewController {
         
         // Make the new lap button stand out by applying a bg color
         LapTrackerButton.backgroundColor = UIColor.yellow
-
+        
         // Setup a timer which keeps our stopwatch object updated
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: {_ in
             let currentLapIndex = self.stopwatch.getLapCount() - 1

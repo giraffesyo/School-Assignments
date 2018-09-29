@@ -73,6 +73,12 @@ class Stopwatch: NSObject {
         let deciseconds = String(time % 10)
         return "\(timeWithoutDeciseconds).\(deciseconds)"
     }
-
+    
+    //set laps and totaltime back to initial values
+    func restart() {
+        self.active = false
+        self.laps = []
+        self.totalTime = 0
+    }
 
 }
