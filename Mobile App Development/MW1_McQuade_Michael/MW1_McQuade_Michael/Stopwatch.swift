@@ -11,12 +11,17 @@ import UIKit
 
 class Stopwatch: NSObject {
     
+    
     // laps will store the amount of time each lap took, measured in deciseconds
     private var laps: [Int]
+    private var totalTime: Int
     private var formatter: DateComponentsFormatter
-    
+    public var active: Bool
+ 
     override init() {
+        self.active = false
         self.laps = []
+        self.totalTime = 0
         //Documentation for allowed units at https://developer.apple.com/documentation/foundation/datecomponentsformatter
         self.formatter = DateComponentsFormatter.init()
         formatter.allowsFractionalUnits = false
@@ -34,7 +39,7 @@ class Stopwatch: NSObject {
         return self.laps[lap]
     }
     
-    func start() {
+    func nextLap() {
         laps.append(0)
     }
     
@@ -46,6 +51,7 @@ class Stopwatch: NSObject {
     //Increment time by 1 decisecond
     func incrementLapTimeByDecisecond(lap: Int) -> Void {
         let currentTime = self.laps[lap]
+        self.totalTime = self.totalTime + 1
         updateLapTime(lap: lap, time: currentTime + 1)
     }
     
@@ -54,6 +60,11 @@ class Stopwatch: NSObject {
         let time = self.laps[lap]
         return getFormattedTimeFromDeciseconds(time: time)
     }
+    
+    func getFormattedTotalTime() -> String {
+        return getFormattedTimeFromDeciseconds(time: totalTime)
+    }
+    
     
     //Returns a formatted string given deciseconds
     private func getFormattedTimeFromDeciseconds(time: Int) -> String {
