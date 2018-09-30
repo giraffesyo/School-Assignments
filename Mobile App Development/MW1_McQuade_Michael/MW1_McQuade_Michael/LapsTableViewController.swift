@@ -12,8 +12,22 @@ class LapsTableViewController: UITableViewController {
     
     var stopwatch: Stopwatch = Stopwatch()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let navcontroller = self.navigationController {
+            let height = navcontroller.toolbar.frame.height
+            let width = navcontroller.toolbar.frame.width
+            let averageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: height))
+            averageLabel.text = "Average: \(stopwatch.getFormattedAverageTime())"
+            
+            averageLabel.textAlignment = NSTextAlignment.center
+            let toolbarLabel = UIBarButtonItem(customView: averageLabel)
+            self.toolbarItems = [toolbarLabel]
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,13 +47,13 @@ class LapsTableViewController: UITableViewController {
     }
     
     
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "lap time cell", for: indexPath)
-     
-     // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "lap time cell", for: indexPath)
+        
+        // Configure the cell...
         cell.textLabel?.text = "Lap \(indexPath[1]+1): \(stopwatch.getFormattedTimeForLap(lap: indexPath[1]))"
-     return cell
-     }
+        return cell
+    }
     
     
     /*

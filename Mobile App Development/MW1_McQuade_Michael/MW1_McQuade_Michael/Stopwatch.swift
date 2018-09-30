@@ -65,6 +65,14 @@ class Stopwatch: NSObject {
         return getFormattedTimeFromDeciseconds(time: totalTime)
     }
     
+    func getFormattedAverageTime() -> String {
+        if laps.count > 0 {
+            let average = laps.reduce(0, +) / laps.count
+            return getFormattedTimeFromDeciseconds(time: average)
+        } else {
+            return "No laps yet"
+        }
+    }
     
     //Returns a formatted string given deciseconds
     private func getFormattedTimeFromDeciseconds(time: Int) -> String {
