@@ -117,5 +117,10 @@ class TimerViewController: UIViewController {
         LapTrackerButton.backgroundColor = UIColor.white
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let laptimes = segue.destination as! LapsTableViewController
+        laptimes.stopwatch = self.stopwatch
+    }
 }
 

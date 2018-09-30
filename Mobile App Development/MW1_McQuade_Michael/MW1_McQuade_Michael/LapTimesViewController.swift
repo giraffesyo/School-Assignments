@@ -10,9 +10,11 @@ import UIKit
 
 class LapTimesViewController: UIViewController {
 
+    var stopwatch: Stopwatch = Stopwatch()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print (stopwatch.getLapCount())
         // Do any additional setup after loading the view.
     }
     
