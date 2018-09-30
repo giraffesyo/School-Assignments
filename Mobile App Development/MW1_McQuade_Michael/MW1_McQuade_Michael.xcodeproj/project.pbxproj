@@ -60,12 +60,12 @@
 			children = (
 				0C8E5DB1215DB6DB0051DEAE /* AppDelegate.swift */,
 				0C8E5DB3215DB6DB0051DEAE /* TimerViewController.swift */,
+				0CA93B642160847000E9171D /* LapsTableViewController.swift */,
 				0C8E5DB5215DB6DB0051DEAE /* Main.storyboard */,
+				0C8E5DC3215DC6A00051DEAE /* Stopwatch.swift */,
 				0C8E5DB8215DB6DC0051DEAE /* Assets.xcassets */,
 				0C8E5DBA215DB6DC0051DEAE /* LaunchScreen.storyboard */,
 				0C8E5DBD215DB6DC0051DEAE /* Info.plist */,
-				0C8E5DC3215DC6A00051DEAE /* Stopwatch.swift */,
-				0CA93B642160847000E9171D /* LapsTableViewController.swift */,
 			);
 			path = MW1_McQuade_Michael;
 			sourceTree = "<group>";
