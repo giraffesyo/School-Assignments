@@ -13,6 +13,7 @@
 		0C8E5DB9215DB6DC0051DEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C8E5DB8215DB6DC0051DEAE /* Assets.xcassets */; };
 		0C8E5DBC215DB6DC0051DEAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C8E5DBA215DB6DC0051DEAE /* LaunchScreen.storyboard */; };
 		0C8E5DC4215DC6A00051DEAE /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8E5DC3215DC6A00051DEAE /* Stopwatch.swift */; };
+		0CA93B6321606E7700E9171D /* LapTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA93B6221606E7700E9171D /* LapTimesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0C8E5DBB215DB6DC0051DEAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0C8E5DBD215DB6DC0051DEAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C8E5DC3215DC6A00051DEAE /* Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
+		0CA93B6221606E7700E9171D /* LapTimesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LapTimesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				0C8E5DBA215DB6DC0051DEAE /* LaunchScreen.storyboard */,
 				0C8E5DBD215DB6DC0051DEAE /* Info.plist */,
 				0C8E5DC3215DC6A00051DEAE /* Stopwatch.swift */,
+				0CA93B6221606E7700E9171D /* LapTimesViewController.swift */,
 			);
 			path = MW1_McQuade_Michael;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C8E5DB4215DB6DB0051DEAE /* TimerViewController.swift in Sources */,
+				0CA93B6321606E7700E9171D /* LapTimesViewController.swift in Sources */,
 				0C8E5DC4215DC6A00051DEAE /* Stopwatch.swift in Sources */,
 				0C8E5DB2215DB6DB0051DEAE /* AppDelegate.swift in Sources */,
 			);

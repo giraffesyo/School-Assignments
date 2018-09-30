@@ -122,10 +122,10 @@
             </objects>
             <point key="canvasLocation" x="942.02898550724649" y="23.64130434782609"/>
         </scene>
-        <!--View Controller-->
+        <!--Lap Times View Controller-->
         <scene sceneID="2xj-Kz-NCI">
             <objects>
-                <viewController id="5Up-Zf-lYI" sceneMemberID="viewController">
+                <viewController id="5Up-Zf-lYI" customClass="LapTimesViewController" customModule="MW1_McQuade_Michael" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Td-8v-s77">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
