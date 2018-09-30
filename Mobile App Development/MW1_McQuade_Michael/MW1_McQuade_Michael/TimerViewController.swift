@@ -23,8 +23,18 @@ class TimerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     //processing double tap here
     @IBAction func handleStartDoubleTapped(_ sender: UITapGestureRecognizer) {
         // only do this if we were stopped
@@ -35,25 +45,30 @@ class TimerViewController: UIViewController {
             } else {
                 start(startbutton: StartStopButton)
             }
-        } else {
-            if stopwatch.active{
-                stopwatch.restart()
-                timer.invalidate()
-                self.LapTimeLabel.text = "0:00:00.0"
-                self.TotalLapTimeLabel.text = "0:00:00.0"
-                self.lapNumberLabel.text = "0"
-                self.StartStopButton.setTitle("START", for: .normal)
-                self.StartStopButton.setTitleColor(.green, for: .normal)
-                self.LapTrackerButton.backgroundColor = .white
-                self.LapTrackerButton.setTitle("Lapster", for: .normal)
-            }
+        } else if stopwatch.active{
+            restart()
         }
     }
     
     
+    func restart() {
+        stopwatch.restart()
+        timer.invalidate()
+        self.LapTimeLabel.text = "0:00:00.0"
+        self.TotalLapTimeLabel.text = "0:00:00.0"
+        self.lapNumberLabel.text = "0"
+        self.StartStopButton.setTitle("START", for: .normal)
+        self.StartStopButton.setTitleColor(.green, for: .normal)
+        self.LapTrackerButton.backgroundColor = .white
+        self.LapTrackerButton.setTitle("Lapster", for: .normal)
+    }
     
     @IBAction func LapTrackerButtonPressed(_ sender: UIButton) {
-        stopwatch.nextLap()
+        if stopwatch.active {
+            stopwatch.nextLap()
+        } else {
+            performSegue(withIdentifier: "goToTableView", sender: self)
+        }
     }
     
     func start(startbutton: UIButton) {
