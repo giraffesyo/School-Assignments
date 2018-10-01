@@ -1,0 +1,35 @@
+﻿.col-form-label {
+    /*Bold the labels*/
+    font-weight: 700;
+}
+
+.vertical-align {
+    /*
+      Vertically align text (as long as its only a single line)
+      Using rem instead of em, while in this instance it produces the same result, 
+      it is generally speaking a bad practice to use em because of the unexpected
+      results it can produce with the way it multiplicatively calculates the value.
+    */
+    line-height: 2rem;
+}
+/* Remove the padding the discount percent form label at extra small viewport sizes*/
+@media (max-width: 36rem) {
+    .discount-percent {
+        padding-top: 0;
+    }
+}
+/* make the print out prettier by removing web only elements and chrome header/footer*/
+@media print {
+    @page {
+        margin: 0;
+    }
+
+    .btn {
+        display: none;
+    }
+
+    * {
+        border: none !important;
+        font-size: 1.5rem !important;
+    }
+}
