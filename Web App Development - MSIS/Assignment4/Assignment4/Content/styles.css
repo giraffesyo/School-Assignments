@@ -1,0 +1,77 @@
+﻿/* set the background colors for our pages*/
+
+.default {
+    background-color: lightgray;
+}
+
+.bluepage {
+    background-color: #B5d7E3;
+}
+
+.greenpage {
+    background-color: #A6E999;
+}
+
+.yellowpage {
+    background-color: #FFFFE5;
+}
+
+
+/* Add borders to all boxes except top right blue one*/
+.default .blue > :nth-child(1) {
+    border: 1px solid blue;
+}
+
+.default .yellow .col {
+    border: 1px solid yellow;
+}
+
+.default .green .col {
+    border: 1px solid green;
+}
+
+
+/* Make the right blue column be a big solid blue box*/
+.default .blue > :nth-child(2) {
+    background-color: #327CF5;
+}
+
+
+
+.default .green :nth-child(2), .yellow > :nth-child(2) {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+}
+
+/* Color the link button, reduce its size, and make it only as big as its content using inline-block*/
+.default #lbGoToGreenPage {
+    color: #fff;
+    background-color: #52A14E;
+    display: inline-block;
+    margin: 0.5rem 0;
+    font-size: 0.75rem;
+}
+
+/* Change color to yellow and bring it down from border by 1rem*/
+.default #btnGoToYellowPage {
+    background-color: gold;
+    margin: 1rem 0;
+}
+
+/* Reduce label font size and put it on its own line*/
+.default #lblFromYellowPage {
+    display: block;
+    font-size: .75rem;
+}
+
+/* Add spacing around all of our columns*/
+.default .col {
+    margin: 1rem;
+}
+
+/* Add 2rem padding to top/bottom and 1rem padding to left/right for all of the left columns */
+.default .row > :nth-child(1) {
+    padding: 2rem 1rem;
+}
