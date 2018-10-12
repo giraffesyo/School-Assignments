@@ -27,12 +27,14 @@ class TimerViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // hide the navbar and toolbar for this view
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.setToolbarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        // when leaving this view show the navbar and toolbar
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.setToolbarHidden(false, animated: false)
     }
@@ -54,6 +56,7 @@ class TimerViewController: UIViewController {
     
     
     func restart() {
+        // reset everything to initial values
         stopwatch.restart()
         timer.invalidate()
         self.LapTimeLabel.text = "0:00:00.0"

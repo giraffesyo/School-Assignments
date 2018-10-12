@@ -14,43 +14,45 @@ class LapsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // Change navigation controller to non-optional
         if let navcontroller = self.navigationController {
+            // get height/width of navigation controller
             let height = navcontroller.toolbar.frame.height
             let width = navcontroller.toolbar.frame.width
+            //create label with the height/width same as nav controller
             let averageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: height))
+            // Set label text to the average time
             averageLabel.text = "Average: \(stopwatch.getFormattedAverageTime())"
-            
+            // Center text
             averageLabel.textAlignment = NSTextAlignment.center
+            // Create bar button item with the label
             let toolbarLabel = UIBarButtonItem(customView: averageLabel)
+            // add this label to the toolbar
             self.toolbarItems = [toolbarLabel]
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     // MARK: - Table view data source
-    
+    // One section
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    // Number of rows is equal to the number of laps
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stopwatch.getLapCount()
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // get next cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "lap time cell", for: indexPath)
         
         // Configure the cell...
+        // Cell label is equal to the formatted time for the lap
         cell.textLabel?.text = "Lap \(indexPath[1]+1): \(stopwatch.getFormattedTimeForLap(lap: indexPath[1]))"
         return cell
     }

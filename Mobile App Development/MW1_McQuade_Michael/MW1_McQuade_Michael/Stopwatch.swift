@@ -31,14 +31,17 @@ class Stopwatch: NSObject {
         
     }
     
+    // Returns lap count
     func getLapCount() -> Int {
         return laps.count
     }
     
+    // Returns number of deciseconds for a given lap
     func getLapTimeInDeciseconds(lap: Int) -> Int {
         return self.laps[lap]
     }
     
+    // Moves stopwatch on to next lap
     func nextLap() {
         laps.append(0)
     }
