@@ -29,6 +29,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        // This happens if any of the boxes didn't have text in them
+        let deptAbbrNoWhitespace = deptAbbr.text!.trimmingCharacters(in: .whitespaces)
+        let courseNumNoWhitespace = courseNum.text!.trimmingCharacters(in: .whitespaces)
+        let courseTitleNoWhitespace = courseTitle.text!.trimmingCharacters(in: .whitespaces)
+        if deptAbbrNoWhitespace.isEmpty || courseNumNoWhitespace.isEmpty || courseTitleNoWhitespace.isEmpty{
+            // Create alert action "OK"
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            // Create the alert controller
+            let alertController = UIAlertController(title: "Required Fields", message: "You must enter a value in all three boxes.", preferredStyle: .alert)
+            //Add the action to the controller
+            alertController.addAction(okAction)
+            //Show the alert to the user
+            present(alertController, animated: false, completion: nil)
+            return false
+        } else {
+            return true
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         deptAbbrResult = deptAbbr.text ?? "Bad DeptAbbr"
         courseNumResult = Int16(courseNum.text ?? "-1")!
