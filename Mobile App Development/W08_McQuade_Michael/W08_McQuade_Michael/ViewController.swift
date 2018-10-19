@@ -30,6 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        // TODO: Check that courseNum is not larger than 4 (int16)
         let deptAbbrNoWhitespace = deptAbbr.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let courseNumNoWhitespace = courseNum.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let courseTitleNoWhitespace = courseTitle.text!.trimmingCharacters(in: .whitespacesAndNewlines)
