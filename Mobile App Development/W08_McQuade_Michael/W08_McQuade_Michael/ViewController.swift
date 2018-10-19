@@ -30,10 +30,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let deptAbbrNoWhitespace = deptAbbr.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let courseNumNoWhitespace = courseNum.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let courseTitleNoWhitespace = courseTitle.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         // This happens if any of the boxes didn't have text in them
-        let deptAbbrNoWhitespace = deptAbbr.text!.trimmingCharacters(in: .whitespaces)
-        let courseNumNoWhitespace = courseNum.text!.trimmingCharacters(in: .whitespaces)
-        let courseTitleNoWhitespace = courseTitle.text!.trimmingCharacters(in: .whitespaces)
         if deptAbbrNoWhitespace.isEmpty || courseNumNoWhitespace.isEmpty || courseTitleNoWhitespace.isEmpty{
             // Create alert action "OK"
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
