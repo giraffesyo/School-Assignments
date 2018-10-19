@@ -39,6 +39,22 @@ class TableViewController: UITableViewController {
         }
         
         if let entity = self.entity {
+            //check if data exists
+            if checkIfCourseExists(CourseNum: source.courseNumResult, deptAbbr: source.deptAbbrResult){
+                
+                // We should not proceed, show error message and return
+                // Create alert action "OK"
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                // Create the alert controller
+                let alertController = UIAlertController(title: "Duplicate Data", message: "This course already exists and will be not be duplicated.", preferredStyle: .alert)
+                //Add the action to the controller
+                alertController.addAction(okAction)
+                //Show the alert to the user after a moment
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.present(alertController, animated: false, completion: nil)
+                }
+                return
+            }
             // Create a new course record
             let course = NSManagedObject(entity: entity, insertInto: context)
             // Set the record attributes
@@ -58,6 +74,18 @@ class TableViewController: UITableViewController {
         
     }
     
+    func checkIfCourseExists(CourseNum: Int16, deptAbbr: String) -> Bool {
+        let CourseToCheck = deptAbbr + String(CourseNum)
+        for i in dataSource {
+            let thisCourseNum = i.value(forKey: "courseNum") as! Int16
+            let thisDeptAbbr = i.value(forKey: "deptAbbr") as! String
+            let thisCourse = thisDeptAbbr + String(thisCourseNum)
+            if  thisCourse == CourseToCheck{
+                return true
+            }
+        }
+        return false
+    }
     
     // MARK: - Table view data source
     
@@ -72,17 +100,17 @@ class TableViewController: UITableViewController {
     }
     
     
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "My Cell", for: indexPath)
-     
-     // Configure the cell...
-     cell.textLabel?.text = dataSource[indexPath[1]].value(forKey: "deptAbbr") as! String +
-        String((dataSource[indexPath[1]]).value(forKey: "courseNum")as! Int16)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "My Cell", for: indexPath)
+        
+        // Configure the cell...
+        cell.textLabel?.text = dataSource[indexPath[1]].value(forKey: "deptAbbr") as! String +
+            String((dataSource[indexPath[1]]).value(forKey: "courseNum")as! Int16)
         
         cell.detailTextLabel?.text = dataSource[indexPath[1]].value(forKey: "title") as? String
-    
-     return cell
-     }
+        
+        return cell
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         // Fetch database contents
