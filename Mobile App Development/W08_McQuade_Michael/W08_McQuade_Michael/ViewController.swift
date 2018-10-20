@@ -39,7 +39,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             // Create alert action "OK"
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             // Create the alert controller
-            let alertController = UIAlertController(title: "Required Fields", message: "You must enter a value in all three boxes.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Required Fields", message: "You must enter a value in all three boxes or press back to cancel.", preferredStyle: .alert)
             //Add the action to the controller
             alertController.addAction(okAction)
             //Show the alert to the user
