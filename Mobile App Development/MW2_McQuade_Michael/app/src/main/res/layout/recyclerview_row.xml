@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content" android:gravity="center">
 
-    <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/tvStateName" android:textSize="20sp"/>
+    <ImageView
+        android:id="@+id/ivStateImage"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="0.33"
+        tools:srcCompat="@drawable/alabama" />
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/tvStateName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                tools:text="State name here"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/tvStateCaption"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" tools:text="Caption goes here"/>
+    </LinearLayout>
 </LinearLayout>

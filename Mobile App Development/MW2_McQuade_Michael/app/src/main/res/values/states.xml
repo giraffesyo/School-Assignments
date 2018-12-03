@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="state_nicknames">
+        <item>The Yellowhammer State</item>
+        <item>The Last Frontier</item>
+        <item>The Grand Canyon State</item>
+        <item>The Natural State</item>
+        <item>The Golden State</item>
+        <item>The Centennial State</item>
+        <item>The Constitution State</item>
+        <item>The First State</item>
+        <item>The Sunshine State</item>
+        <item>The Peach State</item>
+        <item>The Aloha State</item>
+        <item>The Gem State</item>
+        <item>The Prairie State</item>
+        <item>The Hoosier State</item>
+        <item>The Hawkeye State</item>
+        <item>The Sunflower State</item>
+        <item>The Bluegrass State</item>
+        <item>The Pelican State</item>
+        <item>The Pine Tree State</item>
+        <item>The Old Line State</item>
+        <item>The Bay State</item>
+        <item>The Great Lakes State</item>
+        <item>The North Star State</item>
+        <item>The Magnolia State</item>
+        <item>The Show Me State</item>
+        <item>The Treasure State</item>
+        <item>The Cornhusker State</item>
+        <item>The Silver State</item>
+        <item>The Granite State</item>
+        <item>The Garden State</item>
+        <item>The Land of Enchantment</item>
+        <item>The Empire State</item>
+        <item>The Tar Heel State</item>
+        <item>The Peace Garden State</item>
+        <item>The Buckeye State</item>
+        <item>The Sooner State</item>
+        <item>The Beaver State</item>
+        <item>The Keystone State</item>
+        <item>The Ocean State</item>
+        <item>The Palmetto State</item>
+        <item>Mount Rushmore State</item>
+        <item>The Volunteer State</item>
+        <item>The Lone Star State</item>
+        <item>The Beehive State</item>
+        <item>The Green Mountain State</item>
+        <item>The Old Dominion State</item>
+        <item>The Evergreen State</item>
+        <item>The Mountain State</item>
+        <item>The Badger State</item>
+        <item>The Equality or Cowboy State</item>
+    </string-array>
+    <string-array name="state_names">
+        <item>Alabama</item>
+        <item>Alaska</item>
+        <item>Arizona</item>
+        <item>Arkansas</item>
+        <item>California</item>
+        <item>Colorado</item>
+        <item>Connecticut</item>
+        <item>Delaware</item>
+        <item>Florida</item>
+        <item>Georgia</item>
+        <item>Hawaii</item>
+        <item>Idaho</item>
+        <item>Illinois</item>
+        <item>Indiana</item>
+        <item>Iowa</item>
+        <item>Kansas</item>
+        <item>Kentucky</item>
+        <item>Louisiana</item>
+        <item>Maine</item>
+        <item>Maryland</item>
+        <item>Massachusetts</item>
+        <item>Michigan</item>
+        <item>Minnesota</item>
+        <item>Mississippi</item>
+        <item>Missouri</item>
+        <item>Montana</item>
+        <item>Nebraska</item>
+        <item>Nevada</item>
+        <item>New Hampshire</item>
+        <item>New Jersey</item>
+        <item>New Mexico</item>
+        <item>New York</item>
+        <item>North Carolina</item>
+        <item>North Dakota</item>
+        <item>Ohio</item>
+        <item>Oklahoma</item>
+        <item>Oregon</item>
+        <item>Pennsylvania</item>
+        <item>Rhode Island</item>
+        <item>South Carolina</item>
+        <item>South Dakota</item>
+        <item>Tennessee</item>
+        <item>Texas</item>
+        <item>Utah</item>
+        <item>Vermont</item>
+        <item>Virginia</item>
+        <item>Washington</item>
+        <item>West Virginia</item>
+        <item>Wisconsin</item>
+        <item>Wyoming</item>
+    </string-array>
+    <array name="state_images">
+        <item>@drawable/alabama</item>
+        <item>@drawable/alaska</item>
+        <item>@drawable/arizona</item>
+        <item>@drawable/arkansas</item>
+        <item>@drawable/california</item>
+        <item>@drawable/colorado</item>
+        <item>@drawable/connecticut</item>
+        <item>@drawable/delaware</item>
+        <item>@drawable/florida</item>
+        <item>@drawable/georgia</item>
+        <item>@drawable/hawaii</item>
+        <item>@drawable/idaho</item>
+        <item>@drawable/illinois</item>
+        <item>@drawable/indiana</item>
+        <item>@drawable/iowa</item>
+        <item>@drawable/kansas</item>
+        <item>@drawable/kentucky</item>
+        <item>@drawable/louisiana</item>
+        <item>@drawable/maine</item>
+        <item>@drawable/maryland</item>
+        <item>@drawable/massachusetts</item>
+        <item>@drawable/michigan</item>
+        <item>@drawable/minnesota</item>
+        <item>@drawable/mississippi</item>
+        <item>@drawable/missouri</item>
+        <item>@drawable/montana</item>
+        <item>@drawable/nebraska</item>
+        <item>@drawable/nevada</item>
+        <item>@drawable/newhampshire</item>
+        <item>@drawable/newjersey</item>
+        <item>@drawable/newmexico</item>
+        <item>@drawable/newyork</item>
+        <item>@drawable/northcarolina</item>
+        <item>@drawable/northdakota</item>
+        <item>@drawable/ohio</item>
+        <item>@drawable/oklahoma</item>
+        <item>@drawable/oregon</item>
+        <item>@drawable/pennsylvania</item>
+        <item>@drawable/rhodeisland</item>
+        <item>@drawable/southcarolina</item>
+        <item>@drawable/southdakota</item>
+        <item>@drawable/tennessee</item>
+        <item>@drawable/texas</item>
+        <item>@drawable/utah</item>
+        <item>@drawable/vermont</item>
+        <item>@drawable/virginia</item>
+        <item>@drawable/washington</item>
+        <item>@drawable/westvirginia</item>
+        <item>@drawable/wisconsin</item>
+        <item>@drawable/wyoming</item>
+    </array>
+</resources>
