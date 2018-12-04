@@ -4,7 +4,9 @@ import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
 
@@ -24,10 +26,15 @@ class MainActivity : AppCompatActivity() {
         addStates()
 
         // Create a vertical Layout Manager and add it to our recycler view
-        rvStates.layoutManager = LinearLayoutManager(this)
+        rvStates.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
         // Set the adapter for our recycler view
         rvStates.adapter = StatesRecyclerViewAdapter(states, ::changeScore, this)
+
+        // add divider
+        val divider = DividerItemDecoration(rvStates.context, DividerItemDecoration.VERTICAL)
+        rvStates.addItemDecoration(divider)
+
 
         // set on click listener for our reset button
         tvResetScore.setOnClickListener {
