@@ -27,7 +27,24 @@ class MainActivity : AppCompatActivity() {
 
         // Set the adapter for our recycler view
         rvStates.adapter = StatesRecyclerViewAdapter(states, ::changeScore, this)
+
+        // set on click listener for our reset button
+        tvResetScore.setOnClickListener{
+            resetGame()
+        }
     }
+
+    fun resetGame() {
+        // remove all points
+        changeScore(-score)
+        //empty states array
+        states.clear()
+        // readd them
+        addStates()
+        //refresh recycler view
+        rvStates.adapter?.notifyDataSetChanged()
+    }
+
 
     fun changeScore(by: Int){
         // increment (or decrement if by is negative) by the given argument
