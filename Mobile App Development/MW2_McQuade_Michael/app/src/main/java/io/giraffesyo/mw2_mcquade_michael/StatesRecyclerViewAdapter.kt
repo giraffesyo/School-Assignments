@@ -2,7 +2,6 @@ package io.giraffesyo.mw2_mcquade_michael
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import kotlinx.android.synthetic.main.recyclerview_row.view.*
 import org.jetbrains.anko.*
+
 
 class StatesRecyclerViewAdapter(val items: ArrayList<MainActivity.US_State>, val changeScore: (by: Int) -> Unit, val context: Context) :
     RecyclerView.Adapter<StatesRecyclerViewAdapter.ViewHolder>(), AnkoLogger {
@@ -25,6 +25,7 @@ class StatesRecyclerViewAdapter(val items: ArrayList<MainActivity.US_State>, val
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
         super.onBindViewHolder(holder, position, payloads)
 
+
         if(items[position].seen){
             // if seen we should have a customized pastel background color
             holder.llStateRow.backgroundColor = this.context.resources.getColor(R.color.colorAlreadySeen)
@@ -35,14 +36,34 @@ class StatesRecyclerViewAdapter(val items: ArrayList<MainActivity.US_State>, val
 
         // handle click events by adding a listener to the view
         holder.itemView.setOnClickListener{
-
-            info("clicked $position")
+            // this branches between showing the user the dialog box or marking a row as seen
             if(!items[position].seen){
                 // the user hadn't seen this state until now, so we need to mark it and increase the score!
                 holder.llStateRow.backgroundColor = this.context.resources.getColor(R.color.colorAlreadySeen)
                 items[position].seen = true
                 // increment the score by 1
                 changeScore(1)
+            } else {
+                // the user marked it seen and now is unmarking it, lets confirm they want to unmark it
+
+                val alert = context.alert("Do you want to mark this state as unseen?") {
+
+                    positiveButton("Yes") { dialog ->
+                        // change score by -1
+                        changeScore(-1)
+                        // immediately change the color
+                        holder.llStateRow.setBackgroundColor(Color.TRANSPARENT)
+                        // change the seen state for future use of cell
+                        items[position].seen = false
+                        context.toast("${items[position].name} marked as unseen.")
+                        dialog.dismiss()
+                    }
+                    negativeButton("No") { dialog ->
+                        dialog.cancel()
+                    }
+
+                }
+                alert.show()
             }
         }
     }

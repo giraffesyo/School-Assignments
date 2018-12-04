@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.alert
 
 class MainActivity : AppCompatActivity() {
     // declare a container for our states
@@ -29,8 +30,16 @@ class MainActivity : AppCompatActivity() {
         rvStates.adapter = StatesRecyclerViewAdapter(states, ::changeScore, this)
 
         // set on click listener for our reset button
-        tvResetScore.setOnClickListener{
-            resetGame()
+        tvResetScore.setOnClickListener {
+            alert("Are you sure you want to start over?") {
+                positiveButton("Yes") { dialog ->
+                    resetGame()
+                    dialog.dismiss()
+                }
+                negativeButton("No") { dialog ->
+                    dialog.cancel()
+                }
+            }.show()
         }
     }
 
@@ -46,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun changeScore(by: Int){
+    fun changeScore(by: Int) {
         // increment (or decrement if by is negative) by the given argument
         this.score += by
         // set the text view to have the score displayed
