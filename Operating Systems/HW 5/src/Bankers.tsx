@@ -95,7 +95,12 @@ class Bankers extends React.PureComponent<BankersProps, BankersState> {
   }
 
   render() {
-    const { Processes, availableHistory } = this.state
+    const {
+      props: {
+        initialState: { request },
+      },
+      state: { Processes, availableHistory, safe },
+    } = this
     const headerRow = ['A', 'B', 'C'].map(title => <td key={title}>{title}</td>)
     return (
       <div className="container">
@@ -149,6 +154,13 @@ class Bankers extends React.PureComponent<BankersProps, BankersState> {
             </tr>
           </tbody>
         </table>
+        The request {request.join(', ')} is{' '}
+        {safe ? (
+          <span className="text-success h5">safe</span>
+        ) : (
+          <span className="text-danger h5">unsafe</span>
+        )}
+        .
       </div>
     )
   }
