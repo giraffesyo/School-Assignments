@@ -101,20 +101,20 @@ class Bankers extends React.PureComponent<BankersProps, BankersState> {
       },
       state: { Processes, availableHistory, safe },
     } = this
-    const headerRow = ['A', 'B', 'C'].map(title => <td key={title}>{title}</td>)
+    const headerRow = ['A', 'B', 'C'].map((title, index, arr) => <td style={index === 0 ? leftStyle : index === arr.length - 1 ? rightStyle : undefined} key={title}>{title}</td>)
     return (
       <div className="container">
         <h2>Banker's Algorithm</h2>
         <table className="table text-center">
           <thead>
-            <tr>
+            <tr style={{...leftStyle, ...rightStyle}}>
               <th>Process</th>
               <th colSpan={3}>Allocation</th>
               <th colSpan={3}>Need</th>
               <th colSpan={3}>Available</th>
             </tr>
             <tr>
-              <td />
+              <td style={leftStyle} />
               {headerRow}
               {headerRow}
               {headerRow}
@@ -123,18 +123,18 @@ class Bankers extends React.PureComponent<BankersProps, BankersState> {
           <tbody>
             {Processes.map((process, process_index) => (
               <tr key={'p' + process_index}>
-                <td>{'p' + process_index}</td>
-                {process.allocation.map((value, allocation_index) => (
-                  <td key={'p' + process_index + 'a' + allocation_index}>
+                <td style={leftStyle}>{'p' + process_index}</td>
+                {process.allocation.map((value, allocation_index, arr) => (
+                  <td style={ allocation_index === 0 ? leftStyle: allocation_index === arr.length-1 ? rightStyle: undefined} key={'p' + process_index + 'a' + allocation_index}>
                     {value}
                   </td>
                 ))}
-                {process.need.map((need, need_index) => (
-                  <td key={'p' + process_index + 'n' + need_index}>{need}</td>
+                {process.need.map((need, need_index, arr) => (
+                  <td style={ need_index === 0 ? leftStyle: need_index === arr.length-1 ? rightStyle: undefined} key={'p' + process_index + 'n' + need_index}>{need}</td>
                 ))}
                 {availableHistory[process_index].map(
-                  (available, available_index) => (
-                    <td key={'p' + process_index + 'av' + available_index}>
+                  (available, available_index, arr) => (
+                    <td style={available_index === arr.length - 1 ? rightStyle : undefined} key={'p' + process_index + 'av' + available_index}>
                       {available}
                     </td>
                   )
@@ -164,6 +164,14 @@ class Bankers extends React.PureComponent<BankersProps, BankersState> {
       </div>
     )
   }
+}
+
+const leftStyle = {
+  borderLeft: '2px solid #dee2e6',
+  }
+
+const rightStyle = {
+  borderRight: '2px solid #dee2e6'
 }
 
 export default Bankers
