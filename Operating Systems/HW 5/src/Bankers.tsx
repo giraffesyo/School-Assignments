@@ -52,6 +52,10 @@ class Bankers extends React.PureComponent<BankersProps, BankersState> {
       (requested, index) => initialAvailable[index] - requested
     )
     availableHistory.push(currentAvailable)
+    let error = false
+    if (request > Processes[1].need) {
+      error = true
+    }
     Processes[1].allocation.forEach((_, index) => {
       Processes[1].allocation[index] += request[index]
       Processes[1].need[index] -= request[index]
@@ -84,7 +88,7 @@ class Bankers extends React.PureComponent<BankersProps, BankersState> {
     // check if we're in a safe state
     let safe = true
     Processes.forEach(process => {
-      if (!process.finished) safe = false
+      if (!process.finished || error) safe = false
     })
     this.state = {
       safe,
@@ -116,80 +120,84 @@ class Bankers extends React.PureComponent<BankersProps, BankersState> {
     ))
     return (
       <div className="container">
-        <h2>Banker's Algorithm</h2>
-        <table className="table text-center">
-          <thead>
-            <tr style={{ ...leftStyle, ...rightStyle }}>
-              <th>Process</th>
-              <th colSpan={3}>Allocation</th>
-              <th colSpan={3}>Need</th>
-              <th colSpan={3}>Available</th>
-            </tr>
-            <tr>
-              <td style={leftStyle} />
-              {headerRow}
-              {headerRow}
-              {headerRow}
-            </tr>
-          </thead>
-          <tbody>
-            {Processes.map((process, process_index) => (
-              <tr key={'p' + process_index}>
-                <td style={leftStyle}>{'p' + process_index}</td>
-                {process.allocation.map((value, allocation_index, arr) => (
-                  <td
-                    style={
-                      allocation_index === 0
-                        ? leftStyle
-                        : allocation_index === arr.length - 1
-                        ? rightStyle
-                        : undefined
-                    }
-                    key={'p' + process_index + 'a' + allocation_index}>
-                    {value}
-                  </td>
+        {safe && (
+          <div>
+            <h2>Banker's Algorithm</h2>
+            <table className="table text-center">
+              <thead>
+                <tr style={{ ...leftStyle, ...rightStyle }}>
+                  <th>Process</th>
+                  <th colSpan={3}>Allocation</th>
+                  <th colSpan={3}>Need</th>
+                  <th colSpan={3}>Available</th>
+                </tr>
+                <tr>
+                  <td style={leftStyle} />
+                  {headerRow}
+                  {headerRow}
+                  {headerRow}
+                </tr>
+              </thead>
+              <tbody>
+                {Processes.map((process, process_index) => (
+                  <tr key={'p' + process_index}>
+                    <td style={leftStyle}>{'p' + process_index}</td>
+                    {process.allocation.map((value, allocation_index, arr) => (
+                      <td
+                        style={
+                          allocation_index === 0
+                            ? leftStyle
+                            : allocation_index === arr.length - 1
+                            ? rightStyle
+                            : undefined
+                        }
+                        key={'p' + process_index + 'a' + allocation_index}>
+                        {value}
+                      </td>
+                    ))}
+                    {process.need.map((need, need_index, arr) => (
+                      <td
+                        style={
+                          need_index === 0
+                            ? leftStyle
+                            : need_index === arr.length - 1
+                            ? rightStyle
+                            : undefined
+                        }
+                        key={'p' + process_index + 'n' + need_index}>
+                        {need}
+                      </td>
+                    ))}
+                    {availableHistory[process_index].map(
+                      (available, available_index, arr) => (
+                        <td
+                          style={
+                            available_index === arr.length - 1
+                              ? rightStyle
+                              : undefined
+                          }
+                          key={'p' + process_index + 'av' + available_index}>
+                          {available}
+                        </td>
+                      )
+                    )}
+                  </tr>
                 ))}
-                {process.need.map((need, need_index, arr) => (
-                  <td
-                    style={
-                      need_index === 0
-                        ? leftStyle
-                        : need_index === arr.length - 1
-                        ? rightStyle
-                        : undefined
-                    }
-                    key={'p' + process_index + 'n' + need_index}>
-                    {need}
+                <tr>
+                  <td colSpan={6} />
+                  <td>
+                    <strong>Final:</strong>
                   </td>
-                ))}
-                {availableHistory[process_index].map(
-                  (available, available_index, arr) => (
-                    <td
-                      style={
-                        available_index === arr.length - 1
-                          ? rightStyle
-                          : undefined
-                      }
-                      key={'p' + process_index + 'av' + available_index}>
-                      {available}
-                    </td>
-                  )
-                )}
-              </tr>
-            ))}
-            <tr>
-              <td colSpan={6} />
-              <td>
-                <strong>Final:</strong>
-              </td>
-              {availableHistory[availableHistory.length - 1].map(
-                (available, index) => (
-                  <td key={'final_available' + index}>{available}</td>
-                )
-              )}
-            </tr>
-          </tbody>
-        </table>
+                  {availableHistory[availableHistory.length - 1].map(
+                    (available, index) => (
+                      <td key={'final_available' + index}>{available}</td>
+                    )
+                  )}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}{' '}
         The request {request.join(', ')} is{' '}
         {safe ? (
           <span className="text-success h5">safe</span>
